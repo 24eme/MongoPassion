@@ -62,7 +62,7 @@ echo ' sur '.$nbDocs.'</h2>';
 					}
 					$link_v = 'index.php?action=viewDocument&id='.$id.'&type_id='.$type_id.'&search='.$page;
 					$link_e = 'index.php?action=editDocument&id='.$id.'&type_id='.$type_id.'&search='.$page;
-					$link_d = 'index.php?action=deleteDocument&id='.$id.'&type_id='.$type_id;
+					$link_d = 'index.php?action=deleteDocument&id='.$id.'&type_id='.$type_id.'&search='.$page;
 
 					echo '<tr>';
 					echo '<td id="id"><a href='.$link_v.'>'.$id.'</a></td>';

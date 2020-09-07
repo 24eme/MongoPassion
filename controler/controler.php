@@ -69,7 +69,12 @@
     function deleteDocument()
     {
     	deleteDoc();
-    	header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
+    	if(isset($_GET['search'])){
+            header('Location: index.php?action=getCollection_search&page='.$_GET['search'].'');
+        }
+        else{
+            header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
+        }
     }
 
     function viewDocument()
