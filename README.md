@@ -1,7 +1,7 @@
 # Interface-MongoDB
 
 ###################Prerequis###################
-Installer PHP 7.4
+Installez PHP 7.4
 Apache2
 
 -----------------------------------------
