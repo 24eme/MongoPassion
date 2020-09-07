@@ -87,7 +87,7 @@
 
     	if(isset($_SESSION['recherche_id']) and isset($_SESSION['recherche_g'])){
     		if($_SESSION['recherche_id']=="" and $_SESSION['recherche_g']=="field = content[...]"){
-    			header('Location: index.php?action=getCollection');
+    			header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
     		}
     		else{
 	    		$docs = getSearch($_SESSION['recherche_id'],$_SESSION['recherche_g'],$page,$bypage);
