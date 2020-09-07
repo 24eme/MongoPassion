@@ -176,14 +176,16 @@
 
     function getServer()
     {
+        $serve_list=json_decode($_COOKIE['serve_list']);
     	try{
             if(isset($_GET['serve'])){
         		$_SESSION['serve']=$_GET['serve'];
         	}
         	elseif(isset($_POST['serve'])){
         		$_SESSION['serve']=$_POST['serve'];
-        		if(!in_array($_POST['serve'], $_SESSION['serve_list'])){
-        			array_push($_SESSION['serve_list'], $_POST['serve']);
+        		if(!in_array($_POST['serve'], $serve_list)){
+        			array_push($serve_list, $_POST['serve']);
+                    setcookie('serve_list',json_encode($serve_list));
         		}
         	}
         	elseif(!isset($_SESSION['serve'])){
@@ -193,8 +195,9 @@
         	require('view/getServer.php');
         }
         catch(Exception $e){
-            if (($key = array_search($_POST['serve'], $_SESSION['serve_list'])) !== false) {
-                unset($_SESSION['serve_list'][$key]);
+            if (($key = array_search($_POST['serve'], $serve_list)) !== false) {
+                unset($serve_list[$key]);
+                setcookie('serve_list',json_encode($serve_list));
                 $_SESSION['serve']='localhost';
             }
             echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";

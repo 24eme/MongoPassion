@@ -21,9 +21,10 @@ echo "<h1 class='title'>Welcome</h1>";
 	<br>
 	<div>
 		<?php
-		if(sizeof($_SESSION['serve_list'])>0){
+		$serve_list=json_decode($_COOKIE['serve_list']);
+		if(sizeof($serve_list)>0){
 			echo '<table>';
-			foreach ($_SESSION['serve_list'] as $x) {
+			foreach ($serve_list as $x) {
 				echo '<tr>';
 				echo '<td><a href="index.php?action=getServer&serve='.$x.'">';
 				echo $x;
