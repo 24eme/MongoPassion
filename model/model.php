@@ -67,8 +67,12 @@ function printable($obj){
 
 function getLink_doc()
 {
-	$link_doc='index.php?action=traitement_uD&id='.$_SESSION['doc'].'&type_id='.$_GET['type_id'];
-
+	if(isset($_GET['id'])){
+		$link_doc='index.php?action=traitement_uD&id='.$_SESSION['doc'].'&type_id='.$_GET['type_id'].'&search='.$_GET['search'];
+	}
+	else{
+		$link_doc='index.php?action=traitement_uD&id='.$_SESSION['doc'].'&type_id='.$_GET['type_id'];
+	}
 	return $link_doc;
 }
 
