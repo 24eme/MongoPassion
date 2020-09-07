@@ -19,7 +19,7 @@
 	    	$update = getUpdate_doc();
 	    	$id = getDoc_id();
 	    	updateDoc($id,$update);
-	    	header('Location: index.php?action=getCollection');
+	    	header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
 	    }
     }
 
@@ -57,13 +57,13 @@
     {
     	$doc = getNew_doc();
     	insertDoc($doc);
-    	header('Location: index.php?action=getCollection');
+    	header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
     }
 
     function deleteDocument()
     {
     	deleteDoc();
-    	header('Location: index.php?action=getCollection');
+    	header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
     }
 
     function viewDocument()
