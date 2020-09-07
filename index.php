@@ -2,6 +2,10 @@
 
 session_start();
 
+if(!isset($_SESSION['serve_list'])){
+	$_SESSION['serve_list'] = array('localhost');
+}
+
 require('controler/controler.php');
 
 try{
@@ -12,12 +16,61 @@ try{
             case 'traitement_uD':
                 traitement_uD();
             break;
+            case 'editDocument':
+                editDocument();
+            break;
+            case 'getCollection':
+                getCollection();
+            break;
+            case 'editCollection':
+                editCollection();
+            break;
+            case 'moveCollection':
+                moveCollection();
+            break;
+            case 'renameCollection':
+                renameCollection();
+            break;
+            case 'deleteCollection':
+                deleteCollection();
+            break;
+            case 'createCollection':
+                createCollection();
+            break;
+            case 'getDb':
+                getDb();
+            break;
+            case 'getServer':
+                getServer();
+            break;
+            case 'getCollection_search':
+                getCollection_search();
+            break;
+            case 'createDocument':
+                createDocument();
+            break;
+            case 'traitement_nD':
+                traitement_nD();
+            break;
+            case 'deleteDocument':
+                deleteDocument();
+            break;
+            case 'viewDocument':
+                viewDocument();
+            break;
+            case 'error':
+                error();
+            break;
+            case 'home':
+                home();
+            break;
+
     	}
     }
 
     else
     {
-    	editDocument();
+    	home();
     }
 }
 catch(Exception $e){
