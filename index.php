@@ -2,8 +2,8 @@
 
 session_start();
 
-if(!isset($_SESSION['serve_list'])){
-	$_SESSION['serve_list'] = array('localhost');
+if(!isset($_COOKIE['serve_list'])){
+	$_COOKIE['serve_list'] = json_encode(array('localhost'));
 }
 
 require('controler/controler.php');

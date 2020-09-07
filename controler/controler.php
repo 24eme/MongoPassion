@@ -19,7 +19,13 @@
 	    	$update = getUpdate_doc();
 	    	$id = getDoc_id();
 	    	updateDoc($id,$update);
-	    	header('Location: index.php?action=getCollection');
+
+	    	if(isset($_GET['search'])){
+                header('Location: index.php?action=getCollection_search&page='.$_GET['search'].'');
+            }
+            else{
+                header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
+            }
 	    }
     }
 
@@ -57,13 +63,18 @@
     {
     	$doc = getNew_doc();
     	insertDoc($doc);
-    	header('Location: index.php?action=getCollection');
+    	header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
     }
 
     function deleteDocument()
     {
     	deleteDoc();
-    	header('Location: index.php?action=getCollection');
+    	if(isset($_GET['search'])){
+            header('Location: index.php?action=getCollection_search&page='.$_GET['search'].'');
+        }
+        else{
+            header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
+        }
     }
 
     function viewDocument()
@@ -87,7 +98,7 @@
 
     	if(isset($_SESSION['recherche_id']) and isset($_SESSION['recherche_g'])){
     		if($_SESSION['recherche_id']=="" and $_SESSION['recherche_g']=="field = content[...]"){
-    			header('Location: index.php?action=getCollection');
+    			header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
     		}
     		else{
 	    		$docs = getSearch($_SESSION['recherche_id'],$_SESSION['recherche_g'],$page,$bypage);
@@ -165,14 +176,16 @@
 
     function getServer()
     {
+        $serve_list=json_decode($_COOKIE['serve_list']);
     	try{
             if(isset($_GET['serve'])){
         		$_SESSION['serve']=$_GET['serve'];
         	}
         	elseif(isset($_POST['serve'])){
         		$_SESSION['serve']=$_POST['serve'];
-        		if(!in_array($_POST['serve'], $_SESSION['serve_list'])){
-        			array_push($_SESSION['serve_list'], $_POST['serve']);
+        		if(!in_array($_POST['serve'], $serve_list)){
+        			array_push($serve_list, $_POST['serve']);
+                    setcookie('serve_list',json_encode($serve_list));
         		}
         	}
         	elseif(!isset($_SESSION['serve'])){
@@ -182,8 +195,9 @@
         	require('view/getServer.php');
         }
         catch(Exception $e){
-            if (($key = array_search($_POST['serve'], $_SESSION['serve_list'])) !== false) {
-                unset($_SESSION['serve_list'][$key]);
+            if (($key = array_search($_POST['serve'], $serve_list)) !== false) {
+                unset($serve_list[$key]);
+                setcookie('serve_list',json_encode($serve_list));
                 $_SESSION['serve']='localhost';
             }
             echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
