@@ -21,37 +21,42 @@
 	    	updateDoc($id,$update);
 
 	    	if(isset($_GET['search'])){
-                header('Location: index.php?action=getCollection_search&page='.$_GET['search'].'');
+                header('Location: index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['page'].'');
             }
             else{
-                header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
+                header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
             }
 	    }
     }
 
     function getCollection()
     {
-    	if(isset($_GET['coll_id']))
-    	$_SESSION['collection']=$_GET['coll_id'];
+    	try{
+            if(isset($_GET['coll']))
+        	$coll=$_GET['coll'];
 
-    	else{
-    		header('Location: index.php?action=error');
-    	}
+        	else{
+        		header('Location: index.php?action=error');
+        	}
 
-    	$bypage = 50;
-    	$nbDocs = countDocs();
-    	$nbPages = getNbPages($nbDocs,$bypage);
+        	$bypage = 50;
+        	$nbDocs = countDocs();
+        	$nbPages = getNbPages($nbDocs,$bypage);
 
-    	if(isset($_GET['page'])){
-    		$page = $_GET['page'];
-    	}
-    	else{
-    		$page = 1;
-    	}
+        	if(isset($_GET['page'])){
+        		$page = $_GET['page'];
+        	}
+        	else{
+        		$page = 1;
+        	}
 
-	    $docs = getDocs($page,$bypage);
+    	    $docs = getDocs($page,$bypage);
 
-    	require('view/getCollection.php');
+        	require('view/getCollection.php');
+        }
+        catch(Exception $e){
+            echo $e;
+        }
     }
 
     function createDocument()
@@ -61,19 +66,24 @@
 
     function traitement_nD()
     {
-    	$doc = getNew_doc();
-    	insertDoc($doc);
-    	header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
+        try{
+        	$doc = getNew_doc();
+        	insertDoc($doc);
+        	header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
+        }
+        catch(Exception $e){
+            echo $e;
+        }
     }
 
     function deleteDocument()
     {
     	deleteDoc();
     	if(isset($_GET['search'])){
-            header('Location: index.php?action=getCollection_search&page='.$_GET['search'].'');
+            header('Location: index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'');
         }
         else{
-            header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
+            header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
         }
     }
 
@@ -85,34 +95,41 @@
 
     function getCollection_search()
     {
-    	$bypage = 50;
+        try{
+        	$bypage = 50;
 
-    	if(isset($_GET['page'])){
-    		$page = $_GET['page'];
-    	}
-    	else{
-    		$page = 1;
-    		$_SESSION['recherche_id'] = $_POST['recherche_id'];
-    		$_SESSION['recherche_g'] = $_POST['recherche_g'];
-    	}
+        	if(isset($_GET['page'])){
+        		$page = $_GET['page'];
+                $recherche_id = $_GET['s_id'];
+                $recherche_g = urldecode($_GET['s_g']);
+        	}
+        	else{
+        		$page = 1;
+        		$recherche_id = $_POST['recherche_id'];
+        		$recherche_g = $_POST['recherche_g'];
+        	}
 
-    	if(isset($_SESSION['recherche_id']) and isset($_SESSION['recherche_g'])){
-    		if($_SESSION['recherche_id']=="" and $_SESSION['recherche_g']=="field = content[...]"){
-    			header('Location: index.php?action=getCollection&coll_id='.$_SESSION['collection'].'');
+        	if(isset($recherche_id) and isset($recherche_g)){
+        		if($recherche_id=="" and $recherche_g=="field = content[...]"){
+        			header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
+        		}
+        		else{
+    	    		$docs = getSearch($recherche_id,$recherche_g,$page,$bypage);
+    	    	}
     		}
-    		else{
-	    		$docs = getSearch($_SESSION['recherche_id'],$_SESSION['recherche_g'],$page,$bypage);
-	    	}
-		}
-    	else{
-	    	$docs = getDocs($page,$bypage);
-	    }
+        	else{
+    	    	$docs = getDocs($page,$bypage);
+    	    }
 
 
-    	$nbDocs = countSearch($_SESSION['recherche_id'],$_SESSION['recherche_g']);
-    	$nbPages = getNbPages($nbDocs,$bypage);
+        	$nbDocs = countSearch($recherche_id,$recherche_g);
+        	$nbPages = getNbPages($nbDocs,$bypage);
 
-    	require('view/getCollection_search.php');
+        	require('view/getCollection_search.php');
+        }
+        catch(Exception $e){
+            echo $e;
+        }
     }
 
     function renameCollection()
@@ -120,7 +137,7 @@
         try{
             $newname = str_replace(' ', '_', $_POST['newname']);
             renameCollec($newname);
-            header('Location: index.php?action=editCollection&id='.$newname.'');
+            header('Location: index.php?action=editCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$newname.'');
         }
         catch(Exception $e){
             echo "<script>alert(\"Le nouveau nom est identique à l'ancien\");document.location.href = 'index.php?action=getDb&db_id=".$_SESSION['db']."';</script>";
@@ -137,35 +154,36 @@
         try{
             $newname = str_replace(' ', '_', $_POST['name']);
             createCollec($newname);
-            header('Location: index.php?action=getDb&db_id='.$_SESSION['db'].'');
+            header('Location: index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'');
         }
         catch(Exception $e){
-            echo "<script>alert(\"Cette collection existe déjà\");document.location.href = 'index.php?action=getDb&db_id=".$_SESSION['db']."';</script>";
+            echo "<script>alert(\"Cette collection existe déjà\");document.location.href = 'index.php?action=getDb&serve=".$_GET['serve']."&db=".$_GET['db']."';</script>";
+            echo $e;
         }
     }
 
     function deleteCollection()
     {
         deleteColl();
-        header('Location: index.php?action=getDb&db_id='.$_SESSION['db'].'');
+        header('Location: index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'');
     }
 
     function moveCollection()
     {
         $db = $_POST['newdb'];
         moveCollec($db);
-        header('Location: index.php?action=getDb&db_id='.$_SESSION['db'].'');
+        header('Location: index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'');
     }
 
     function getDb()
     {
-    	if(isset($_GET['db_id']))
-    	$_SESSION['db']=$_GET['db_id'];
+    	if(isset($_GET['db']))
+    	$db=$_GET['db'];
 
     	else{
     		header('Location: index.php?action=error');
     	}
-    	$collections = getCollections();
+    	$collections = getCollections($db);
     	require('view/getDb.php');
     }
 
@@ -179,26 +197,26 @@
         $serve_list=json_decode($_COOKIE['serve_list']);
     	try{
             if(isset($_GET['serve'])){
-        		$_SESSION['serve']=$_GET['serve'];
+        		$serve=$_GET['serve'];
         	}
         	elseif(isset($_POST['serve'])){
-        		$_SESSION['serve']=$_POST['serve'];
+        		$serve=$_POST['serve'];
         		if(!in_array($_POST['serve'], $serve_list)){
-        			array_push($serve_list, $_POST['serve']);
+        			array_push($serve_list, $serve);
                     setcookie('serve_list',json_encode($serve_list));
         		}
         	}
         	elseif(!isset($_SESSION['serve'])){
         		header('Location: index.php?action=error');
         	}
-        	$dbs = getDbs();
+        	$dbs = getDbs($serve);
         	require('view/getServer.php');
         }
         catch(Exception $e){
             if (($key = array_search($_POST['serve'], $serve_list)) !== false) {
                 unset($serve_list[$key]);
                 setcookie('serve_list',json_encode($serve_list));
-                $_SESSION['serve']='localhost';
+                $serve='localhost';
             }
             echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
         }

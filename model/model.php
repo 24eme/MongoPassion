@@ -3,21 +3,21 @@
 function getDocument()
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
 	// $documents = $client->$db->request("db.getCollection(".$collection.").find(".$requete")";
 
 	if($_GET['type_id']=='object'){
-		$id = new MongoDB\BSON\ObjectId($_GET['id']);
+		$id = new MongoDB\BSON\ObjectId($_GET['doc']);
 	}
 	else{
-		$id = $_GET['id'];
+		$id = $_GET['doc'];
 	}
 
-	$_SESSION['doc'] = $_GET['id'];
+	$_SESSION['doc'] = $_GET['doc'];
 
 	$result = $collection->find(['_id'=>$id]);
 	return $result;
@@ -67,11 +67,11 @@ function printable($obj){
 
 function getLink_doc()
 {
-	if(isset($_GET['id'])){
-		$link_doc='index.php?action=traitement_uD&id='.$_SESSION['doc'].'&type_id='.$_GET['type_id'].'&search='.$_GET['search'];
+	if(isset($_GET['search'])){
+		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'].'&search=&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'];
 	}
 	else{
-		$link_doc='index.php?action=traitement_uD&id='.$_SESSION['doc'].'&type_id='.$_GET['type_id'];
+		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'];
 	}
 	return $link_doc;
 }
@@ -133,9 +133,9 @@ function getDoc_id()
 function updateDoc($id,$doc)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 	$collection->updateOne(
     [ '_id' => $id ],
@@ -165,9 +165,9 @@ function init_json($doc){
 function getDocs($page,$bypage)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -180,9 +180,9 @@ function getDocs($page,$bypage)
 function countDocs()
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 	$result = $collection->count([]);
 	return $result;
@@ -199,9 +199,9 @@ function getNew_doc()
 function insertDoc($doc)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
 	$collection->insertOne($doc);
@@ -210,16 +210,16 @@ function insertDoc($doc)
 function deleteDoc()
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
 	if($_GET['type_id']=='object'){
-		$id = new MongoDB\BSON\ObjectId($_GET['id']);
+		$id = new MongoDB\BSON\ObjectId($_GET['doc']);
 	}
 	else{
-		$id = $_GET['id'];
+		$id = $_GET['doc'];
 	}
 
 	$collection->deleteOne(['_id'=>$id]);
@@ -227,9 +227,9 @@ function deleteDoc()
 
 function getSearch_id($search,$page,$bypage){
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -252,9 +252,9 @@ function getSearch_id($search,$page,$bypage){
 
 function getSearch_g($search,$page,$bypage){
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -288,9 +288,9 @@ function getSearch($search_id,$search_g,$page,$bypage){
 	else{
 
 		require 'vendor/autoload.php';
-		$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-		$db = strval($_SESSION['db']);
-		$collec = strval($_SESSION['collection']);
+		$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+		$db = strval($_GET['db']);
+		$collec = strval($_GET['coll']);
 		$collection = $client->$db->$collec;
 
 		$skip = ($page-1)*$bypage;
@@ -334,9 +334,9 @@ function getNbPages_search($result,$pages){
 
 function countSearch_id($search){
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 	
 	$regex = new MongoDB\BSON\Regex ($search);
@@ -358,9 +358,9 @@ function countSearch_id($search){
 function countSearch_g($search)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
-	$collec = strval($_SESSION['collection']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
 	$tab_search = explode('=', $search);
@@ -393,9 +393,9 @@ function countSearch($search_id,$search_g)
 	else{
 
 		require 'vendor/autoload.php';
-		$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-		$db = strval($_SESSION['db']);
-		$collec = strval($_SESSION['collection']);
+		$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+		$db = strval($_GET['db']);
+		$collec = strval($_GET['coll']);
 		$collection = $client->$db->$collec;
 
 		$tab_search = explode('=', $search_g);
@@ -424,11 +424,10 @@ function countSearch($search_id,$search_g)
 	return $result;
 }
 
-function getCollections()
+function getCollections($db)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
-	$db = strval($_SESSION['db']);
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
 	$database = $client->$db;
 
 	$result = $database->listCollections();
@@ -436,10 +435,10 @@ function getCollections()
 	return $result;
 }
 
-function getDbs()
+function getDbs($serve)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
+	$client = new MongoDB\Client('mongodb://'.$serve.':27017');
 
 	$result = $client->listDatabases();
 
@@ -449,19 +448,19 @@ function getDbs()
 function renameCollec($newName)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
 
 	$database = $client->admin;
 
-	$database->command(array('renameCollection'=>$_SESSION['db'].'.'.$_GET['coll_id'],'to'=>$_SESSION['db'].'.'.$newName));
+	$database->command(array('renameCollection'=>$_GET['db'].'.'.$_GET['coll'],'to'=>$_GET['db'].'.'.$newName));
 }
 
 function createCollec($name)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
 
-	$db = strval($_SESSION['db']);
+	$db = strval($_GET['db']);
 
 	$database = $client->$db;
 
@@ -471,22 +470,22 @@ function createCollec($name)
 function deleteColl()
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
 
-	$db = strval($_SESSION['db']);
+	$db = strval($_GET['db']);
 
 	$database = $client->$db;
 
-	$database->dropCollection($_GET['id']);
+	$database->dropCollection($_GET['coll']);
 }
 
 
 function moveCollec($db)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$_SESSION['serve'].':27017');
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
 
 	$database = $client->admin;
 
-	$database->command(array('renameCollection'=>$_SESSION['db'].'.'.$_GET['coll_id'],'to'=>$db.'.'.$_GET['coll_id']));
+	$database->command(array('renameCollection'=>$_GET['db'].'.'.$_GET['coll'],'to'=>$db.'.'.$_GET['coll']));
 }

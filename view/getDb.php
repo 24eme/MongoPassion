@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>".$_SESSION['db']."</title>"?>
+	<?php echo "<title>".$db."</title>"?>
 	<meta charset="UTF-8">
 </head>
 
@@ -11,13 +11,19 @@
 
 <?php
 
-echo "<h1 class='title'>".$_SESSION['db']."</h1>";
+echo "<h1 class='title'>".$db."</h1>";
 
 ?>
 
 <nav>
 	<div id="options">
 		<span id="nC">
+			<?php
+			$serve=$_GET['serve'];
+			$db=$_GET['db'];
+			?>
+			<input type=hidden id=serve value=<?php echo $serve; ?>/>
+			<input type=hidden id=db value=<?php echo $db; ?>/>
 			<button id='createCollec' flag = "false" onclick="afficher();">New Collection</button>
 		</span>
 	</div>
@@ -29,21 +35,17 @@ echo "<h1 class='title'>".$_SESSION['db']."</h1>";
 		<?php
 			foreach ($collections as $collection) {
 				echo '<tr>';
-				echo '<td><a href="index.php?action=getCollection&coll_id='.$collection->getName().'">';
+				echo '<td><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'">';
 				echo $collection->getName();
 				echo '</a></td>';
-				// echo '<td><form method="post" action="index.php?action=renameCollection&coll_id='.$collection->getName().'">'; 
-				// echo '<input type="text" name="newname" id="newname" value="'.$collection->getName().'" required />';
-				// echo '<input type="submit" name="rename" id="rename" value="Rename">';
-				// echo '</form></td>';
-				echo '<td><a href=index.php?action=editCollection&id='.$collection->getName().'>Edit</a></td>';
-				echo '<td><a href=index.php?action=deleteCollection&id='.$collection->getName().'>Delete</a></td>';
+				echo '<td><a href=index.php?action=editCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Edit</a></td>';
+				echo '<td><a href=index.php?action=deleteCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Delete</a></td>';
 				echo '</tr>';
 			}
 		?>
 	</table>
 	<?php
-	echo '<br><a href="index.php?action=getServer">< Server</a>';
+	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'">< Server</a>';
 	?>
 </div>
 

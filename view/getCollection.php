@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>".$_SESSION['collection']."</title>"?>
+	<?php echo "<title>".$_GET['coll']."</title>"?>
 	<meta charset="UTF-8">
 </head>
 
@@ -17,7 +17,7 @@ if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 	echo "</h1>";
 }
 else{
-	echo "<h1 class='title'>".$_SESSION['collection']."</h1>";
+	echo "<h1 class='title'>".$_GET['coll']."</h1>";
 }
 echo '<br>';
 echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
@@ -29,18 +29,18 @@ echo ' sur '.$nbDocs.'</h2>';
 <nav>
 	<div id="options">
 		<span>
-			<a href="index.php?action=createDocument">Nouveau Document</a>
+			<?php echo '<a href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a>'; ?>
 		</span>
 	</div>
 </nav>
 
 <div class="recherche">
 	<br>
-	<form method="post" action="index.php?action=getCollection_search">
+	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<input type="search" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
 		<input type="search" name="recherche_g" id="recherche_g" value="field = content[...]"/>
 		<input type="submit" name="search" id="search" value="Search"/>
-		<?php echo '<a href="index.php?action=getCollection&coll_id='.$_SESSION['collection'].'">Reinit</a>'; ?>
+		<?php echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a>'; ?>
 	</form>
 </div>
 
@@ -60,9 +60,9 @@ echo ' sur '.$nbDocs.'</h2>';
 					else{
 						$id = $doc['_id'];
 					}
-					$link_v = 'index.php?action=viewDocument&id='.$id.'&type_id='.$type_id;
-					$link_e = 'index.php?action=editDocument&id='.$id.'&type_id='.$type_id;
-					$link_d = 'index.php?action=deleteDocument&id='.$id.'&type_id='.$type_id;
+					$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id;
+					$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id;
+					$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id;
 
 					echo '<tr>';
 					echo '<td id="id"><a href='.$link_v.'>'.$id.'</a></td>';
@@ -74,7 +74,7 @@ echo ' sur '.$nbDocs.'</h2>';
 		?>
 	</table>
 	<?php
-	echo '<br><a href="index.php?action=getDb&db_id='.$_SESSION['db'].'">< Database</a>';
+	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">< Database</a>';
 	?>
 </div>
 
@@ -83,7 +83,7 @@ echo ' sur '.$nbDocs.'</h2>';
 	echo '<br>';
 
 	for ($i=1;$i<=$nbPages;$i++) {
-		echo '<a href="index.php?action=getCollection&page='.$i.'">'.$i.'</a>';
+		echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$i.'">'.$i.'</a>';
 		if($i!=$nbPages){echo '-';}
 	}
 	?>

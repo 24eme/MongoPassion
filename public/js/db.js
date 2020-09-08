@@ -1,8 +1,13 @@
 
 function afficher(){
+	var s = document.getElementById("serve").value;
+	var serve = s.slice(0, -1);
+	var datab = document.getElementById("db").value;
+	var db = datab.slice(0, -1);
+
 	var f = document.createElement("form");
 	f.setAttribute('method',"post");
-	f.setAttribute('action',"index.php?action=createCollection");
+	f.setAttribute('action',"index.php?action=createCollection&serve="+serve+"&db="+db);
 
 	var i = document.createElement("input"); //input element, text
 	i.setAttribute('type',"text");

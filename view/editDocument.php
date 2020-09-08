@@ -7,7 +7,7 @@
 
 <body>
 
-<?php echo "<h1 class='title'>".$_SESSION['doc']."</h1>" ?>
+<?php echo "<h1 class='title'>".$_GET['doc']."</h1>" ?>
 
 <div id="main">
 	<?php
@@ -41,10 +41,10 @@
 	 	echo '</form>';
 	 	echo '<br>';
 	 	if(isset($_GET['search'])){
-	 		echo '<a href="index.php?action=getCollection_search&page='.$_GET['search'].'">< Collection</a>';
+	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'">< Collection</a>';
 	 	}
 	 	else{
-	 		echo '<a href="index.php?action=getCollection&coll_id='.$_SESSION['collection'].'">< Collection</a>';
+	 		echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">< Collection</a>';
 	 	}
 	?>
 </div>
