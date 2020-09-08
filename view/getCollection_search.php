@@ -98,7 +98,7 @@ echo ' sur '.$nbDocs.'</h2>';
 	echo '<br>';
 
 	for ($i=1;$i<=$nbPages;$i++) {
-		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$i.'">'.$i.'</a>';
+		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'">'.$i.'</a>';
 		if($i!=$nbPages){echo '-';}
 	}
 	?>

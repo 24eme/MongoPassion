@@ -39,7 +39,7 @@
         		header('Location: index.php?action=error');
         	}
 
-        	$bypage = 50;
+        	$bypage = 2;
         	$nbDocs = countDocs();
         	$nbPages = getNbPages($nbDocs,$bypage);
 
@@ -96,7 +96,7 @@
     function getCollection_search()
     {
         try{
-        	$bypage = 50;
+        	$bypage = 2;
 
         	if(isset($_GET['page'])){
         		$page = $_GET['page'];

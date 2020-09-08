@@ -323,7 +323,13 @@ function getSearch($search_id,$search_g,$page,$bypage){
 }
 
 function getNbPages($result,$pages){
-	$nb = intval($result/$pages)+1;
+	$temp = $result/$pages;
+	if(gettype($temp)=='integer'){
+		$nb=$temp;
+	}
+	else{
+		$nb = intval($result/$pages)+1;
+	}
 	return $nb;
 }
 
