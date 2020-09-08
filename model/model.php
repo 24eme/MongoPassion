@@ -71,7 +71,7 @@ function getLink_doc()
 		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'].'&search=&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'];
 	}
 	else{
-		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'];
+		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'].'&page='.$_GET['page'];
 	}
 	return $link_doc;
 }

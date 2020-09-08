@@ -24,7 +24,7 @@
                 header('Location: index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['page'].'');
             }
             else{
-                header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
+                header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'');
             }
 	    }
     }
@@ -39,7 +39,7 @@
         		header('Location: index.php?action=error');
         	}
 
-        	$bypage = 50;
+        	$bypage = 2;
         	$nbDocs = countDocs();
         	$nbPages = getNbPages($nbDocs,$bypage);
 
@@ -83,7 +83,7 @@
             header('Location: index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'');
         }
         else{
-            header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
+            header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'');
         }
     }
 
