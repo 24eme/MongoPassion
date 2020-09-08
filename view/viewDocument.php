@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<title>View Document</title>
+	<?php echo '<title>View '.$_GET['doc'].'</title>'; ?>
 	<meta charset="UTF-8">
 </head>
 
 <body>
 
-<?php echo "<h1 class='title'>".$_GET['doc']."</h1>" ?>
+<?php echo "<h1 class='title'>View ".$_GET['doc']."</h1>" ?>
 
 <div id="main">
 	<?php

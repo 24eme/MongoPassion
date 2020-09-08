@@ -1,19 +1,31 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>".$_GET['coll']."</title>"?>
+	<?php
+	if(isset($recherche_id) and isset($recherche_g)){
+		echo "<title>Résultat de la recherche pour ";
+		if($recherche_id=="" and $recherche_g=="field = content[...]"){echo "\"Aucun critère\"";}
+		if($recherche_id!=""){echo "\"".$recherche_id."\"";}
+		if($recherche_id!="" and $recherche_g!="field = content[...]"){echo " et ";}
+		if($recherche_g!="field = content[...]"){echo "\"".$recherche_g."\"";}
+		echo "</title>";
+	}
+	else{
+		echo "<title>".$_GET['coll']."</title>";
+	}
+	?>
 	<meta charset="UTF-8">
 </head>
 
 <body>
 
 <?php
-if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
+if(isset($recherche_id) and isset($recherche_g)){
 	echo "<h1 class='title'>Résultat de la recherche pour ";
-	if($_POST['recherche_id']=="" and $_POST['recherche_g']=="field = content[...]"){echo "\"Aucun critère\"";}
-	if($_POST['recherche_id']!=""){echo "\"".$_POST['recherche_id']."\"";}
-	if($_POST['recherche_id']!="" and $_POST['recherche_g']!="field = content[...]"){echo " et ";}
-	if($_POST['recherche_g']!="field = content[...]"){echo "\"".$_POST['recherche_g']."\"";}
+	if($recherche_id=="" and $recherche_g=="field = content[...]"){echo "\"Aucun critère\"";}
+	if($recherche_id!=""){echo "\"".$recherche_id."\"";}
+	if($recherche_id!="" and $recherche_g!="field = content[...]"){echo " et ";}
+	if($recherche_g!="field = content[...]"){echo "\"".$recherche_g."\"";}
 	echo "</h1>";
 }
 else{

@@ -39,7 +39,7 @@
         		header('Location: index.php?action=error');
         	}
 
-        	$bypage = 2;
+        	$bypage = 50;
         	$nbDocs = countDocs();
         	$nbPages = getNbPages($nbDocs,$bypage);
 

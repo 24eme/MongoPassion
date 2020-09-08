@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<title>Edit Document</title>
+	<?php echo '<title>Edit '.$_GET['doc'].'</title>'; ?>
 	<meta charset="UTF-8">
 </head>
 
 <body>
 
-<?php echo "<h1 class='title'>".$_GET['doc']."</h1>" ?>
+<?php echo "<h1 class='title'>Edit ".$_GET['doc']."</h1>" ?>
 
 <div id="main">
 	<?php
