@@ -259,7 +259,7 @@ function getSearch_g($search,$page,$bypage){
 
 	$skip = ($page-1)*$bypage;
 
-	$tab_search = explode('=', $search);
+	$tab_search = explode(':', $search);
 
 	$tab_find = array();
 
@@ -281,7 +281,7 @@ function getSearch($search_id,$search_g,$page,$bypage){
 		$result = getSearch_g($search_g,$page,$bypage);
 	}
 
-	elseif($search_g=='field = content[...]'){
+	elseif($search_g=='field : content[...]'){
 		$result = getSearch_id($search_id,$page,$bypage);;
 	}
 
@@ -295,7 +295,7 @@ function getSearch($search_id,$search_g,$page,$bypage){
 
 		$skip = ($page-1)*$bypage;
 
-		$tab_search = explode('=', $search_g);
+		$tab_search = explode(':', $search_g);
 
 		$tab_find = array();
 
@@ -369,7 +369,7 @@ function countSearch_g($search)
 	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
-	$tab_search = explode('=', $search);
+	$tab_search = explode(':', $search);
 
 	$tab_find = array();
 
@@ -392,7 +392,7 @@ function countSearch($search_id,$search_g)
 		$result = countSearch_g($search_g);
 	}
 
-	elseif($search_g=='field = content[...]'){
+	elseif($search_g=='field : content[...]'){
 		$result = countSearch_id($search_id);
 	}
 

@@ -110,7 +110,7 @@
         	}
 
         	if(isset($recherche_id) and isset($recherche_g)){
-        		if($recherche_id=="" and $recherche_g=="field = content[...]"){
+        		if($recherche_id=="" and $recherche_g=="field : content[...]"){
         			header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
         		}
         		else{

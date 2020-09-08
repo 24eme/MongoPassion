@@ -10,10 +10,10 @@
 <?php
 if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 	echo "<h1 class='title'>Résultat de la recherche pour ";
-	if($_POST['recherche_id']=="" and $_POST['recherche_g']=="field = content[...]"){echo "\"Aucun critère\"";}
+	if($_POST['recherche_id']=="" and $_POST['recherche_g']=="field : content[...]"){echo "\"Aucun critère\"";}
 	if($_POST['recherche_id']!=""){echo "\"".$_POST['recherche_id']."\"";}
-	if($_POST['recherche_id']!="" and $_POST['recherche_g']!="field = content[...]"){echo " et ";}
-	if($_POST['recherche_g']!="field = content[...]"){echo "\"".$_POST['recherche_g']."\"";}
+	if($_POST['recherche_id']!="" and $_POST['recherche_g']!="field : content[...]"){echo " et ";}
+	if($_POST['recherche_g']!="field : content[...]"){echo "\"".$_POST['recherche_g']."\"";}
 	echo "</h1>";
 }
 else{
@@ -38,7 +38,7 @@ echo ' sur '.$nbDocs.'</h2>';
 	<br>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<input type="search" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
-		<input type="search" name="recherche_g" id="recherche_g" value="field = content[...]"/>
+		<input type="search" name="recherche_g" id="recherche_g" value="field : content[...]"/>
 		<input type="submit" name="search" id="search" value="Search"/>
 		<?php echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a>'; ?>
 	</form>
