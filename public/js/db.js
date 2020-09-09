@@ -27,3 +27,11 @@ function afficher(){
 	span.setAttribute('flag', 'true');
 	span.appendChild(f);
 };
+
+
+//fonction pour confimer la suppression
+function confirmDelete() {
+  return confirm("Voulez vous vraiment supprimer");
+
+  
+}

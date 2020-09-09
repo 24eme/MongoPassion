@@ -3,9 +3,10 @@
 <head>
 	<?php echo "<title>".$db."</title>"?>
 	<meta charset="UTF-8">
+	<script src="public/js/db.js"></script>
 </head>
 
-<script src="public/js/db.js"></script>
+
 
 <body>
 
@@ -39,8 +40,12 @@ echo "<h1 class='title'>".$db."</h1>";
 				echo $collection->getName();
 				echo '</a></td>';
 				echo '<td><a href=index.php?action=editCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Edit</a></td>';
-				echo '<td><a href=index.php?action=deleteCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Delete</a></td>';
+				// echo '<td><a href=index.php?action=deleteCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Deletes</a></td>';
+
+				echo "<td><a href=index.php?action=deleteCollection&serve=".$_GET['serve'].'&db='.$_GET['db']."&coll=".$collection->getName()."  onclick='return confirmDelete()'>Delete</a></td>";
 				echo '</tr>';
+
+
 			}
 		?>
 	</table>

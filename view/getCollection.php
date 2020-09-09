@@ -3,6 +3,7 @@
 <head>
 	<?php echo "<title>".$_GET['coll']."</title>"?>
 	<meta charset="UTF-8">
+	<script src="public/js/db.js"></script>
 </head>
 
 <body>
@@ -67,8 +68,11 @@ echo ' sur '.$nbDocs.'</h2>';
 					echo '<tr>';
 					echo '<td id="id"><a href='.$link_v.'>'.$id.'</a></td>';
 					echo '<td id="edit"><a href='.$link_e.'>Edit</a></td>';
-					echo '<td id="suppr"><a href='.$link_d.'>Delete</a></td>';
+					// echo '<td id="suppr"><a href='.$link_d.'>Delete</a></td>';
+					echo  "<td id='suppr'><a href=".$link_d." onclick='return confirmDelete()' >Delete</a></td>";
+
 					echo '</tr>';
+					 
 				}
 			}
 		?>
