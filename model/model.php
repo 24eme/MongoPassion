@@ -331,7 +331,26 @@ function getSearch($search_id,$search_g,$page,$bypage){
 
 }
 
-function getNbPages($result,$pages){
+function getSpecialSearch($command,$page,$bypage)
+{
+	require 'vendor/autoload.php';
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
+	$collection = $client->$db->$collec;
+
+	$skip = ($page-1)*$bypage;
+
+	$command = '$result = '.$command.'';
+
+	eval($command);
+
+	return $result;
+}
+
+
+function getNbPages($result,$pages)
+{
 	$temp = $result/$pages;
 	if(gettype($temp)=='integer'){
 		$nb=$temp;
@@ -436,6 +455,24 @@ function countSearch($search_id,$search_g)
 		$result = $result1 + $result2;
 	}
 
+	return $result;
+}
+
+function countSpecialSearch($search)
+{
+	require 'vendor/autoload.php';
+	$client = new MongoDB\Client('mongodb://'.$_GET['serve'].':27017');
+	$db = strval($_GET['db']);
+	$collec = strval($_GET['coll']);
+	$collection = $client->$db->$collec;
+
+	$temp = '$result = '.$search.'';
+
+	$command = str_replace('find', 'count', $temp);
+	$temp = str_replace('->toArray()', '', $command);
+	$command = str_replace(', [\'skip\'=>$skip,\'limit\'=>$bypage]', '', $temp);
+
+	eval($command);
 	return $result;
 }
 
