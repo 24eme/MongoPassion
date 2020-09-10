@@ -3,12 +3,28 @@
 <head>
 	<?php echo "<title>".$_GET['coll']."</title>"?>
 	<meta charset="UTF-8">
-	<script src="public/js/db.js"></script>
+
 </head>
 
 <body>
 
 <?php
+
+echo '<span>';
+echo '<form method="post" action="index.php?action=thread">';
+echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
+if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
+else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
+if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
+else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
+if(isset($_GET['coll'])){echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread" value="'.$_GET['coll'].'"/>';}
+else{echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread"/>';}
+if(isset($_GET['doc'])){echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread" value="'.$_GET['doc'].'"/>';}
+else{echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread"/>';}
+echo '<input type="submit" name="go" id="go" value="Go"/>';
+echo '</form>';
+echo '</span>';
+
 if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 	echo "<h1 class='title'>Résultat de la recherche pour ";
 	if($_POST['recherche_id']=="" and $_POST['recherche_g']=="field : content[...]"){echo "\"Aucun critère\"";}
@@ -20,7 +36,6 @@ if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 else{
 	echo "<h1 class='title'>".$_GET['coll']."</h1>";
 }
-echo '<br>';
 echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
@@ -92,5 +107,6 @@ echo ' sur '.$nbDocs.'</h2>';
 	}
 	?>
 </footer>
+	<script src="public/js/db.js"></script>
 </body>
 </html>

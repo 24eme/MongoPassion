@@ -10,14 +10,23 @@ function getDocument()
 
 	// $documents = $client->$db->request("db.getCollection(".$collection.").find(".$requete")";
 
-	if($_GET['type_id']=='object'){
-		$id = new MongoDB\BSON\ObjectId($_GET['doc']);
+	if(isset($_GET['type_id'])){
+		if($_GET['type_id']=='object'){
+			$id = new MongoDB\BSON\ObjectId($_GET['doc']);
+		}
+		else{
+			$id = $_GET['doc'];
+		}
 	}
 	else{
-		$id = $_GET['doc'];
+		try{
+			$id = new MongoDB\BSON\ObjectId($_GET['doc']);
+		}
+		catch (Exception $e){
+			$id = $_GET['doc'];
+		}
 	}
-
-	$_SESSION['doc'] = $_GET['doc'];
+	// $_SESSION['doc'] = $_GET['doc'];
 
 	$result = $collection->find(['_id'=>$id]);
 	return $result;
@@ -494,4 +503,67 @@ function moveCollec($db)
 	$database = $client->admin;
 
 	$database->command(array('renameCollection'=>$_GET['db'].'.'.$_GET['coll'],'to'=>$db.'.'.$_GET['coll']));
+}
+
+function getLink_thread()
+{
+	if(isset($_POST['serve_thread']) and $_POST['serve_thread']!= ''){
+		$action = 'getServer';
+	}
+	if(isset($_POST['db_thread']) and $_POST['db_thread']!= ''){
+		$action = 'getDb';
+	}
+	if(isset($_POST['coll_thread']) and $_POST['coll_thread']!= ''){
+		$action = 'getCollection';
+	}
+	if(isset($_POST['doc_thread']) and $_POST['doc_thread']!= ''){
+		$action = 'viewDocument';
+	}
+
+	$link = $link='index.php?action='.$action;
+
+	$error = false;
+
+	switch ($action) 
+	{
+		case 'getServer':
+			break;
+		case 'getDb':
+			if (!(isset($_POST['serve_thread']) and $_POST['serve_thread']!= '')) {
+				$error = true;
+				header('Location: index.php?action=error');
+			}
+			break;
+		case 'getCollection':
+			if (!(isset($_POST['serve_thread']) and $_POST['serve_thread']!= '') or !(isset($_POST['db_thread']) and $_POST['db_thread']!= '')) {
+				$error = true;
+				header('Location: index.php?action=error');
+			}
+			break;
+		case 'viewDocument':
+			if (!(isset($_POST['serve_thread']) and $_POST['serve_thread']!= '') or !(isset($_POST['db_thread']) and $_POST['db_thread']!= '') or !(isset($_POST['coll_thread']) and $_POST['coll_thread']!= '')) {
+				$error = true;
+				header('Location: index.php?action=error');
+			}
+			break;
+	}
+
+	if($error){
+		return 'index.php?action=error';
+	}
+
+	if(isset($_POST['serve_thread']) and $_POST['serve_thread']!= ''){
+		$link=$link.'&serve='.$_POST['serve_thread'];
+	}
+	if(isset($_POST['db_thread']) and $_POST['db_thread']!= ''){
+		$link=$link.'&db='.$_POST['db_thread'];
+	}
+	if(isset($_POST['coll_thread']) and $_POST['coll_thread']!= ''){
+		$link=$link.'&coll='.$_POST['coll_thread'];
+	}
+	if(isset($_POST['doc_thread']) and $_POST['doc_thread']!= ''){
+		$link=$link.'&doc='.$_POST['doc_thread'].'&page=1';
+	}
+
+	return $link;
 }

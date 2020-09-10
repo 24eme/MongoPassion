@@ -39,7 +39,7 @@
         		header('Location: index.php?action=error');
         	}
 
-        	$bypage = 2;
+        	$bypage = 50;
         	$nbDocs = countDocs();
         	$nbPages = getNbPages($nbDocs,$bypage);
 
@@ -89,14 +89,19 @@
 
     function viewDocument()
     {
-    	$result = getDocument();
-    	require('view/viewDocument.php');
+    	try{
+            $result = getDocument();
+            require('view/viewDocument.php');
+        }
+        catch(Exception $e){
+            echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
+        }
     }
 
     function getCollection_search()
     {
         try{
-        	$bypage = 2;
+        	$bypage = 50;
 
         	if(isset($_GET['page'])){
         		$page = $_GET['page'];
@@ -225,4 +230,15 @@
     function home()
     {
     	require('view/home.php');
+    }
+
+    function thread()
+    {
+        try{
+            $link_thread = getLink_thread();
+                header('Location: '.$link_thread.'');
+        }
+        catch(Exception $e){
+            echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
+        }
     }
