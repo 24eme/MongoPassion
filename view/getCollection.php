@@ -3,6 +3,36 @@
 <head>
 	<?php echo "<title>".$_GET['coll']."</title>"?>
 	<meta charset="UTF-8">
+ 	<script src="public/js/db.js"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- 
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> -->
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $('#recherche_g').hide();
+  
+  $('#R').on('change', function(e){
+
+   if (this.value=='Rkey'){
+   	$('#recherche_g').show();
+     $('#recherche_id').hide();
+
+   }
+   else {
+   	if (this.value=='Rid'){ 
+   	 $('#recherche_g').hide();
+     $('#recherche_id').show();
+
+     }
+   }
+
+  });
+  
+});
+
+</script>
+
 
 </head>
 
@@ -52,6 +82,13 @@ echo ' sur '.$nbDocs.'</h2>';
 
 <div class="recherche">
 	<br>
+	<label for="pet-select">Recherche:</label>
+
+		<select name="pets" id="R">
+
+		    <option id="Rid"  value="Rid">Recherche par ID</option>
+		    <option id="Rkey" value="Rkey">Par clé : valeur</option>
+		</select>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<input type="search" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
 		<input type="search" name="recherche_g" id="recherche_g" value="field : content[...]"/>
@@ -107,6 +144,9 @@ echo ' sur '.$nbDocs.'</h2>';
 	}
 	?>
 </footer>
-	<script src="public/js/db.js"></script>
+
+	
+	
+
 </body>
 </html>

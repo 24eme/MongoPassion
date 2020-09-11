@@ -16,27 +16,42 @@
 	?>
 	<meta charset="UTF-8">
 	<script src="public/js/db.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+
+$(document).ready(function(){
+	// alert('bonjour');
+   $('#recherche_gss').hide();
+
+  $('#Rs').on('change', function(e){
+
+  	// $('#recherche_g').show();
+   //  $('#recherche_id').hide();
+   if (this.value=='Rkeys'){
+   	$('#recherche_gss').show();
+     $('#recherche_ids').hide();
+
+   }
+   else {
+   	if (this.value=='Rids'){ 
+   	 $('#recherche_gss').hide();
+     $('#recherche_ids').show();
+
+     }
+   }
+
+  });
+  
+});
+
+</script>
+
 </head>
 
 <body>
 
 <?php
-
-echo '<span>';
-echo '<form method="post" action="index.php?action=thread">';
-echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
-if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
-else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
-if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
-else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
-if(isset($_GET['coll'])){echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread" value="'.$_GET['coll'].'"/>';}
-else{echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread"/>';}
-if(isset($_GET['doc'])){echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread" value="'.$_GET['doc'].'"/>';}
-else{echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread"/>';}
-echo '<input type="submit" name="go" id="go" value="Go"/>';
-echo '</form>';
-echo '</span>';
-
 if(isset($recherche_id) and isset($recherche_g)){
 	echo "<h1 class='title'>Résultat de la recherche pour ";
 	if($recherche_id=="" and $recherche_g=="field = content[...]"){echo "\"Aucun critère\"";}
@@ -48,6 +63,7 @@ if(isset($recherche_id) and isset($recherche_g)){
 else{
 	echo "<h1 class='title'>".$_GET['coll']."</h1>";
 }
+echo '<br>';
 echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
@@ -64,9 +80,17 @@ echo ' sur '.$nbDocs.'</h2>';
 
 <div class="recherche">
 	<br>
+	<label for="pet-select">Recherche:</label>
+
+		<select name="pets" id="Rs">
+
+		    <option id="Rids"  value="Rids">Recherche par ID</option>
+		    <option id="Rkeys" value="Rkeys">Par clé : valeur</option>
+		</select>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
-		<input type="search" name="recherche_g" id="recherche_g" value="field : content[...]"/>
+		<input type="search" name="recherche_id" id="recherche_ids" placeholder="Search by id"/>
+		<!-- <input type="search" name="recherche_g"  id="recherche_gss" placeholder="Search by id"/> -->
+		<input type="search" name="recherche_g" id="recherche_gss" value="field : content[...]"/>
 		<input type="submit" name="search" id="search" value="Search"/>
 		<?php echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a>'; ?>
 	</form>
