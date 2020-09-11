@@ -103,31 +103,55 @@
         try{
         	$bypage = 50;
 
-        	if(isset($_GET['page'])){
-        		$page = $_GET['page'];
-                $recherche_id = $_GET['s_id'];
-                $recherche_g = urldecode($_GET['s_g']);
-        	}
-        	else{
-        		$page = 1;
-        		$recherche_id = $_POST['recherche_id'];
-        		$recherche_g = $_POST['recherche_g'];
-        	}
+        	if(isset($_POST['special_search'])){
+                if(isset($_GET['page'])){
+                    $page = $_GET['page'];
+                }
+                else{
+                    $page = 1;
+                }
+                $docs = getSpecialSearch($_POST['special_search'],$page,$bypage);
+                $nbDocs = countSpecialSearch($_POST['special_search']);
 
-        	if(isset($recherche_id) and isset($recherche_g)){
-        		if($recherche_id=="" and $recherche_g=="field : content[...]"){
-        			header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
-        		}
-        		else{
-    	    		$docs = getSearch($recherche_id,$recherche_g,$page,$bypage);
-    	    	}
-    		}
-        	else{
-    	    	$docs = getDocs($page,$bypage);
-    	    }
+            }
+            elseif (isset($_GET['s_s'])) {
+                if(isset($_GET['page'])){
+                    $page = $_GET['page'];
+                }
+                else{
+                    $page = 1;
+                }
+                $search = urldecode($_GET['s_s']);
+                $docs = getSpecialSearch($search,$page,$bypage);
+                $nbDocs = countSpecialSearch($search);
+            }
+            else
+            {
+                if(isset($_GET['page'])){
+                    $page = $_GET['page'];
+                    $recherche_id = $_GET['s_id'];
+                    $recherche_g = urldecode($_GET['s_g']);
+                }
+                else{
+                    $page = 1;
+                    $recherche_id = $_POST['recherche_id'];
+                    $recherche_g = $_POST['recherche_g'];
+                }
+            
+                if(isset($recherche_id) and isset($recherche_g)){
+                    if($recherche_id=="" and $recherche_g=="field : content[...]"){
+                        header('Location: index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'');
+                    }
+                    else{
+                        $docs = getSearch($recherche_id,$recherche_g,$page,$bypage);
+                    }
+                }
+                else{
+                    $docs = getDocs($page,$bypage);
+                }
+                $nbDocs = countSearch($recherche_id,$recherche_g);
+            }
 
-
-        	$nbDocs = countSearch($recherche_id,$recherche_g);
         	$nbPages = getNbPages($nbDocs,$bypage);
 
         	require('view/getCollection_search.php');
