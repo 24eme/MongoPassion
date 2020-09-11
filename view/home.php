@@ -16,7 +16,7 @@
 
 <div id="main" class="col-lg-6 offset-lg-3 mt-5">
 	<h1 align="center">Interface de visualisation MongoDB</h1>
-	<img align="center"  class="rounded-circle col-lg-6  offset-lg-4 mb-2 w-25" src="public/24eme.jpg" alt="24eme">
+	<img align="center"  class="rounded-circle col-lg-6  offset-lg-4 mb-2 w-25" src="public/mongodb.jpg" alt="24eme">
 	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
 		<input type="text" class="form-control" name="serve" id="serve" placeholder="Ajoutez votre address IP " maxLength = 20 required /> 
 		<input type="submit" class="btn btn-success btn-sm" name="add" id="add" value="ADD">
