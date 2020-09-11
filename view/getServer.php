@@ -14,6 +14,7 @@ echo '<span>';
 echo '<form method="post" action="index.php?action=thread">';
 echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
 if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
+elseif(isset($_POST['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_POST['serve'].'"/>';}
 else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
 if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
 else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
