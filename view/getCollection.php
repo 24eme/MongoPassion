@@ -42,7 +42,7 @@ $(document).ready(function(){
 
 </head>
 
-<body style="background-color:#A48340;">
+<body style="background-color:#FFFFFF;">
 
 <?php
 

@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 </head>
 
-<body style="background-color:#A48340;">
+<body style="background-color:#FFFFFF;">
 
 <?php
 

@@ -7,7 +7,7 @@
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 </head>
 
-<body style="background-color:#A48340;">
+<body style="background-color:#FFFFFF;">
 
 <?php
 
