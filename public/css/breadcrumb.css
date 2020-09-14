@@ -1,0 +1,19 @@
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+/*    color :#8a724f;*/
+}
+
+.breadcrumb-item > a{
+	color :#62a252;
+}
+
+.breadcrumb-item > a:hover{
+	color :#7cc45c;
+}
+
+/*.breadcrumb-item.active{
+	color :#8a724f;
+}*/
+
+.breadcrumb{
+	background-color: #ececec;

@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
+	<link href="public/css/editDocument.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -90,7 +91,7 @@ echo "<h1 class='title'>Edit ".$_GET['doc']."</h1>"
 	 	echo '<form method="post" action="'.$link_doc.'">';
 	 	echo '<input type="hidden" name="date_array" value="'.htmlspecialchars(serialize($date_array)).'"></input>';
 	 	echo '<input type="hidden" name="up_date_array" value="'.htmlspecialchars(serialize($up_date_array)).'"></input>';
-	 	echo '<textarea name="doc_text" id="doc_text" rows="20" cols="200" required>'.$docs.'</textarea>';
+	 	echo '<div id="doc_content"><textarea name="doc_text" id="doc_text" rows="20" cols="200" required>'.$docs.'</textarea></div>';
 	 	echo '<input type="submit" name="update" id="update" value="Update">';
 	 	echo '</form>';
 	 	echo '<br>';

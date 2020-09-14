@@ -1,0 +1,19 @@
+#doc_text{
+	width: 50%;
+	margin:auto;
+	padding: 10px;
+	font-family: Courier;
+	min-height: 600px;
+	border-radius: 10px; 
+	border-color: #ececec;
+}
+
+#doc_text:focus{
+	border-radius: 10px;
+	border:none;
+	outline-color: rgba(124, 195, 101, 0.5);
+}
+
+#doc_content{
+	display: flex;
+}
