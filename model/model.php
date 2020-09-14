@@ -74,6 +74,23 @@ function printable($obj){
 	return $print;
 }
 
+function getColor($num) {
+	$doc = $num;
+	if(gettype($num)=='array'){
+		$doc=array();
+		foreach ($num as $key => $value) {
+			$doc[$key]=getColor($value);
+		}
+	}
+	elseif(gettype($num)=='object'){
+		$doc=$num;
+	}
+	else{
+		$doc = "<font color='#62a252'>$num</font>";
+	}
+	return $doc;
+}
+
 function getLink_doc()
 {
 	if(isset($_GET['search'])){
@@ -604,3 +621,4 @@ function getLink_thread()
 
 	return $link;
 }
+
