@@ -118,7 +118,7 @@ echo ' sur '.$nbDocs.'</h2>';
 <nav>
 	<div id="options">
 		<span>
-			<?php echo '<a href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a>'; ?>
+			<?php echo '<button><a href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a></button>'; ?>
 		</span>
 	</div>
 </nav>
