@@ -15,8 +15,11 @@
 	}
 	?>
 	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
+
 	<script src="public/js/db.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -47,6 +50,14 @@ $(document).ready(function(){
   
 });
 
+
+// $("#Rkey").click(function(){
+//   $('#recherche_g').hide();
+// });
+
+// $("#Rid").click(function(){
+//   $('#recherche_g').show();
+// });
 </script>
 
 </head>
@@ -54,6 +65,7 @@ $(document).ready(function(){
 <body>
 
 <?php
+
 
 	//Fil d'Ariane
 
@@ -109,8 +121,12 @@ if(isset($recherche_id) and isset($recherche_g)){
 	echo "<h1 class='title'>Résultat de la recherche pour ";
 	if($recherche_id=="" and $recherche_g=="field = content[...]"){echo "\"Aucun critère\"";}
 	if($recherche_id!=""){echo "\"".$recherche_id."\"";}
-	if($recherche_id!="" and $recherche_g!="field = content[...]"){echo " et ";}
-	if($recherche_g!="field = content[...]"){echo "\"".$recherche_g."\"";}
+	if($recherche_id!="" and $recherche_g!="field = content[...]"){
+		echo " et ";
+	}
+	if($recherche_g!="field = content[...]"){
+			echo "\"".$recherche_g."\"";
+		}
 	echo "</h1>";
 }
 else{
@@ -147,10 +163,6 @@ echo ' sur '.$nbDocs.'</h2>';
 		<input type="submit" name="search" id="search" value="Search"/>
 		<?php echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a>'; ?>
 	</form>
-	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" name="special_search" id="special_search" size=100 value="$collection->find( ['_id'=>'CONTRAT-000013-20130812-0001'], ['skip'=>$skip,'limit'=>$bypage] )->toArray();"/>
-		<input type="submit" name="search" id="search" value="Search"/>
-	</form>
 </div>
 
 <div id="main">
@@ -170,34 +182,20 @@ echo ' sur '.$nbDocs.'</h2>';
 						$id = $doc['_id'];
 					}
 
-					if(isset($_POST['special_search'])){
-						$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_s='.urlencode($_POST['special_search']).'&type_id='.$type_id.'&page='.$page;
-						$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_s='.urlencode($_POST['special_search']).'&type_id='.$type_id.'&page='.$page;
-						$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
-					}
-
-					elseif(isset($_GET['s_s'])){
-						$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_s='.urlencode($_GET['s_s']).'&type_id='.$type_id.'&page='.$page;
-						$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_s='.urlencode($_GET['s_s']).'&type_id='.$type_id.'&page='.$page;
-						$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
-					}
-
-					else{
-						$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
-						$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
-						// $link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'type_id='.$type_id.'&search='.$page;
-						$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&search='.$page.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g);
-					}
+					$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
+					$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
+					// $link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'type_id='.$type_id.'&search='.$page;
+					$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&search='.$page.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g);
 
 					echo '<tr>';
 					echo '<td id="id"><a href='.$link_v.'>'.$id.'</a></td>';
-					echo '<td id="id"><a href='.$link_v.'>View</a></td>';
-					echo '<td id="edit"><a href='.$link_e.'>Edit</a></td>';
+					echo "<td id='edit'><button  class='btn'><a href=".$link_e."><i class='fa fa-edit'></i></a></button></td>";
 					// echo '<td id="suppr"><a  href='.$link_d.'>Delete</a></td>';
-					echo  "<td id='suppr'><a href=".$link_d." onclick='return confirmDelete()' >Delete</a></td>";
+					echo  "<td id='suppr'><button  class='btn'><a href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
 					echo '</tr>';
 				}
-				
+				// <i class="fa fa-trash"></i>
+				// <button><a href="blabla.html">Texte du bouton</a></button>
 			}
 		?>
 	</table>
