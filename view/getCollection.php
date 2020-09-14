@@ -3,6 +3,8 @@
 <head>
 	<?php echo "<title>".$_GET['coll']."</title>"?>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  	<script src="public/js/db.js"></script> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 
@@ -36,7 +38,7 @@ $(document).ready(function(){
 
 </head>
 
-<body>
+<body style="background-color:#A48340;">
 
 <?php
 
@@ -101,9 +103,9 @@ echo ' sur '.$nbDocs.'</h2>';
 	</form>
 </div>
 
-<div id="main">
+<div id="main" class="border border-dark col-lg-4 offset-lg-4 bg-light mt-1">
 	<br>
-	<table>
+	<table class="table">
 		<?php
 			if($nbDocs==0){
 				echo 'Aucun document ne correspond à votre recherche.';
@@ -122,15 +124,17 @@ echo ' sur '.$nbDocs.'</h2>';
 					$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 
 					echo '<tr>';
-					echo '<td id="id"><a href='.$link_v.'>'.$id.'</a></td>';
-					echo '<td id="id"><a href='.$link_v.'>View</a></td>';
-					echo '<td id="edit"><a href='.$link_e.'>Edit</a></td>';
+					echo "<td id='d'><a class='text-dark' href=".$link_v.">".$id."</a></td>";
+					echo "<td id='id'><button  class='btn'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
+					echo "<td id='edit'><button  class='btn'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
 					// echo '<td id="suppr"><a href='.$link_d.'>Delete</a></td>';
-					echo  "<td id='suppr'><a href=".$link_d." onclick='return confirmDelete()' >Delete</a></td>";
+					echo  "<td id='suppr'><button  class='btn'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
 
 					echo '</tr>';
 					 
 				}
+
+
 			}
 		?>
 	</table>

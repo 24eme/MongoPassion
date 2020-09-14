@@ -4,11 +4,13 @@
 	<?php echo "<title>".$db."</title>"?>
 	<meta charset="UTF-8">
 	<script src="public/js/db.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 
 
-<body>
+<body style="background-color:#A48340;">
 
 <?php
 
@@ -45,27 +47,33 @@ echo "<h1 class='title'>".$db."</h1>";
 	</div>
 </nav>
 
-<div id="main">
+<div id="main" class="border border-dark col-lg-4 offset-lg-4 bg-light mt-1">
 	<br>
-	<table>
+	<table class="table">
 		<?php
 			foreach ($collections as $collection) {
 				echo '<tr>';
-				echo '<td><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'">';
+				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'>";
 				echo $collection->getName();
 				echo '</a></td>';
-				echo '<td><a href=index.php?action=editCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Edit</a></td>';
+				echo "<td><button  class='btn bg-light'><a class='text-primary' href=index.php?action=editCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
 				// echo '<td><a href=index.php?action=deleteCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Deletes</a></td>';
 
-				echo "<td><a href=index.php?action=deleteCollection&serve=".$_GET['serve'].'&db='.$_GET['db']."&coll=".$collection->getName()."  onclick='return confirmDelete()'>Delete</a></td>";
+				echo "<td><button  class='btn bg-light'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$_GET['serve'].'&db='.$_GET['db']."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
 				echo '</tr>';
 
 
 			}
+
+
+					// 		echo "<td id='edit'><button  class='btn'><a href=".$link_e."><i class='fa fa-edit'></i></a></button></td>";
+					// // echo '<td id="suppr"><a  href='.$link_d.'>Delete</a></td>';
+					// echo  "<td id='suppr'><button  class='btn'><a href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
+					// echo '</tr>';
 		?>
 	</table>
 	<?php
-	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'">< Server</a>';
+	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'">< Serveur</a>';
 	?>
 </div>
 
