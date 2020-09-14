@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
+	<link href="public/css/viewDocument.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -87,7 +88,8 @@ echo '<br><a href="'.$link_edit.'">Edit</a>';
 		 		else{
 		 	  		$value = printable($x_value);
 		 		}
-		 		$doc[$x] = improved_var_export($value);
+		 		$temp =  improved_var_export($value);
+	 	  		$doc[$x] = getColor($temp);
 		 	}
 		 		$doc = init_json($doc);
 		 		$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
