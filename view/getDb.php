@@ -12,7 +12,7 @@
 
 
 
-<body style="background-color:#FFFFFF;">
+<body style="background-color:#FFFFF§;">
 
 <?php
 
@@ -66,12 +66,16 @@
 // echo '</form>';
 // echo '</span>';
 
-echo "<h1 class='title'>".$db."</h1>";
+echo "<h1 align='center' class='title'>".$db."</h1>";
 
 ?>
 
 <nav>
-	<div id="options">
+
+
+
+
+	<div id="options" class="col-lg-4 offset-lg-4 mt-1">
 		<span id="nC">
 			<?php
 			$serve=$_GET['serve'];
@@ -79,7 +83,7 @@ echo "<h1 class='title'>".$db."</h1>";
 			?>
 			<input type=hidden id=serve value=<?php echo $serve; ?>/>
 			<input type=hidden id=db value=<?php echo $db; ?>/>
-			<button id='createCollec' flag = "false" onclick="afficher();">New Collection</button>
+			<button id='createCollec' class="btn btn-success btn-lg btn-block text-light mb-1" flag ="false" onclick="afficher();">New Collection</button>
 		</span>
 	</div>
 </nav>
