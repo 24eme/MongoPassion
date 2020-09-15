@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 </head>
 
-<body style="background-color:#A48340;">
+<body style="background-color:#FFFFFF;">
 
 <?php
 
@@ -19,7 +19,7 @@
 	<img align="center"  class="rounded-circle col-lg-6  offset-lg-4 mb-2 w-25" src="public/images/mongodb.jpg" alt="24eme">
 	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
 		<input type="text" class="form-control" name="serve" id="serve" placeholder="Ajoutez votre address IP " maxLength = 20 required /> 
-		<input type="submit" class="btn btn-success btn-sm" name="add" id="add" value="ADD">
+		<input type="submit" class="btn btn-success btn-sm" name="add" id="add" value="AJOUTER">
 	
 	</form>
 	<br>
