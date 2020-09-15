@@ -61,12 +61,12 @@
 // echo '</form>';
 // echo '</span>';
 
-echo "<h1 class='title'>".$serve."</h1>";
+echo "<h1 align='center' class='title'>".$serve."</h1>";
 
 
 ?>
 
-<div id="main" class="col-lg-6 offset-lg-3 mt-5 bg-light">
+<div id="main" class="border border-dark col-lg-6 offset-lg-3 mt-5 bg-light">
 	<br>
 	<table class="table">
 		<?php
