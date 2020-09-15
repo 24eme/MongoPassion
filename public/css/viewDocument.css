@@ -1,3 +1,5 @@
+/*Texte*/
+
 pre#doc_text{
 	background-color: #ececec;
 	color : #3F3B3B;
@@ -7,4 +9,19 @@ pre#doc_text{
 	min-height: 600px;
 	border-radius: 10px;
 
+}
+
+/*Bouton Edit*/
+
+.btn.btn-primary{
+	background-color: #4CAF50;
+	border:none;
+	margin-left: 2650%;
+}
+
+#content{
+	display: flex;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	/*padding-left: 50px;*/
 }

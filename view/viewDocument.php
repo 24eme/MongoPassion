@@ -71,7 +71,7 @@ if(isset($_GET['type_id'])){
 	$link_edit=$link_edit.'&type_id='.$_GET['type_id'];
 }
 $link_edit=$link_edit.'&page='.$_GET['page'];
-echo '<br><a href="'.$link_edit.'">Edit</a>';
+echo '<div id="content"><a href="'.$link_edit.'"><button class="btn btn-primary">Edit</button></a></div>';
 ?>
 
 <div id="main">
