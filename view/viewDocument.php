@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/viewDocument.css" rel="stylesheet" type="text/css">
+	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -46,21 +47,6 @@
 			}
 		echo '</ol>';
 	echo '</nav>';
-
-// echo '<span>';
-// echo '<form method="post" action="index.php?action=thread">';
-// echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
-// if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
-// else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
-// if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
-// else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
-// if(isset($_GET['coll'])){echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread" value="'.$_GET['coll'].'"/>';}
-// else{echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread"/>';}
-// if(isset($_GET['doc'])){echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread" value="'.$_GET['doc'].'"/>';}
-// else{echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread"/>';}
-// echo '<input type="submit" name="go" id="go" value="Go"/>';
-// echo '</form>';
-// echo '</span>'; 
 ?>
 
 <?php 

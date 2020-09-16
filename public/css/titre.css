@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Rubik-Light';
+  src: url(../font/rubik/Rubik-Light.ttf);
+
+}
+
+h1.title{
+	color : #3F3B3B;
+	font-size: 48px; 
+	font-family: 'Rubik-Light', sans-serif; 
+	padding-bottom: 10px;
+	padding-left: 2%;
+}
