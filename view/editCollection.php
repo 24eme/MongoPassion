@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
+	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -66,7 +67,7 @@ echo "<h1 align=center class='title'>Edit ".$_GET['coll']."</h1>";
 
 ?>
 
-<div id="main" class="border border-dark col-lg-4 offset-lg-4 bg-light mt-1>
+<div id="main" class="border border-dark col-lg-4 offset-lg-4 bg-light mt-1">
 	<?php
 	echo '<form method="post" action="index.php?action=renameCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
 	echo '<br><label>Rename Collection</label><br>';
@@ -80,7 +81,7 @@ echo "<h1 align=center class='title'>Edit ".$_GET['coll']."</h1>";
 	echo '<input type="submit" class="btn bg-success text-light" name="move" id="move" value="Move">';
 	echo '</form>';
 
-	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">< Database</a>'; 
+	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary">< Database</button></a>'; 
 	?>
 </div>
 

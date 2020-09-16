@@ -9,6 +9,7 @@ pre#doc_text{
 	padding: 10px;
 	min-height: 600px;
 	border-radius: 10px;
+	margin-top: 20px;
 
 }
 
@@ -17,7 +18,7 @@ pre#doc_text{
 .btn.btn-primary{
 	background-color: #4CAF50;
 	border:none;
-	margin-left: 2650%;
+	margin-left: 0%;
 }
 
 #content{
@@ -25,5 +26,20 @@ pre#doc_text{
 	margin-bottom: 10px;
 	margin-top: 10px;
 	/*padding-left: 50px;*/
+	width: 5%;
+	margin-left: 70%;
 }
 
+.btn.btn-primary.view{
+	background-color: transparent;
+	margin-left: 0px;
+}
+
+.btn_view{
+	width: 10%;
+	float: left;
+	margin-left: 3%;
+}
+
+#nav_view{
+}

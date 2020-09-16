@@ -7,6 +7,7 @@
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/viewDocument.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
+	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -57,7 +58,18 @@ if(isset($_GET['type_id'])){
 	$link_edit=$link_edit.'&type_id='.$_GET['type_id'];
 }
 $link_edit=$link_edit.'&page='.$_GET['page'];
+echo '<div id="nav_view">';
+if(isset($_GET['search'])){
+	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return btn btn-primary">< Collection</button></a>';
+}
+elseif(isset($_GET['s_s'])){
+	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
+}
+else{
+	echo '<div class="btn_view"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'"><button class="return btn btn-primary view">< Collection</button></a></div>';
+}
 echo '<div id="content"><a href="'.$link_edit.'"><button class="btn btn-primary">Edit</button></a></div>';
+echo '</div>';
 ?>
 
 <div id="main">
@@ -82,15 +94,6 @@ echo '<div id="content"><a href="'.$link_edit.'"><button class="btn btn-primary"
 	 	}
 	 	echo '<pre name="doc_text" id="doc_text">'.$docs.'</pre>';
 	 	echo '<br>';
-	 	if(isset($_GET['search'])){
-	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'">< Collection</a>';
-	 	}
-	 	elseif(isset($_GET['s_s'])){
-	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'">< Collection</a>';
-	 	}
-	 	else{
-	 		echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'">< Collection</a>';
-	 	}
 	?>
 </div>
 

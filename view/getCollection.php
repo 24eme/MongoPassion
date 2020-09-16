@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
+	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
 
  	<script src="public/js/db.js"></script> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -142,8 +143,7 @@ echo ' sur '.$nbDocs.'</h2>';
 	</form>
 	<hr>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="$collection->find( ['_id'=>'CONT
-		RAT-000013-20130812-0001'], ['skip'=>$skip,'limit'=>$bypage] )->toArray();"/>
+		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="$collection->find( ['_id'=>'CONTRAT-000013-20130812-0001'], ['skip'=>$skip,'limit'=>$bypage] )->toArray();"/>
 		<input type="submit" class="btn  bg-success text-light m-1" name="search" id="search" value="Search"/>
 	</form>
 </div>
@@ -184,7 +184,7 @@ echo ' sur '.$nbDocs.'</h2>';
 		?>
 	</table>
 	<?php
-	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">< Database</a>';
+	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary">< Database</button></a>';
 	?>
 </div>
 

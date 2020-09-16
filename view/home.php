@@ -3,6 +3,7 @@
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
+	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
 	<?php echo "<title>Welcome</title>"?>
 	<meta charset="UTF-8">
 </head>
