@@ -124,7 +124,8 @@ echo ' sur '.$nbDocs.'</h2>';
 	</div>
 </nav>
 
-<div class="recherche border border-dark col-lg-4 offset-lg-4 bg-light mt-1">
+<div class="row  align-items-start mt-1">
+<div class="recherche border border-dark col-lg-5 obg-light mt-1 ml-5">
 	<br>
 	<label for="pet-select">Recherche:</label>
 
@@ -147,7 +148,7 @@ echo ' sur '.$nbDocs.'</h2>';
 	</form>
 </div>
 
-<div id="main" class="border border-dark col-lg-4 offset-lg-4 bg-light mt-1">
+<div id="main" class="border border-dark col-lg-5 offset-lg-1 bg-light mt-1">
 	<br>
 	<table class="table">
 		<?php
@@ -186,6 +187,8 @@ echo ' sur '.$nbDocs.'</h2>';
 	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">< Database</a>';
 	?>
 </div>
+
+</div></div>
 
 <footer>
 	<?php
