@@ -108,40 +108,42 @@ if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 	echo "</h1>";
 }
 else{
-	echo "<h1 class='title'>".$_GET['coll']."</h1>";
+	echo "<h1 align=center class='title'>".$_GET['coll']."</h1>";
 }
-echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
+echo '<h2 align=center class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
 echo ' sur '.$nbDocs.'</h2>';
 ?>
 
 <nav>
-	<div id="options">
+	<div id="options" class="col-lg-4 offset-lg-4 bg-light mt-1">
 		<span>
-			<?php echo '<button><a href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a></button>'; ?>
+			<?php echo '<button class="btn bg-success btn-lg btn-block"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a></button>'; ?>
 		</span>
 	</div>
 </nav>
 
-<div class="recherche">
+<div class="recherche border border-dark col-lg-4 offset-lg-4 bg-light mt-1">
 	<br>
 	<label for="pet-select">Recherche:</label>
 
-		<select name="pets" id="R">
+		<select  class="browser-default custom-select" name="pets" id="R">
 
 		    <option id="Rid"  value="Rid">Recherche par ID</option>
 		    <option id="Rkey" value="Rkey">Par clé : valeur</option>
 		</select>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
-		<input type="search" name="recherche_g" id="recherche_g" value="field : content[...]"/>
-		<input type="submit" name="search" id="search" value="Search"/>
-		<?php echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a>'; ?>
+		<input type="search" class="form-control" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
+		<input type="search" class="form-control" name="recherche_g" id="recherche_g" value="field : content[...]"/>
+		<input class="btn bg-success text-light m-1"  type="submit" name="search" id="search" value="Search"/>
+		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
 	</form>
+	<hr>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" name="special_search" id="special_search" size=100 value="$collection->find( ['_id'=>'CONTRAT-000013-20130812-0001'], ['skip'=>$skip,'limit'=>$bypage] )->toArray();"/>
-		<input type="submit" name="search" id="search" value="Search"/>
+		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="$collection->find( ['_id'=>'CONT
+		RAT-000013-20130812-0001'], ['skip'=>$skip,'limit'=>$bypage] )->toArray();"/>
+		<input type="submit" class="btn  bg-success text-light m-1" name="search" id="search" value="Search"/>
 	</form>
 </div>
 

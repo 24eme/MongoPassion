@@ -62,22 +62,22 @@
 // echo '</form>';
 // echo '</span>';
 
-echo "<h1 class='title'>Edit ".$_GET['coll']."</h1>";
+echo "<h1 align=center class='title'>Edit ".$_GET['coll']."</h1>";
 
 ?>
 
-<div id="main">
+<div id="main" class="border border-dark col-lg-4 offset-lg-4 bg-light mt-1>
 	<?php
 	echo '<form method="post" action="index.php?action=renameCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
 	echo '<br><label>Rename Collection</label><br>';
-	echo '<input type="text" name="newname" id="newname" value="'.$_GET['coll'].'" required />';
-	echo '<input type="submit" name="rename" id="rename" value="Rename">';
-	echo '</form>';
-
+	echo '<input type="text" class="form-control" name="newname" id="newname" value="'.$_GET['coll'].'" required />';
+	echo '<input type="submit" class="btn bg-success text-light" name="rename" id="rename" value="Rename">';
+	echo '</form><hr>';
+    
 	echo '<form method="post" action="index.php?action=moveCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
 	echo '<br><label>Move Collection</label><br>';
-	echo '<input type="text" name="newdb" id="newdb" placeholder="New Database" required />';
-	echo '<input type="submit" name="move" id="move" value="Move">';
+	echo '<input type="text" class="form-control" name="newdb" id="newdb" placeholder="New Database" required />';
+	echo '<input type="submit" class="btn bg-success text-light" name="move" id="move" value="Move">';
 	echo '</form>';
 
 	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">< Database</a>'; 
