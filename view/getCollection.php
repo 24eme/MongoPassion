@@ -10,6 +10,7 @@
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
+	<link href="public/css/getCollection.css" rel="stylesheet" type="text/css">
 
  	<script src="public/js/db.js"></script> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -109,28 +110,29 @@ if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 	echo "</h1>";
 }
 else{
-	echo "<h1 align=center class='title'>".$_GET['coll']."</h1>";
+	echo "<h1 class='title'>".$_GET['coll']."</h1>";
 }
-echo '<h2 align=center class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
+echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
 echo ' sur '.$nbDocs.'</h2>';
 ?>
 
 <nav>
-	<div id="options" class="col-lg-4 offset-lg-4 bg-light mt-1">
+	<div id="options">
 		<span>
-			<?php echo '<button class="btn bg-success btn-lg btn-block"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a></button>'; ?>
+			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a></button>'; ?>
 		</span>
 	</div>
 </nav>
-
-<div class="row  align-items-start mt-1">
-<div class="recherche border border-dark col-lg-5 obg-light mt-1 ml-5">
+<hr>
+<div id="row">
+<div id="recherche">
 	<br>
+	<div id="search_content">
 	<label for="pet-select">Recherche:</label>
-
-		<select  class="browser-default custom-select" name="pets" id="R">
+		<br>
+		<select name="pets" id="R">
 
 		    <option id="Rid"  value="Rid">Recherche par ID</option>
 		    <option id="Rkey" value="Rkey">Par clé : valeur</option>
@@ -141,14 +143,18 @@ echo ' sur '.$nbDocs.'</h2>';
 		<input class="btn bg-success text-light m-1"  type="submit" name="search" id="search" value="Search"/>
 		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
 	</form>
-	<hr>
-	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+</div>
+<div id="special_search_content">
+		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="$collection->find( ['_id'=>'CONTRAT-000013-20130812-0001'], ['skip'=>$skip,'limit'=>$bypage] )->toArray();"/>
 		<input type="submit" class="btn  bg-success text-light m-1" name="search" id="search" value="Search"/>
 	</form>
 </div>
+</div>
 
-<div id="main" class="border border-dark col-lg-5 offset-lg-1 bg-light mt-1">
+<hr>
+
+<div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
 	<table class="table">
 		<?php
@@ -183,10 +189,11 @@ echo ' sur '.$nbDocs.'</h2>';
 			}
 		?>
 	</table>
-	<?php
-	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary">< Database</button></a>';
-	?>
 </div>
+
+	<?php
+	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection">< Database</button></a>';
+	?>
 
 </div></div>
 
