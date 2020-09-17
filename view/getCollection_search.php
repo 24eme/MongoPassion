@@ -73,13 +73,13 @@ $(document).ready(function(){
 
 	echo '<nav>';
 		echo '<ol class="breadcrumb">';
-			echo '<li class="breadcrumb-item"><a href="index.php?">Home</a></li>';
+			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
 				if($_GET['action']=='getServer'){
 					echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'">'.$_GET['serve'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
 				}
 			}
 			if(isset($_GET['db'])){
@@ -87,7 +87,7 @@ $(document).ready(function(){
 					echo '<li class="breadcrumb-item active">'.$_GET['db'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'.$_GET['db'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</a></li>';
 				}
 			}
 			if(isset($_GET['coll'])){
@@ -95,7 +95,7 @@ $(document).ready(function(){
 					echo '<li class="breadcrumb-item active">'.$_GET['coll'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'.$_GET['coll'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</a></li>';
 				}
 			}
 			if(isset($_GET['doc'])){
