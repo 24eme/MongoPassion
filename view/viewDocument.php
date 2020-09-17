@@ -45,7 +45,7 @@
 				}
 			}
 			if(isset($_GET['doc'])){
-				echo '<li class="breadcrumb-item active">'.$_GET['doc'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-book"></i>'.$_GET['doc'].'</li>';
 			}
 		echo '</ol>';
 	echo '</nav>';

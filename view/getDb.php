@@ -33,10 +33,10 @@
 			}
 			if(isset($_GET['db'])){
 				if($_GET['action']=='getDb'){
-					echo '<li class="breadcrumb-item active">'.$_GET['db'].'</li>';
+					echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['db'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'.$_GET['db'].'</a></li>';
 				}
 			}
 			if(isset($_GET['coll'])){
@@ -44,11 +44,11 @@
 					echo '<li class="breadcrumb-item active">'.$_GET['coll'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-home"></i>'.$_GET['coll'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'.$_GET['coll'].'</a></li>';
 				}
 			}
 			if(isset($_GET['doc'])){
-				echo '<li class="breadcrumb-item active">'.$_GET['doc'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$_GET['doc'].'</li>';
 			}
 		echo '</ol>';
 	echo '</nav>';

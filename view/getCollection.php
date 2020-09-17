@@ -71,10 +71,10 @@ $(document).ready(function(){
 			}
 			if(isset($_GET['coll'])){
 				if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
-					echo '<li class="breadcrumb-item active">'.$_GET['coll'].'</li>';
+					echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['coll'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'.$_GET['coll'].'</a></li>';
 				}
 			}
 			if(isset($_GET['doc'])){
