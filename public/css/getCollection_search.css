@@ -38,7 +38,7 @@ select:focus{
 	outline:none;
 }
 
-#recherche_id{
+#recherche_ids{
 	background: white;
 	color: #878787;
  	width: 80%;
@@ -47,13 +47,13 @@ select:focus{
 	min-height: 27px;
 }
 
-#recherche_id:focus{
+#recherche_ids:focus{
 	border-radius: 5px;
 	border-color: #ececec;
 	outline:none;
 }
 
-#recherche_g{
+#recherche_gss{
 	background: white;
 	color: #878787;
  	width: 80%;
@@ -62,7 +62,7 @@ select:focus{
 	min-height: 27px;
 }
 
-#recherche_g:focus{
+#recherche_gss:focus{
 	border-radius: 5px;
 	border-color: #ececec;
 	outline:none;
