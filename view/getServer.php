@@ -75,7 +75,7 @@ echo "<h1 align='center' class='title'>".$serve."</h1>";
 		<?php
 			foreach ($dbs as $db) {
 				echo '<tr>';
-				echo "<td><a class='text-dark' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'>";
+				echo "<td><a class='text-dark' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class='mr-3 fa fa-fw fa-database'></i>";
 				// echo "<td><a  class='text-dark' href='index.php?action=getServer&serve=".$x."'>";
 				echo $db->getName();
 				echo '</a></td>';
