@@ -3,6 +3,7 @@
 <head>
 	<?php echo "<title>Edit ".$_GET['coll']."</title>"?>
 	<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
@@ -17,13 +18,13 @@
 
 	echo '<nav>';
 		echo '<ol class="breadcrumb">';
-			echo '<li class="breadcrumb-item"><a href="index.php?">Home</a></li>';
+			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
 				if($_GET['action']=='getServer'){
 					echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'">'.$_GET['serve'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'">'.$_GET['serve'].'<i class="fa fa-fw fa-desktop"></i></a></li>';
 				}
 			}
 			if(isset($_GET['db'])){
@@ -31,7 +32,7 @@
 					echo '<li class="breadcrumb-item active">'.$_GET['db'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'.$_GET['db'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</a></li>';
 				}
 			}
 			if(isset($_GET['coll'])){
@@ -39,11 +40,11 @@
 					echo '<li class="breadcrumb-item active">'.$_GET['coll'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'.$_GET['coll'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</a></li>';
 				}
 			}
 			if(isset($_GET['doc'])){
-				echo '<li class="breadcrumb-item active">'.$_GET['doc'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-book"></i>'.$_GET['doc'].'</li>';
 			}
 		echo '</ol>';
 	echo '</nav>';

@@ -22,18 +22,18 @@
 
 	echo '<nav>';
 		echo '<ol class="breadcrumb">';
-			echo '<li class="breadcrumb-item"><a href="index.php?">Home</a></li>';
+			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
 				if($_GET['action']=='getServer'){
 					echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'">'.$_GET['serve'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
 				}
 			}
 			if(isset($_GET['db'])){
 				if($_GET['action']=='getDb'){
-					echo '<li class="breadcrumb-item active">'.$_GET['db'].'</li>';
+					echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
 				}
 				else{
 					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'.$_GET['db'].'</a></li>';
@@ -48,7 +48,7 @@
 				}
 			}
 			if(isset($_GET['doc'])){
-				echo '<li class="breadcrumb-item active">'.$_GET['doc'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$_GET['doc'].'</li>';
 			}
 		echo '</ol>';
 	echo '</nav>';
@@ -96,7 +96,7 @@ echo "<h1 align='center' class='title'>".$db."</h1>";
 		<?php
 			foreach ($collections as $collection) {
 				echo '<tr>';
-				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'>";
+				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
 				echo $collection->getName();
 				echo '</a></td>';
 				echo "<td><button  class='btn bg-light'><a class='text-primary' href=index.php?action=editCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
