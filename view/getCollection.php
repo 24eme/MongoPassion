@@ -127,8 +127,8 @@ echo ' sur '.$nbDocs.'</h2>';
 	</div>
 </nav>
 <hr>
-<div id="row" class="row">
-<div id="recherche" class="bg-light">
+<div id="row">
+<div id="recherche">
 	<br>
 	<div id="search_content" class="col-lg-3">
 	<label for="pet-select">Recherche:</label>
