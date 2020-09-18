@@ -22,11 +22,11 @@
 	<img align="center"  class="rounded-circle col-lg-6  offset-lg-4 mb-2 w-25" src="public/images/mongodb.jpg" alt="24eme">
 	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
 		<input type="text" class="form-control" name="serve" id="serve" placeholder="Ajoutez votre address IP " maxLength = 20 required /> 
-		<input type="submit" class="btn btn-success btn-sm" name="add" id="add" value="AJOUTER">
+		<input type="submit" class="btn btn-success btn-sm mt-1" name="add" id="add" value="AJOUTER">
 	
 	</form>
 	<br>
-	<div class="border border-dark col-lg-6 offset-lg-3 bg-light mt-1">
+	<div class="border col-lg-6 offset-lg-3 bg-light mt-1">
 		<?php
 		$serve_list=json_decode($_COOKIE['serve_list']);
 		if(sizeof($serve_list)>0){

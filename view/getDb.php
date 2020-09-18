@@ -85,12 +85,12 @@ echo "<h1 align='center' class='title'>".$db."</h1>";
 			?>
 			<input type=hidden id=serve value=<?php echo $serve; ?>/>
 			<input type=hidden id=db value=<?php echo $db; ?>/>
-			<button id='createCollec' class="btn btn-success btn-lg btn-block text-light mb-1" flag ="false" onclick="afficher();">New Collection</button>
+			<button id='createCollec' class="btn btn-success btn-lg btn-block text-light mb-2" flag ="false" onclick="afficher();">New Collection</button>
 		</span>
 	</div>
 </nav>
 
-<div id="main" class="border border-dark col-lg-4 offset-lg-4 bg-light mt-1">
+<div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1">
 	<br>
 	<table class="table">
 		<?php

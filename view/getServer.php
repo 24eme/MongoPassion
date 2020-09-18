@@ -69,7 +69,7 @@ echo "<h1 align='center' class='title'>".$serve."</h1>";
 
 ?>
 
-<div id="main" class="border border-dark col-lg-6 offset-lg-3 mt-5 bg-light">
+<div id="main" class="border col-lg-6 offset-lg-3 mt-5 bg-light">
 	<br>
 	<table class="table">
 		<?php
