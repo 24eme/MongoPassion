@@ -68,7 +68,7 @@ echo "<h1 align=center class='title'>Edit ".$_GET['coll']."</h1>";
 
 ?>
 
-<div id="main" class="border border-dark col-lg-4 offset-lg-4 bg-light mt-1">
+<div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1">
 	<?php
 	echo '<form method="post" action="index.php?action=renameCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
 	echo '<br><label>Rename Collection</label><br>';
