@@ -12,11 +12,12 @@
 
 <body style="background-color:#FFFFFF;">
 
+
 <?php
 
 	//Fil d'Ariane
 
-	echo '<nav>';
+	echo "<nav class='nav justify-content-center'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -48,6 +49,7 @@
 			}
 		echo '</ol>';
 	echo '</nav>';
+
 // echo '<span>';
 // echo '<form method="post" action="index.php?action=thread">';
 // echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';

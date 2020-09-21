@@ -52,7 +52,7 @@ $(document).ready(function(){
 
 	//Fil d'Ariane
 
-	echo '<nav>';
+	echo "<nav class='nav justify-content-center'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -111,7 +111,7 @@ if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 	echo "</h1>";
 }
 else{
-	echo "<h1 class='title'><i class='fa fa-fw fa-book'></i>".$_GET['coll']."</h1>";
+	echo "<h1 class='title'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
 }
 echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}

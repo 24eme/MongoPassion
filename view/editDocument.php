@@ -17,7 +17,7 @@
 
 	//Fil d'Ariane
 
-	echo '<nav>';
+	echo "<nav class='nav justify-content-center'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
