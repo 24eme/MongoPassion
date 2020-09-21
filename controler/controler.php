@@ -201,7 +201,7 @@
     {
         $db = strip_tags($_POST['newdb']);
         moveCollec($db);
-        header('Location: index.php?action=getDb&serve='.strip_tags($_GET['serve']).'&db='strip_tags(.$_GET['db']).'');
+        header('Location: index.php?action=getDb&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'');
     }
 
     function getDb()
