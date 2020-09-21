@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 	//Fil d'Ariane
 
-	echo '<nav>';
+	echo "<nav class='nav justify-content-center'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -184,7 +184,11 @@ echo ' sur '.$nbDocs.'</h2>';
 <hr>
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
-	<table class="table">
+	<table class="table table-sm table-striped">
+		<tr  align="center" class="bg-success text-light"> 
+    		<th>La liste  des documents <i class='fa fa-fw fa-book'></i></th> 
+    	
+    	</tr>
 		<?php
 			if($nbDocs==0){
 				echo 'Aucun document ne correspond à votre recherche.';

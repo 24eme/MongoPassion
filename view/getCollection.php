@@ -52,7 +52,7 @@ $(document).ready(function(){
 
 	//Fil d'Ariane
 
-	echo '<nav>';
+	echo "<nav class='nav justify-content-center'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -111,7 +111,7 @@ if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 	echo "</h1>";
 }
 else{
-	echo "<h1 class='title'>".$_GET['coll']."</h1>";
+	echo "<h1 class='title'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
 }
 echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
@@ -158,7 +158,10 @@ echo ' sur '.$nbDocs.'</h2>';
 
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
-	<table class="table">
+	<table class="table table-sm table-striped">
+		<tr  align="center" class="bg-success text-light"> 
+    		<th>La liste  des documents <i class='fa fa-fw fa-book'></i></th> 
+    	</tr>
 		<?php
 			if($nbDocs==0){
 				echo 'Aucun document ne correspond à votre recherche.';
@@ -176,8 +179,8 @@ echo ' sur '.$nbDocs.'</h2>';
 					$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 					$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 
-					echo '<tr>';
-					echo "<td id='d'><a class='text-dark' href=".$link_v.">".$id."</a></td>";
+					echo '<tr class="mr-5">';
+					echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
 					echo "<td id='id'><button  class='btn'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 					echo "<td id='edit'><button  class='btn'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
 					// echo '<td id="suppr"><a href='.$link_d.'>Delete</a></td>';
