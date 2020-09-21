@@ -68,7 +68,7 @@
 // echo '</form>';
 // echo '</span>';
 
-echo "<h1 align='center' class='title'>".$db."</h1>";
+echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
 
 ?>
 
@@ -92,10 +92,14 @@ echo "<h1 align='center' class='title'>".$db."</h1>";
 
 <div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1">
 	<br>
-	<table class="table">
+	<table class="table table-sm table-striped">
+		<tr  align="center" class="bg-success text-light"> 
+    		<th>La liste des collections <i class='fa fa-fw fa-server'></i></th> 
+    	</tr>
 		<?php
 			foreach ($collections as $collection) {
-				echo '<tr>';
+		
+				echo "<tr>";
 				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
 				echo $collection->getName();
 				echo '</a></td>';

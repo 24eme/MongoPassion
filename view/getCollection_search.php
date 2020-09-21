@@ -184,7 +184,11 @@ echo ' sur '.$nbDocs.'</h2>';
 <hr>
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
-	<table class="table">
+	<table class="table table-sm table-striped">
+		<tr  align="center" class="bg-success text-light"> 
+    		<th>La liste  des documents <i class='fa fa-fw fa-book'></i></th> 
+    	
+    	</tr>
 		<?php
 			if($nbDocs==0){
 				echo 'Aucun document ne correspond à votre recherche.';

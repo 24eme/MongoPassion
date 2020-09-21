@@ -64,14 +64,17 @@
 // echo '</form>';
 // echo '</span>';
 
-echo "<h1 align='center' class='title'>".$serve."</h1>";
+echo "<h1 align='center' class='title'><i class='fa fa-fw fa-desktop'></i>".$serve."</h1>";
 
 
 ?>
 
 <div id="main" class="border col-lg-6 offset-lg-3 mt-5 bg-light">
 	<br>
-	<table class="table">
+	<table class="table table-sm table-striped ">
+		 <tr  align="center" class="bg-success text-light"> 
+    				<th>La liste de base des données <i class='fa fa-fw fa-database'></i></th> 
+    	</tr>
 		<?php
 			foreach ($dbs as $db) {
 				echo '<tr>';
