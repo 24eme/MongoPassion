@@ -52,7 +52,7 @@
 ?>
 
 <?php 
-echo "<h1 class='title'>View ".$_GET['doc']."</h1>";
+echo "<h1 class='title text-center''>View <i class='fa fa-fw fa-book'></i>".$_GET['doc']."</h1>";
 
 $link_edit = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$_GET['doc'];
 if(isset($_GET['type_id'])){

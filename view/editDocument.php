@@ -64,7 +64,7 @@
 // echo '</form>';
 // echo '</span>';
 
-echo "<h1 class='title'>Edit ".$_GET['doc']."</h1>" 
+echo "<h1 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$_GET['doc']."</h1>" 
 ?>
 
 <div id="main">
@@ -94,7 +94,7 @@ echo "<h1 class='title'>Edit ".$_GET['doc']."</h1>"
 	 	echo '<form method="post" action="'.$link_doc.'">';
 	 	echo '<input type="hidden" name="date_array" value="'.htmlspecialchars(serialize($date_array)).'"></input>';
 	 	echo '<input type="hidden" name="up_date_array" value="'.htmlspecialchars(serialize($up_date_array)).'"></input>';
-	 	echo '<div id="update_content"><input type="submit" class="btn btn-primary" name="update" id="update" value="Update"></div>';
+	 	echo '<div id="update_content"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Update"></div>';
 	 	echo '<div id="doc_content"><textarea name="doc_text" id="doc_text" rows="20" cols="200" required>'.$docs.'</textarea></div>';
 	 	echo '</form>';
 	 	echo '<br>';
