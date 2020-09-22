@@ -164,6 +164,36 @@ echo ' sur '.$nbDocs.'</h2>';
 	</div>
 </nav>
 
+<div id="row">
+<div id="recherche">
+	<br>
+	<div id="search_content" class="col-lg-3">
+	<label for="pet-select">Recherche:</label>
+		<br>
+		<select name="pets" id="R">
+
+		    <option id="Rid"  value="Rid">Recherche par ID</option>
+		    <option id="Rkey" value="Rkey">Par clé : valeur</option>
+		</select>
+	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+		<input type="search" class="form-control" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
+		<input type="search" class="form-control" name="recherche_g" id="recherche_g" value="field : content[...]"/>
+		<input class="btn bg-success text-light m-1"  type="submit" name="search" id="search" value="Search"/>
+		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
+	</form>
+</div>
+<div id="special_search_content" class="col-lg-8 mr-4">
+		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+		<input type="submit" class="btn  bg-success text-light m-1" name="search" id="search" value="Search"/>
+	</form>
+</div>
+</div>
+</div>
+
+<hr>
+
+
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
 	<table class="table table-sm table-striped">

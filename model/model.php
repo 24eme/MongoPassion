@@ -358,7 +358,9 @@ function getSpecialSearch($command,$page,$bypage)
 
 	$skip = ($page-1)*$bypage;
 
-	$command = '$result = '.$command.'';
+	$command=str_replace(')', '', $command);
+
+	$command = '$result = $collection->'.$command.', [\'skip\'=>$skip,\'limit\'=>$bypage] )->toArray();';
 
 	eval($command);
 
@@ -488,7 +490,7 @@ function countSpecialSearch($search)
 	$command = str_replace('find', 'count', $temp);
 	$temp = str_replace('->toArray()', '', $command);
 	$command = str_replace(', [\'skip\'=>$skip,\'limit\'=>$bypage]', '', $temp);
-
+	$command = $command.';';
 	eval($command);
 	return $result;
 }
