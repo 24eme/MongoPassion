@@ -194,13 +194,15 @@ echo ' sur '.$nbDocs.'</h2>';
 			}
 		?>
 	</table>
-</div>
-
+	
 	<?php
 	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection">< Database</button></a>';
 	?>
 
-</div></div>
+</div>
+
+</div>
+</div>
 
 <footer>
 	<!-- <?php
