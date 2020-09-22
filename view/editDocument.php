@@ -64,7 +64,7 @@
 // echo '</form>';
 // echo '</span>';
 
-echo "<h1 class='title'>Edit ".$_GET['doc']."</h1>" 
+echo "<h1 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$_GET['doc']."</h1>" 
 ?>
 
 <div id="main">

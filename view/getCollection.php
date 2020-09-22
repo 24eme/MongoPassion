@@ -85,47 +85,10 @@ $(document).ready(function(){
 		echo '</ol>';
 	echo '</nav>';
 
-
-
-// echo '<span>';
-// echo '<form method="post" action="index.php?action=thread">';
-// echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
-// if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
-// else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
-// if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
-// else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
-// if(isset($_GET['coll'])){echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread" value="'.$_GET['coll'].'"/>';}
-// else{echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread"/>';}
-// if(isset($_GET['doc'])){echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread" value="'.$_GET['doc'].'"/>';}
-// else{echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread"/>';}
-// echo '<input type="submit" name="go" id="go" value="Go"/>';
-// echo '</form>';
-// echo '</span>';
-
-if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
-	echo "<h1 class='title'>Résultat de la recherche pour ";
-	if($_POST['recherche_id']=="" and $_POST['recherche_g']=="field : content[...]"){echo "\"Aucun critère\"";}
-	if($_POST['recherche_id']!=""){echo "\"".$_POST['recherche_id']."\"";}
-	if($_POST['recherche_id']!="" and $_POST['recherche_g']!="field : content[...]"){echo " et ";}
-	if($_POST['recherche_g']!="field : content[...]"){echo "\"".$_POST['recherche_g']."\"";}
-	echo "</h1>";
-}
-else{
-	echo "<h1 class='title'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
-}
-echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
-if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-else{echo $nbDocs;}
-echo ' sur '.$nbDocs.'</h2>';
 ?>
 
-<nav>
-	<div id="options">
-		<span>
-			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a></button>'; ?>
-		</span>
-	</div>
-</nav>
+
+
 <hr>
 <div id="row">
 <div id="recherche">
@@ -155,6 +118,51 @@ echo ' sur '.$nbDocs.'</h2>';
 </div>
 
 <hr>
+
+<?php
+
+
+// echo '<span>';
+// echo '<form method="post" action="index.php?action=thread">';
+// echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
+// if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
+// else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
+// if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
+// else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
+// if(isset($_GET['coll'])){echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread" value="'.$_GET['coll'].'"/>';}
+// else{echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread"/>';}
+// if(isset($_GET['doc'])){echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread" value="'.$_GET['doc'].'"/>';}
+// else{echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread"/>';}
+// echo '<input type="submit" name="go" id="go" value="Go"/>';
+// echo '</form>';
+// echo '</span>';
+
+if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
+	echo "<h1 class='title'>Résultat de la recherche pour ";
+	if($_POST['recherche_id']=="" and $_POST['recherche_g']=="field : content[...]"){echo "\"Aucun critère\"";}
+	if($_POST['recherche_id']!=""){echo "\"".$_POST['recherche_id']."\"";}
+	if($_POST['recherche_id']!="" and $_POST['recherche_g']!="field : content[...]"){echo " et ";}
+	if($_POST['recherche_g']!="field : content[...]"){echo "\"".$_POST['recherche_g']."\"";}
+	echo "</h1>";
+}
+else{
+	echo "<h1 class='title text-center'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
+}
+echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
+if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+else{echo $nbDocs;}
+echo ' sur '.$nbDocs.'</h2>';
+?>
+
+
+
+<nav>
+	<div id="options" class="text-center">
+		<span>
+			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a></button>'; ?>
+		</span>
+	</div>
+</nav>
 
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
@@ -194,7 +202,7 @@ echo ' sur '.$nbDocs.'</h2>';
 			}
 		?>
 	</table>
-	
+
 	<?php
 	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection">< Database</button></a>';
 	?>

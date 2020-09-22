@@ -106,6 +106,8 @@ $(document).ready(function(){
 		echo '</ol>';
 	echo '</nav>';
 
+
+
 // echo '<span>';
 // echo '<form method="post" action="index.php?action=thread">';
 // echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
@@ -136,21 +138,11 @@ if(isset($recherche_id) and isset($recherche_g)){
 else{
 	echo "<h1 class='title'>".$_GET['coll']."</h1>";
 }
-echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
-if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-else{echo $nbDocs;}
-echo ' sur '.$nbDocs.'</h2>';
+
 ?>
 
-<nav>
-	<div id="options">
-		<span>
-			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.$recherche_g.'&search='.$page.'">Nouveau Document</a></button>'; ?>
-		</span>
-	</div>
 
 
-</nav>
 <hr>
 
 <div id="row">
@@ -182,6 +174,22 @@ echo ' sur '.$nbDocs.'</h2>';
 </div>
 </div>
 <hr>
+
+<?php
+echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
+if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+else{echo $nbDocs;}
+echo ' sur '.$nbDocs.'</h2>';
+?>
+<nav>
+	<div id="options" class="text-center">
+		<span>
+			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.$recherche_g.'&search='.$page.'">Nouveau Document</a></button>'; ?>
+		</span>
+	</div>
+
+
+</nav>
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
 	<table class="table table-sm table-striped">
@@ -228,11 +236,11 @@ echo ' sur '.$nbDocs.'</h2>';
 			}
 		?>
 	</table>
-
-</div>
-	<?php
+      	<?php
 	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection">< Database</button></a>';
 	?>
+</div>
+
 </div>
 <?php
 if($nbDocs==0){
