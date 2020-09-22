@@ -65,7 +65,7 @@ echo "<nav class='nav justify-content-center'>";
 // echo '</form>';
 // echo '</span>';
 
-echo '<h1 class = "title"><i class="fa fa-fw fa-book"></i> New Document</h1>';
+echo '<h1 class = "title text-center"><i class="fa fa-fw fa-book"></i> New Document</h1>';
 ?>
 
 <div id="main">
