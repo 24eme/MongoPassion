@@ -32,5 +32,5 @@ function afficher(){
 //fonction pour confimer la suppression
 function confirmDelete() {
 
-	return confirm("Voulez vous vraiment supprimer cet élément ?");
+	return confirm("Do you really want to delete this element ?");
 }

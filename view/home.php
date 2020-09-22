@@ -18,11 +18,12 @@
 ?>
 
 <div id="main" class=" text-center ">
+	<br><br>
 	<h1 class='title'align="center">Interface de visualisation MongoDB</h1>
 	<img align="center"  class="rounded-circle center  w-25" src="public/images/mongodb.jpg" alt="24eme">
 	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
-		<input type="text" class="form-control" name="serve" id="serve" placeholder="Ajoutez votre adresse IP " maxLength = 20 required /> 
-		<input type="submit" class="btn btn-success btn-sm mt-1" name="add" id="add" value="AJOUTER">
+		<input type="text" class="form-control" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
+		<input type="submit" class="btn btn-success btn-sm mt-1" name="add" id="add" value="ADD">
 	
 	</form>
 </div>
@@ -33,7 +34,7 @@
 		if(sizeof($serve_list)>0){
 			echo '<table class="table table-sm table-striped ">';
 			echo '<tr  align="center" class="bg-success text-light"> 
-    				<th>La liste  des machines <i class="fa fa-fw fa-desktop"></i></th> 
+    				<th>Server list <i class="fa fa-fw fa-desktop"></i></th> 
     			</tr>';
 			foreach ($serve_list as $x) {
 				echo '<tr>';

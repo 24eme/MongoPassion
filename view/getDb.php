@@ -94,7 +94,9 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db
 	<br>
 	<table class="table table-sm table-striped">
 		<tr  align="center" class="bg-success text-light"> 
-    		<th>La liste des collections <i class='fa fa-fw fa-server'></i></th> 
+    		<?php echo '<th>Collections of '.$_GET['db'].' <i class=\'fa fa-fw fa-server\'></i></th>'; ?> 
+    		<th></th>
+    		<th></th>
     	</tr>
 		<?php
 			foreach ($collections as $collection) {
@@ -120,7 +122,7 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db
 		?>
 	</table>
 	<?php
-	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><button class="return btn btn-primary">< Serveur</button></a>';
+	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><button class="return btn btn-primary">< Server</button></a>';
 	?>
 </div>
 

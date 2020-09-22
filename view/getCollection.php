@@ -116,13 +116,13 @@ else{
 echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
-echo ' sur '.$nbDocs.'</h2>';
+echo ' of '.$nbDocs.'</h2>';
 ?>
 
 <nav>
 	<div id="options">
 		<span>
-			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Nouveau Document</a></button>'; ?>
+			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">New Document</a></button>'; ?>
 		</span>
 	</div>
 </nav>
@@ -131,12 +131,12 @@ echo ' sur '.$nbDocs.'</h2>';
 <div id="recherche">
 	<br>
 	<div id="search_content" class="col-lg-3">
-	<label for="pet-select">Recherche:</label>
+	<label for="pet-select">Search:</label>
 		<br>
 		<select name="pets" id="R">
 
-		    <option id="Rid"  value="Rid">Recherche par ID</option>
-		    <option id="Rkey" value="Rkey">Par clé : valeur</option>
+		    <option id="Rid"  value="Rid">Search by ID</option>
+		    <option id="Rkey" value="Rkey">Search by key : value</option>
 		</select>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<input type="search" class="form-control" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
@@ -160,7 +160,10 @@ echo ' sur '.$nbDocs.'</h2>';
 	<br>
 	<table class="table table-sm table-striped">
 		<tr  align="center" class="bg-success text-light"> 
-    		<th>La liste  des documents <i class='fa fa-fw fa-book'></i></th> 
+    		<?php echo '<th>Documents of '.$_GET['coll'].' <i class=\'fa fa-fw fa-book\'></i></th>'; ?>
+    		<th></th>
+    		<th></th>
+    		<th></th> 
     	</tr>
 		<?php
 			if($nbDocs==0){

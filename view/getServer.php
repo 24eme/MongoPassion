@@ -75,7 +75,7 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-desktop'></i>".$ser
 	<br>
 	<table class="table table-sm table-striped ">
 		 <tr  align="center" class="bg-success text-light"> 
-    				<th>La liste de base des données <i class='fa fa-fw fa-database'></i></th> 
+    				<?php echo'<th>Databases of '.$_GET['serve'].' <i class=\'fa fa-fw fa-database\'></i></th>'; ?>
     	</tr>
 		<?php
 			foreach ($dbs as $db) {
@@ -89,7 +89,7 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-desktop'></i>".$ser
 		?>
 	</table>
 	<?php
-	echo '<br><a href="index.php"><button class="return btn btn-primary">< Accueil</button></a>'
+	echo '<br><a href="index.php"><button class="return btn btn-primary">< Home</button></a>'
 	?>
 </div>
 
