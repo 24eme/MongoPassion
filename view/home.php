@@ -17,16 +17,17 @@
 
 ?>
 
-<div id="main" class="col-lg-6 offset-lg-3 mt-5">
+<div id="main" class=" text-center ">
 	<h1 class='title'align="center">Interface de visualisation MongoDB</h1>
-	<img align="center"  class="rounded-circle col-lg-6  offset-lg-4 mb-2 w-25" src="public/images/mongodb.jpg" alt="24eme">
+	<img align="center"  class="rounded-circle center  w-25" src="public/images/mongodb.jpg" alt="24eme">
 	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
 		<input type="text" class="form-control" name="serve" id="serve" placeholder="Ajoutez votre adresse IP " maxLength = 20 required /> 
 		<input type="submit" class="btn btn-success btn-sm mt-1" name="add" id="add" value="AJOUTER">
 	
 	</form>
+</div>
 	<br>
-	<div class="border col-lg-6 offset-lg-3 bg-light mt-1">
+	<div class="border col-lg-6 offset-lg-3 bg-light ">
 		<?php
 		$serve_list=json_decode($_COOKIE['serve_list']);
 		if(sizeof($serve_list)>0){
@@ -46,7 +47,7 @@
 		?>
 	</div>
 
-</div>
+<!-- </div> -->
 
 </body>
 </html>
