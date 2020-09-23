@@ -105,10 +105,10 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db
 				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
 				echo $collection->getName();
 				echo '</a></td>';
-				echo "<td><button  class='btn bg-light'><a class='text-primary' href=index.php?action=editCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
+				echo "<td><button  class='btn  py-0'><a class='text-primary' href=index.php?action=editCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
 				// echo '<td><a href=index.php?action=deleteCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Deletes</a></td>';
 
-				echo "<td><button  class='btn bg-light'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$_GET['serve'].'&db='.$_GET['db']."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
+				echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$_GET['serve'].'&db='.$_GET['db']."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
 				echo '</tr>';
 
 
