@@ -17,7 +17,7 @@
 
 
 	//Fil d'Ariane
-echo "<nav class='nav justify-content-center'>";
+echo "<nav class='nav sticky-top justify-content-center'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -81,9 +81,9 @@ echo '<h1 class = "title text-center"><i class="fa fa-fw fa-book"></i> New Docum
 	 	if(isset($_GET['search'])){
 	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return btn btn-primary">< Collection</button></a>';
 	 	}
-	 	else{
-	 		echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><button class="return btn btn-primary">< Collection</button></a>';
-	 	}
+	 	// else{
+	 	// 	echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><button class="return btn btn-primary">< Collection</button></a>';
+	 	// }
 	?>
 </div>
 

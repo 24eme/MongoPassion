@@ -17,7 +17,7 @@
 
 	//Fil d'Ariane
 
-	echo "<nav class='nav justify-content-center'>";
+	echo "<nav class='nav sticky-top justify-content-center'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -99,13 +99,13 @@ echo "<h1 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$_GET
 	 	echo '</form>';
 	 	echo '<br>';
 	 	if(isset($_GET['search'])){
-	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return btn btn-primary">< Collection</button></a>';
+	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return text-center btn btn-primary">< Collection</button></a>';
 	 	}
 	 	elseif(isset($_GET['s_s'])){
-	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
+	 		echo '<a class="text-center" href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return  btn btn-primary">< Collection</button></a>';
 	 	}
 	 	else{
-	 		echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
+	 		// echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
 	 	}
 	?>
 </div>

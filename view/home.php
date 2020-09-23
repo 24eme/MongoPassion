@@ -22,7 +22,7 @@
 	<h1 class='title'align="center">Interface de visualisation MongoDB</h1>
 	<img align="center"  class="rounded-circle center  w-25" src="public/images/mongodb.jpg" alt="24eme">
 	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
-		<input type="text" class="form-control" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
+		<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
 		<input type="submit" class="btn btn-success btn-sm mt-1" name="add" id="add" value="ADD">
 	
 	</form>

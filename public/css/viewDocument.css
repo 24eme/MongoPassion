@@ -36,9 +36,10 @@ pre#doc_text{
 }
 
 .btn_view{
-	width: 10%;
-	float: left;
+	/*width: 10%;*/
+	/*float: left;*/
 	margin-left: 3%;
+	text-align: center;
 }
 
 #nav_view{
