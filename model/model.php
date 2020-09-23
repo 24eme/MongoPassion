@@ -485,11 +485,9 @@ function countSpecialSearch($search)
 	$collec = strval($_GET['coll']);
 	$collection = $client->$db->$collec;
 
-	$temp = '$result = '.$search.'';
+	$temp = '$result = $collection->'.$search.'';
 
 	$command = str_replace('find', 'count', $temp);
-	$temp = str_replace('->toArray()', '', $command);
-	$command = str_replace(', [\'skip\'=>$skip,\'limit\'=>$bypage]', '', $temp);
 	$command = $command.';';
 	eval($command);
 	return $result;
