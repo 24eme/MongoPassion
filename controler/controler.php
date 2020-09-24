@@ -82,6 +82,9 @@
     	if(isset($_GET['search'])){
             header('Location: index.php?action=getCollection_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'&s_id='.strip_tags($_GET['s_id']).'&s_g='.strip_tags($_GET['s_g']).'&page='.strip_tags($_GET['search']).'');
         }
+        elseif(isset($_GET['search_db'])){
+            header('Location: index.php?action=getDb_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&search_db='.strip_tags($_GET['search_db']).'');
+        }
         else{
             header('Location: index.php?action=getCollection&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'&page='.strip_tags($_GET['page']).'');
         }
@@ -214,6 +217,36 @@
     	}
     	$collections = getCollections($db);
     	require('view/getDb.php');
+    }
+
+    function getDb_search()
+    {
+        if(isset($_GET['db'])){
+            if(isset($_POST['recherche_db'])){
+                $search = strip_tags($_POST['recherche_db']);
+            }
+            elseif(isset($_GET['search_db'])){
+                $search = urldecode(strip_tags($_GET['search_db']));
+            }
+            $db = strip_tags($_GET['db']);
+        }
+
+        else{
+            header('Location: index.php?action=error');
+        }
+
+        $docs = getSearch_db($search,$db);
+
+        $nbDocs = 0;        
+
+        foreach ($docs as $key => $value) {
+            if(sizeof($value)!=0){
+                $nbDocs =+sizeof($value);
+            }
+        }
+
+        require('view/getDb_search.php');
+
     }
 
     function error()

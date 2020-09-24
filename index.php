@@ -46,6 +46,9 @@ try{
             case 'getCollection_search':
                 getCollection_search();
             break;
+            case 'getDb_search':
+                getDb_search();
+            break;
             case 'createDocument':
                 createDocument();
             break;
