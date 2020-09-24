@@ -221,7 +221,7 @@ echo ' of '.$nbDocs.'</h2>';
 						$id = (string)$doc['_id'];
 					}
 					else{
-						// $id = $doc['_id'];
+					 $id = $doc['_id'];
 					}
 
 					$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
