@@ -3,21 +3,21 @@
 <head>
 	<?php echo "<title>".$db."</title>"?>
 	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
-	<link href="public/css/getDb.css" rel="stylesheet" type="text/css">
+	<link href="public/css/getDb_search.css" rel="stylesheet" type="text/css">
 	<script src="public/js/db.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-
-
 <body style="background-color:#FFFFF;">
-
-<?php
+	<?php
 
 	//Fil d'Ariane
 
@@ -53,82 +53,56 @@
 			}
 		echo '</ol>';
 	echo '</nav>';
-
-?>
+	?>
 
 <hr>
 <div id="recherche">
 	<label for="pet-select">Search in all collections:</label>
-	<br>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 	<input type="search" class="form-control" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 	<input class="btn bg-success text-light m-1" type="submit" name="search" id="search" value="Search"/>
 	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
-</form>
+	</form>
 </div>
 <hr>
 
 <?php
 
-echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
+echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h1>";
 
 ?>
-
-<nav>
-
-
-
-
-	<div id="options" class="col-lg-4 offset-lg-4 mt-1">
-		<span id="nC">
-			<?php
-			$serve=$_GET['serve'];
-			$db=$_GET['db'];
-			?>
-			<input type=hidden id=serve value=<?php echo $serve; ?>/>
-			<input type=hidden id=db value=<?php echo $db; ?>/>
-			<button id='createCollec' class="btn btn-success btn-lg btn-block text-light mb-2" flag ="false" onclick="afficher();">New Collection</button>
-		</span>
-	</div>
-</nav>
-
+<br><br>
 <div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1">
 	<br>
 	<table class="table table-sm table-striped">
-		<tr  align="center" class="bg-success text-light"> 
-    		<?php echo '<th>Collections of '.$_GET['db'].' <i class=\'fa fa-fw fa-server\'></i></th>'; ?> 
-    		<th></th>
-    		<th></th>
-    	</tr>
 		<?php
-			foreach ($collections as $collection) {
-		
-				echo "<tr>";
-				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
-				echo $collection->getName();
-				echo '</a></td>';
-				echo "<td><button  class='btn  py-0'><a class='text-primary' href=index.php?action=editCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
-				// echo '<td><a href=index.php?action=deleteCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$collection->getName().'>Deletes</a></td>';
-
-				echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$_GET['serve'].'&db='.$_GET['db']."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
-				echo '</tr>';
-
-
+		if($nbDocs==0){
+			echo 'Aucun document ne correspond à votre recherche.';
+		}
+		else{
+			foreach ($docs as $coll => $doc) {
+				if(sizeof($doc)!=0){
+					foreach ($doc as $field) {
+						$link_v = 'index.php?action=viewDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+						$link_e = 'index.php?action=editDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+						$link_d = 'index.php?action=deleteDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+						echo '<tr>';
+						echo '<td><a href="'.$link_v.'">'.$field['_id'].'</a></td>';
+						echo '<td>'.$coll.'</td>';
+						echo "<td id='id'><button  class='btn'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
+						echo "<td id='edit'><button  class='btn'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
+						echo  "<td id='suppr'><button  class='btn'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
+						echo '</tr>';
+					}
+				}
 			}
-
-
-					// 		echo "<td id='edit'><button  class='btn'><a href=".$link_e."><i class='fa fa-edit'></i></a></button></td>";
-					// // echo '<td id="suppr"><a  href='.$link_d.'>Delete</a></td>';
-					// echo  "<td id='suppr'><button  class='btn'><a href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
-					// echo '</tr>';
+		}
 		?>
 	</table>
 	<?php
-	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><button class="return btn btn-primary">< Server</button></a>';
+	echo '<br><a href="index.php?action=getServer&serve='.strip_tags($_GET['serve']).'"><button class="return btn btn-primary">< Server</button></a>';
 	?>
 </div>
-
-
 
 </body>
 </html>

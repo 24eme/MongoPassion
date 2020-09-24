@@ -66,6 +66,9 @@ if(isset($_GET['search'])){
 elseif(isset($_GET['s_s'])){
 	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
 }
+elseif(isset($_GET['search_db'])){
+	echo '<a href="index.php?action=getDb_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&search_db='.strip_tags($_GET['search_db']).'"><button class="return btn btn-primary">< Collection</button></a>';
+}
 else{
 	echo '<div class="btn_view"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'"><button class="return btn btn-primary view">< Collection</button></a></div>';
 }
