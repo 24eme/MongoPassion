@@ -181,10 +181,10 @@ echo ' of '.$nbDocs.'</h2>';
 
 					echo '<tr class="mr-5">';
 					echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
-					echo "<td id='id'><button  class='btn'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
-					echo "<td id='edit'><button  class='btn'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
+					echo "<td id='id'><button  class='btn py-0'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
+					echo "<td id='edit'><button  class='btn py-0'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
 					// echo '<td id="suppr"><a href='.$link_d.'>Delete</a></td>';
-					echo  "<td id='suppr'><button  class='btn'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
+					echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
 
 					echo '</tr>';
 					 
