@@ -58,10 +58,10 @@ $link_edit = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET[
 if(isset($_GET['type_id'])){
 	$link_edit=$link_edit.'&type_id='.$_GET['type_id'];
 }
-$link_edit=$link_edit.'&page='.$_GET['page'];
+// $link_edit=$link_edit.'&page='.$_GET['page'];
 echo '<div id="nav_view">';
 if(isset($_GET['search'])){
-	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return btn btn-primary">< Collection</button></a>';
+	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return btn btn-primary">< Collection</button></a>';
 }
 elseif(isset($_GET['s_s'])){
 	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';

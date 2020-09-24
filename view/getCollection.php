@@ -13,11 +13,11 @@
 	<link href="public/css/getCollection.css" rel="stylesheet" type="text/css">
 	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
 
- 	<script src="public/js/db.js"></script> 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 	<script src="public/js/db.js"></script> <!-- 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <!-- 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> -->
-<script type="text/javascript">
+
+<!-- <script type="text/javascript">
 
 $(document).ready(function(){
   $('#recherche_g').hide();
@@ -41,7 +41,7 @@ $(document).ready(function(){
   
 });
 
-</script>
+</script> -->
 
 
 </head>
@@ -96,17 +96,19 @@ $(document).ready(function(){
 	<br>
 	<div id="search_content" class="col-lg-3">
 	<label for="pet-select">Search:</label>
-		<br>
-		<select name="pets" id="R">
+		
 
-		    <option id="Rid"  value="Rid">Search by ID</option>
-		    <option id="Rkey" value="Rkey">Search by key : value</option>
-		</select>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" class="form-control" name="recherche_id" id="recherche_id" placeholder="Search by id"/>
-		<input type="search" class="form-control" name="recherche_g" id="recherche_g" value="field : content[...]"/>
+<!-- 
+		<input type="search" class="form-control" name="recherche_id" id="recherche_id" placeholder="Search by id"/> -->
+
+		<input type="search" class="form-control" name="recherche_g" id="recherche_g recherche_id" value="field : content[...]"/>
+
 		<input class="btn bg-success text-light m-1"  type="submit" name="search" id="search" value="Search"/>
+
 		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
+
+
 	</form>
 </div>
 <div id="special_search_content" class="col-lg-8 mr-4">

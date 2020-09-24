@@ -29,30 +29,30 @@
 
 	<script type="text/javascript">
 
-$(document).ready(function(){
-	// alert('bonjour');
-   $('#recherche_gss').hide();
+// $(document).ready(function(){
+// 	// alert('bonjour');
+//    $('#recherche_gss').hide();
 
-  $('#Rs').on('change', function(e){
+//   $('#Rs').on('change', function(e){
 
-  	// $('#recherche_g').show();
-   //  $('#recherche_id').hide();
-   if (this.value=='Rkeys'){
-   	$('#recherche_gss').show();
-     $('#recherche_ids').hide();
+//   	// $('#recherche_g').show();
+//    //  $('#recherche_id').hide();
+//    if (this.value=='Rkeys'){
+//    	$('#recherche_gss').show();
+//      $('#recherche_ids').hide();
 
-   }
-   else {
-   	if (this.value=='Rids'){ 
-   	 $('#recherche_gss').hide();
-     $('#recherche_ids').show();
+//    }
+//    else {
+//    	if (this.value=='Rids'){ 
+//    	 $('#recherche_gss').hide();
+//      $('#recherche_ids').show();
 
-     }
-   }
+//      }
+//    }
 
-  });
+//   });
   
-});
+// });
 
 
 // $("#Rkey").click(function(){
@@ -123,13 +123,10 @@ $(document).ready(function(){
 // echo '</form>';
 // echo '</span>';
 
-if(isset($recherche_id) and isset($recherche_g)){
+if(isset($recherche_g)){
 	echo "<h1 class='title'>Search results for ";
-	if($recherche_id=="" and $recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
-	if($recherche_id!=""){echo "\"".$recherche_id."\"";}
-	if($recherche_id!="" and $recherche_g!="field = content[...]"){
-		echo " et ";
-	}
+	if($recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
+
 	if($recherche_g!="field = content[...]"){
 			echo "\"".$recherche_g."\"";
 		}
@@ -148,7 +145,7 @@ else{
 <nav>
 	<div id="options">
 		<span>
-			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.$recherche_g.'&search='.$page.'">New Document</a></button>'; ?>
+			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$recherche_g.'&search='.$page.'">New Document</a></button>'; ?>
 		</span>
 	</div>
 
@@ -164,13 +161,13 @@ else{
 	<div id="search_content" class="col-lg-3">
 	<label for="pet-select">Search:</label>
 		<br>
-		<select name="pets" id="Rs">
+		<!-- <select name="pets" id="Rs">
 
 		    <option id="Rids"  value="Rids">Search by ID</option>
 		    <option id="Rkeys" value="Rkeys">Search by key : value</option>
-		</select>
+		</select> -->
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" class="form-control" name="recherche_id" id="recherche_ids" placeholder="Search by id"/>
+		<!-- <input type="search" class="form-control" name="recherche_id" id="recherche_ids" placeholder="Search by id"/> -->
 		<!-- <input type="search" name="recherche_g"  id="recherche_gss" placeholder="Search by id"/> -->
 		<input type="search" name="recherche_g" id="recherche_gss" value="field : content[...]"/>
 		<input class="btn bg-success text-light m-1" type="submit" name="search" id="search" value="Search"/>
@@ -196,7 +193,9 @@ echo ' of '.$nbDocs.'</h2>';
 <nav>
 	<div id="options" class="text-center">
 		<span>
-			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.$recherche_g.'&search='.$page.'">Nouveau Document</a></button>'; ?>
+			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$recherche_g.'&search='.$page.'">Nouveau Document</a></button>'; ?>
+
+			<!-- <?php //echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.$recherche_g.'&search='.$page.'">Nouveau Document</a></button>'; ?> -->
 		</span>
 	</div>
 
@@ -222,13 +221,13 @@ echo ' of '.$nbDocs.'</h2>';
 						$id = (string)$doc['_id'];
 					}
 					else{
-						$id = $doc['_id'];
+						// $id = $doc['_id'];
 					}
 
-					$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
-					$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
+					$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
+					$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
 					// $link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'type_id='.$type_id.'&search='.$page;
-					$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&search='.$page.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g);
+					$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&search='.$page.'&s_g='.urlencode($recherche_g);
 
 					echo '<tr>';
 					echo "<td id='d'><a class='text-dark' href=".$link_v.">".$id."</a></td>";
@@ -265,73 +264,73 @@ else{
 
 	    echo '<nav aria-label="pagination">
 	            <ul class="pagination">';
-            if($page!=1 and $page!=2 and $page !=3){echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.($page-1).'"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';}
+            if($page!=1 and $page!=2 and $page !=3){echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.($page-1).'"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';}
             for ($i=1;$i<=$nbPages;$i++){
                 if($page==1){
                     switch ($i) {
                         case $page:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
                         break;
                         case $page+1:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
                         break;
                         case $page+2:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
                             echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                         break;
                         case $nbPages:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
                         break;
                     }
                 }
                 elseif ($page==$nbPages) {
                     switch ($i) {
                         case 1:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
                             echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                         break;
                         case $page-2:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
                         break;
                         case $page-1:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
                         break;
                         case $page:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
                         break;
                     }
                 }
                 else{
                     if($i==1){
                         if((null!=($page-1) and ($page-1)!=1) and (null!=($page-2) and ($page-2)!=1)){
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
                             echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                         }
                     }
                     if(null!=($page-2) and $i==($page-2)){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
+                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
                     }
                     if(null!=($page-1) and $i==($page-1)){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
+                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
                     }
                     if($i==$page){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
+                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
                     }
                     if(null!=($page+1) and $i==($page+1)){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
+                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
                     }
                     if(null!=($page+2) and $i==($page+2)){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
+                        echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
                         echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                     }
                     if($i==$nbPages){
                         if((($page+1)!=$nbPages) and ($page+2)!=$nbPages){
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
+                            echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
                         }
                     }
                 }
             }
-            if($page!=$nbPages and $page!=($nbPages-1) and $page!=($nbPages-2) and $p!='none'){echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'&page='.($page+1).'"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';}
+            if($page!=$nbPages and $page!=($nbPages-1) and $page!=($nbPages-2) and $p!='none'){echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.($page+1).'"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';}
 
 echo '</ul>
     </nav>

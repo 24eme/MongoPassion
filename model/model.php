@@ -94,7 +94,7 @@ function getColor($num) {
 function getLink_doc()
 {
 	if(isset($_GET['search'])){
-		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'].'&search=&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'];
+		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'].'&search=&s_g='.$_GET['s_g'].'&page='.$_GET['search'];
 	}
 	else{
 		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'].'&page='.$_GET['page'];
@@ -300,16 +300,35 @@ function getSearch_g($search,$page,$bypage){
 	return $result;
 }
 
-function getSearch($search_id,$search_g,$page,$bypage){
+// function getSearch($search_id,$search_g,$page,$bypage){
+function getSearch($search_g,$page,$bypage){
 
-	if($search_id == ''){
-
-		$result = getSearch_g($search_g,$page,$bypage);
+	if ($search_g !=='field : content[...]') {
+		$tab_search = explode(':', $search_g);
+		if (count($tab_search) === 2) {
+			$key = $tab_search[0];
+			$value = $tab_search[1];
+		} else {
+			$key = '_id';
+			$value = $tab_search[0];
+		}
+		$key = trim($key);
+		$value = trim($value);
+		if ($key === '_id') {
+			// var_dump($key, $value);
+			$result = getSearch_id($value,$page,$bypage);
+		} else {
+			$result = getSearch_g($search_g,$page,$bypage);
+		}
 	}
+	// if($search_id ==''){
 
-	elseif($search_g=='field : content[...]'){
-		$result = getSearch_id($search_id,$page,$bypage);;
-	}
+	// 	$result = getSearch_g($search_g,$page,$bypage);
+	// }
+
+	// else if($search_g=='field : content[...]'){
+	// 	$result = getSearch_id($search_id,$page,$bypage);
+	// }
 
 	else{
 
@@ -431,17 +450,34 @@ function countSearch_g($search)
 	return $result;
 }
 
-
-function countSearch($search_id,$search_g)
+//j'ai retiré le paramètre $searche_id 
+function countSearch($search_g)
 {
-	if($search_id == ''){
-
-		$result = countSearch_g($search_g);
+	if ($search_g !=='field : content[...]') {
+		$tab_search = explode(':', $search_g);
+		if (count($tab_search) === 2) {
+			$key = $tab_search[0];
+			$value = $tab_search[1];
+		} else {
+			$key = '_id';
+			$value = $tab_search[0];
+		}
+		$key = trim($key);
+		$value = trim($value);
+		if ($key === '_id') {
+			$result = countSearch_id($value);
+		} else {
+			$result = countSearch_g($search_g);
+		}
 	}
+	// if($search_id == ''){
 
-	elseif($search_g=='field : content[...]'){
-		$result = countSearch_id($search_id);
-	}
+	// 	$result = countSearch_g($search_g);
+	// }
+
+	// elseif($search_g=='field : content[...]'){
+	// 	$result = countSearch_id($search_id);
+	// }
 
 	else{
 

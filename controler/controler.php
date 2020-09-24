@@ -129,27 +129,31 @@
             {
                 if(isset($_GET['page'])){
                     $page = strip_tags($_GET['page']);
-                    $recherche_id = strip_tags($_GET['s_id']);
+                    // $recherche_id = strip_tags($_GET['s_id']);
                     $recherche_g = strip_tags(urldecode($_GET['s_g']));
                 }
                 else{
                     $page = 1;
-                    $recherche_id = strip_tags($_POST['recherche_id']);
+                    // commentaire sur le $_POST[ 'recherche_id'] il n'est plus utilisé
+                    // $recherche_id = strip_tags($_POST['recherche_id']);
                     $recherche_g = strip_tags($_POST['recherche_g']);
                 }
-            
-                if(isset($recherche_id) and isset($recherche_g)){
-                    if($recherche_id=="" and $recherche_g=="field : content[...]"){
+                // if(isset($recherche_id) and isset($recherche_g)){
+                if(isset($recherche_g)){
+                    // if($recherche_id=="" and $recherche_g=="field : content[...]"){
+                     if($recherche_g=="field : content[...]"){
                         header('Location: index.php?action=getCollection&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'');
                     }
                     else{
-                        $docs = getSearch($recherche_id,$recherche_g,$page,$bypage);
+                        // $docs = getSearch($recherche_id, $recherche_g, $page,$bypage);
+                         $docs = getSearch($recherche_g, $page,$bypage);
                     }
                 }
                 else{
                     $docs = getDocs($page,$bypage);
                 }
-                $nbDocs = countSearch($recherche_id,$recherche_g);
+                // J'ai retiré $recherche_id comme paramètre la fonction countSearch j'utilise plus l'input
+                $nbDocs = countSearch($recherche_g);
             }
 
         	$nbPages = getNbPages($nbDocs,$bypage);
