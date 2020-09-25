@@ -34,10 +34,10 @@
 			}
 			if(isset($_GET['db'])){
 				if($_GET['action']=='getDb'){
-					echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
+					echo '<li class="breadcrumb-item active">'.$_GET['db'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'.$_GET['db'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</a></li>';
 				}
 			}
 			if(isset($_GET['coll'])){
@@ -63,7 +63,7 @@
 		<hr>
 	<label for="pet-select">Search in all collections:</label>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
-	<input type="search" class="form-control" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
+	<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 	<input class="btn bg-success text-light m-1" type="submit" name="search" id="search" value="Search"/>
 	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
 	</form>
