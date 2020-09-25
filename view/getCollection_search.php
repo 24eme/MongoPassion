@@ -198,7 +198,7 @@ echo ' of '.$nbDocs.'</h2>';
 <nav>
 	<div id="options" class="text-center">
 		<span>
-			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$recherche_g.'&search='.$page.'">Nouveau Document</a></button>'; ?>
+			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&search='.$page.'">Nouveau Document</a></button>'; ?>
 
 			<!-- <?php //echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.$recherche_g.'&search='.$page.'">Nouveau Document</a></button>'; ?> -->
 		</span>

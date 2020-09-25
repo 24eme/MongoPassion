@@ -52,7 +52,7 @@ select:focus{
 	border-color: #ececec;
 	outline:none;
 }
-
+/*
 #recherche_gss{
 	background: white;
 	color: #878787;
@@ -61,7 +61,7 @@ select:focus{
 	border-radius: 5px;
 	min-height: 27px;
 }
-
+*/
 #recherche_gss:focus{
 	border-radius: 5px;
 	border-color: #ececec;

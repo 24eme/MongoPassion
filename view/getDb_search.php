@@ -56,7 +56,9 @@
 	?>
 
 <hr>
-<div id="recherche">
+<!-- <div id="recherche"> -->
+	<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
+		<h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3>
 	<label for="pet-select">Search in all collections:</label>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 	<input type="search" class="form-control" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
