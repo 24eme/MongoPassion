@@ -53,14 +53,14 @@ select:focus{
 	outline:none;
 }
 
-#recherche_g{
+/*#recherche_g{
 	background: white;
 	color: #878787;
  	width: 80%;
 	border-color: #ececec;
 	border-radius: 5px;
 	min-height: 27px;
-}
+}*/
 
 #recherche_g:focus{
 	border-radius: 5px;
