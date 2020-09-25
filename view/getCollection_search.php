@@ -123,19 +123,6 @@
 // echo '</form>';
 // echo '</span>';
 
-if(isset($recherche_g)){
-	echo "<h3 class='title text-center'>Search results for ";
-	if($recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
-
-	if($recherche_g!="field = content[...]"){
-			echo "\"".$recherche_g."\"";
-		}
-	echo "</h3>";
-}
-else{
-	echo "<h1 class='title'>".$_GET['coll']."</h1>";
-}
-
 // echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
 // if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 // else{echo $nbDocs;}
@@ -188,6 +175,20 @@ else{
 <!-- </div> -->
 <hr>
 
+<?php 
+if(isset($recherche_g)){
+	echo "<h3 class='title text-center'>Search results for ";
+	if($recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
+
+	if($recherche_g!="field = content[...]"){
+			echo "\"".$recherche_g."\"";
+		}
+	echo "</h3>";
+}
+else{
+	echo "<h1 class='title text-center'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
+} ?>
+
 <?php
 echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
@@ -205,6 +206,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 </nav>
+
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
 	<table class="table table-sm table-striped">
