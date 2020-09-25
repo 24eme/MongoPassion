@@ -124,13 +124,13 @@
 // echo '</span>';
 
 if(isset($recherche_g)){
-	echo "<h1 class='title'>Search results for ";
+	echo "<h3 class='title text-center'>Search results for ";
 	if($recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
 
 	if($recherche_g!="field = content[...]"){
 			echo "\"".$recherche_g."\"";
 		}
-	echo "</h1>";
+	echo "</h3>";
 }
 else{
 	echo "<h1 class='title'>".$_GET['coll']."</h1>";
@@ -142,23 +142,25 @@ else{
 // echo ' of '.$nbDocs.'</h2>';
 ?>
 
-<nav>
+<!-- <nav>
 	<div id="options">
 		<span>
-			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$recherche_g.'&search='.$page.'">New Document</a></button>'; ?>
+			<?php //echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$recherche_g.'&search='.$page.'">New Document</a></button>'; ?>
 		</span>
 	</div>
-
+ -->
 
 
 
 <hr>
 
-<div id="row">
+<!-- <div id="row"> -->
 
-<div id="recherche">
-	<br>
-	<div id="search_content" class="col-lg-3">
+<!-- <div id="recherche">
+	<br> -->
+	<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
+		<h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3>
+	<div id="search_content">
 	<label for="pet-select">Search:</label>
 		<br>
 		<!-- <select name="pets" id="Rs">
@@ -169,19 +171,21 @@ else{
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<!-- <input type="search" class="form-control" name="recherche_id" id="recherche_ids" placeholder="Search by id"/> -->
 		<!-- <input type="search" name="recherche_g"  id="recherche_gss" placeholder="Search by id"/> -->
-		<input type="search" name="recherche_g" id="recherche_gss" value="field : content[...]"/>
+		<input type="search" class="form-control border border-success" name="recherche_g" id="recherche_gss" value="field : content[...]"/>
 		<input class="btn bg-success text-light m-1" type="submit" name="search" id="search" value="Search"/>
 		<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
 	</form>
 	</div>
-	<div id="special_search_content" class="col-lg-8 mr-4">
+	<div id="special_search_content">
+		<label>Search by command: </label>
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+		<input type="search" class="form-control border border-success" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
 		<input type="submit" class="btn  bg-success text-light m-1" name="search" id="search" value="Search"/>
 	</form>
 </div>
 </div>
-</div>
+<
+<!-- </div> -->
 <hr>
 
 <?php

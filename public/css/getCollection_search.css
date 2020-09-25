@@ -69,7 +69,7 @@ select:focus{
 }
 
 
-#special_search{
+/*#special_search{
 	background: white;
 	color: #878787;
  	width: 80%;
@@ -77,16 +77,16 @@ select:focus{
 	border-radius: 5px;
 	min-height: 27px;
 }
-
-#search_content{
+*/
+/*#search_content{
 	width: 20%;
-}
+}*/
 
-#special_search_content{
+/*#special_search_content{
 	padding-top: 60px;
 	width:40%;
 }
-
+*/
 #main{
 	margin:auto;
 }

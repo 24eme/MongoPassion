@@ -91,10 +91,11 @@ $(document).ready(function(){
 
 <hr>
 
-<div id="row">
-<div id="recherche">
-	<br>
-	<div id="search_content" class="col-lg-3">
+<!-- <div id="row"> -->
+<!-- <div id="recherche"> -->
+<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
+		<h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3>
+	<div id="search_content">
 	<label for="pet-select">Search:</label>
 		
 
@@ -102,7 +103,7 @@ $(document).ready(function(){
 <!-- 
 		<input type="search" class="form-control" name="recherche_id" id="recherche_id" placeholder="Search by id"/> -->
 
-		<input type="search" class="form-control" name="recherche_g" id="recherche_g recherche_id" value="field : content[...]"/>
+		<input type="search" class="form-control border border-success" name="recherche_g" id="recherche_g" value="field : content[...]"/>
 
 		<input class="btn bg-success text-light m-1"  type="submit" name="search" id="search" value="Search"/>
 
@@ -111,14 +112,16 @@ $(document).ready(function(){
 
 	</form>
 </div>
-<div id="special_search_content" class="col-lg-8 mr-4">
+<div id="special_search_content">
+	<label>Search by command: </label>
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+		<input type="search" class="form-control border border-success" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
 		<input type="submit" class="btn  bg-success text-light m-1" name="search" id="search" value="Search"/>
 	</form>
 </div>
 </div>
-</div>
+<!-- </div> -->
+<!-- </div> -->
 
 <hr>
 
@@ -126,7 +129,7 @@ $(document).ready(function(){
 <?php
 
 if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
-	echo "<h1 class='title'>Résultat de la recherche pour ";
+	echo "<h1 class='title text-center'>Résultat de la recherche pour ";
 	if($_POST['recherche_id']=="" and $_POST['recherche_g']=="field : content[...]"){echo "\"Aucun critère\"";}
 	if($_POST['recherche_id']!=""){echo "\"".$_POST['recherche_id']."\"";}
 	if($_POST['recherche_id']!="" and $_POST['recherche_g']!="field : content[...]"){echo " et ";}

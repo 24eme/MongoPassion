@@ -57,11 +57,13 @@
 ?>
 
 <hr>
-<div id="recherche">
+<<!-- div id="recherche" class="col-lg-5 offset-lg-4 mr-2"> -->
+	<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
+	<h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3>
 	<label for="pet-select">Search in all collections:</label>
 	<br>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
-	<input type="search" class="form-control" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
+	<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 	<input class="btn bg-success text-light m-1" type="submit" name="search" id="search" value="Search"/>
 	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
 </form>
