@@ -94,7 +94,8 @@ $(document).ready(function(){
 <!-- <div id="row"> -->
 <!-- <div id="recherche"> -->
 <div  class="m-auto border border-success col-lg-5 bg-light mt-1">
-		<h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3>
+		<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
+		<hr>
 	<div >
 	<label for="pet-select">Search:</label>
 		
