@@ -3,14 +3,14 @@
 	width: 100%;
 }
 
-#recherche_db{
+/*#recherche_db{
 	background: white;
 	color: #878787;
  	width: 80%;
 	border-color: #ececec;
 	border-radius: 5px;
 	min-height: 27px;
-}
+}*/
 
 #recherche_db:focus{
 	border-radius: 5px;

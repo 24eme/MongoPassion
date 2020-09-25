@@ -177,7 +177,7 @@
 
 <?php 
 if(isset($recherche_g)){
-	echo "<h3 class='title text-center'>Search results for ";
+	echo "<h3 class='title text-center'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
 	if($recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
 
 	if($recherche_g!="field = content[...]"){
