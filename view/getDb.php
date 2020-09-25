@@ -59,7 +59,8 @@
 <hr>
 <<!-- div id="recherche" class="col-lg-5 offset-lg-4 mr-2"> -->
 	<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
-	<h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3>
+	<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
+	<hr>
 	<label for="pet-select">Search in all collections:</label>
 	<br>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>

@@ -56,9 +56,11 @@
 	?>
 
 <hr>
+<br>
 <!-- <div id="recherche"> -->
 	<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
-		<h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3>
+		<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
+		<hr>
 	<label for="pet-select">Search in all collections:</label>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 	<input type="search" class="form-control" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
@@ -88,9 +90,10 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>Searc
 						$link_v = 'index.php?action=viewDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
 						$link_e = 'index.php?action=editDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
 						$link_d = 'index.php?action=deleteDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+						$link_c = 'index.php?action=getCollection&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'';
 						echo '<tr>';
 						echo '<td><a href="'.$link_v.'">'.$field['_id'].'</a></td>';
-						echo '<td>'.$coll.'</td>';
+						echo '<td><a href="'.$link_c.'">'.$coll.'</a></td>';
 						echo "<td id='id'><button  class='btn'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 						echo "<td id='edit'><button  class='btn'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
 						echo  "<td id='suppr'><button  class='btn'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
