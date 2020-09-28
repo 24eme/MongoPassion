@@ -74,9 +74,10 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-desktop'></i>".$ser
 <div id="main" class="border col-lg-6 offset-lg-3 mt-5 bg-light">
 	<br>
 	<table class="table table-sm table-striped ">
-		 <tr  align="center" class="bg-success text-light"> 
-    				<?php echo'<th>Databases of '.$_GET['serve'].' <i class=\'fa fa-fw fa-database\'></i></th>'; ?>
-    	</tr>
+		<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Databases of ".$_GET['serve']."<i class=\"fa fa-fw fa-database\"></i></strong></span></h3>" ?>
+	<!-- 	 <tr  align="center" class="bg-success text-light"> 
+    				<?php /*echo'<th>Databases of '.$_GET['serve'].' <i class=\'fa fa-fw fa-database\'></i></th>'; */?>
+    	</tr> -->
 		<?php
 			foreach ($dbs as $db) {
 				echo '<tr>';

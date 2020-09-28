@@ -33,9 +33,10 @@
 		$serve_list=json_decode($_COOKIE['serve_list']);
 		if(sizeof($serve_list)>0){
 			echo '<table class="table table-sm table-striped ">';
-			echo '<tr  align="center" class="bg-success text-light"> 
-    				<th>Server list <i class="fa fa-fw fa-desktop"></i></th> 
-    			</tr>';
+			// echo '<tr  align="center" class="bg-success text-light"> 
+   //  				<th>Server list <i class="fa fa-fw fa-desktop"></i></th> 
+   //  			</tr>';
+    	   echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Server list <i class=\"fa fa-fw fa-desktop\"></i></strong></span></h3>" ;
 			foreach ($serve_list as $x) {
 				echo '<tr>';
 				echo "<td><a  class='text-dark' href='index.php?action=getServer&serve=".$x."'><i class='mr-2 fa fa-fw fa-desktop'></i>";

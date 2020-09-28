@@ -211,12 +211,14 @@ echo ' of '.$nbDocs.'</h2>';
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
 	<table class="table table-sm table-striped">
-		<tr  align="center" class="bg-success text-light"> 
-    		<?php echo '<th>Documents of '.$_GET['coll'].' <i class=\'fa fa-fw fa-book\'></i></th>'; ?>
+
+		<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>" ?>
+		<!-- <tr  align="center" class="bg-success text-light"> 
+    		<?php/* echo '<th>Documents of '.$_GET['coll'].' <i class=\'fa fa-fw fa-book\'></i></th>'; */?>
     		<th></th>
     		<th></th>
     		<th></th> 
-    	</tr>
+    	</tr> -->
 		<?php
 			if($nbDocs==0){
 				echo 'Aucun document ne correspond à votre recherche.';

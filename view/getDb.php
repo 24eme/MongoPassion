@@ -98,11 +98,12 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db
 <div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1">
 	<br>
 	<table class="table table-sm table-striped">
-		<tr  align="center" class="bg-success text-light"> 
-    		<?php echo '<th>Collections of '.$_GET['db'].' <i class=\'fa fa-fw fa-server\'></i></th>'; ?> 
+		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Collections of ".$_GET['db']."<i class=\"fa fa-fw fa-server\"></i></strong></span></h3>" ?>
+		<!-- <tr  align="center" class="bg-success text-light">  -->
+    		<!-- <?php/* echo '<th>Collections of '.$_GET['db'].' <i class=\'fa fa-fw fa-server\'></i></th>'; */?>  -->
+    <!-- 		<th></th>
     		<th></th>
-    		<th></th>
-    	</tr>
+    	</tr> --> 
 		<?php
 			foreach ($collections as $collection) {
 		
