@@ -15,7 +15,7 @@
  $ sudo make install
 
 ## depôt git
- Clônez le projet dans /var/wwww/html 
+ Clônez le projet dans /var/wwww/html <br/>
  Placez-vous dans le dossier du projet (Interface-MongoDB)
  
  ## Installez les dépendances avec Composer : 
