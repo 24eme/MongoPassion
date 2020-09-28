@@ -9,11 +9,22 @@
 	    require('view/editDocument.php');
     }
 
+
+    function testJSON()
+    {
+
+        $result = getDocument();
+        $link_doc = getLink_doc();
+        require('view/testJSON.php');
+    }
+
+
     function traitement_uD()
     {
     	$error_id = searchError_doc_id();
+        var_dump($error_id);
     	if($error_id==true){
-			echo "<script>alert(\"Le champ '_id' n'est pas modifiable\");document.location.href = 'index.php?action=getCollection';</script>";
+			echo "<script>alert(\"Le champ '_id' n'est pas modifiable\");document.location.href = index.php?action=getCollection;</script>";
     	}
     	else{
 	    	$update = getUpdate_doc();
