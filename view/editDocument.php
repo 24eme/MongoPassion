@@ -5,6 +5,9 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="jsoneditor/dist/jsoneditor.min.js"></script>
+    <script src="public/js/switch.js"></script>
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/editDocument.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
@@ -49,25 +52,37 @@
 			}
 		echo '</ol>';
 	echo '</nav>';
-// echo '<span>';
-// echo '<form method="post" action="index.php?action=thread">';
-// echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
-// if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
-// else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
-// if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
-// else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
-// if(isset($_GET['coll'])){echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread" value="'.$_GET['coll'].'"/>';}
-// else{echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread"/>';}
-// if(isset($_GET['doc'])){echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread" value="'.$_GET['doc'].'"/>';}
-// else{echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread"/>';}
-// echo '<input type="submit" name="go" id="go" value="Go"/>';
-// echo '</form>';
-// echo '</span>';
 
-echo "<h1 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$_GET['doc']."</h1>" 
+echo "<h1 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$_GET['doc']."</h1>";
+
+echo '<div id="nav_view">';
+
+if(isset($_GET['search'])){
+	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return text-center btn btn-primary">< Collection</button></a>';
+	 	}
+	 	elseif(isset($_GET['s_s'])){
+	 		echo '<a class="text-center" href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return  btn btn-primary">< Collection</button></a>';
+	 	}
+	 	elseif(isset($_GET['search_db'])){
+			echo '<a href="index.php?action=getDb_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&search_db='.strip_tags($_GET['search_db']).'"><button class="return btn btn-primary">< Collection</button></a>';
+		}
+	 	else{
+	 		echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
+	 	} 
+echo '</div>';
 ?>
 
-<div id="main">
+<div id="switch">
+	<label id="switch_json">JSONEditor</label>
+	<label class="switch">
+	  <input type="checkbox" id="myCheck" onclick="switchJ()">
+	  <span class="slider round"></span>
+	</label>
+</div>
+
+<div id="text" style="display:none"><p>Checkbox is CHECKED!</p></div>
+
+<div id="main" style="display: block">
 	<?php
 		foreach ($result as $entry) {
 			$doc=array();
@@ -98,20 +113,53 @@ echo "<h1 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$_GET
 	 	echo '<div id="doc_content"><textarea name="doc_text" id="doc_text" rows="20" cols="200" required>'.$docs.'</textarea></div>';
 	 	echo '</form>';
 	 	echo '<br>';
-	 	if(isset($_GET['search'])){
-	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return text-center btn btn-primary">< Collection</button></a>';
-	 	}
-	 	elseif(isset($_GET['s_s'])){
-	 		echo '<a class="text-center" href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return  btn btn-primary">< Collection</button></a>';
-	 	}
-	 	elseif(isset($_GET['search_db'])){
-			echo '<a href="index.php?action=getDb_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&search_db='.strip_tags($_GET['search_db']).'"><button class="return btn btn-primary">< Collection</button></a>';
-		}
-	 	else{
-	 		echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
-	 	}
+	 	
 	?>
 </div>
+<div id="json" style="display: none">
+     <div id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
+     <span id="nC"></span>
+	<div id="jsoneditor" style="width: 50%; height: 600px;"></div>
+</div>
+
+<script type="text/javascript">
+    const container = document.getElementById("jsoneditor")
+    const options = {}
+    const editor = new JSONEditor(container, options)
+    var variableRecuperee = <?php echo stripslashes(json_encode($doc)); ?>;
+    var link_doc = <?php echo (json_encode($link_doc)); ?>;
+
+    const initialJson = variableRecuperee;
+    editor.set(initialJson)
+
+    // get json
+    document.getElementById('getJSON').onclick = function () {
+        const json = editor.get()
+        // alert(JSON.stringify(json, null, 2))
+        var updatedJson = JSON.stringify(json, null, 2)
+        console.log(updatedJson)
+
+        var f = document.createElement("form");
+        f.setAttribute('method',"post");
+        f.setAttribute('action',link_doc);
+        f.setAttribute('id',"idFormulaire");
+
+        var i = document.createElement("input"); //input element, text
+        i.setAttribute('type',"hidden");
+        i.setAttribute('name',"doc_text");
+        i.setAttribute('value',updatedJson);
+
+        f.appendChild(i);
+
+        var span = document.getElementById("nC");
+
+        span.appendChild(f);
+
+
+        document.getElementById("idFormulaire").submit();
+
+        }
+</script>
 
 </body>
 </html>
