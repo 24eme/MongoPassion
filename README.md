@@ -2,7 +2,7 @@
 
 ## Prérequis
 - Installez PHP 7-* <br/>
-- Apache2
+- Installez Apache2
 
 ### Driver MongoDB
     $ git clone https://github.com/mongodb/mongo-php-driver.git
