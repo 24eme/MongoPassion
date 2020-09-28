@@ -93,18 +93,42 @@ $(document).ready(function(){
 
 <!-- <div id="row"> -->
 <!-- <div id="recherche"> -->
-<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
+
+
+<!-- <div  class="m-auto border border-success col-lg-5 bg-light mt-1"> -->
+	<div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
 		<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
 		<hr>
 	<div >
 	<label for="pet-select">Search:</label>
 		
 
-	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-<!-- 
-		<input type="search" class="form-control" name="recherche_id" id="recherche_id" placeholder="Search by id"/> -->
+	<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 
-		<input type="search" class="form-control border border-success" name="recherche_g" id="recherche_g" value="field : content[...]"/>
+		
+
+		<input type="search"  list="browsers"  class="form-control border border-success" name="recherche_g" id="recherche_g" placeholder="Search"/>
+        
+
+		<!-- <input type="search"  list="browsers"  class="form-control border border-success" name="recherche_g" id="recherche_g" /> -->
+
+       <!--  <?php 
+        	/*foreach ($docs as $type => $keys) {
+			       $key = (string)$keys['name'];
+			
+			}*/
+
+        ?> -->
+  
+	  <!-- 	<datalist id="browsers">
+	    	 <?php /*echo  "<option value=".$key.":>" */?> -->
+	    <!-- 	<option value="_id :">
+	    	<option value="name :">
+	    	<option value="price :">
+	   		<option value="Opera :">
+	    	<option value="Safari :">
+	 	</datalist> -->
+ 
 
 		<input class="btn bg-success text-light m-1"  type="submit" name="search" id="search" value="Search"/>
 
@@ -159,7 +183,9 @@ echo ' of '.$nbDocs.'</h2>';
 <hr>
 
 
-<div id="main" class="border col-lg-5 bg-light mt-1">
+<!-- <div id="main" class="border col-lg-5 bg-light mt-1"> -->
+	<div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto mt-1">
+
 	<br>
 	<table class="table table-sm table-striped">
 	<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>" ?>

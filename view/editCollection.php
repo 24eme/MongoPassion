@@ -68,18 +68,19 @@ echo "<h1 align=center class='title'>Edit <i class='fa fa-fw fa-server'></i> ".$
 
 ?>
 
-<div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1">
+<!-- <div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1"> -->
+	<div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1">
 	<?php
 	echo '<form method="post" action="index.php?action=renameCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
 	echo '<br><label>Rename Collection</label><br>';
 	echo '<input type="text" class="form-control" name="newname" id="newname" value="'.$_GET['coll'].'" required />';
-	echo '<input type="submit" class="btn bg-success text-light" name="rename" id="rename" value="Rename">';
+	echo '<input type="submit" class="btn mt-1 bg-success text-light" name="rename" id="rename" value="Rename">';
 	echo '</form><hr>';
     
 	echo '<form method="post" action="index.php?action=moveCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
 	echo '<br><label>Move Collection</label><br>';
 	echo '<input type="text" class="form-control" name="newdb" id="newdb" placeholder="New Database" required />';
-	echo '<input type="submit" class="btn bg-success text-light" name="move" id="move" value="Move">';
+	echo '<input type="submit" class="btn bg-success mt-1 text-light" name="move" id="move" value="Move">';
 	echo '</form>';
 
 	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary">< Database</button></a>'; 

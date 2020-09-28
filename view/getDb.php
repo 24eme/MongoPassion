@@ -57,8 +57,9 @@
 ?>
 
 <hr>
-<<!-- div id="recherche" class="col-lg-5 offset-lg-4 mr-2"> -->
-	<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
+<!-- div id="recherche" class="col-lg-5 offset-lg-4 mr-2"> -->
+    <!-- <div  class="m-auto border border-success col-lg-5 bg-light mt-1"> -->
+	<div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
 	<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
 	<hr>
 	<label for="pet-select">Search in all collections:</label>
@@ -95,7 +96,9 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db
 	</div>
 </nav>
 
-<div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1">
+
+<!-- <div id="main" class="border  col-lg-4 offset-lg-4 bg-light mt-1"> -->
+	<div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1 m-auto">
 	<br>
 	<table class="table table-sm table-striped">
 		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Collections of ".$_GET['db']."<i class=\"fa fa-fw fa-server\"></i></strong></span></h3>" ?>

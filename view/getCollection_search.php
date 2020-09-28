@@ -159,7 +159,7 @@
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<!-- <input type="search" class="form-control" name="recherche_id" id="recherche_ids" placeholder="Search by id"/> -->
 		<!-- <input type="search" name="recherche_g"  id="recherche_gss" placeholder="Search by id"/> -->
-		<input type="search" class="form-control border border-success" name="recherche_g" id="recherche_gss" value="field : content[...]"/>
+		<input type="search" class="form-control border border-success" name="recherche_g" id="recherche_gss"/>
 		<input class="btn bg-success text-light m-1" type="submit" name="search" id="search" value="Search"/>
 		<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
 	</form>

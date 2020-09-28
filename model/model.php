@@ -307,7 +307,7 @@ function getSearch_g($search,$page,$bypage){
 // function getSearch($search_id,$search_g,$page,$bypage){
 function getSearch($search_g,$page,$bypage){
 
-	if ($search_g !=='field : content[...]') {
+	if ($search_g !=='') {
 		$tab_search = explode(':', $search_g);
 		if (count($tab_search) === 2) {
 			$key = $tab_search[0];
