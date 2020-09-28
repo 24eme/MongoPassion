@@ -1,5 +1,4 @@
-***<h1>Interface-MongoDB</h1>***
-*******************
+***<h1 align="center">Interface-MongoDB</h1>***
 
 ## Prérequis
 Installez PHP 7-* <br/>
