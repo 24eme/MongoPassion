@@ -1,8 +1,8 @@
 ***<h1 align="center">Interface-MongoDB</h1>***
 
 ## Prérequis
-Installez PHP 7-* <br/>
-Apache2
+- Installez PHP 7-* <br/>
+- Apache2
 
 ### Driver MongoDB
     $ git clone https://github.com/mongodb/mongo-php-driver.git
@@ -13,12 +13,11 @@ Apache2
     $ make all
     $ sudo make install
 
-## depôt git
- Clônez le projet dans /var/wwww/html <br/>
- Placez-vous dans le dossier du projet (Interface-MongoDB)
+## Dépôt Git
+ - Clônez le projet dans /var/wwww/html <br/>
+ - Placez-vous dans le dossier du projet (Interface-MongoDB)
  
  ## Installez les dépendances avec Composer : 
     $ composer require mongodb/mongodb
  
-### Depuis le navigateur vous pouvez accéder au projet 
-#### localhost/Interface-MongoDB
+### Depuis le navigateur vous pouvez accéder au projet à l'adresse localhost/Interface-MongoDB
