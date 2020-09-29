@@ -52,7 +52,7 @@ $(document).ready(function(){
 
 	//Fil d'Ariane
 
-	echo "<nav class='nav sticky-top justify-content-center'>";
+	echo "<nav class='nav sticky-top ml-5'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -105,27 +105,23 @@ $(document).ready(function(){
 
 		
 
-		<input type="search"  list="browsers"  class="form-control border border-success" name="recherche_g" id="recherche_g" placeholder="Search"/>
-        
+		<!-- <input type="search"  list="browsers"  class="form-control border border-success" name="recherche_g" id="recherche_g" placeholder="Search"/>
+         -->
 
-		<!-- <input type="search"  list="browsers"  class="form-control border border-success" name="recherche_g" id="recherche_g" /> -->
+		<input type="search"  list="browsers"  class="form-control border border-success" name="recherche_g" id="recherche_g" />
 
-       <!--  <?php 
-        	/*foreach ($docs as $type => $keys) {
-			       $key = (string)$keys['name'];
+		<datalist id="browsers">
+        <?php 
+     
+        	foreach ($docs[0] as $key => $value) {
+			 	  
+        		echo  "<option value=".$key.":>";
 			
-			}*/
+			}
 
-        ?> -->
-  
-	  <!-- 	<datalist id="browsers">
-	    	 <?php /*echo  "<option value=".$key.":>" */?> -->
-	    <!-- 	<option value="_id :">
-	    	<option value="name :">
-	    	<option value="price :">
-	   		<option value="Opera :">
-	    	<option value="Safari :">
-	 	</datalist> -->
+        ?> 
+ 
+	 	</datalist> 
  
 
 		<input class="btn bg-success text-light m-1"  type="submit" name="search" id="search" value="Search"/>

@@ -19,7 +19,7 @@
 
 <div id="main" class=" text-center ">
 	<br><br>
-	<h1 class='title'align="center">CRUDMongo</h1>
+	<h1 class='title'align="center">MongoCRUD</h1>
 	<img align="center"  class="rounded-circle center  w-25 m-auto" src="public/images/mongodb.jpg" alt="24eme">
 	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
 		<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
