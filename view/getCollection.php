@@ -89,8 +89,6 @@ $(document).ready(function(){
 
 
 
-<hr>
-
 <!-- <div id="row"> -->
 <!-- <div id="recherche"> -->
 
@@ -148,8 +146,7 @@ $(document).ready(function(){
 <!-- </div> -->
 <!-- </div> -->
 
-<hr>
-
+<br>
 
 <?php
 
@@ -177,15 +174,14 @@ echo ' of '.$nbDocs.'</h2>';
 		<span>
 			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">New Document</a></button>'; ?>
 		</span>
+		<br>
 	</div>
 </nav>
 
-<hr>
-
 
 <!-- <div id="main" class="border col-lg-5 bg-light mt-1"> -->
+	<br>
 	<div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto mt-1">
-
 	<br>
 	<table class="table table-sm table-striped">
 	<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>" ?>
@@ -238,14 +234,6 @@ echo ' of '.$nbDocs.'</h2>';
 </div>
 
 <footer>
-	<!-- <?php
-	// echo '<br>';
-
-	// for ($i=1;$i<=$nbPages;$i++) {
-	// 	echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$i.'">'.$i.'</a>';
-	// 	if($i!=$nbPages){echo '-';}
-	// }
-	?> -->
 
 	<nav aria-label="pagination">
         <ul class="pagination">
@@ -320,7 +308,6 @@ echo ' of '.$nbDocs.'</h2>';
             ?>
         </ul>
     </nav>
-    <hr>
 </footer>
 
 	

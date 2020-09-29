@@ -139,7 +139,7 @@
 
 
 
-<hr>
+
 
 <!-- <div id="row"> -->
 
@@ -173,7 +173,7 @@
 </div>
 <
 <!-- </div> -->
-<hr>
+
 
 <?php 
 if(isset($recherche_g)){
@@ -206,7 +206,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 </nav>
-
+<br>
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	<br>
 	<table class="table table-sm table-striped">

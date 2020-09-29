@@ -13,7 +13,6 @@
 nav[aria-label = "pagination"] {
     display: flex;
     justify-content: center;
-    border-top: 1px solid #eee;
     margin-top: 1em;
     padding-top: .5em;
 }
