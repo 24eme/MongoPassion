@@ -14,10 +14,7 @@
 	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
 
  	<script src="public/js/db.js"></script> 
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	
 
 
 </head>
@@ -105,23 +102,15 @@ echo ' of '.$nbDocs.'</h2>';
   <i class="fa fa-fw fa-search"></i>Search by command
 </button>
 </div>
-<!-- Modal Start -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Search</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
 
-      <!-- Modal body -->
-      <div class="modal-body">
-      		<!-- <div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1"> -->
-		<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
-		<!-- <hr> -->
-	<div >
+
+
+</nav>
+
+
+<div id="searchId" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+	<hr>
 	<label for="pet-select">Search:</label>
 		
 
@@ -175,7 +164,9 @@ echo ' of '.$nbDocs.'</h2>';
 		<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
 	</div>
 	</form>
+
 </div>
+
 
 	
 	<div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto mt-1">

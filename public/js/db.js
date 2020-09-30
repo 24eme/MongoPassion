@@ -37,9 +37,40 @@ function confirmDelete() {
 
 
 function myFunctionComand() {
-  document.getElementById("command").style.display = "block";
+  
+  document.getElementById("searchId").style.display = "none";
+  var x = document.getElementById("command");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  
+}
+
 }
 
 function myFunctionSearch() {
   document.getElementById("command").style.display = "none";
+  var x = document.getElementById("searchId");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  
 }
+
+}
+
+
+function myFunctionSearchGet() {
+
+  var x = document.getElementById("searchIdS");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  
+}
+
+}
+
