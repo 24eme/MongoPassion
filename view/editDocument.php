@@ -57,8 +57,8 @@ echo "<h1 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$_GET
 
 echo '<div id="nav_view">';
 
-if(isset($_GET['search'])){
-	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return text-center btn btn-primary">< Collection</button></a>';
+if(isset($_GET['s_g'])){
+	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$_GET['s_g'].'&page='.$_GET['page'].'"><button class="return text-center btn btn-primary">< Collection</button></a>';
 	 	}
 	 	elseif(isset($_GET['s_s'])){
 	 		echo '<a class="text-center" href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return  btn btn-primary">< Collection</button></a>';
@@ -116,6 +116,8 @@ echo '</div>';
 	 	
 	?>
 </div>
+
+<!-- JsonEditor -->
 <div id="json" style="display: none">
      <div id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
      <span id="nC"></span>

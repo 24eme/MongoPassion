@@ -66,7 +66,7 @@
 
 
 
-
+<!-- Titre de la page -->
 
 <?php
 
@@ -112,7 +112,7 @@ echo ' of '.$nbDocs.'</h2>';
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">Search</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -175,7 +175,7 @@ echo ' of '.$nbDocs.'</h2>';
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">Search</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
