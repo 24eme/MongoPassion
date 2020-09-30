@@ -35,3 +35,8 @@
 	margin-bottom: 10px;
 	margin-left: 10px;
 }
+
+/* Bouton de retour */
+.return.btn.btn-primary{
+  margin-left: 2%;
+}
