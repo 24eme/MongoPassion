@@ -155,7 +155,7 @@ echo ' of '.$nbDocs.'</h2>';
 	<br>
 	<table class="table table-sm table-striped">
 	<?php 
-		echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>"
+		echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>";
 		if($nbDocs==0){
 			echo 'Aucun document ne correspond à votre recherche.';
 		}
