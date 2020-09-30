@@ -98,3 +98,7 @@ select:focus{
 #command {
   display: none;
 }
+
+#searchId {
+  display: none;
+}

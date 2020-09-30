@@ -94,3 +94,7 @@ select:focus{
 .btn.btn-primary.getCollection{
 	margin-left: 2%;
 }
+
+#searchIdS{
+	display: none;
+}
