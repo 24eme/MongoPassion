@@ -95,7 +95,7 @@ echo ' of '.$nbDocs.'</h2>';
 	  <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 	</button>
 
-	<button type="button" class="btn btn-success"  onclick="myFunctionComand()" data-toggle="modal" data-target="#myModal2">
+	<button type="button" class="btn btn-success"  onclick="myFunctionCommand()" data-toggle="modal" data-target="#myModal2">
 	  <i class="fa fa-fw fa-search"></i>Search by command
 	</button>
 </div>
@@ -193,6 +193,9 @@ echo ' of '.$nbDocs.'</h2>';
 	<?php
 	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection">< Database</button></a>';
 	?>
+
+	<!-- Fin du bouton de retour -->
+
 </div>
 
 <!-- Fin du tableau des documents de la collection -->
