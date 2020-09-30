@@ -3,27 +3,27 @@
 function getDocument()
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	// $documents = $client->$db->request("db.getCollection(".$collection.").find(".$requete")";
 
 	if(isset($_GET['type_id'])){
-		if(strip_tags($_GET['type_id'])=='object'){
-			$id = new MongoDB\BSON\ObjectId(strip_tags($_GET['doc']));
+		if(htmlspecialchars($_GET['type_id'])=='object'){
+			$id = new MongoDB\BSON\ObjectId(htmlspecialchars($_GET['doc']));
 		}
 		else{
-			$id = strip_tags($_GET['doc']);
+			$id = htmlspecialchars($_GET['doc']);
 		}
 	}
 	else{
 		try{
-			$id = new MongoDB\BSON\ObjectId(strip_tags($_GET['doc']));
+			$id = new MongoDB\BSON\ObjectId(htmlspecialchars($_GET['doc']));
 		}
 		catch (Exception $e){
-			$id = strip_tags($_GET['doc']);
+			$id = htmlspecialchars($_GET['doc']);
 		}
 	}
 	// $_SESSION['doc'] = $_GET['doc'];
@@ -97,11 +97,11 @@ function getLink_doc()
 
 		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'].'&search=&s_g='.$_GET['s_g'].'&page='.$_GET['search'];
 
-		$link_doc='index.php?action=traitement_uD&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'&id='.strip_tags($_GET['doc']).'&type_id='.strip_tags($_GET['type_id']).'&search=&s_id='.strip_tags($_GET['s_id']).'&s_g='.strip_tags($_GET['s_g']).'&page='.strip_tags($_GET['search']);
+		$link_doc='index.php?action=traitement_uD&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&id='.htmlspecialchars($_GET['doc']).'&type_id='.htmlspecialchars($_GET['type_id']).'&search=&s_id='.htmlspecialchars($_GET['s_id']).'&s_g='.htmlspecialchars($_GET['s_g']).'&page='.htmlspecialchars($_GET['search']);
 
 	}
 	else{
-		$link_doc='index.php?action=traitement_uD&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'&id='.strip_tags($_GET['doc']).'&type_id='.strip_tags($_GET['type_id']).'&page='.strip_tags($_GET['page']);
+		$link_doc='index.php?action=traitement_uD&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&id='.htmlspecialchars($_GET['doc']).'&type_id='.htmlspecialchars($_GET['type_id']).'&page='.htmlspecialchars($_GET['page']);
 	}
 	return $link_doc;
 }
@@ -114,13 +114,13 @@ function searchError_doc_id()
 	$dec = json_decode($_POST['doc_text']);
 	$test = improved_var_export($dec);
 
-	if(strip_tags($_GET['type_id'])=='object'){
+	if(htmlspecialchars($_GET['type_id'])=='object'){
 		if(gettype($test['_id'])!='array'){
 			$error_id = true;
 		}
 	}
 	else{
-		if($test['_id']!=strip_tags($_GET['id'])){
+		if($test['_id']!=htmlspecialchars($_GET['id'])){
 			$error_id = true;
 		}
 	}
@@ -130,13 +130,13 @@ function searchError_doc_id()
 
 function getUpdate_doc()
 {
-	$dec = json_decode($_POST['doc_text']);
+	$dec = json_decode(strip_tags($_POST['doc_text']));
 	$test = improved_var_export($dec);
 
 	unset($test['_id']);
 
-	$date_array = strip_tags(unserialize($_POST['date_array']));
-	$up_date_array = strip_tags(unserialize($_POST['up_date_array']));
+	$date_array = htmlspecialchars(unserialize($_POST['date_array']));
+	$up_date_array = htmlspecialchars(unserialize($_POST['up_date_array']));
 	if(!empty($date_array)){
 		foreach ($date_array as $x=>$x_value) {
 			$temp = strtotime($test[$x]['date'])*1000;
@@ -151,11 +151,11 @@ function getUpdate_doc()
 
 function getDoc_id()
 {
-	if(strip_tags($_GET['type_id'])=='object'){
+	if(htmlspecialchars($_GET['type_id'])=='object'){
 		$id = new MongoDB\BSON\ObjectId($_GET['id']);
 	}
 	else{
-		$id = strip_tags($_GET['id']);
+		$id = htmlspecialchars($_GET['id']);
 	}
 	return $id;
 }
@@ -163,9 +163,9 @@ function getDoc_id()
 function updateDoc($id,$doc)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 	$collection->updateOne(
     [ '_id' => $id ],
@@ -195,9 +195,9 @@ function init_json($doc){
 function getDocs($page,$bypage)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -210,9 +210,9 @@ function getDocs($page,$bypage)
 function countDocs()
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 	$result = $collection->count([]);
 	return $result;
@@ -221,17 +221,18 @@ function countDocs()
 
 function getNew_doc()
 {
-	$dec = json_decode($_POST['doc_text']);
+	$dec = json_decode(strip_tags($_POST['doc_text']));
 	$test = improved_var_export($dec);
+	var_dump($test);
 	return $test;
 }
 
 function insertDoc($doc)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	$collection->insertOne($doc);
@@ -240,16 +241,16 @@ function insertDoc($doc)
 function deleteDoc()
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	if($_GET['type_id']=='object'){
-		$id = new MongoDB\BSON\ObjectId(strip_tags($_GET['doc']));
+		$id = new MongoDB\BSON\ObjectId(htmlspecialchars($_GET['doc']));
 	}
 	else{
-		$id = strip_tags($_GET['doc']);
+		$id = htmlspecialchars($_GET['doc']);
 	}
 
 	$collection->deleteOne(['_id'=>$id]);
@@ -257,9 +258,9 @@ function deleteDoc()
 
 function getSearch_id($search,$page,$bypage){
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -282,9 +283,9 @@ function getSearch_id($search,$page,$bypage){
 
 function getSearch_g($search,$page,$bypage){
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -337,9 +338,9 @@ function getSearch($search_g,$page,$bypage){
 	else{
 
 		require 'vendor/autoload.php';
-		$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-		$db = strval(strip_tags($_GET['db']));
-		$collec = strval(strip_tags($_GET['coll']));
+		$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+		$db = strval(htmlspecialchars($_GET['db']));
+		$collec = strval(htmlspecialchars($_GET['coll']));
 		$collection = $client->$db->$collec;
 
 		$skip = ($page-1)*$bypage;
@@ -374,9 +375,9 @@ function getSearch($search_g,$page,$bypage){
 function getSpecialSearch($command,$page,$bypage)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -385,7 +386,7 @@ function getSpecialSearch($command,$page,$bypage)
 
 	$command = '$result = $collection->'.$command.', [\'skip\'=>$skip,\'limit\'=>$bypage] )->toArray();';
 
-	eval($command);
+	eval(strip_tags(htmlspecialchars_decode($command)));
 
 	return $result;
 }
@@ -410,9 +411,9 @@ function getNbPages_search($result,$pages){
 
 function countSearch_id($search){
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 	
 	$regex = new MongoDB\BSON\Regex ($search);
@@ -434,9 +435,9 @@ function countSearch_id($search){
 function countSearch_g($search)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	$tab_search = explode(':', $search);
@@ -486,9 +487,9 @@ function countSearch($search_g)
 	else{
 
 		require 'vendor/autoload.php';
-		$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-		$db = strval(strip_tags($_GET['db']));
-		$collec = strval(strip_tags($_GET['coll']));
+		$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+		$db = strval(htmlspecialchars($_GET['db']));
+		$collec = strval(htmlspecialchars($_GET['coll']));
 		$collection = $client->$db->$collec;
 
 		$tab_search = explode('=', $search_g);
@@ -520,23 +521,23 @@ function countSearch($search_g)
 function countSpecialSearch($search)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
-	$db = strval(strip_tags($_GET['db']));
-	$collec = strval(strip_tags($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$db = strval(htmlspecialchars($_GET['db']));
+	$collec = strval(htmlspecialchars($_GET['coll']));
 	$collection = $client->$db->$collec;
 
 	$temp = '$result = $collection->'.$search.'';
 
 	$command = str_replace('find', 'count', $temp);
 	$command = $command.';';
-	eval($command);
+	eval(strip_tags(htmlspecialchars_decode($command)));
 	return $result;
 }
 
 function getCollections($db)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
 	$database = $client->$db;
 
 	$result = $database->listCollections();
@@ -547,7 +548,7 @@ function getCollections($db)
 function getSearch_db($search,$db)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
 	$database = $client->$db;
 
 	$collections = $database->listCollections();
@@ -573,7 +574,7 @@ function getSearch_db($search,$db)
 function getDbs($serve)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($serve).':27017');
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($serve).':27017');
 
 	$result = $client->listDatabases();
 
@@ -583,19 +584,19 @@ function getDbs($serve)
 function renameCollec($newName)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
 
 	$database = $client->admin;
 
-	$database->command(array('renameCollection'=>strip_tags($_GET['db']).'.'.strip_tags($_GET['coll']),'to'=>strip_tags($_GET['db']).'.'.$newName));
+	$database->command(array('renameCollection'=>htmlspecialchars($_GET['db']).'.'.htmlspecialchars($_GET['coll']),'to'=>htmlspecialchars($_GET['db']).'.'.$newName));
 }
 
 function createCollec($name)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
 
-	$db = strval(strip_tags($_GET['db']));
+	$db = strval(htmlspecialchars($_GET['db']));
 
 	$database = $client->$db;
 
@@ -605,24 +606,24 @@ function createCollec($name)
 function deleteColl()
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
 
-	$db = strval(strip_tags($_GET['db']));
+	$db = strval(htmlspecialchars($_GET['db']));
 
 	$database = $client->$db;
 
-	$database->dropCollection(strip_tags($_GET['coll']));
+	$database->dropCollection(htmlspecialchars($_GET['coll']));
 }
 
 
 function moveCollec($db)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.strip_tags($_GET['serve']).':27017');
+	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
 
 	$database = $client->admin;
 
-	$database->command(array('renameCollection'=>strip_tags($_GET['db']).'.'.strip_tags($_GET['coll']),'to'=>$db.'.'.strip_tags($_GET['coll'])));
+	$database->command(array('renameCollection'=>htmlspecialchars($_GET['db']).'.'.htmlspecialchars($_GET['coll']),'to'=>$db.'.'.htmlspecialchars($_GET['coll'])));
 }
 
 function getLink_thread()
@@ -673,16 +674,16 @@ function getLink_thread()
 	}
 
 	if(isset($_POST['serve_thread']) and $_POST['serve_thread']!= ''){
-		$link=$link.'&serve='.strip_tags($_POST['serve_thread']);
+		$link=$link.'&serve='.htmlspecialchars($_POST['serve_thread']);
 	}
 	if(isset($_POST['db_thread']) and $_POST['db_thread']!= ''){
-		$link=$link.'&db='.strip_tags($_POST['db_thread']);
+		$link=$link.'&db='.htmlspecialchars($_POST['db_thread']);
 	}
 	if(isset($_POST['coll_thread']) and $_POST['coll_thread']!= ''){
-		$link=$link.'&coll='.strip_tags($_POST['coll_thread']);
+		$link=$link.'&coll='.htmlspecialchars($_POST['coll_thread']);
 	}
 	if(isset($_POST['doc_thread']) and $_POST['doc_thread']!= ''){
-		$link=$link.'&doc='.strip_tags($_POST['doc_thread']).'&page=1';
+		$link=$link.'&doc='.htmlspecialchars($_POST['doc_thread']).'&page=1';
 	}
 
 	return $link;

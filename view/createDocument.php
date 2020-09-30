@@ -50,21 +50,6 @@ echo "<nav class='nav sticky-top ml-5'>";
 		echo '</ol>';
 	echo '</nav>';
 
-// echo '<span>';
-// echo '<form method="post" action="index.php?action=thread">';
-// echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
-// if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
-// else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
-// if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
-// else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
-// if(isset($_GET['coll'])){echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread" value="'.$_GET['coll'].'"/>';}
-// else{echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread"/>';}
-// if(isset($_GET['doc'])){echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread" value="'.$_GET['doc'].'"/>';}
-// else{echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread"/>';}
-// echo '<input type="submit" name="go" id="go" value="Go"/>';
-// echo '</form>';
-// echo '</span>';
-
 echo '<h1 class = "title text-center"><i class="fa fa-fw fa-book"></i> New Document</h1>';
 ?>
 
@@ -81,9 +66,9 @@ echo '<h1 class = "title text-center"><i class="fa fa-fw fa-book"></i> New Docum
 	 	if(isset($_GET['search'])){
 	 		echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$_GET['s_id'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return btn btn-primary">< Collection</button></a>';
 	 	}
-	 	// else{
-	 	// 	echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><button class="return btn btn-primary">< Collection</button></a>';
-	 	// }
+	 	else{
+	 		echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><button class="return btn btn-primary">< Collection</button></a>';
+	 	}
 	?>
 </div>
 

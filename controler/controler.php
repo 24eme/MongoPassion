@@ -21,30 +21,28 @@
 
     function traitement_uD()
     {
-    	$error_id = searchError_doc_id();
-        var_dump($error_id);
-    	if($error_id==true){
-			echo "<script>alert(\"Le champ '_id' n'est pas modifiable\");document.location.href = index.php?action=getCollection;</script>";
-    	}
-    	else{
+    	try{
 	    	$update = getUpdate_doc();
 	    	$id = getDoc_id();
 	    	updateDoc($id,$update);
 
 	    	if(isset($_GET['search'])){
-                header('Location: index.php?action=getCollection_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'&s_id='.strip_tags($_GET['s_id']).'&s_g='.strip_tags($_GET['s_g']).'&page='.strip_tags($_GET['page']).'');
+                header('Location: index.php?action=getCollection_search&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&s_id='.htmlspecialchars($_GET['s_id']).'&s_g='.htmlspecialchars($_GET['s_g']).'&page='.htmlspecialchars($_GET['page']).'');
             }
             else{
-                header('Location: index.php?action=getCollection&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'&page='.strip_tags($_GET['page']).'');
+                header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&page='.htmlspecialchars($_GET['page']).'');
             }
 	    }
+        catch(Exception $e){
+           echo "<script>alert(\"Le champ '_id' n'est pas modifiable\");document.location.href = index.php?action=getCollection;</script>";
+        }
     }
 
     function getCollection()
     {
     	try{
             if(isset($_GET['coll']))
-        	$coll=strip_tags($_GET['coll']);
+        	$coll=htmlspecialchars($_GET['coll']);
 
         	else{
         		header('Location: index.php?action=error');
@@ -55,7 +53,7 @@
         	$nbPages = getNbPages($nbDocs,$bypage);
 
         	if(isset($_GET['page'])){
-        		$page = strip_tags($_GET['page']);
+        		$page = htmlspecialchars($_GET['page']);
         	}
         	else{
         		$page = 1;
@@ -80,7 +78,7 @@
         try{
         	$doc = getNew_doc();
         	insertDoc($doc);
-        	header('Location: index.php?action=getCollection&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'');
+        	header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'');
         }
         catch(Exception $e){
             echo $e;
@@ -91,13 +89,13 @@
     {
     	deleteDoc();
     	if(isset($_GET['search'])){
-            header('Location: index.php?action=getCollection_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'&s_id='.strip_tags($_GET['s_id']).'&s_g='.strip_tags($_GET['s_g']).'&page='.strip_tags($_GET['search']).'');
+            header('Location: index.php?action=getCollection_search&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&s_id='.htmlspecialchars($_GET['s_id']).'&s_g='.htmlspecialchars($_GET['s_g']).'&page='.htmlspecialchars($_GET['search']).'');
         }
         elseif(isset($_GET['search_db'])){
-            header('Location: index.php?action=getDb_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&search_db='.strip_tags($_GET['search_db']).'');
+            header('Location: index.php?action=getDb_search&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&search_db='.htmlspecialchars($_GET['search_db']).'');
         }
         else{
-            header('Location: index.php?action=getCollection&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'&page='.strip_tags($_GET['page']).'');
+            header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&page='.htmlspecialchars($_GET['page']).'');
         }
     }
 
@@ -119,45 +117,45 @@
 
         	if(isset($_POST['special_search'])){
                 if(isset($_GET['page'])){
-                    $page = strip_tags($_GET['page']);
+                    $page = htmlspecialchars($_GET['page']);
                 }
                 else{
                     $page = 1;
                 }
-                $s_search = strip_tags($_POST['special_search']);
+                $s_search = htmlspecialchars($_POST['special_search']);
                 $docs = getSpecialSearch($s_search,$page,$bypage);
                 $nbDocs = countSpecialSearch($s_search);
 
             }
             elseif (isset($_GET['s_s'])) {
                 if(isset($_GET['page'])){
-                    $page = strip_tags($_GET['page']);
+                    $page = htmlspecialchars($_GET['page']);
                 }
                 else{
                     $page = 1;
                 }
-                $s_search = strip_tags(urldecode($_GET['s_s']));
+                $s_search = htmlspecialchars(urldecode($_GET['s_s']));
                 $docs = getSpecialSearch($s_search,$page,$bypage);
                 $nbDocs = countSpecialSearch($s_search);
             }
             else
             {
                 if(isset($_GET['page'])){
-                    $page = strip_tags($_GET['page']);
-                    // $recherche_id = strip_tags($_GET['s_id']);
-                    $recherche_g = strip_tags(urldecode($_GET['s_g']));
+                    $page = htmlspecialchars($_GET['page']);
+                    // $recherche_id = htmlspecialchars($_GET['s_id']);
+                    $recherche_g = htmlspecialchars(urldecode($_GET['s_g']));
                 }
                 else{
                     $page = 1;
                     // commentaire sur le $_POST[ 'recherche_id'] il n'est plus utilisé
-                    // $recherche_id = strip_tags($_POST['recherche_id']);
-                    $recherche_g = strip_tags($_POST['recherche_g']);
+                    // $recherche_id = htmlspecialchars($_POST['recherche_id']);
+                    $recherche_g = htmlspecialchars($_POST['recherche_g']);
                 }
                 // if(isset($recherche_id) and isset($recherche_g)){
                 if(isset($recherche_g)){
                     // if($recherche_id=="" and $recherche_g=="field : content[...]"){
                      if($recherche_g=="field : content[...]"){
-                        header('Location: index.php?action=getCollection&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.strip_tags($_GET['coll']).'');
+                        header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'');
                     }
                     else{
                         // $docs = getSearch($recherche_id, $recherche_g, $page,$bypage);
@@ -183,12 +181,12 @@
     function renameCollection()
     {
         try{
-            $newname = str_replace(' ', '_', strip_tags($_POST['newname']));
+            $newname = str_replace(' ', '_', htmlspecialchars($_POST['newname']));
             renameCollec($newname);
-            header('Location: index.php?action=editCollection&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&coll='.$newname.'');
+            header('Location: index.php?action=editCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.$newname.'');
         }
         catch(Exception $e){
-            echo "<script>alert(\"Le nouveau nom est identique à l'ancien\");document.location.href = 'index.php?action=getDb&db_id=".strip_tags($_GET['db'])."';</script>";
+            echo "<script>alert(\"Le nouveau nom est identique à l'ancien\");document.location.href = 'index.php?action=getDb&db_id=".htmlspecialchars($_GET['db'])."';</script>";
         }
     }
 
@@ -200,12 +198,12 @@
     function createCollection()
     {
         try{
-            $newname = str_replace(' ', '_', strip_tags($_POST['name']));
+            $newname = str_replace(' ', '_', htmlspecialchars($_POST['name']));
             createCollec($newname);
-            header('Location: index.php?action=getDb&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'');
+            header('Location: index.php?action=getDb&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'');
         }
         catch(Exception $e){
-            echo "<script>alert(\"Cette collection existe déjà\");document.location.href = 'index.php?action=getDb&serve=".strip_tags($_GET['serve'])."&db=".strip_tags($_GET['db'])."';</script>";
+            echo "<script>alert(\"Cette collection existe déjà\");document.location.href = 'index.php?action=getDb&serve=".htmlspecialchars($_GET['serve'])."&db=".htmlspecialchars($_GET['db'])."';</script>";
             echo $e;
         }
     }
@@ -213,20 +211,20 @@
     function deleteCollection()
     {
         deleteColl();
-        header('Location: index.php?action=getDb&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'');
+        header('Location: index.php?action=getDb&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'');
     }
 
     function moveCollection()
     {
-        $db = strip_tags($_POST['newdb']);
+        $db = htmlspecialchars($_POST['newdb']);
         moveCollec($db);
-        header('Location: index.php?action=getDb&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'');
+        header('Location: index.php?action=getDb&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'');
     }
 
     function getDb()
     {
     	if(isset($_GET['db']))
-    	$db=strip_tags($_GET['db']);
+    	$db=htmlspecialchars($_GET['db']);
 
     	else{
     		header('Location: index.php?action=error');
@@ -239,12 +237,12 @@
     {
         if(isset($_GET['db'])){
             if(isset($_POST['recherche_db'])){
-                $search = strip_tags($_POST['recherche_db']);
+                $search = htmlspecialchars($_POST['recherche_db']);
             }
             elseif(isset($_GET['search_db'])){
-                $search = urldecode(strip_tags($_GET['search_db']));
+                $search = urldecode(htmlspecialchars($_GET['search_db']));
             }
-            $db = strip_tags($_GET['db']);
+            $db = htmlspecialchars($_GET['db']);
         }
 
         else{
@@ -275,11 +273,11 @@
         $serve_list=json_decode($_COOKIE['serve_list']);
     	try{
             if(isset($_GET['serve'])){
-        		$serve=strip_tags($_GET['serve']);
+        		$serve=htmlspecialchars($_GET['serve']);
         	}
         	elseif(isset($_POST['serve'])){
-        		$serve=strip_tags($_POST['serve']);
-        		if(!in_array(strip_tags($_POST['serve']), $serve_list)){
+        		$serve=htmlspecialchars($_POST['serve']);
+        		if(!in_array(htmlspecialchars($_POST['serve']), $serve_list)){
         			array_push($serve_list, $serve);
                     setcookie('serve_list',json_encode($serve_list));
         		}
@@ -291,7 +289,7 @@
         	require('view/getServer.php');
         }
         catch(Exception $e){
-            if (($key = array_search(strip_tags($_POST['serve']), $serve_list)) !== false) {
+            if (($key = array_search(htmlspecialchars($_POST['serve']), $serve_list)) !== false) {
                 unset($serve_list[$key]);
                 setcookie('serve_list',json_encode($serve_list));
                 $serve='localhost';

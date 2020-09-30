@@ -74,30 +74,6 @@
 	echo '</nav>';
 ?>
 
-<!-- <nav>
-	<div id="options">
-		<span>
-			<?php //echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$recherche_g.'&search='.$page.'">New Document</a></button>'; ?>
-		</span>
-	</div>
- -->
-
-
-
-
-
-<div id="special_search_content" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2"> 
-
-		  	<label>Search by command: </label>
-		<?php /*echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">';*/ ?>
-	<div class="input-group mb-3">
-		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
-		<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
-	</div>
-	</form>
-</div>
-</div>
-
 
 
 <?php 
@@ -130,10 +106,17 @@ echo ' of '.$nbDocs.'</h2>';
   <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 </button>
 
-<!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
-  <i class="fa fa-fw fa-search"></i>Search by command
-</button> -->
 <?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?> 
+</div>
+<div id="special_search_content" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2"> 
+			<hr>
+		  	<label>Search by command: </label>
+		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+	<div class="input-group mb-3">
+		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+		<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
+	</div>
+	</form>
 </div>
 
 <!-- Modal Start -->
@@ -143,7 +126,7 @@ echo ' of '.$nbDocs.'</h2>';
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
+        <h4 class="modal-title">Search:</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -189,60 +172,13 @@ echo ' of '.$nbDocs.'</h2>';
 
 </div>
 
-<!-- </div> -->
 
 
     </div>
   </div>
 </div>
 </div>
- <!-- modalEnd -->
 
-<!-- StartModal2 -->
-<!-- <div class="modal" id="myModal2">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-     <!--  <div class="modal-header">
-        <h4 class="modal-title">Modal Heading</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-    <!--   <div class="modal-body">
-        <div id="special_search_content">
-
-	<label>Search by command: </label> -->
-		<?php /*echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; */?>
-	<!-- 	<div class="input-group mb-3">
-		<input type="search" class="form-control border border-success" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
-		<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
-	</div>
-	</form>
-</div>
-      </div>  -->
-
-      <!-- Modal footer -->
-   <!--    <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div> -->
-
-    </div>
-  </div>
-
-
-</nav>
-<!--    <div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
-		  	<label>Search by command: </label>
-		<?php /*echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">';*/ ?>
-	<div class="input-group mb-3">
-		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
-		<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
-	</div>
-	</form>
-</div>
-</div> -->
 
 <div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
 	
