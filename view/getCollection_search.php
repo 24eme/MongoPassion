@@ -106,7 +106,7 @@
 
 <?php 
 if(isset($recherche_g)){
-	echo "<h3 class='title text-center'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
+	echo "<h3 class='title text-center mt-5'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
 	if($recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
 
 	if($recherche_g!="field = content[...]"){
@@ -124,20 +124,18 @@ if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
 echo ' of '.$nbDocs.'</h2>';
 ?>
-<nav>
+<nav class="mb-2">
 	<div id="options" class="text-center">
 		<span>
-			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">New Document</a></button>'; ?>
+			<?php echo '<button class="btn new_doc "><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-book"></i>New Document</a></button>'; ?>
 		</span>
 
-
-
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-  Search by Id or Key : Value
+  <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 </button>
 
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
-  Search by command
+  <i class="fa fa-fw fa-search"></i>Search by command
 </button>
 <?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?> 
 </div>
@@ -157,7 +155,7 @@ echo ' of '.$nbDocs.'</h2>';
       <div class="modal-body">
       		<!-- <div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1"> -->
 		<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
-		<hr>
+	
 	<div >
 	<label for="pet-select">Search:</label>
 		
@@ -187,7 +185,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 		<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
 	</div>
-		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
+		
 
 
 	</form>
@@ -197,12 +195,6 @@ echo ' of '.$nbDocs.'</h2>';
 
 <!-- </div> -->
 
-
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
 
     </div>
   </div>
@@ -235,18 +227,18 @@ echo ' of '.$nbDocs.'</h2>';
       </div>
 
       <!-- Modal footer -->
-      <div class="modal-footer">
+   <!--    <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
+      </div> -->
 
     </div>
   </div>
-</div>
+
 
 
 </nav>
-<br>
-<div id="main" class="border col-lg-5 bg-light mt-1">
+
+<div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
 	
 	<table class="table table-sm table-striped">
 

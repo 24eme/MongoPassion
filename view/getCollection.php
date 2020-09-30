@@ -92,17 +92,17 @@ echo ' of '.$nbDocs.'</h2>';
 <nav class="mb-2">
 	<div id="options" class="text-center">
 		<span>
-			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">New Document</a></button>'; ?>
+			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-book"></i>New Document</a></button>'; ?>
 		</span>
 
 
 
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-  Search by Id or Key : Value
+  <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 </button>
 
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
-  Search by command
+  <i class="fa fa-fw fa-search"></i>Search by command
 </button>
 </div>
 <!-- Modal Start -->
