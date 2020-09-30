@@ -56,7 +56,7 @@
 
 ?>
 
-<hr>
+
 <!-- div id="recherche" class="col-lg-5 offset-lg-4 mr-2"> -->
     <!-- <div  class="m-auto border border-success col-lg-5 bg-light mt-1"> -->
 	<div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
@@ -70,7 +70,7 @@
 	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
 </form>
 </div>
-<hr>
+<br>
 
 <?php
 

@@ -72,28 +72,6 @@
 			}
 		echo '</ol>';
 	echo '</nav>';
-
-
-
-// echo '<span>';
-// echo '<form method="post" action="index.php?action=thread">';
-// echo '<input type="hidden" name="action_thread" value="'.$_GET['action'].'"></input>';
-// if(isset($_GET['serve'])){echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread" value="'.$_GET['serve'].'"/>';}
-// else{echo '<label>Server: </label><input type="search" name="serve_thread" id="serve_thread"/>';}
-// if(isset($_GET['db'])){echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread" value="'.$_GET['db'].'"/>';}
-// else{echo '-><label>Database: </label><input type="search" name="db_thread" id="db_thread"/>';}
-// if(isset($_GET['coll'])){echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread" value="'.$_GET['coll'].'"/>';}
-// else{echo '-><label>Collection: </label><input type="search" name="coll_thread" id="coll_thread"/>';}
-// if(isset($_GET['doc'])){echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread" value="'.$_GET['doc'].'"/>';}
-// else{echo '-><label>Document: </label><input type="search" name="doc_thread" id="doc_thread"/>';}
-// echo '<input type="submit" name="go" id="go" value="Go"/>';
-// echo '</form>';
-// echo '</span>';
-
-// echo '<h2 class="subtitle">Documents '.(1+(($page-1)*$bypage)).'-';
-// if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-// else{echo $nbDocs;}
-// echo ' of '.$nbDocs.'</h2>';
 ?>
 
 <!-- <nav>
@@ -108,8 +86,8 @@
 
 
 
-<!-- 	<div id="special_search_content" class="col-lg-8 mr-4"> -->
-<!--    <div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
+<div id="special_search_content" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2"> 
+
 		  	<label>Search by command: </label>
 		<?php /*echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">';*/ ?>
 	<div class="input-group mb-3">
@@ -118,7 +96,9 @@
 	</div>
 	</form>
 </div>
-</div> -->
+</div>
+
+
 
 <?php 
 if(isset($recherche_g)){
@@ -150,9 +130,9 @@ echo ' of '.$nbDocs.'</h2>';
   <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 </button>
 
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
+<!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
   <i class="fa fa-fw fa-search"></i>Search by command
-</button>
+</button> -->
 <?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?> 
 </div>
 
@@ -253,16 +233,16 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 </nav>
-   <div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
+<!--    <div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
 		  	<label>Search by command: </label>
-		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+		<?php /*echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">';*/ ?>
 	<div class="input-group mb-3">
 		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
 		<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
 	</div>
 	</form>
 </div>
-</div>
+</div> -->
 
 <div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
 	
@@ -289,28 +269,29 @@ echo ' of '.$nbDocs.'</h2>';
 					 $id = $doc['_id'];
 					}
 
-					$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
-					$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&search='.$page;
-					// $link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_id='.$recherche_id.'&s_g='.urlencode($recherche_g).'type_id='.$type_id.'&search='.$page;
-					$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&search='.$page.'&s_g='.urlencode($recherche_g);
+					//Boutons view edit et delete
+
+					if(isset($recherche_g)){
+						$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&page='.$page;
+						$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&page='.$page;
+						$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page.'&s_g='.urlencode($recherche_g);
+					}
+
+					elseif(isset($s_search)){
+						$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_s='.urlencode($s_search).'&type_id='.$type_id.'&page='.$page;
+						$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_s='.urlencode($s_search).'&type_id='.$type_id.'&page='.$page;
+						$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page.'&s_s='.urlencode($s_search);
+					}
+
+					
 
 					echo '<tr>';
 					echo "<td id='d'><a class='text-dark' href=".$link_v.">".$id."</a></td>";
 					echo "<td id='id'><button  class='btn py-0'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 					echo "<td id='edit'><button  class='btn py-0'><a class='text-primary' href=".$link_e."><i class='fa fa-edit'></i></a></button></td>";
-					// echo '<td id="suppr"><a  href='.$link_d.'>Delete</a></td>';
 					echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger' href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
 					echo '</tr>';
 				}
-
-				// echo "<td id='d'><a class='text-dark' href=".$link_v.">".$id."</a></td>";
-					// echo "<td id='id'><button  class='btn'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
-					// echo "<td id='edit'><button  class='btn'><a class='text-primary' href=".$link_e."><i class='fa fa-edit'></a></button></td>";
-					// // echo '<td id="suppr"><a href='.$link_d.'>Delete</a></td>';
-					// echo  "<td id='suppr'><button  class='btn'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
-
-				// <i class="fa fa-trash"></i>
-				// <button><a href="blabla.html">Texte du bouton</a></button>
 			}
 		?>
 	</table>

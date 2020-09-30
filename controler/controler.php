@@ -124,8 +124,9 @@
                 else{
                     $page = 1;
                 }
-                $docs = getSpecialSearch(strip_tags($_POST['special_search']),$page,$bypage);
-                $nbDocs = countSpecialSearch(strip_tags($_POST['special_search']));
+                $s_search = strip_tags($_POST['special_search']);
+                $docs = getSpecialSearch($s_search,$page,$bypage);
+                $nbDocs = countSpecialSearch($s_search);
 
             }
             elseif (isset($_GET['s_s'])) {
@@ -135,9 +136,9 @@
                 else{
                     $page = 1;
                 }
-                $search = strip_tags(urldecode($_GET['s_s']));
-                $docs = getSpecialSearch($search,$page,$bypage);
-                $nbDocs = countSpecialSearch($search);
+                $s_search = strip_tags(urldecode($_GET['s_s']));
+                $docs = getSpecialSearch($s_search,$page,$bypage);
+                $nbDocs = countSpecialSearch($s_search);
             }
             else
             {

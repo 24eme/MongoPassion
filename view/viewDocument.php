@@ -54,14 +54,12 @@
 <?php 
 echo "<h1 class='title text-center''>View <i class='fa fa-fw fa-book'></i>".$_GET['doc']."</h1>";
 
-$link_edit = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$_GET['doc'].'&page='.$_GET['page'];
-if(isset($_GET['type_id'])){
-	$link_edit=$link_edit.'&type_id='.$_GET['type_id'];
-}
-// $link_edit=$link_edit.'&page='.$_GET['page'];
 echo '<div id="nav_view">';
-if(isset($_GET['search'])){
-	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$_GET['s_g'].'&page='.$_GET['search'].'"><button class="return btn btn-primary">< Collection</button></a>';
+
+//Boutons de retour
+
+if(isset($_GET['s_g'])){
+	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$_GET['s_g'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
 }
 elseif(isset($_GET['s_s'])){
 	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
@@ -72,7 +70,22 @@ elseif(isset($_GET['search_db'])){
 else{
 	echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
 }
+
+//Bouton Edit
+
+$link_edit = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$_GET['doc'].'&page='.$_GET['page'];
+if(isset($_GET['type_id'])){
+	$link_edit=$link_edit.'&type_id='.$_GET['type_id'];
+}
+if(isset($_GET['s_s'])){
+	$link_edit=$link_edit.'&s_s='.$_GET['s_s'];
+}
+if(isset($_GET['s_g'])){
+	$link_edit=$link_edit.'&s_g='.$_GET['s_g'];
+}
+$link_edit=$link_edit.'&page='.$_GET['page'];
 echo '<div id="content"><a href="'.$link_edit.'"><button class="btn btn-primary">Edit</button></a></div>';
+
 echo '</div>';
 ?>
 
