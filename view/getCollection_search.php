@@ -192,7 +192,12 @@ echo ' of '.$nbDocs.'</h2>';
 
 	</form>
 </div>
-     
+
+</div>
+
+<!-- </div> -->
+
+
 
       <!-- Modal footer -->
       <div class="modal-footer">
@@ -240,7 +245,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 </nav>
-
+<br>
 <div id="main" class="border col-lg-5 bg-light mt-1">
 	
 	<table class="table table-sm table-striped">

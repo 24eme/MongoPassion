@@ -65,8 +65,11 @@
 
 
 
+<<<<<<< HEAD
 <!-- <hr> -->
 
+=======
+>>>>>>> 21258929e262d04f750b0dda6e27fad96d774241
 <!-- <div id="row"> -->
 <!-- <div id="recherche"> -->
 
@@ -207,15 +210,51 @@ echo ' of '.$nbDocs.'</h2>';
 </div>
 
 
-
 </nav>
 
 <!-- <hr> -->
 
 
-<!-- <div id="main" class="border col-lg-5 bg-light mt-1"> -->
-	<div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto mt-1">
+<!-- </div> -->
+<!-- </div> -->
 
+<br>
+
+<?php
+
+if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
+	echo "<h1 class='title text-center'>Résultat de la recherche pour ";
+	if($_POST['recherche_id']=="" and $_POST['recherche_g']=="field : content[...]"){echo "\"Aucun critère\"";}
+	if($_POST['recherche_id']!=""){echo "\"".$_POST['recherche_id']."\"";}
+	if($_POST['recherche_id']!="" and $_POST['recherche_g']!="field : content[...]"){echo " et ";}
+	if($_POST['recherche_g']!="field : content[...]"){echo "\"".$_POST['recherche_g']."\"";}
+	echo "</h1>";
+}
+else{
+	echo "<h1 class='title text-center'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
+}
+echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
+if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+else{echo $nbDocs;}
+echo ' of '.$nbDocs.'</h2>';
+?>
+
+
+
+<nav>
+	<div id="options" class="text-center">
+		<span>
+			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">New Document</a></button>'; ?>
+		</span>
+		<br>
+	</div>
+</nav>
+
+
+
+<!-- <div id="main" class="border col-lg-5 bg-light mt-1"> -->
+	<br>
+	<div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto mt-1">
 	<br>
 	<table class="table table-sm table-striped">
 	<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>" ?>
@@ -268,14 +307,6 @@ echo ' of '.$nbDocs.'</h2>';
 </div>
 
 <footer>
-	<!-- <?php
-	// echo '<br>';
-
-	// for ($i=1;$i<=$nbPages;$i++) {
-	// 	echo '<a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.$i.'">'.$i.'</a>';
-	// 	if($i!=$nbPages){echo '-';}
-	// }
-	?> -->
 
 	<nav aria-label="pagination">
         <ul class="pagination">
@@ -350,7 +381,6 @@ echo ' of '.$nbDocs.'</h2>';
             ?>
         </ul>
     </nav>
-    <hr>
 </footer>
 
 	
