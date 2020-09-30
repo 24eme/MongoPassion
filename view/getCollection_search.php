@@ -25,44 +25,11 @@
 	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
 
 	<script src="public/js/db.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
-	<script type="text/javascript">
-
-// $(document).ready(function(){
-// 	// alert('bonjour');
-//    $('#recherche_gss').hide();
-
-//   $('#Rs').on('change', function(e){
-
-//   	// $('#recherche_g').show();
-//    //  $('#recherche_id').hide();
-//    if (this.value=='Rkeys'){
-//    	$('#recherche_gss').show();
-//      $('#recherche_ids').hide();
-
-//    }
-//    else {
-//    	if (this.value=='Rids'){ 
-//    	 $('#recherche_gss').hide();
-//      $('#recherche_ids').show();
-
-//      }
-//    }
-
-//   });
-  
-// });
-
-
-// $("#Rkey").click(function(){
-//   $('#recherche_g').hide();
-// });
-
-// $("#Rid").click(function(){
-//   $('#recherche_g').show();
-// });
-</script>
 
 </head>
 
@@ -137,56 +104,6 @@
 	</div>
  -->
 
-
-
-<hr>
-
-<!-- <div id="row"> -->
-
-<!-- <div id="recherche">
-	<br> -->
-	<div  class="m-auto border border-success col-lg-5 bg-light mt-1">
-		<hr>
-	<div id="search_content">
-	<label for="pet-select">Search:</label>
-		<br>
-		<!-- <select name="pets" id="Rs">
-
-		    <option id="Rids"  value="Rids">Search by ID</option>
-		    <option id="Rkeys" value="Rkeys">Search by key : value</option>
-		</select> -->
-	<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<!-- <input type="search" class="form-control" name="recherche_id" id="recherche_ids" placeholder="Search by id"/> -->
-		<!-- <input type="search" name="recherche_g"  id="recherche_gss" placeholder="Search by id"/> -->
-		<input type="search"  list="browsers" class="form-control border border-success" name="recherche_g" id="recherche_gss"/>
-		<datalist id="browsers">
-        <?php 
-     
-        	foreach ($docs[0] as $key => $value) {
-			 	  
-        		echo  "<option value=".$key.":>";
-			
-			}
-
-        ?> 
- 
-	 	</datalist> 
-		<input class="btn bg-success text-light m-1" type="submit" name="search" id="search" value="Search"/>
-		<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
-	</form>
-	</div>
-	<div id="special_search_content">
-		<label>Search by command: </label>
-		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<input type="search" class="form-control border border-success" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
-		<input type="submit" class="btn  bg-success text-light m-1" name="search" id="search" value="Search"/>
-	</form>
-</div>
-</div>
-<
-<!-- </div> -->
-<hr>
-
 <?php 
 if(isset($recherche_g)){
 	echo "<h3 class='title text-center'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
@@ -210,17 +127,122 @@ echo ' of '.$nbDocs.'</h2>';
 <nav>
 	<div id="options" class="text-center">
 		<span>
-			<?php echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&search='.$page.'">Nouveau Document</a></button>'; ?>
-
-			<!-- <?php //echo '<button class="btn new_doc"><a class="text-light" href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_id='.$recherche_id.'&s_g='.$recherche_g.'&search='.$page.'">Nouveau Document</a></button>'; ?> -->
+			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">New Document</a></button>'; ?>
 		</span>
+
+
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+  Search by Id or Key : Value
+</button>
+
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
+  Search by command
+</button>
+<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?> 
+</div>
+
+<!-- Modal Start -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+      		<!-- <div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1"> -->
+		<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
+		<hr>
+	<div >
+	<label for="pet-select">Search:</label>
+		
+
+	<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+
+		
+
+		<!-- <input type="search"  list="browsers"  class="form-control border border-success" name="recherche_g" id="recherche_g" placeholder="Search"/>
+         -->
+        <div class="input-group mb-3">
+		<input type="search"  list="browsers" required="required" placeholder="Search by id or key:value" class="form-control border border-success" name="recherche_g" id="recherche_g" />
+
+		<datalist id="browsers">
+        <?php 
+     
+        	foreach ($docs[0] as $key => $value) {
+			 	  
+        		echo  "<option value=".$key.":>";
+			
+			}
+
+        ?> 
+ 
+	 	</datalist> 
+ 
+
+		<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
 	</div>
+		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?>
+
+
+	</form>
+</div>
+     
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+ <!-- modalEnd -->
+
+<!-- StartModal2 -->
+<div class="modal" id="myModal2">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div id="special_search_content">
+	<label>Search by command: </label>
+		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+		<div class="input-group mb-3">
+		<input type="search" class="form-control border border-success" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+		<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
+	</div>
+	</form>
+</div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 </nav>
 
 <div id="main" class="border col-lg-5 bg-light mt-1">
-	<br>
+	
 	<table class="table table-sm table-striped">
 
 		<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>" ?>
