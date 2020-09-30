@@ -54,11 +54,13 @@ echo '</nav>';
 
 //Fin fil d'Ariane
 
+
 //Titre de la page
 
 echo '<h1 class = "title text-center"><i class="fa fa-fw fa-book"></i> New Document</h1>';
 
 //Fin titre de la page
+
 
 //Bouton de retour
 
@@ -73,6 +75,7 @@ echo '</div>';
 ?>
 
 <!-- Fin du bouton de retour -->
+
 
 <!-- Zone de texte -->
 
