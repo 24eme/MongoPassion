@@ -34,3 +34,12 @@ function confirmDelete() {
 
 	return confirm("Do you really want to delete this element ?");
 }
+
+
+function myFunctionComand() {
+  document.getElementById("command").style.display = "block";
+}
+
+function myFunctionSearch() {
+  document.getElementById("command").style.display = "none";
+}
