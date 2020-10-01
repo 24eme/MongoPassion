@@ -14,6 +14,7 @@
 		echo "<title>".$_GET['coll']."</title>";
 	}
 	?>
+
 	<meta charset="UTF-8">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,13 +26,13 @@
 	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
 
 	<script src="public/js/db.js"></script>
-	
-
 </head>
 
 <body>
 
 <?php
+
+//Fil d'Ariane
 
 
 	//Fil d'Ariane
@@ -46,37 +47,43 @@
 				else{
 					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
 				}
+
 			}
-			if(isset($_GET['db'])){
-				if($_GET['action']=='getDb'){
-					echo '<li class="breadcrumb-item active">'.$_GET['db'].'</li>';
-				}
-				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</a></li>';
-				}
+
+			else{
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
 			}
-			if(isset($_GET['coll'])){
-				if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
-					echo '<li class="breadcrumb-item active">'.$_GET['coll'].'</li>';
-				}
-				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</a></li>';
-				}
+		
+		if(isset($_GET['db'])){
+			if($_GET['action']=='getDb'){
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
 			}
-			if(isset($_GET['doc'])){
-				echo '<li class="breadcrumb-item active">'.$_GET['doc'].'</li>';
+			else{
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</a></li>';
 			}
-		echo '</ol>';
-	echo '</nav>';
-?>
+		}
+		if(isset($_GET['coll'])){
+			if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</li>';
+			}
+			else{
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</a></li>';
+			}
+		}
+		if(isset($_GET['doc'])){
+			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$_GET['doc'].'</li>';
+		}
+	echo '</ol>';
+echo '</nav>';
+
+//Fin fil d'Ariane
 
 
+//Titre de la page
 
-<?php 
 if(isset($recherche_g)){
 	echo "<h3 class='title text-center mt-5'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
 	if($recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
-
 	if($recherche_g!="field = content[...]"){
 			echo "\"".$recherche_g."\"";
 		}
@@ -84,106 +91,105 @@ if(isset($recherche_g)){
 }
 else{
 	echo "<h1 class='title text-center'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
-} ?>
+} 
 
-<?php
+//Fin du titre de la page
+
+
+//Sous-titre
+
 echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
 echo ' of '.$nbDocs.'</h2>';
 ?>
+
+<!-- Fin du sous-titre -->
+
+
+<!-- Partie recherche -->
+
 <nav class="mb-2">
+
+	<!-- Barre de boutons -->
+
 	<div id="options" class="text-center">
 		<span>
 			<?php echo '<button class="btn new_doc "><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-book"></i>New Document</a></button>'; ?>
 		</span>
 
-<button type="button" class="btn btn-success" onclick="myFunctionSearchGet()" data-toggle="modal" data-target="#myModal">
-  <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
-</button>
+		<button type="button" class="btn btn-success" onclick="myFunctionSearchGet()" data-toggle="modal" data-target="#myModal">
+		  <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
+		</button>
 
-<button type="button" class="btn btn-success"  onclick="myFunctionComand()" data-toggle="modal" data-target="#myModal2">
-  <i class="fa fa-fw fa-search"></i>Search by command
-</button>
+		<button type="button" class="btn btn-success"  onclick="myFunctionCommandGet()" data-toggle="modal" data-target="#myModal2">
+		  <i class="fa fa-fw fa-search"></i>Search by command
+		</button>
 
-<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?> 
-</div>
+		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?> 
+	</div>
 
-<div id="searchIdS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+
+
+
+	<!-- Formulaire de recherche par id et clé:valeur -->
+
+	<div id="searchIdS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
 	
-	<label for="pet-select">Search:</label>
-		
+		<label for="pet-select">Search:</label>
+		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+	        <div class="input-group mb-3">
+				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
 
-	<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+				<!-- Autocomplétion des champs -->
 
-		
+				<datalist id="browsers">
+			        <?php 
+			        	foreach ($docs[0] as $key => $value) {	  
+			        		echo  "<option value=".$key.":>";
+						}
+			        ?> 
+			 	</datalist>
 
-		<!-- <input type="search"  list="browsers"  class="form-control border border-success" name="recherche_g" id="recherche_g" placeholder="Search"/>
-         -->
-        <div class="input-group mb-3">
-		<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
+			 	<!-- Fin de l'autocomplétion des champs -->
 
-		<datalist id="browsers">
-        <?php 
-     
-        	foreach ($docs[0] as $key => $value) {
-			 	  
-        		echo  "<option value=".$key.":>";
-			
-			}
-
-        ?> 
- 
-	 	</datalist> 
- 
-
-		<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+				<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+			</div>
+		</form>
 	</div>
-		<!-- <?php /*echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>';*/ ?> -->
+
+	<!-- Fin du formulaire de recherche par id et clé:valeur -->
 
 
-	</form>
+	<!-- Formulaire de recherche par commande-->
 
-</div>
+<div id="commandS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
 
-<div id="special_search_content" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2"> 
-			
-		  	<label>Search by command: </label>
-		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-	<div class="input-group mb-3">
-		<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
-		<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
-	</div>
+	<label>Search by command: </label>
+	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+		<div class="input-group mb-3">
+			<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+			<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
+		</div>
 	</form>
 </div>
 
 
-
- 
+	<!-- Fin du formulaire de la recherche par commande -->
 
 </nav>
 
 
+<!-- Fin de la partie recherche -->
 
 
 
-    </div>
-  </div>
-</div>
-</div>
 
 <div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
-	
+	<br>
 	<table class="table table-sm table-striped">
-
-		<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>" ?>
-		<!-- <tr  align="center" class="bg-success text-light"> 
-    		<?php/* echo '<th>Documents of '.$_GET['coll'].' <i class=\'fa fa-fw fa-book\'></i></th>'; */?>
-    		<th></th>
-    		<th></th>
-    		<th></th> 
-    	</tr> -->
-		<?php
+		<?php 
+			echo"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>"; 
 			if($nbDocs==0){
 				echo 'Aucun document ne correspond à votre recherche.';
 			}
@@ -197,7 +203,7 @@ echo ' of '.$nbDocs.'</h2>';
 					 $id = $doc['_id'];
 					}
 
-					//Boutons view edit et delete
+					//Liens des options de gestion des documents
 
 					if(isset($recherche_g)){
 						$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&page='.$page;
@@ -211,31 +217,37 @@ echo ' of '.$nbDocs.'</h2>';
 						$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page.'&s_s='.urlencode($s_search);
 					}
 
-					
+					//Affichage du tableau
 
 					echo '<tr>';
-					echo "<td id='d'><a class='text-dark' href=".$link_v.">".$id."</a></td>";
-					echo "<td id='id'><button  class='btn py-0'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
-					echo "<td id='edit'><button  class='btn py-0'><a class='text-primary' href=".$link_e."><i class='fa fa-edit'></i></a></button></td>";
-					echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger' href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
+						echo "<td id='d'><a class='text-dark' href=".$link_v.">".$id."</a></td>";
+						echo "<td id='id'><button  class='btn py-0'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
+						echo "<td id='edit'><button  class='btn py-0'><a class='text-primary' href=".$link_e."><i class='fa fa-edit'></i></a></button></td>";
+						echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger' href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
 					echo '</tr>';
 				}
 			}
 		?>
 	</table>
-      	<?php
-	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection">< Database</button></a>';
+
+	<!-- Bouton de retour -->
+
+    <?php
+		echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection">< Database</button></a>';
 	?>
 </div>
 
-</div>
+<!-- Fin du tableau des documents de la collection -->
+
+
+<!-- Pagination -->
+
 <?php
 if($nbDocs==0){
 	echo '<footer></footer>';
 }
 else{	
 	echo '<footer>';
-
 	    echo '<nav aria-label="pagination">
 	            <ul class="pagination">';
             if($page!=1 and $page!=2 and $page !=3){echo '<li><a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.urlencode($recherche_g).'&page='.($page-1).'"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';}
@@ -311,5 +323,8 @@ echo '</ul>
 </footer>';
 }
 ?>
+
+<!-- Fin de la pagination -->
+
 </body>
 </html>

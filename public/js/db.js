@@ -36,8 +36,7 @@ function confirmDelete() {
 }
 
 
-function myFunctionComand() {
-  
+function myFunctionCommand() {
   document.getElementById("searchId").style.display = "none";
   var x = document.getElementById("command");
   if (x.style.display === "none") {
@@ -63,14 +62,25 @@ function myFunctionSearch() {
 
 
 function myFunctionSearchGet() {
+	document.getElementById("commandS").style.display = "none";
+	var x = document.getElementById("searchIdS");
+	if (x.style.display === "none") {
+		x.style.display = "block";
+	} 
+	else {
+		x.style.display = "none";
+	}
 
-  var x = document.getElementById("searchIdS");
+}
+
+function myFunctionCommandGet() {
+  document.getElementById("searchIdS").style.display = "none";
+  var x = document.getElementById("commandS");
   if (x.style.display === "none") {
     x.style.display = "block";
   } else {
     x.style.display = "none";
-  
+}
 }
 
-}
 
