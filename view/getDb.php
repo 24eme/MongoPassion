@@ -100,8 +100,8 @@ echo '</nav>';
 				$serve=$_GET['serve'];
 				$db=$_GET['db'];
 			?>
-			<input type=hidden id=serve value=<?php echo $serve; ?>/>
-			<input type=hidden id=db value=<?php echo $db; ?>/>
+			<input type=hidden id=serve value=<?php echo $serve; ?>>
+			<input type=hidden id=db value=<?php echo $db; ?>>
 			<button id='createCollec' class="btn btn-success btn-lg text-light mb-2" flag ="false" onclick="afficher();">New Collection</button>
 		</span>
 	</div>

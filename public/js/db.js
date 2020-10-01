@@ -2,10 +2,8 @@
 //Fonction qui gère l'apparition du formulaire de création d'une nouvelle collection
 
 function afficher(){
-	var s = document.getElementById("serve").value;
-	var serve = s.slice(0, -1);
-	var datab = document.getElementById("db").value;
-	var db = datab.slice(0, -1);
+	var serve = document.getElementById("serve").value;
+	var db = document.getElementById("db").value;
 
 	var f = document.createElement("form");
 	f.setAttribute('method',"post");

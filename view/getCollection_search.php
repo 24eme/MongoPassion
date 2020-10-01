@@ -26,6 +26,7 @@
 	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
 
 	<script src="public/js/db.js"></script>
+ 	<script src="public/js/radio.js"></script>
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 
 //Fil d'Ariane
 
-echo "<nav class='nav sticky-top font-weight-bold' style='margin-left: 100px;'>";
+echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($_GET['serve'])){
@@ -70,6 +71,25 @@ echo '</nav>';
 //Fin fil d'Ariane
 
 
+//Préparation des variables de recherche pour leur utilisation en JS
+
+if(isset($recherche_g)){
+	echo '<p id="clé" style="display: none">s_g</p>';
+	?>
+	<input type=hidden id=valeur value=<?php echo urlencode($recherche_g); ?>>
+	<?php
+}
+
+if(isset($s_search)){
+	echo '<p id="clé" style="display: none">s_s</p>';
+	?>
+	<input type=hidden id=valeur value=<?php echo urlencode($s_search); ?>>
+	<?php
+}
+
+//Fin de la préparation des variables de recherche pour leur utilisation en JS
+
+
 //Titre de la page
 
 if(isset($recherche_g)){
@@ -89,7 +109,7 @@ else{
 
 //Sous-titre
 
-echo '<h2 class="subtitle text-center font-weight-bold">Documents '.(1+(($page-1)*$bypage)).'-';
+echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
 echo ' of '.$nbDocs.'</h2>';
@@ -119,6 +139,13 @@ echo ' of '.$nbDocs.'</h2>';
 
 		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?> 
 	</div>
+	<br>
+	<div id="radio" class="text-center">
+		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /><label for="10">10</label>
+		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="20">20</label>
+		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
+		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="50">50</label>
+	</div>
 
 
 
@@ -126,11 +153,8 @@ echo ' of '.$nbDocs.'</h2>';
 	<!-- Formulaire de recherche par id et clé:valeur -->
 
 	<div id="searchIdS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-
-	
-		<label for="pet-select" class="font-weight-bold">Search:</label>
-
-		
+		<hr>
+		<label for="pet-select">Search:</label>
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 	        <div class="input-group mb-3">
 				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
@@ -158,11 +182,8 @@ echo ' of '.$nbDocs.'</h2>';
 	<!-- Formulaire de recherche par commande-->
 
 <div id="commandS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-
-
-	<label class="font-weight-bold">Search by command: </label>
-
-	
+	<hr>
+	<label>Search by command: </label>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<div class="input-group mb-3">
 			<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>

@@ -48,7 +48,12 @@
         		header('Location: index.php?action=error');
         	}
 
-        	$bypage = 10;
+            if(isset($_GET['bypage'])){
+                $bypage = intval($_GET['bypage']);
+            }
+            else{
+                $bypage = 20;
+            }
         	$nbDocs = countDocs();
         	$nbPages = getNbPages($nbDocs,$bypage);
 
@@ -113,7 +118,12 @@
     function getCollection_search()
     {
         try{
-        	$bypage = 50;
+        	if(isset($_GET['bypage'])){
+                $bypage = intval($_GET['bypage']);
+            }
+            else{
+                $bypage = 20;
+            }
 
         	if(isset($_POST['special_search'])){
                 if(isset($_GET['page'])){
@@ -142,30 +152,27 @@
             {
                 if(isset($_GET['page'])){
                     $page = htmlspecialchars($_GET['page']);
-                    // $recherche_id = htmlspecialchars($_GET['s_id']);
+                }
+                else{
+                    $page = 1; 
+                }
+                if(isset($_GET['s_g'])){
                     $recherche_g = htmlspecialchars(urldecode($_GET['s_g']));
                 }
                 else{
-                    $page = 1;
-                    // commentaire sur le $_POST[ 'recherche_id'] il n'est plus utilisé
-                    // $recherche_id = htmlspecialchars($_POST['recherche_id']);
-                    $recherche_g = htmlspecialchars($_POST['recherche_g']);
+                   $recherche_g = htmlspecialchars($_POST['recherche_g']); 
                 }
-                // if(isset($recherche_id) and isset($recherche_g)){
                 if(isset($recherche_g)){
-                    // if($recherche_id=="" and $recherche_g=="field : content[...]"){
                      if($recherche_g=="field : content[...]"){
                         header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'');
                     }
                     else{
-                        // $docs = getSearch($recherche_id, $recherche_g, $page,$bypage);
-                         $docs = getSearch($recherche_g, $page,$bypage);
+                        $docs = getSearch($recherche_g,$page,$bypage);
                     }
                 }
                 else{
                     $docs = getDocs($page,$bypage);
                 }
-                // J'ai retiré $recherche_id comme paramètre la fonction countSearch j'utilise plus l'input
                 $nbDocs = countSearch($recherche_g);
             }
 

@@ -115,7 +115,7 @@ echo '</nav>';
 							//Affichage du tableau
 
 							echo '<tr>';
-							echo '<td><a href="'.$link_v.'">'.$field['_id'].'</a></td>';
+							echo '<td><a href="'.$link_v.'"><i class="mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
 							echo '<td><a href="'.$link_c.'">'.$coll.'</a></td>';
 							echo "<td id='id'><button  class='btn'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 							echo "<td id='edit'><button  class='btn'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
