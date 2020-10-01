@@ -22,7 +22,7 @@
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
 				if($_GET['action']=='getServer'){
-					echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</li>';
+					echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-desktop"></i> '.$_GET['serve'].'</li>';
 				}
 				else{
 					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i> '.$_GET['serve'].'</a></li>';
