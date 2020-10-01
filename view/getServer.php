@@ -17,7 +17,7 @@
 //Fil d'Ariane
 
 
-	echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
+	echo "<nav class='nav sticky-top font-weight-bold' style='margin-left: 100px;'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -57,7 +57,7 @@ echo '</nav>';
 
 //Titre de la page
 
-echo "<h1 align='center' class='title'><i class='fa fa-fw fa-desktop'></i>".$serve."</h1>";
+echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-desktop'></i>".$serve."</h1>";
 
 //Fin du titre de la page
 
@@ -80,7 +80,7 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-desktop'></i>".$ser
 		?>
 	</table>
 	<?php
-		echo '<br><a href="index.php"><button class="return btn btn-primary">< Home</button></a>'
+		echo '<br><a href="index.php"><button class="return btn btn-primary font-weight-bold">< Home</button></a>'
 	?>
 </div>
 

@@ -20,7 +20,7 @@
 
 //Fil d'Ariane
 
-echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
+echo "<nav class='nav sticky-top font-weight-bold' style='margin-left: 100px;'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($_GET['serve'])){
@@ -67,7 +67,7 @@ if(isset($_POST['recherche_id']) and isset($_POST['recherche_g'])){
 	echo "</h1>";
 }
 else{
-	echo "<h1 class='title text-center'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
+	echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
 }
 
 //Fin du titre de la page
@@ -75,7 +75,7 @@ else{
 
 //Sous-titre
 
-echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
+echo '<h2 class="subtitle text-center font-weight-bold">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
 echo ' of '.$nbDocs.'</h2>';
@@ -108,7 +108,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 <div id="searchId" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
 
-	<label for="pet-select">Search:</label>
+	<label for="pet-select" class="font-weight-bold">Search:</label>
 	<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
         <div class="input-group mb-3">
 			<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
@@ -137,7 +137,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 <div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
 
-	<label>Search by command: </label>
+	<label class="font-weight-bold">Search by command: </label>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<div class="input-group mb-3">
 			<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
@@ -155,7 +155,7 @@ echo ' of '.$nbDocs.'</h2>';
 	<br>
 	<table class="table table-sm table-striped">
 	<?php 
-		echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Documents of ".$_GET['coll']." <i class=\"fa fa-fw fa-book\"></i></strong></span></h3>";
+		echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-book\"></i> Documents of ".$_GET['coll']."</h3>";
 		if($nbDocs==0){
 			echo 'Aucun document ne correspond à votre recherche.';
 		}
@@ -191,7 +191,7 @@ echo ' of '.$nbDocs.'</h2>';
 	<!-- Bouton de retour -->
 
 	<?php
-	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection">< Database</button></a>';
+	echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
 	?>
 
 	<!-- Fin du bouton de retour -->

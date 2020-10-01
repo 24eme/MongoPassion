@@ -20,7 +20,7 @@
 
 	//Fil d'Ariane
 
-	echo "<nav class='nav  sticky-top' style='margin-left: 100px;'>";
+	echo "<nav class='nav  sticky-top font-weight-bold' style='margin-left: 100px;'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -63,7 +63,7 @@ echo '</nav>';
 
 //Titre de la page
 
-echo "<h1 class='title text-center''>View <i class='fa fa-fw fa-book'></i>".$_GET['doc']."</h1>";
+echo "<h1 class='title text-center '>View <i class='fa fa-fw fa-book'></i>".$_GET['doc']."</h1>";
 
 //Fin du titre de la page
 
@@ -103,7 +103,7 @@ if(isset($_GET['s_g'])){
 	$link_edit=$link_edit.'&s_g='.$_GET['s_g'];
 }
 $link_edit=$link_edit.'&page='.$_GET['page'];
-echo '<div id="content"><a href="'.$link_edit.'"><button class="btn btn-primary">Edit</button></a></div>';
+echo '<div id="content"><a href="'.$link_edit.'"><button class="btn btn-primary font-weight-bold">Edit</button></a></div>';
 
 //Fin du bouton Edit
 

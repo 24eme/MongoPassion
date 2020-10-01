@@ -16,7 +16,7 @@
 
 	<!-- Titre de la page -->
 
-	<h1 class='title'align="center">MongoCRUD</h1>
+	<h1 class='title font-weight-bold'align="center">MongoCRUD</h1>
 
 	<!-- Fin du titre de la page -->
 
@@ -26,7 +26,7 @@
 
 	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
 		<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
-		<input type="submit" class="btn btn-success btn-sm mt-1" name="add" id="add" value="ADD">
+		<input type="submit" class="btn btn-success btn-sm mt-1 font-weight-bold" name="add" id="add" value="ADD">
 	</form>
 
 	<!-- Fin du formulaire serveurs -->

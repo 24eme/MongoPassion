@@ -21,7 +21,7 @@
 
 	//Fil d'Ariane
 
-	echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
+	echo "<nav class='nav sticky-top font-weight-bold' style='margin-left: 100px;'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -63,7 +63,7 @@ echo '</nav>';
 
 <div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
 	<hr>
-	<label for="pet-select">Search in all collections:</label>
+	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	<br>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 
@@ -83,7 +83,7 @@ echo '</nav>';
 <!-- Titre de la page -->
 
 <?php
-	echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
+	echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
 ?>
 
 <!-- Fin du titre de la page -->
@@ -132,7 +132,7 @@ echo '</nav>';
 	<!-- Bouton de retour -->
 
 	<?php
-	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><button class="return btn btn-primary">< Server</button></a>';
+	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
 	?>
 </div>
 
