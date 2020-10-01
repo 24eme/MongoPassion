@@ -17,25 +17,19 @@
 
 <?php
 
+//Fil d'Ariane
 
-	//Fil d'Ariane
-
-	echo "<nav class='nav  sticky-top' style='margin-left: 100px;'>";
-		echo '<ol class="breadcrumb">';
-			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
-			if(isset($_GET['serve'])){
-				if($_GET['action']=='getServer'){
-					echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
-				}
-				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
-				}
-
+echo "<nav class='nav sticky-top ' style='margin-left: 100px;'>";
+	echo '<ol class="breadcrumb">';
+		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
+		if(isset($_GET['serve'])){
+			if($_GET['action']=='getServer'){
+				echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
 			}
 			else{
 				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
 			}
-		
+		}
 		if(isset($_GET['db'])){
 			if($_GET['action']=='getDb'){
 				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
