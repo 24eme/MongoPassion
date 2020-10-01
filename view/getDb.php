@@ -107,8 +107,8 @@ echo '</nav>';
 <div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1 m-auto">
 	<br>
 	<table class="table table-sm table-striped">
-		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Collections of ".$_GET['db']."<i class=\"fa fa-fw fa-server\"></i></strong></span></h3>" ?>
-		<?php
+		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Collections of ".$_GET['db']."<i class=\"fa fa-fw fa-server\"></i></strong></span></h3>";
+		
 			foreach ($collections as $collection) {
 				echo "<tr>";
 				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
