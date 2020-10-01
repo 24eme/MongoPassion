@@ -21,7 +21,7 @@
 
 	//Fil d'Ariane
 
-	echo "<nav class='nav sticky-top ml-5'>";
+	echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -65,9 +65,11 @@
 	<label for="pet-select">Search in all collections:</label>
 	<br>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
+	<div class="input-group mb-3">
 	<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
-	<input class="btn bg-success text-light m-1" type="submit" name="search" id="search" value="Search"/>
+	<input class="btn bg-success text-light" type="submit" name="search" id="search" value="Search"/>
 	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
+</div>
 </form>
 </div>
 <br>
@@ -83,7 +85,7 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db
 
 
 
-	<div id="options" class="col-lg-4 offset-lg-4 mt-1">
+	<div id="options" class="text-center">
 		<span id="nC">
 			<?php
 			$serve=$_GET['serve'];
@@ -91,7 +93,7 @@ echo "<h1 align='center' class='title'><i class='fa fa-fw fa-database'></i>".$db
 			?>
 			<input type=hidden id=serve value=<?php echo $serve; ?>/>
 			<input type=hidden id=db value=<?php echo $db; ?>/>
-			<button id='createCollec' class="btn btn-success btn-lg btn-block text-light mb-2" flag ="false" onclick="afficher();">New Collection</button>
+			<button id='createCollec' class="btn btn-success btn-lg text-light mb-2" flag ="false" onclick="afficher();">New Collection</button>
 		</span>
 	</div>
 </nav>

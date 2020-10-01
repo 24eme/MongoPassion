@@ -36,7 +36,7 @@
 
 	//Fil d'Ariane
 
-	echo "<nav class='nav sticky-top ml-5 '>";
+	echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -110,7 +110,7 @@ echo ' of '.$nbDocs.'</h2>';
 </div>
 
 <div id="searchIdS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-	<hr>
+	
 	<label for="pet-select">Search:</label>
 		
 
@@ -147,7 +147,7 @@ echo ' of '.$nbDocs.'</h2>';
 </div>
 
 <div id="special_search_content" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2"> 
-			<hr>
+			
 		  	<label>Search by command: </label>
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 	<div class="input-group mb-3">
@@ -156,24 +156,6 @@ echo ' of '.$nbDocs.'</h2>';
 	</div>
 	</form>
 </div>
-
-<!-- Modal Start -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Search:</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-      		<!-- <div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1"> -->
-		<!-- <h3 class="text-center bg-success text-light"><span><strong>ESPACE OF SEARCH</strong></span></h3> -->
-	
-	<div >
 
 
 

@@ -20,7 +20,7 @@
 
 //Fil d'Ariane
 
-echo "<nav class='nav sticky-top ml-5'>";
+echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($_GET['serve'])){
@@ -107,7 +107,7 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Formulaire de recherche par id et clé:valeur -->
 
 <div id="searchId" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-	<hr>
+
 	<label for="pet-select">Search:</label>
 	<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
         <div class="input-group mb-3">
@@ -136,7 +136,7 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Formulaire de recherche par commande-->
 
 <div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-	<hr>
+
 	<label>Search by command: </label>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<div class="input-group mb-3">
@@ -201,7 +201,7 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Pagination -->
 
 <footer>
-	<nav aria-label="pagination">
+	<nav aria-label="pagination" >
         <ul class="pagination">
         <?php
             if($page!=1 and $page!=2 and $page !=3){echo '<li><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&page='.($page-1).'"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';}
