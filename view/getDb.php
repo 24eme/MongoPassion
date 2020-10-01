@@ -29,7 +29,7 @@
 					echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i> '.$_GET['serve'].'</a></li>';
 				}
 
             }
@@ -69,7 +69,7 @@ echo '</nav>';
 
 	<div class="input-group mb-3">
 	<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
-	<input class="btn bg-success text-light" type="submit" name="search" id="search" value="Search"/>
+	<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
 	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
 </div>
 </form>
@@ -115,7 +115,7 @@ echo '</nav>';
 <div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1 m-auto">
 	<br>
 	<table class="table table-sm table-striped">
-		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Collections of ".$_GET['db']."<i class=\"fa fa-fw fa-server\"></i></strong></span></h3>";
+		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-server\"></i> Collections of ".$_GET['db']."</strong></span></h3>";
 		
 			foreach ($collections as $collection) {
 				echo "<tr>";

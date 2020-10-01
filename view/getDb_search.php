@@ -34,7 +34,7 @@
 
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i> '.$_GET['serve'].'</a></li>';
 			}
 		
 		if(isset($_GET['db'])){
@@ -70,8 +70,8 @@ echo '</nav>';
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 		<div class="input-group mb-3">
-	<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
-	<input class="btn bg-success text-light " type="submit" name="search" id="search" value="Search">
+	<input type="search" class="form-control border border-success mr" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
+	<input class="btn bg-success text-light mr-2 " type="submit" name="search" id="search" value="Search">
 	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
 </div>
 	</form>
