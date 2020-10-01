@@ -1,3 +1,6 @@
+
+// Fonction qui gère l'apparition et la disparition de JsonEditor en fonction de l'état du switch
+
 function switchJ() {
   // Get the checkbox
   var checkBox = document.getElementById("myCheck");
