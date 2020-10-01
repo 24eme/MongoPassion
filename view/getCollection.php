@@ -107,7 +107,7 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Formulaire de recherche par id et clé:valeur -->
 
 <div id="searchId" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-
+	<hr>
 	<label for="pet-select">Search:</label>
 	<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
         <div class="input-group mb-3">
@@ -136,7 +136,7 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Formulaire de recherche par commande-->
 
 <div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-
+	<hr>
 	<label>Search by command: </label>
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<div class="input-group mb-3">
