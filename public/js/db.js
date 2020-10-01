@@ -1,4 +1,6 @@
 
+//Fonction qui gère l'apparition du formulaire de création d'une nouvelle collection
+
 function afficher(){
 	var s = document.getElementById("serve").value;
 	var serve = s.slice(0, -1);
@@ -29,35 +31,35 @@ function afficher(){
 };
 
 
-//fonction pour confimer la suppression
-function confirmDelete() {
+//Fonction de confirmation de la suppression d'un élément
 
+function confirmDelete() {
 	return confirm("Do you really want to delete this element ?");
 }
 
 
-function myFunctionCommand() {
-  document.getElementById("searchId").style.display = "none";
-  var x = document.getElementById("command");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  
-}
+//Fonctions qui gèrent l'apparition et la disparition des barres de recherches dans getCollection et getCollection_search
 
+function myFunctionCommand() {
+	document.getElementById("searchId").style.display = "none";
+	var x = document.getElementById("command");
+	if (x.style.display === "none") {
+    	x.style.display = "block";
+    } 
+	else {
+		x.style.display = "none";
+	}
 }
 
 function myFunctionSearch() {
-  document.getElementById("command").style.display = "none";
-  var x = document.getElementById("searchId");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  
-}
-
+	document.getElementById("command").style.display = "none";
+	var x = document.getElementById("searchId");
+	if (x.style.display === "none") {
+    	x.style.display = "block";
+	} 
+	else {
+    	x.style.display = "none";
+	}
 }
 
 
@@ -70,17 +72,17 @@ function myFunctionSearchGet() {
 	else {
 		x.style.display = "none";
 	}
-
 }
 
 function myFunctionCommandGet() {
-  document.getElementById("searchIdS").style.display = "none";
-  var x = document.getElementById("commandS");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-}
+	document.getElementById("searchIdS").style.display = "none";
+	var x = document.getElementById("commandS");
+	if (x.style.display === "none") {
+    	x.style.display = "block";
+  	} 
+  	else {
+    	x.style.display = "none";
+    }
 }
 
 

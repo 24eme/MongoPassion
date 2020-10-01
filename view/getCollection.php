@@ -107,8 +107,13 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Formulaire de recherche par id et clé:valeur -->
 
 <div id="searchId" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+<<<<<<< HEAD
 
 	<label for="pet-select" class="font-weight-bold">Search:</label>
+=======
+	<hr>
+	<label for="pet-select">Search:</label>
+>>>>>>> 3a519c28079b6009860a162fa4959c2a25aaddd0
 	<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
         <div class="input-group mb-3">
 			<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
@@ -137,7 +142,9 @@ echo ' of '.$nbDocs.'</h2>';
 
 <div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
 
+
 	<label class="font-weight-bold">Search by command: </label>
+
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<div class="input-group mb-3">
 			<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>

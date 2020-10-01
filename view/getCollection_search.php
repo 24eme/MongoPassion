@@ -35,6 +35,7 @@
 //Fil d'Ariane
 
 
+
 	//Fil d'Ariane
 
 	echo "<nav class='nav sticky-top font-weight-bold' style='margin-left: 100px;'>";
@@ -48,12 +49,11 @@
 					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
 				}
 
-			}
 
+			}
 			else{
 				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
 			}
-		
 		if(isset($_GET['db'])){
 			if($_GET['action']=='getDb'){
 				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
@@ -135,8 +135,11 @@ echo ' of '.$nbDocs.'</h2>';
 	<!-- Formulaire de recherche par id et clé:valeur -->
 
 	<div id="searchIdS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+
 	
 		<label for="pet-select" class="font-weight-bold">Search:</label>
+
+		
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 	        <div class="input-group mb-3">
 				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
@@ -165,7 +168,10 @@ echo ' of '.$nbDocs.'</h2>';
 
 <div id="commandS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
 
+
 	<label class="font-weight-bold">Search by command: </label>
+
+	
 	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		<div class="input-group mb-3">
 			<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
