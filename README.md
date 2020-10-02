@@ -24,7 +24,7 @@ _Lire en d'autres langues: [Français](README.md),_
     $ composer require mongodb/mongodb
 
  ## Installez JsonEditor avec npm :
- - Placez vous dans le répertoire /var/wwww/html/Interface-MongoDB
+ - Placez vous dans le répertoire /var/www/html/Interface-MongoDB
  - Clonez les fichiers à partir du git :
  
        $  git clone https://github.com/josdejong/jsoneditor.git
