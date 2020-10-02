@@ -93,18 +93,18 @@ if(isset($s_search)){
 //Titre de la page
 
 if(isset($recherche_g)){
-	echo "<h1 class='title text-center mt-5'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
+	echo "<h1 class='title text-center font-weight-bold mt-5'><span>Search results for </span><i class='fa fa-fw fa-book'></i> ";
 	if($recherche_g==""){echo "\"Aucun critère\""; $p='none';}
 	if($recherche_g!=""){
-		echo "\"".$recherche_g."\"";
+		echo "\"<font color='#62a252'>".$recherche_g."</font>\"";
 	}
 	echo "</h1>";
 }
 elseif(isset($s_search)){
-	echo "<h1 class='title text-center mt-5'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
+	echo "<h1 class='title text-center font-weight-bold mt-5'><span>Search results for </span><i class='fa fa-fw fa-book'></i> ";
 	if($s_search=="find([])"){echo "\"Aucun critère\""; $p='none';}
 	if($s_search!="find([])"){
-		echo "\"".$s_search."\"";
+		echo "\"<font color='#62a252'>".$s_search."</font>\"";
 	}
 	echo "</h1>";
 }
