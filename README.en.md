@@ -16,7 +16,7 @@ _Read in others languages: [Français](README.md),_
     $ make all
     $ sudo make install
 
-## Dépôt Git
+## GitHub Repository
  - Clônez le projet dans /var/wwww/html <br/>
  - Placez-vous dans le dossier du projet (Interface-MongoDB)
  
