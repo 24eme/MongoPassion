@@ -90,10 +90,10 @@ echo ' of '.$nbDocs.'</h2>';
 			</button>
 
 
-	<button type="button" class="btn btn-success"  onclick="myFunctionCommand()" data-toggle="modal" data-target="#myModal2">
-	  <i class="fa fa-fw fa-search"></i>Search by command
-	</button>
-</div>
+		<button type="button" class="btn btn-success"  onclick="myFunctionCommand()" data-toggle="modal" data-target="#myModal2">
+		  <i class="fa fa-fw fa-search"></i>Search by command
+		</button>
+	</div>
 <br>
 <div id="radio" class="text-center">
 	<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage()" /><label for="10">10</label>
@@ -193,7 +193,7 @@ echo ' of '.$nbDocs.'</h2>';
 					echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
 					echo "<td id='id'><button  class='btn py-0'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 					echo "<td id='edit'><button  class='btn py-0'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
-					echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa a-trash'></i></a></button></td>";
+					echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
 				echo '</tr>';	 
 				}
 			}
