@@ -95,7 +95,7 @@ echo ' of '.$nbDocs.'</h2>';
 	<br>
 	<div id="radio" class="text-center font-weight-bold">
 		<i class="fa fa-fw fa-book mr-3"></i>
-		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage()" /><label for="10">10</label>
+		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="10">10</label>
 		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="20">20</label>
 		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="30">30</label>
 		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="50">50</label>
@@ -141,7 +141,7 @@ echo ' of '.$nbDocs.'</h2>';
 		<label class="font-weight-bold">Search by command: </label>
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 			<div class="input-group mb-3">
-				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>
 				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
 			</div>
 		</form>

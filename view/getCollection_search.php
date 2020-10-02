@@ -93,12 +93,20 @@ if(isset($s_search)){
 //Titre de la page
 
 if(isset($recherche_g)){
-	echo "<h3 class='title text-center mt-5'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
-	if($recherche_g=="field = content[...]"){echo "\"Aucun critère\""; $p='none';}
-	if($recherche_g!="field = content[...]"){
-			echo "\"".$recherche_g."\"";
-		}
-	echo "</h3>";
+	echo "<h1 class='title text-center mt-5'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
+	if($recherche_g==""){echo "\"Aucun critère\""; $p='none';}
+	if($recherche_g!=""){
+		echo "\"".$recherche_g."\"";
+	}
+	echo "</h1>";
+}
+elseif(isset($s_search)){
+	echo "<h1 class='title text-center mt-5'><span class='text-primary'>Search results for </span><i class='fa fa-fw fa-book'></i> ";
+	if($s_search=="find([])"){echo "\"Aucun critère\""; $p='none';}
+	if($s_search!="find([])"){
+		echo "\"".$s_search."\"";
+	}
+	echo "</h1>";
 }
 else{
 	echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-server'></i>".$_GET['coll']."</h1>";
@@ -142,13 +150,13 @@ echo ' of '.$nbDocs.'</h2>';
 	<br>
 	<div id="radio" class="text-center font-weight-bold">
 		<i class="fa fa-fw fa-book mr-3"></i>
-		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /><label for="10">10</label>
+		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="10">10</label>
 		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="20">20</label>
 		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
 		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="50">50</label>
 	</div>
 
-
+	<!-- Fin de la barre de boutons -->
 
 
 	<!-- Formulaire de recherche par id et clé:valeur -->
@@ -158,7 +166,14 @@ echo ' of '.$nbDocs.'</h2>';
 		<label for="pet-select">Search:</label>
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 	        <div class="input-group mb-3">
-				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
+	        	<?php
+	        		if(isset($recherche_g)){
+	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" value="'.$recherche_g.'" />';
+	        		}
+	        		else{
+	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />';
+	        		}
+	        	?>
 
 				<!-- Autocomplétion des champs -->
 
@@ -182,22 +197,27 @@ echo ' of '.$nbDocs.'</h2>';
 
 	<!-- Formulaire de recherche par commande-->
 
-<div id="commandS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-	<hr>
-	<label>Search by command: </label>
-	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<div class="input-group mb-3">
-			<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
-			<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
-		</div>
-	</form>
-</div>
-
+	<div id="commandS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+		<hr>
+		<label>Search by command: </label>
+		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+			<div class="input-group mb-3">
+				<?php
+					if(isset($s_search)){
+						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="'.$s_search.'"/>';
+					}
+					else{
+						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>';
+					}
+				?>
+				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
+			</div>
+		</form>
+	</div>
 
 	<!-- Fin du formulaire de la recherche par commande -->
 
 </nav>
-
 
 <!-- Fin de la partie recherche -->
 
@@ -239,7 +259,7 @@ echo ' of '.$nbDocs.'</h2>';
 					//Affichage du tableau
 
 					echo '<tr>';
-						echo "<td id='d'><a class='text-dark' href=".$link_v.">".$id."</a></td>";
+						echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
 						echo "<td id='id'><button  class='btn py-0'><a class='text-primary' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 						echo "<td id='edit'><button  class='btn py-0'><a class='text-primary' href=".$link_e."><i class='fa fa-edit'></i></a></button></td>";
 						echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger' href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
