@@ -1,4 +1,3 @@
-<div lang="fr">
 
 ***<h1 align="center">Interface-MongoDB</h1>***
 
@@ -44,4 +43,3 @@
  
 ### Depuis le navigateur vous pouvez accéder au projet à l'adresse localhost/Interface-MongoDB
 
-</div>
