@@ -1,11 +1,11 @@
 
 ***<h1 align="center">Interface-MongoDB</h1>***
 
-_Lire en d'autres langues: [Français](README.md),_
+_Read in others languages: [Français](README.md),_
 
-## Prérequis
-- Installez PHP 7-* <br/>
-- Installez Apache2
+## Prerequesites
+- Install PHP 7-* <br/>
+- Install Apache2
 
 ### Driver MongoDB
     $ git clone https://github.com/mongodb/mongo-php-driver.git
