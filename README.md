@@ -1,6 +1,8 @@
 
 ***<h1 align="center">Interface-MongoDB</h1>***
 
+*Lire en d'autres langues : *
+
 ## Prérequis
 - Installez PHP 7-* <br/>
 - Installez Apache2
