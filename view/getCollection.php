@@ -114,11 +114,8 @@ echo ' of '.$nbDocs.'</h2>';
 		<!-- Formulaire de recherche par id et clé:valeur -->
 
 		<div id="searchId" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-
-
+			<hr>
 			<label for="pet-select" class="font-weight-bold">Search:</label>
-
-
 			<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 		        <div class="input-group mb-3">
 					<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
@@ -168,7 +165,6 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Tableau des documents de la collection -->
 	
 <div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto mt-1">
-	
 	<table class="table table-sm table-striped">
 	<?php 
 		echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-book\"></i> Documents of ".$_GET['coll']."</h3>";
