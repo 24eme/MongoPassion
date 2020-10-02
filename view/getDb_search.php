@@ -97,6 +97,7 @@ echo '</nav>';
 	<br>
 	<table class="table table-sm table-striped">
 		<?php
+		echo"<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-search\"></i> Search results for :".$search."</strong></span></h3>"; 
 			if($nbDocs==0){
 				echo 'Aucun document ne correspond à votre recherche.';
 			}
