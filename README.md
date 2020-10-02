@@ -29,6 +29,7 @@
     
        $  npm install jsoneditor
  - Placez-vous dans le dossier jsoneditor, copiez le fichier package.json puis collez le dans le dossier Interface-MongoDB
+ - Placez-vous dans le dossier Interface-MongoDB
  - Poursuivez l'installation :
             
        $  npm install
