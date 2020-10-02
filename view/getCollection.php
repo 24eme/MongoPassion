@@ -141,7 +141,7 @@ echo ' of '.$nbDocs.'</h2>';
 		<label class="font-weight-bold">Search by command: </label>
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 			<div class="input-group mb-3">
-				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>
 				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
 			</div>
 		</form>
