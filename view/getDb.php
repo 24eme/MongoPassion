@@ -101,7 +101,7 @@ echo '</nav>';
 		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 			<div class="input-group mb-3">
-				<input type="text"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="name"  />
+				<input type="text"  list="browsers" placeholder="name of new collection" required="required" class="form-control border border-success" name="name"  />
 
 				
 

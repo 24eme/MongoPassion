@@ -85,7 +85,7 @@ echo ' of '.$nbDocs.'</h2>';
 		<span>
 			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-book"></i>New Document</a></button>'; ?>
 		</span>
-		<button type="button" class="btn btn-success font-weight-bold" onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
+		<button type="button" class="btn btn-success " onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
 			<i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 		</button>
 		<button type="button" class="btn btn-success"  onclick="myFunctionCommand()" data-toggle="modal" data-target="#myModal2">
