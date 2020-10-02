@@ -48,3 +48,7 @@ pre#doc_text{
 .return.btn.btn-primary{
   margin-left: 2%;
 }
+
+ a {
+  text-decoration: none !important;
+}

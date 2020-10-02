@@ -24,3 +24,8 @@ h2.subtitle{
 	padding-bottom: 10px;
 	padding-left: 2%;
 }
+
+ a {
+  text-decoration: none !important;
+}
+

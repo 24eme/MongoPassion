@@ -64,7 +64,7 @@ echo '</nav>';
 <div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
-	<br>
+	
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 
 	<div class="input-group mb-3">

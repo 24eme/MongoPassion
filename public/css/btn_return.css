@@ -7,3 +7,7 @@
 	color: #62a252;
 	margin-bottom: 10px;
 }
+
+ a {
+  text-decoration: none !important;
+}

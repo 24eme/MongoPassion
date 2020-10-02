@@ -144,3 +144,7 @@ input:checked + .slider:before {
 #jsoneditor{
 	margin: auto;
 }
+
+ a {
+  text-decoration: none !important;
+}
