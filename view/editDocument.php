@@ -152,7 +152,7 @@ echo '</div>';
 <div id="json" style="display: none">
      <div id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
      <span id="nC"></span>
-	<div id="jsoneditor" style="width: 50%; height: 600px;"></div>
+	<div id="jsoneditor" style="width: 50%; height: 700px;"></div>
 </div>
 
 <!-- Script de création et d'envoi du formulaire -->
