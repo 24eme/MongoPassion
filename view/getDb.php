@@ -59,7 +59,7 @@ echo '</nav>';
 
 <!-- Recherche -->
 
-<div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
+<div  class="m-auto border col-lg-6 offset-lg-3 bg-light mt-1">
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	
