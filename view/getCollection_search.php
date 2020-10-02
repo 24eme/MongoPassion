@@ -141,7 +141,7 @@ echo ' of '.$nbDocs.'</h2>';
 	</div>
 	<br>
 	<div id="radio" class="text-center font-weight-bold">
-		<i class="fa fa-fw fa-book"></i
+		<i class="fa fa-fw fa-book mr-3"></i>
 		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /><label for="10">10</label>
 		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="20">20</label>
 		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
