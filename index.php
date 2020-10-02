@@ -70,10 +70,12 @@ try{
             case 'thread':
                 thread();
             break;
-
+            default:
+                error();
+            break;
     	}
     }
-
+    
     else
     {
     	home();
