@@ -19,3 +19,6 @@ body{
   text-decoration: none !important;
 }
 
+#newColl{
+	display: none;
+}

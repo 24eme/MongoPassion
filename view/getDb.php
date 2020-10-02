@@ -92,18 +92,26 @@ echo '</nav>';
 <!-- Bouton nouvelle collection -->
 
 
-<nav>
-	<div id="options" class="text-center">
+<nav class="mb-3">
+	<div id="options" class="text-center mb-3">
 
-		<span id="nC">
-			<?php
-				$serve=$_GET['serve'];
-				$db=$_GET['db'];
-			?>
-			<input type=hidden id=serve value=<?php echo $serve; ?>>
-			<input type=hidden id=db value=<?php echo $db; ?>>
-			<button id='createCollec' class="btn btn-success btn-lg text-light mb-2" flag ="false" onclick="afficher();">New Collection</button>
-		</span>
+	<button type="button" class="btn btn-success"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
+		  <i class="fa fa-fw fa-server"></i> New Collection 
+	</button>
+	</div>
+
+		<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+		<hr>
+		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
+		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
+			<div class="input-group mb-3">
+				<input type="text"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="name"  />
+
+				
+
+				<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+			</div>
+		</form>
 	</div>
 </nav>
 
