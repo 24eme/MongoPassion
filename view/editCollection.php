@@ -72,16 +72,19 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa
 
 		echo '<form method="post" action="index.php?action=renameCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
 		echo '<br><label>Rename Collection</label><br>';
+		echo ' <div class="input-group mb-3">';
 		echo '<input type="text" class="form-control" name="newname" id="newname" value="'.$_GET['coll'].'" required />';
-		echo '<input type="submit" class="btn mt-1 bg-success text-light" name="rename" id="rename" value="Rename">';
+		echo '<input type="submit" class="btn  bg-success text-light" name="rename" id="rename" value="Rename"></div>';
+
 		echo '</form><hr>';
 
 		//Déplacer la collection
 	    
 		echo '<form method="post" action="index.php?action=moveCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
-		echo '<br><label>Move Collection</label><br>';
+		echo '<br><label>Move Collection</label>';
+		echo ' <div class="input-group mb-3">';
 		echo '<input type="text" class="form-control" name="newdb" id="newdb" placeholder="New Database" required />';
-		echo '<input type="submit" class="btn bg-success mt-1 text-light" name="move" id="move" value="Move">';
+		echo '<input type="submit" class="btn bg-success text-light" name="move" id="move" value="Move"></div>';
 		echo '</form>';
 
 		//Bouton de retour
