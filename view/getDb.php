@@ -90,21 +90,16 @@ echo '</nav>';
 
 <nav class="mb-3">
 	<div id="options" class="text-center mb-3">
-
-	<button type="button" class="btn btn-success"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
-		  <i class="fa fa-fw fa-server"></i> New Collection 
-	</button>
+		<button type="button" class="btn btn-success"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
+			  <i class="fa fa-fw fa-server"></i> New Collection 
+		</button>
 	</div>
-
-		<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+	<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
 		<hr>
 		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 			<div class="input-group mb-3">
 				<input type="text"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="name"  />
-
-				
-
 				<input class="btn bg-success text-light "  type="submit"   value="Create"/>
 			</div>
 		</form>
