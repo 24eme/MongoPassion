@@ -76,90 +76,80 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 <!-- Partie recherche -->
+
 <nav class="mb-2">
 	
-      <!-- Barre de boutons -->
+    <!-- Barre de boutons -->
 
-		<div id="options" class="text-center">
-			<span>
-				<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-book"></i>New Document</a></button>'; ?>
-			</span>
-
-			<button type="button" class="btn btn-success font-weight-bold" onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
-			  <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
-			</button>
-
-
+	<div id="options" class="text-center">
+		<span>
+			<?php echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-book"></i>New Document</a></button>'; ?>
+		</span>
+		<button type="button" class="btn btn-success font-weight-bold" onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
+			<i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
+		</button>
 		<button type="button" class="btn btn-success"  onclick="myFunctionCommand()" data-toggle="modal" data-target="#myModal2">
 		  <i class="fa fa-fw fa-search"></i>Search by command
 		</button>
 	</div>
-<br>
-<div id="radio" class="text-center font-weight-bold">
-	<i class="fa fa-fw fa-book"></i
-	<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage()" /><label for="10">10</label>
-	<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="20">20</label>
-	<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="30">30</label>
-	<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="50">50</label>
-</div>
-
-	
+	<br>
+	<div id="radio" class="text-center font-weight-bold">
+		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage()" /><label for="10">10</label>
+		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="20">20</label>
+		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="30">30</label>
+		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="50">50</label>
+	</div>
 
 
-		<!-- Fin de la barre de boutons -->
+	<!-- Fin de la barre de boutons -->
 
 
+	<!-- Formulaire de recherche par id et clé:valeur -->
+
+	<div id="searchId" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+		<hr>
+		<label for="pet-select" class="font-weight-bold">Search:</label>
+		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+			<div class="input-group mb-3">
+				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
+
+				<!-- Autocomplétion des champs -->
+
+				<datalist id="browsers">
+			        <?php 
+			        	foreach ($docs[0] as $key => $value) {  
+			        		echo  "<option value=".$key.":>";
+						}
+			        ?> 
+		 		</datalist> 
+
+		 		<!-- Fin de l'autocomplétion des champs -->
+
+				<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+			</div>
+		</form>
+	</div>
+
+	<!-- Fin du formulaire de recherche par id et clé:valeur -->
 
 
+	<!-- Formulaire de recherche par commande-->
 
-		<!-- Formulaire de recherche par id et clé:valeur -->
+	<div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+		<hr>
+		<label class="font-weight-bold">Search by command: </label>
+		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+			<div class="input-group mb-3">
+				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
+				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
+			</div>
+		</form>
+	</div>
 
-		<div id="searchId" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-			<hr>
-			<label for="pet-select" class="font-weight-bold">Search:</label>
-			<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		        <div class="input-group mb-3">
-					<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
-
-					<!-- Autocomplétion des champs -->
-
-					<datalist id="browsers">
-				        <?php 
-				        	foreach ($docs[0] as $key => $value) {  
-				        		echo  "<option value=".$key.":>";
-							}
-				        ?> 
-			 		</datalist> 
-
-			 		<!-- Fin de l'autocomplétion des champs -->
-
-					<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
-				</div>
-			</form>
-		</div>
-
-		<!-- Fin du formulaire de recherche par id et clé:valeur -->
-
-
-		<!-- Formulaire de recherche par commande-->
-
-
-<div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-	<hr>
-	<label class="font-weight-bold">Search by command: </label>
-	<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-		<div class="input-group mb-3">
-			<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find( ['_id'=>'CONTRAT-000013-20130812-0001'])"/>
-			<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
-
-
-		</div>
-	</form>
-</div>
-
-<!-- Fin du formulaire de la recherche par commande -->
+	<!-- Fin du formulaire de la recherche par commande -->
 
 </nav>
+
 <!-- Fin de la partie recherche -->
 
 
