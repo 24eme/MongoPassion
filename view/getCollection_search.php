@@ -166,7 +166,14 @@ echo ' of '.$nbDocs.'</h2>';
 		<label for="pet-select">Search:</label>
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 	        <div class="input-group mb-3">
-				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
+	        	<?php
+	        		if(isset($recherche_g)){
+	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" value="'.$recherche_g.'" />';
+	        		}
+	        		else{
+	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />';
+	        		}
+	        	?>
 
 				<!-- Autocomplétion des champs -->
 
@@ -195,7 +202,14 @@ echo ' of '.$nbDocs.'</h2>';
 		<label>Search by command: </label>
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 			<div class="input-group mb-3">
-				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>
+				<?php
+					if(isset($s_search)){
+						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="'.$s_search.'"/>';
+					}
+					else{
+						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>';
+					}
+				?>
 				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
 			</div>
 		</form>
