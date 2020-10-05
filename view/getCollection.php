@@ -79,32 +79,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 <nav class="mb-2">
 	
-    <!-- Barre de boutons -->
-
-<!-- 	<div id="options" class="text-center">
-		<span>
-			<?php /*echo '<button class="btn new_doc"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-book"></i>New Document</a></button>'; */?>
-		</span>
-
-		<button type="button" class="btn btn-success " onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
-	
-			<i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
-		</button>
-		<button type="button" class="btn btn-success"  onclick="myFunctionCommand()" data-toggle="modal" data-target="#myModal2">
-		  <i class="fa fa-fw fa-search"></i>Search by command
-		</button>
-	</div>-->
-<!-- 	<br>
-	<div id="radio" class="text-center font-weight-bold">
-		<i class="fa fa-fw fa-book mr-3"></i>
-		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="10">10</label>
-		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="20">20</label>
-		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="30">30</label>
-		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="50">50</label>
-	</div> -->
-
-
-	<!-- Fin de la barre de boutons -->
+ 
 
 
 	<!-- Formulaire de recherche par id et clé:valeur -->
@@ -114,7 +89,7 @@ echo ' of '.$nbDocs.'</h2>';
 	
 	<div id="options" class="text-center my-2">
 		<span>
-			<?php echo '<button class="btn btn-info new_doc font-weight-bold"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i>Doc</a></button>'; ?>
+			<?php echo '<button class="btn btn-info new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i>Doc</a></button>'; ?>
 		</span>
 
 		<button type="button" class="btn btn-success " onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
