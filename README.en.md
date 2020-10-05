@@ -1,11 +1,11 @@
 
 ***<h1 align="center">Interface-MongoDB</h1>***
 
-_Lire en d'autres langues: [Français](README.md),_
+_Read in others languages: [Français](README.md),_
 
-## Prérequis
-- Installez PHP 7-* <br/>
-- Installez Apache2
+## Prerequesites
+- Install PHP 7-* <br/>
+- Install Apache2
 
 ### Driver MongoDB
     $ git clone https://github.com/mongodb/mongo-php-driver.git
@@ -16,7 +16,7 @@ _Lire en d'autres langues: [Français](README.md),_
     $ make all
     $ sudo make install
 
-## Dépôt Git
+## GitHub Repository
  - Clônez le projet dans /var/wwww/html <br/>
  - Placez-vous dans le dossier du projet (Interface-MongoDB)
  
@@ -24,7 +24,7 @@ _Lire en d'autres langues: [Français](README.md),_
     $ composer require mongodb/mongodb
 
  ## Installez JsonEditor avec npm :
- - Placez vous dans le répertoire /var/www/html/Interface-MongoDB
+ - Placez vous dans le répertoire /var/wwww/html/Interface-MongoDB
  - Clonez les fichiers à partir du git :
  
        $  git clone https://github.com/josdejong/jsoneditor.git
@@ -44,4 +44,5 @@ _Lire en d'autres langues: [Français](README.md),_
        $  npm run build
  
 ### Depuis le navigateur vous pouvez accéder au projet à l'adresse localhost/Interface-MongoDB
+
 
