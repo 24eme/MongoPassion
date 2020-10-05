@@ -11,6 +11,7 @@
 	<link href="public/css/viewDocument.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
+	<script src="public/js/db.js"></script>
 </head>
 
 <body>
@@ -86,18 +87,30 @@ else{
 
 //Bouton Edit
 
+$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$_GET['doc'].'&page='.$_GET['page'];
+
 $link_edit = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$_GET['doc'].'&page='.$_GET['page'];
 if(isset($_GET['type_id'])){
 	$link_edit=$link_edit.'&type_id='.$_GET['type_id'];
+	$link_d=$link_d.'&type_id='.$_GET['type_id'];
 }
 if(isset($_GET['s_s'])){
 	$link_edit=$link_edit.'&s_s='.$_GET['s_s'];
+	$link_d=$link_d.'&s_s='.$_GET['s_s'];
 }
 if(isset($_GET['s_g'])){
 	$link_edit=$link_edit.'&s_g='.$_GET['s_g'];
+	$link_d=$link_d.'&s_g='.$_GET['s_g'];
 }
 $link_edit=$link_edit.'&page='.$_GET['page'];
-echo '<div id="content"><a href="'.$link_edit.'"><button class="btn btn-primary font-weight-bold">Edit</button></a></div>';
+$link_d=$link_d.'&page='.$_GET['page'];
+
+echo '<div class=" text-center  m-auto py-2"><a href="'.$link_edit.'"><button class="btn btn-success font-weight-bold">Edit</button></a>
+    <button  class="btn btn-danger "><a class="text-light font-weight-bold" href="'.$link_d.'" onclick="return confirmDelete()">delete</a></button>
+
+</div>';
+
+
 
 //Fin du bouton Edit
 
