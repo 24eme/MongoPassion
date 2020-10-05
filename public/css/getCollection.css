@@ -5,9 +5,9 @@
 	padding-left: 2%;
 }
 
-.btn.new_doc{
+/*.btn.new_doc{
 	background-color: #4CAF50;
-}
+}*/
 
 #row{
 	align-content: center;
@@ -27,7 +27,7 @@
 }
 
 #searchId {
-  display: none;
+  display: block;
 }
 
 /*Conteneur du tableau*/
@@ -41,11 +41,10 @@
 .btn.btn-primary.getCollection{
 	margin-left: 2%;
 }
-<<<<<<< Updated upstream
-=======
+
 
 
  a {
   text-decoration: none !important;
 }
->>>>>>> Stashed changes
+
