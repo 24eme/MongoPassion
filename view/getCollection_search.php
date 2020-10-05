@@ -130,41 +130,33 @@ echo ' of '.$nbDocs.'</h2>';
 
 <nav class="mb-2">
 
+	
+
+
+	<div  class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+		<!-- <hr> -->
 	<!-- Barre de boutons -->
 
-	<div id="options" class="text-center">
+	<div id="options" class="text-center my-2">
 		<span>
-			<?php echo '<button class="btn new_doc "><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-book"></i>New Document</a></button>'; ?>
+			<?php echo '<button class="btn btn-info new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i>Doc</a></button>'; ?>
 		</span>
 
-		<button type="button" class="btn btn-success" onclick="myFunctionSearchGet()" data-toggle="modal" data-target="#myModal">
-		  <i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
+		<button type="button" class="btn btn-success " onclick="myFunctionSearchGet()" data-toggle="modal" data-target="#myModal">
+	
+			<i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 		</button>
-
 		<button type="button" class="btn btn-success"  onclick="myFunctionCommandGet()" data-toggle="modal" data-target="#myModal2">
 		  <i class="fa fa-fw fa-search"></i>Search by command
 		</button>
-
-		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">Reinit</a></button>'; ?> 
+		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-history"></i>Reinit</a></button>'; ?> 
 	</div>
-	<br>
-	<div id="radio" class="text-center font-weight-bold">
-		<i class="fa fa-fw fa-book mr-3"></i>
-		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="10">10</label>
-		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="20">20</label>
-		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
-		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="50">50</label>
-	</div>
+	
 
-	<!-- Fin de la barre de boutons -->
-
-
-	<!-- Formulaire de recherche par id et clé:valeur -->
-
-	<div id="searchIdS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-		<hr>
-		<label for="pet-select">Search:</label>
+	<div id="searchIdS" class="mt-1">
+		<!-- <label for="pet-select" class="font-weight-bold">Search:</label> -->
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
+
 	        <div class="input-group mb-3">
 	        	<?php
 	        		if(isset($recherche_g)){
@@ -174,48 +166,49 @@ echo ' of '.$nbDocs.'</h2>';
 	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />';
 	        		}
 	        	?>
-
+			
 				<!-- Autocomplétion des champs -->
 
 				<datalist id="browsers">
 			        <?php 
-			        	foreach ($docs[0] as $key => $value) {	  
+			        	foreach ($docs[0] as $key => $value) {  
 			        		echo  "<option value=".$key.":>";
 						}
 			        ?> 
-			 	</datalist>
+		 		</datalist> 
 
-			 	<!-- Fin de l'autocomplétion des champs -->
+		 		<!-- Fin de l'autocomplétion des champs -->
 
 				<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
 			</div>
 		</form>
 	</div>
+		<!-- Fin du formulaire de recherche par id et clé:valeur -->
 
-	<!-- Fin du formulaire de recherche par id et clé:valeur -->
 
+		<!-- Formulaire de recherche par commande-->
 
-	<!-- Formulaire de recherche par commande-->
-
-	<div id="commandS" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-		<hr>
-		<label>Search by command: </label>
+<!-- 	<div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2"> -->
+	<div id="commandS" class="mt-1">   
+		<!-- <label class="font-weight-bold">Search by command: </label> -->
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 			<div class="input-group mb-3">
-				<?php
-					if(isset($s_search)){
-						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="'.$s_search.'"/>';
-					}
-					else{
-						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>';
-					}
-				?>
+				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>
 				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
 			</div>
 		</form>
 	</div>
 
 	<!-- Fin du formulaire de la recherche par commande -->
+
+
+
+
+	</div>
+
+	
+
+
 
 </nav>
 
@@ -268,6 +261,15 @@ echo ' of '.$nbDocs.'</h2>';
 			}
 		?>
 	</table>
+
+
+	<div id="radio" class="text-center font-weight-bold">
+		<i class="fa fa-fw fa-book mr-3"></i>
+		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="10">10</label>
+		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="20">20</label>
+		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
+		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="50">50</label>
+	</div>
 
 	<!-- Bouton de retour -->
 

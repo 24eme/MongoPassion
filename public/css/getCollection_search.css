@@ -5,9 +5,9 @@
 	padding-left: 2%;
 }
 
-.btn.new_doc{
+/*.btn.new_doc{
 	background-color: #4CAF50;
-}
+}*/
 
 /*Conteneur du tableau*/
 
@@ -24,7 +24,7 @@
 /*Recherche*/
 
 #searchIdS{
-	display: none;
+	display: block;
 }
 
 #commandS{
