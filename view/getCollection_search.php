@@ -139,7 +139,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 	<div id="options" class="text-center my-2">
 		<span>
-			<?php echo '<button class="btn btn-info new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i>Doc</a></button>'; ?>
+			<?php echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i>Doc</a></button>'; ?>
 		</span>
 
 		<button type="button" class="btn btn-success " onclick="myFunctionSearchGet()" data-toggle="modal" data-target="#myModal">
@@ -193,6 +193,14 @@ echo ' of '.$nbDocs.'</h2>';
 		<!-- <label class="font-weight-bold">Search by command: </label> -->
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 			<div class="input-group mb-3">
+					<?php
+					if(isset($s_search)){
+						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="'.$s_search.'"/>';
+					}
+					else{
+						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>';
+					}
+				?>
 				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>
 				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
 			</div>

@@ -67,7 +67,7 @@ echo '</nav>';
 		<div class="input-group mb-3">
 			<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
-			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
+			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-history"></i>Reinit</a></button>'; ?>
 		</div>
 	</form>
 </div>

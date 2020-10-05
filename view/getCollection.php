@@ -89,7 +89,7 @@ echo ' of '.$nbDocs.'</h2>';
 	
 	<div id="options" class="text-center my-2">
 		<span>
-			<?php echo '<button class="btn btn-info new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i>Doc</a></button>'; ?>
+			<?php echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i>Doc</a></button>'; ?>
 		</span>
 
 		<button type="button" class="btn btn-success " onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
