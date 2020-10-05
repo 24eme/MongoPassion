@@ -92,7 +92,7 @@ echo '</div>';
 <div id="switch">
 	<label id="switch_json">JSONEditor</label>
 	<label class="switch">
-	  <input type="checkbox" id="myCheck" onclick="switchJ()">
+	  <input type="checkbox" id="myCheck" checked onclick="switchJ()">
 	  <span class="slider round"></span>
 	</label>
 </div>
@@ -102,7 +102,7 @@ echo '</div>';
 
 <!-- Formulaire mode édition classique -->
 
-<div id="main" style="display: block">
+<div id="main" style="display: none">
 	<?php
 
 		//Formatage des données du document en JSON
@@ -138,7 +138,7 @@ echo '</div>';
 	 		echo '<div id="update_content"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Update"></div>';
 	 		echo '<div id="doc_content"><textarea name="doc_text" id="doc_text" rows="20" cols="200" required>'.$docs.'</textarea></div>';
 	 	echo '</form>';
-	 	echo '<br>';
+	 	echo '<br>'
 	?>
 </div>
 
@@ -149,7 +149,7 @@ echo '</div>';
 
 <!-- Affichage du formulaire -->
 
-<div id="json" style="display: none">
+<div id="json" style="display: block;">
      <div id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
      <span id="nC"></span>
 	<div id="jsoneditor" style="width: 50%; height: 700px;"></div>
