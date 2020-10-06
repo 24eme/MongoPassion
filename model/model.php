@@ -1,5 +1,74 @@
 <?php
 
+function getManager($serve){
+	$manager = new MongoDB\Driver\Manager('mongodb://'.$serve.':27017');
+	return $manager;
+}
+
+function formatResult($result)
+{
+	$result_format = array();
+
+	foreach ($result as $document) {
+		array_push($result_format, (array) $document);
+	}
+
+	return $result_format;
+}
+
+function toJSON($cursor){
+	$docs_array = array();
+	foreach ($cursor as $entry) {
+		$doc=array();
+		$date_array=array();
+		$up_date_array=array();
+		foreach($entry as $x => $x_value) {
+		 	if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
+		 		$value = $x_value;
+		 	}
+		 	elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
+		 		$value = $x_value->toDateTime();
+		 		$date_array[$x]=intval((string)$x_value);
+		 		$temp=strtotime((improved_var_export(printable($value))['date']))*1000;
+		 		$up_date_array[$x]=$temp;
+		 	}
+		 	else{
+		 		$value = printable($x_value);
+		 	}
+		 	$doc[$x] = improved_var_export($value);
+		}
+		$doc = init_json($doc);
+		$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
+		array_push($docs_array, $docs);
+	}
+	return $docs_array;
+}
+
+function testProjection($search,$serve,$db)
+{
+	$manager = getManager($serve);
+
+	$jscode = $search;
+
+	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+
+	$cursor = $manager->executeCommand($db, $command)->toArray();
+
+	$temp = (array) $cursor[0];
+	$test = (array) $temp['retval'];
+
+	$fields = (array) $test['_fields'];
+
+	if(empty($fields)){
+		return false;
+	}
+
+	else{
+		return true;
+	}
+
+}
+
 function getDocument()
 {
 	require 'vendor/autoload.php';
@@ -391,6 +460,33 @@ function getSpecialSearch($command,$page,$bypage)
 	return $result;
 }
 
+function getAdvancedSearch($search,$page,$bypage,$serve,$db,$coll)
+{
+	$manager = getManager($serve);
+
+	$skip = ($page-1)*$bypage;
+
+	$jscode=$search;
+
+	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+
+	$cursor = $manager->executeCommand($db, $command)->toArray();
+
+	$temp = (array) $cursor[0];
+	$test = (array) $temp['retval'];
+	$ns = $test['_ns'];
+	$filter = (array) $test['_query'];
+	$fields = (array) $test['_fields'];
+
+	$options = ['projection'=>$fields,'skip'=>$skip,'limit'=>$bypage];
+
+	$query = new \MongoDB\Driver\Query($filter, $options);
+	$rows   = $manager->executeQuery($ns, $query)->toArray();
+
+	$rows = formatResult($rows);
+
+	return $rows;
+}
 
 function getNbPages($result,$pages)
 {
@@ -430,6 +526,22 @@ function countSearch_id($search){
 	$result = $result1+$result2;
 
 	return $result;
+}
+
+function countAdvancedSearch($search,$serve,$db,$coll)
+{
+	$manager = getManager($serve);
+
+	$jscode = str_replace('find', 'count', $search);
+
+	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+
+	$cursor = $manager->executeCommand($db, $command)->toArray();
+
+	$temp = (array) $cursor[0];
+	$test = $temp['retval'];
+
+	return $test;
 }
 
 function countSearch_g($search)

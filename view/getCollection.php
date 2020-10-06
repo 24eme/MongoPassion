@@ -10,7 +10,6 @@
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
-	<link href="public/css/getCollection.css" rel="stylesheet" type="text/css">
 	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
 
  	<script src="public/js/db.js"></script>
@@ -78,8 +77,6 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Partie recherche -->
 
 <nav class="mb-2">
-	
- 
 
 
 	<!-- Formulaire de recherche par id et clé:valeur -->
@@ -89,21 +86,22 @@ echo ' of '.$nbDocs.'</h2>';
 	
 	<div id="options" class="text-center my-2">
 		<span>
-			<?php echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i>Doc</a></button>'; ?>
+			<?php echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
 		</span>
 
 		<button type="button" class="btn btn-success " onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
 	
 			<i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 		</button>
-		<button type="button" class="btn btn-success"  onclick="myFunctionCommand()" data-toggle="modal" data-target="#myModal2">
-		  <i class="fa fa-fw fa-search"></i>Search by command
-		</button>
+		<?php echo '<a href="?action=advancedSearch&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">' ?>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
+				<i class="fa fa-fw fa-search"></i>Search by command
+			</button>
+		</a>
 	</div>
 	
 
 	<div id="searchId" class="mt-1">
-		<!-- <label for="pet-select" class="font-weight-bold">Search:</label> -->
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 			<div class="input-group mb-3">
 				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
@@ -129,9 +127,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 		<!-- Formulaire de recherche par commande-->
 
-<!-- 	<div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2"> -->
 	<div id="command" class="mt-1">   
-		<!-- <label class="font-weight-bold">Search by command: </label> -->
 		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
 			<div class="input-group mb-3">
 				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>
@@ -146,11 +142,6 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 	</div>
-
-	
-
-
-	
 </nav>
 
 <!-- Fin de la partie recherche -->
@@ -186,8 +177,6 @@ echo ' of '.$nbDocs.'</h2>';
 				echo '<tr class="mr-5">';
 					echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
 					echo "<td id='id'><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
-					// echo "<td id='edit'><button  class='btn py-0'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
-					// echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
 				echo '</tr>';	 
 				}
 			}

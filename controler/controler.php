@@ -41,8 +41,9 @@
     function getCollection()
     {
     	try{
-            if(isset($_GET['coll']))
-        	$coll=htmlspecialchars($_GET['coll']);
+            if(isset($_GET['coll'])){
+            	$coll=htmlspecialchars($_GET['coll']);
+            }
 
         	else{
         		header('Location: index.php?action=error');
@@ -183,6 +184,50 @@
         catch(Exception $e){
             echo $e;
         }
+    }
+
+    function advancedSearch()
+    {
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+
+        if(isset($_GET['bypage'])){
+            $bypage = intval($_GET['bypage']);
+        }
+        else{
+            $bypage = 20;
+        }
+
+        if(isset($_GET['page'])){
+            $page = htmlspecialchars($_GET['page']);
+        }
+        else{
+            $page = 1;
+        }
+
+        if(isset($_POST['a_s'])){
+            $a_s = htmlspecialchars($_POST['a_s'],ENT_NOQUOTES);
+        }
+        elseif(isset($_GET['a_s'])){
+            $a_s = htmlspecialchars(urldecode($_GET['a_s']),ENT_NOQUOTES);
+        }
+
+        if(isset($a_s)){
+            $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
+            
+            if(testProjection($a_s,$serve,$db)){
+                $docs = toJSON($result);
+            }
+            $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
+
+            $nbPages = getNbPages($nbDocs,$bypage);
+        }
+
+        $link_search = '?'.$_SERVER['QUERY_STRING'];
+
+        require('view/advancedSearch.php');
+
     }
 
     function renameCollection()

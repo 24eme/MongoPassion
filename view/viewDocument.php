@@ -72,8 +72,8 @@ echo '<div id="nav_view">';
 if(isset($_GET['s_g'])){
 	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_g='.$_GET['s_g'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
 }
-elseif(isset($_GET['s_s'])){
-	echo '<a href="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&s_s='.$_GET['s_s'].'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
+elseif(isset($_GET['a_s'])){
+	echo '<a href="index.php?action=advancedSearch&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&a_s='.urlencode($_GET['a_s']).'&page='.$_GET['page'].'"><button class="return btn btn-primary">< Collection</button></a>';
 }
 elseif(isset($_GET['search_db'])){
 	echo '<a href="index.php?action=getDb_search&serve='.strip_tags($_GET['serve']).'&db='.strip_tags($_GET['db']).'&search_db='.strip_tags($_GET['search_db']).'"><button class="return btn btn-primary">< Collection</button></a>';
@@ -90,6 +90,7 @@ else{
 $link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$_GET['doc'].'&page='.$_GET['page'];
 
 $link_edit = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$_GET['doc'].'&page='.$_GET['page'];
+
 if(isset($_GET['type_id'])){
 	$link_edit=$link_edit.'&type_id='.$_GET['type_id'];
 	$link_d=$link_d.'&type_id='.$_GET['type_id'];
@@ -106,7 +107,7 @@ $link_edit=$link_edit.'&page='.$_GET['page'];
 $link_d=$link_d.'&page='.$_GET['page'];
 
 echo '<div class=" text-center  m-auto py-2"><a href="'.$link_edit.'"><button class="btn btn-success font-weight-bold">Edit</button></a>
-    <button  class="btn btn-danger "><a class="text-light font-weight-bold" href="'.$link_d.'" onclick="return confirmDelete()">delete</a></button>
+    <button  class="btn btn-danger "><a class="text-light font-weight-bold" href="'.$link_d.'" onclick="return confirmDelete()">Delete</a></button>
 
 </div>';
 

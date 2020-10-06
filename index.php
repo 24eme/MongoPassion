@@ -70,6 +70,9 @@ try{
             case 'thread':
                 thread();
             break;
+            case 'advancedSearch':
+                advancedSearch();
+            break;
             default:
                 error();
             break;
