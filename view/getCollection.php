@@ -158,7 +158,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 <!-- Tableau des documents de la collection -->
 	
-<div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto mt-1">
+<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto mt-1">
 	<table class="table table-sm table-striped">
 	<?php 
 		echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-book\"></i> Documents of ".$_GET['coll']."</h3>";
@@ -167,19 +167,19 @@ echo ' of '.$nbDocs.'</h2>';
 		}
 		else{
 			echo '<tr>';
-			echo '<th>Id</th>';
+			echo '<th class="text-center">Id</th>';
 			$i=0;
 				foreach ($docs[0] as $key => $value) {
 				$type = gettype($value);
 				if ($key !== '_id' && $type !=='object') {
-					 echo '<th>'.$key.'</th>';
+					 echo '<th class="text-center">'.$key.'</th>';
 	                 $i++;
 	                 if($i==3){
 	                 	break;
 	                 }
              	}
 			}
-			echo '<th>Action</th>';
+			echo '<th class="text-center">Action</th>';
 			echo '</tr>';
 			foreach ($docs as $doc) {
 				echo '<tr class="mr-5">';
@@ -202,14 +202,14 @@ echo ' of '.$nbDocs.'</h2>';
 				$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 
 				
-				echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
+				echo "<td id='d'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
 				
 				//Affichage du tableau
 				 $i=0;
 				foreach ($doc as $key => $value) {
 					$type = gettype($value);
 					if ($key !== '_id' && $type !=='object') {
-						echo '<td>'.$value.'</td>';	
+						echo '<td class="text-center">'.$value.'</td>';	
 		                 $i++;
 		                 if($i==3){
 		                 	break;

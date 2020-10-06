@@ -225,7 +225,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 
-<div id="main" class="border col-lg-6 offset-lg-3 bg-light m-auto ">
+<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto ">
 	<br>
 	<table class="table table-sm table-striped">
 		<?php 
@@ -234,14 +234,40 @@ echo ' of '.$nbDocs.'</h2>';
 				echo 'Aucun document ne correspond à votre recherche.';
 			}
 			else{
-				foreach ($docs as $doc) {
-					$type_id = gettype($doc['_id']);
-					if ($type_id=='object'){
-						$id = (string)$doc['_id'];
-					}
-					else{
-					 $id = $doc['_id'];
-					}
+				// foreach ($docs as $doc) {
+				// 	$type_id = gettype($doc['_id']);
+				// 	if ($type_id=='object'){
+				// 		$id = (string)$doc['_id'];
+				// 	}
+				// 	else{
+				// 	 $id = $doc['_id'];
+				// 	}
+				echo '<tr>';
+				echo '<th class="text-center">Id</th>';
+				$i=0;
+					foreach ($docs[0] as $key => $value) {
+					$type = gettype($value);
+					if ($key !== '_id' && $type !=='object') {
+						 echo '<th class="text-center">'.$key.'</th>';
+	                	 $i++;
+	                 	if($i==3){
+	                 		break;
+	                 	}
+             		}
+			}
+			echo '<th class="text-center">Action</th>';
+			echo '</tr>';
+			foreach ($docs as $doc) {
+				echo '<tr class="mr-5">';
+				$type_id = gettype($doc['_id']);
+				if ($type_id=='object'){
+					$id = (string)$doc['_id'];
+				}
+				else{
+					$id = $doc['_id'];
+				}
+
+
 
 					//Liens des options de gestion des documents
 
@@ -259,12 +285,30 @@ echo ' of '.$nbDocs.'</h2>';
 
 					//Affichage du tableau
 
-					echo '<tr>';
-						echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
-						echo "<td id='id'><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
+					echo "<td id='d'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
+				
+
+					$i=0;
+					foreach ($doc as $key => $value) {
+						$type = gettype($value);
+						if ($key !== '_id' && $type !=='object') {
+							echo '<td class="text-center">'.$value.'</td>';	
+			                 $i++;
+			                 if($i==3){
+			                 	break;
+			                 }
+						}
+
+					}
+					echo "<td><button  class='btn py-0'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
+					echo '</tr>';
+
+					// echo '<tr>';
+					// 	echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
+					// 	echo "<td id='id'><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 						// echo "<td id='edit'><button  class='btn py-0'><a class='text-primary' href=".$link_e."><i class='fa fa-edit'></i></a></button></td>";
 						// echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger' href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
-					echo '</tr>';
+					// echo '</tr>';
 				}
 			}
 		?>
