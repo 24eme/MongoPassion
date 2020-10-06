@@ -166,7 +166,23 @@ echo ' of '.$nbDocs.'</h2>';
 			echo 'Aucun document ne correspond à votre recherche.';
 		}
 		else{
+			echo '<tr>';
+			echo '<th>Id</th>';
+			$i=0;
+				foreach ($docs[0] as $key => $value) {
+				$type = gettype($value);
+				if ($key !== '_id' && $type !=='object') {
+					 echo '<th>'.$key.'</th>';
+	                 $i++;
+	                 if($i==3){
+	                 	break;
+	                 }
+             	}
+			}
+			echo '<th>Action</th>';
+			echo '</tr>';
 			foreach ($docs as $doc) {
+				echo '<tr class="mr-5">';
 				$type_id = gettype($doc['_id']);
 				if ($type_id=='object'){
 					$id = (string)$doc['_id'];
@@ -175,22 +191,36 @@ echo ' of '.$nbDocs.'</h2>';
 					$id = $doc['_id'];
 				}
 
+		
+			        		// echo  "<option value=".$key.":>";
+						
+
 				//Liens des options de gestion des documents
 
 				$link_v = 'index.php?action=viewDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 				$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 				$link_d = 'index.php?action=deleteDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 
+				
+				echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
+				
 				//Affichage du tableau
+				 $i=0;
+				foreach ($doc as $key => $value) {
+					$type = gettype($value);
+					if ($key !== '_id' && $type !=='object') {
+						echo '<td>'.$value.'</td>';	
+		                 $i++;
+		                 if($i==3){
+		                 	break;
+		                 }
+					}
 
-				echo '<tr class="mr-5">';
-					echo "<td id='d'><a class='text-dark' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
-					echo "<td id='id'><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
-					// echo "<td id='edit'><button  class='btn py-0'><a class='text-primary'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
-					// echo  "<td id='suppr'><button  class='btn py-0'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";
-				echo '</tr>';	 
 				}
+				echo "<td><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
+				echo '</tr>';
 			}
+		}
 		?>
 	</table>
 

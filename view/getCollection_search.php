@@ -201,7 +201,7 @@ echo ' of '.$nbDocs.'</h2>';
 						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>';
 					}
 				?>
-				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>
+			<!-- 	<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/> -->
 				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
 			</div>
 		</form>
