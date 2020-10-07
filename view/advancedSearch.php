@@ -98,15 +98,17 @@ if(isset($a_s)){
 		} ?>
 		<input type="submit" class="btn btn-success" name="a_search" id="a_search" value="Execute">
 	</form>
+	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
 </div>
 
 <!-- Fin de la partie recherche -->
 
 
 <!-- Tableau des résulats -->
-<div id='result' align="center">
-	<?php if(isset($a_s)){
-		echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
+
+<?php if(isset($a_s)){?>
+	<div id='result' align="center">
+		<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
 					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 					else{echo $nbDocs;}
 					echo ' of '.$nbDocs.') :</h5><br>'?>
@@ -134,9 +136,10 @@ if(isset($a_s)){
 			<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
 			<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="50">50</label>
 		</div>
-	<?php } ?>
+	</div>
+<?php } ?>
 	
-</div>
+
 
 <!-- Fin du tableau des résultats -->
 

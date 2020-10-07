@@ -39,6 +39,14 @@ input[type="submit"]{
 	margin-left: 90%;
 }
 
+/*Bouton Reinit*/
+
+.btn.bg-secondary{
+	position: absolute;
+	margin-left: 40.5%;
+	margin-top: -1.94%;
+}
+
 /*Fin de la partie Recherche*/
 
 
