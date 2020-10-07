@@ -18,7 +18,7 @@
 
 //Fil d'Ariane
 
-echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
+echo "<div class='container col-lg-8 sticky-top' style='margin-left: 100px;'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($_GET['serve'])){
@@ -49,7 +49,7 @@ echo "<nav class='nav sticky-top' style='margin-left: 100px;'>";
 			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$_GET['doc'].'</li>';
 		}
 	echo '</ol>';
-echo '</nav>';
+echo '</div>';
 
 //Fin fil d'Ariane
 
