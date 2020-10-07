@@ -1,0 +1,92 @@
+
+@font-face {
+  font-family: 'Rubik-Light';
+  src: url(../font/rubik/Rubik-Light.ttf);
+
+}
+
+
+/*Partie Recherche*/
+
+
+/*Conteneur*/
+
+.mt-1{
+	background-color: #f7f7f7;
+	width: 50%;
+	padding: 1%;
+	margin: auto;
+	color : #3F3B3B;
+	border-radius: 5px;
+}
+
+/*Textarea*/
+
+textarea{
+	border-color: #ececec;
+	color: white;
+	background-color: #3F3B3B;
+	border-radius: 5px;
+	padding: 1%;
+	font-size: 20px;
+	width: 100%;
+	font-family: courier;
+}
+
+/*Bouton Execute*/
+
+input[type="submit"]{
+	margin-left: 90%;
+}
+
+/*Fin de la partie Recherche*/
+
+
+/*Tableau des résultats*/
+
+#result{
+	background-color: #f7f7f7;
+	width: 50%;
+	padding: 1%;
+	margin: auto;
+	margin-top: 1%;
+	color : #3F3B3B;
+	border-radius: 5px;
+}
+
+table{
+	width: 100%;
+	margin-bottom: 1%;
+	/*border-collapse: separate;
+	border-spacing: 5px;*/
+}
+
+h5{
+	background-color: #f7f7f7;
+	text-align: center;
+	color: #4CAF50;
+	font-family: 'Rubik-Light', sans-serif; 
+	font-size: 18px;
+	font-weight: bold;
+}
+
+td{
+	text-align: center;
+}
+
+td.json{
+	text-align: left;
+}
+
+pre{
+	color : #3F3B3B;
+	width: 41%;
+	margin: auto;
+	padding: 1%;
+}
+
+td > a{
+	color:#3F3B3B;
+}
+
+/*Fin du tableau des résultats*/
