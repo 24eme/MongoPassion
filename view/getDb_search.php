@@ -21,7 +21,7 @@
 
 //Fil d'Ariane
     
-	echo "<div class='nav container  col-lg-8 sticky-top'  style='margin-left: 100px;'>";
+	echo "<div class='container  col-lg-8 sticky-top'  style='margin-left: 100px;'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($_GET['serve'])){
@@ -58,7 +58,7 @@
 		}
 	echo '</ol>';
 
-echo '<div>';
+echo '</div>';
 
 //Fin fil d'Ariane
 
@@ -71,10 +71,10 @@ echo '<div>';
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
 		<div class="input-group mb-3">
-	<input type="search" class="form-control border border-success mr" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
-	<input class="btn bg-success text-light mr-2 " type="submit" name="search" id="search" value="Search">
-	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
-</div>
+			<input type="search" class="form-control border border-success mr" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
+			<input class="btn bg-success text-light mr-2 " type="submit" name="search" id="search" value="Search">
+			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
+		</div>
 	</form>
 </div>
 <br>
@@ -117,8 +117,8 @@ echo '<div>';
 							//Affichage du tableau
 
 							echo '<tr>';
-							echo '<td><a href="'.$link_v.'"><i class="mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
-							echo '<td><a href="'.$link_c.'">'.$coll.'</a></td>';
+							echo '<td><a class="text-dark" href="'.$link_v.'"><i class="mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
+							echo '<td><a class="text-dark" href="'.$link_c.'">'.$coll.'</a></td>';
 							echo "<td id='id'><button  class='btn'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 							echo "<td id='edit'><button  class='btn'><a class='text-success'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
 							echo  "<td id='suppr'><button  class='btn'><a class='text-danger'href=".$link_d." onclick='return confirmDelete()' ><i class='fa fa-trash'></i></a></button></td>";

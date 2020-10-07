@@ -302,7 +302,7 @@ echo ' of '.$nbDocs.'</h2>';
 						}
 
 					}
-					echo "<td><button  class='btn py-0'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
+					echo "<td class='text-center'><button  class='btn py-0'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
 					echo '</tr>';
 
 					// echo '<tr>';
