@@ -226,6 +226,8 @@
 
         $link_search = '?'.$_SERVER['QUERY_STRING'];
 
+        $link_reinit = '?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'';
+
         require('view/advancedSearch.php');
 
     }

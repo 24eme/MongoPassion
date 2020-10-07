@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>".$coll."</title>"?>
+	<?php echo "<title>Advanced Search</title>"?>
 	<meta charset="UTF-8">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -10,7 +10,7 @@
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
-	<link href="public/css/getCollection.css" rel="stylesheet" type="text/css">
+	<link href="public/css/advancedSearch.css" rel="stylesheet" type="text/css">
 	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
 
  	<script src="public/js/radio.js"></script>
@@ -73,7 +73,14 @@ if(isset($a_s)){
 
 <!-- Titre de la page -->
 
-<h1 class='title font-weight-bold'align="center"><i class="fa fa-fw fa-search"></i>Recherche avancée</h1>
+<?php
+	if(isset($a_s)){
+		echo '<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>Search results for "'.$a_s.'"</h1>';
+	}
+	else{
+?>
+<h1 class='title font-weight-bold'align="center"><i class="fa fa-fw fa-search"></i>Advanced Search</h1>
+<?php } ?>
 
 <!-- Fin du titre de la page -->
 
@@ -91,47 +98,48 @@ if(isset($a_s)){
 		} ?>
 		<input type="submit" class="btn btn-success" name="a_search" id="a_search" value="Execute">
 	</form>
+	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
 </div>
 
 <!-- Fin de la partie recherche -->
 
 
 <!-- Tableau des résulats -->
-<div>
-	<?php if(isset($a_s)){?>
-		<table>
+
+<?php if(isset($a_s)){?>
+	<div id='result' align="center">
+		<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
+					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+					else{echo $nbDocs;}
+					echo ' of '.$nbDocs.') :</h5><br>'?>
+		<table class="table table-sm table-striped">
 			<?php if(empty($result)){
 				echo 'No document matches your search';
 			}
 			else{
 			?>
-				<tr>
-					<?php echo '<th>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
-					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-					else{echo $nbDocs;}
-					echo ' of '.$nbDocs.') :</th>'?>
-				</tr>
 				<?php
 				foreach ($result as $key=>$entry) {
 					$link_v = '?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
 					echo '<tr><td><a href="'.$link_v.'">'.$entry['_id'].'</a></td></tr>';
 					if(isset($docs)){
-						echo '<tr><td><pre>'.$docs[$key].'</pre></td></tr>';
+						echo '<tr><td class="json"><pre>'.$docs[$key].'</pre></td></tr>';
 					}
 				}
 			} 
 			?>
 		</table>
-
-	<?php } ?>
-	<div id="radio" class="text-center font-weight-bold">
-		<i class="fa fa-fw fa-book mr-3"></i>
-		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="10">10</label>
-		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="20">20</label>
-		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
-		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="50">50</label>
+		<div id="radio" class="text-center font-weight-bold">
+			<i class="fa fa-fw fa-book mr-3"></i>
+			<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="10">10</label>
+			<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="20">20</label>
+			<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
+			<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="50">50</label>
+		</div>
 	</div>
-</div>
+<?php } ?>
+	
+
 
 <!-- Fin du tableau des résultats -->
 
@@ -218,7 +226,7 @@ else{
 
 echo '</ul>
     </nav>
-</footer>';
+</footer><br>';
 }
 ?>
 

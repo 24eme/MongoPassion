@@ -146,10 +146,12 @@ echo ' of '.$nbDocs.'</h2>';
 	
 			<i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
 		</button>
-		<button type="button" class="btn btn-success"  onclick="myFunctionCommandGet()" data-toggle="modal" data-target="#myModal2">
-		  <i class="fa fa-fw fa-search"></i>Search by command
-		</button>
-		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-history"></i>Reinit</a></button>'; ?> 
+		<?php echo '<a href="?action=advancedSearch&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">' ?>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
+				<i class="fa fa-fw fa-search"></i>Search by command
+			</button>
+		</a>
+		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
 	</div>
 	
 
