@@ -48,3 +48,15 @@
   text-decoration: none !important;
 }
 
+
+pre#doc_text{
+	background-color: #ececec;
+	color : #3F3B3B;
+	width: 50%;
+	margin:auto;
+	padding: 10px;
+	min-height: 600px;
+	border-radius: 10px;
+	margin-top: 20px;
+
+}

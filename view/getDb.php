@@ -76,12 +76,12 @@ echo '</div>';
 
 <nav class="mb-3">
 	<div id="options" class="text-center mb-3">
-		<button type="button" class="btn btn-dark"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
-			  <i class="fa fa-fw fa-server"></i> New Collection 
+		<button type="button" class="btn btn-dark mr-5"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
+			  <i class="fa fa-fw fa-plus"></i> New Collection 
 		</button>
 
 		<button type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()" data-toggle="modal" data-target="#myModal2">
-			  <i class="fa fa-fw fa-server"></i> Search in all collections
+			   <i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
 		</button>
 	</div>
 	<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
