@@ -1,8 +1,16 @@
 <?php
 
-function getManager($serve){
+function getManager($serve)
+{
 	$manager = new MongoDB\Driver\Manager('mongodb://'.$serve.':27017');
 	return $manager;
+}
+
+function getClient($serve)
+{
+	require 'vendor/autoload.php';
+	$client = new MongoDB\Client('mongodb://'.$serve.':27017');
+	return $client;
 }
 
 function formatResult($result)
@@ -69,33 +77,29 @@ function testProjection($search,$serve,$db)
 
 }
 
-function getDocument()
+function getDocument($doc,$type_id,$coll,$db,$serve)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 
-	// $documents = $client->$db->request("db.getCollection(".$collection.").find(".$requete")";
-
-	if(isset($_GET['type_id'])){
-		if(htmlspecialchars($_GET['type_id'])=='object'){
-			$id = new MongoDB\BSON\ObjectId(htmlspecialchars($_GET['doc']));
+	if(isset($type_id)){
+		if($type_id=='object'){
+			$id = new MongoDB\BSON\ObjectId($doc);
 		}
 		else{
-			$id = htmlspecialchars($_GET['doc']);
+			$id = $doc;
 		}
 	}
 	else{
 		try{
-			$id = new MongoDB\BSON\ObjectId(htmlspecialchars($_GET['doc']));
+			$id = new MongoDB\BSON\ObjectId($doc);
 		}
 		catch (Exception $e){
-			$id = htmlspecialchars($_GET['doc']);
+			$id = htmlspecialchars($doc);
 		}
 	}
-	// $_SESSION['doc'] = $_GET['doc'];
 
 	$result = $collection->find(['_id'=>$id]);
 	return $result;
@@ -160,17 +164,16 @@ function getColor($num) {
 	return $doc;
 }
 
-function getLink_doc()
+function getLink_doc($a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page)
 {
-	if(isset($_GET['search'])){
-
-		$link_doc='index.php?action=traitement_uD&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&id='.$_GET['doc'].'&type_id='.$_GET['type_id'].'&search=&s_g='.$_GET['s_g'].'&page='.$_GET['search'];
-
-		$link_doc='index.php?action=traitement_uD&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&id='.htmlspecialchars($_GET['doc']).'&type_id='.htmlspecialchars($_GET['type_id']).'&search=&s_id='.htmlspecialchars($_GET['s_id']).'&s_g='.htmlspecialchars($_GET['s_g']).'&page='.htmlspecialchars($_GET['search']);
-
+	if(isset($s_g)){
+		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&s_g='.urlencode($s_g).'&page='.$page;
+	}
+	elseif(isset($a_s)){
+		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&a_s='.urlencode($a_s).'&page='.$page;
 	}
 	else{
-		$link_doc='index.php?action=traitement_uD&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&id='.htmlspecialchars($_GET['doc']).'&type_id='.htmlspecialchars($_GET['type_id']).'&page='.htmlspecialchars($_GET['page']);
+		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&page='.$page;
 	}
 	return $link_doc;
 }
@@ -197,15 +200,15 @@ function searchError_doc_id()
 }
 
 
-function getUpdate_doc()
+function getUpdate_doc($doc_text,$date_array,$up_date_array)
 {
-	$dec = json_decode(strip_tags($_POST['doc_text']));
+	$dec = json_decode($doc_text);
 	$test = improved_var_export($dec);
 
 	unset($test['_id']);
 
-	$date_array = htmlspecialchars(unserialize($_POST['date_array']));
-	$up_date_array = htmlspecialchars(unserialize($_POST['up_date_array']));
+	$date_array = htmlspecialchars($date_array);
+	$up_date_array = htmlspecialchars($up_date_array);
 	if(!empty($date_array)){
 		foreach ($date_array as $x=>$x_value) {
 			$temp = strtotime($test[$x]['date'])*1000;
@@ -218,23 +221,23 @@ function getUpdate_doc()
 	return $test;
 }
 
-function getDoc_id()
+function getDoc_id($doc,$type_id)
 {
-	if(htmlspecialchars($_GET['type_id'])=='object'){
-		$id = new MongoDB\BSON\ObjectId($_GET['id']);
+	if($type_id=='object'){
+		$id = new MongoDB\BSON\ObjectId($doc);
 	}
 	else{
-		$id = htmlspecialchars($_GET['id']);
+		$id = htmlspecialchars($doc);
 	}
 	return $id;
 }
 
-function updateDoc($id,$doc)
+function updateDoc($id,$doc,$serve,$db,$coll)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+	$client = new MongoDB\Client('mongodb://'.$serve.':27017');
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 	$collection->updateOne(
     [ '_id' => $id ],

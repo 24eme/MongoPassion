@@ -2,35 +2,66 @@
 
     require('model/model.php');
 
-    function editDocument()
+    function editDocument() //Fonction qui gère l'affichage de la page editDocument
     {
-	    $result = getDocument();
-	    $link_doc = getLink_doc();
+	    $doc = htmlspecialchars($_GET['doc']);
+        if(isset($_GET['type_id'])){
+            $type_id = htmlspecialchars($_GET['type_id']);
+        }
+        $coll = htmlspecialchars($_GET['coll']);
+        $db = htmlspecialchars($_GET['db']);
+        $serve = htmlspecialchars($_GET['serve']);
+        $page = htmlspecialchars($_GET['page']);
+
+        if(isset($_GET['s_g'])){
+            $s_g = htmlspecialchars($_GET['s_g']);
+        }
+        elseif(isset($_GET['a_s'])){
+            $a_s = htmlspecialchars($_GET['a_s']);
+        }
+
+        $result = getDocument($doc,$type_id,$coll,$db,$serve);
+	    $link_doc = getLink_doc($a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page);
+
 	    require('view/editDocument.php');
-    }
-
-
-    function testJSON()
-    {
-
-        $result = getDocument();
-        $link_doc = getLink_doc();
-        require('view/testJSON.php');
     }
 
 
     function traitement_uD()
     {
-    	try{
-	    	$update = getUpdate_doc();
-	    	$id = getDoc_id();
-	    	updateDoc($id,$update);
+    	$doc = htmlspecialchars($_GET['id']);
+        if(isset($_GET['type_id'])){
+            $type_id = htmlspecialchars($_GET['type_id']);
+        }
+        $coll = htmlspecialchars($_GET['coll']);
+        $db = htmlspecialchars($_GET['db']);
+        $serve = htmlspecialchars($_GET['serve']);
+        $page = htmlspecialchars($_GET['page']);
 
-	    	if(isset($_GET['search'])){
-                header('Location: index.php?action=getCollection_search&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&s_id='.htmlspecialchars($_GET['s_id']).'&s_g='.htmlspecialchars($_GET['s_g']).'&page='.htmlspecialchars($_GET['page']).'');
+        if(isset($_GET['s_g'])){
+            $s_g = htmlspecialchars($_GET['s_g']);
+        }
+        elseif(isset($_GET['a_s'])){
+            $a_s = htmlspecialchars($_GET['a_s']);
+        }
+
+        $doc_text = strip_tags($_POST['doc_text']);
+        $date_array = unserialize($_POST['date_array']);
+        $up_date_array = unserialize($_POST['up_date_array']);
+
+        try{
+	    	$update = getUpdate_doc($doc_text,$date_array,$up_date_array);
+	    	$id = getDoc_id($doc,$type_id);
+	    	updateDoc($id,$update,$serve,$db,$coll);
+
+	    	if(isset($s_g)){
+                header('Location: index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'&page='.$page.'');
+            }
+            elseif (isset($a_s)) {
+                header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$page.'');
             }
             else{
-                header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&page='.htmlspecialchars($_GET['page']).'');
+                header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'');
             }
 	    }
         catch(Exception $e){
@@ -108,7 +139,13 @@
     function viewDocument()
     {
     	try{
-            $result = getDocument();
+            $doc = htmlspecialchars($_GET['doc']);
+            $type_id = htmlspecialchars($_GET['type_id']);
+            $coll = htmlspecialchars($_GET['coll']);
+            $db = htmlspecialchars($_GET['db']);
+            $serve = htmlspecialchars($_GET['serve']);
+
+            $result = getDocument($doc,$type_id,$coll,$db,$serve);
             require('view/viewDocument.php');
         }
         catch(Exception $e){
