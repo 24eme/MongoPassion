@@ -147,10 +147,8 @@ if(isset($a_s)){
 <!-- Pagination -->
 
 <?php
-if($nbDocs==0){
-	echo '<footer></footer>';
-}
-else{	
+
+if(isset($nbDocs)){	
 	echo '<footer>';
 	    echo '<nav aria-label="pagination">
 	            <ul class="pagination">';

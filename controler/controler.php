@@ -3,7 +3,9 @@
     require('model/model.php');
 
     function editDocument() //Fonction qui gère l'affichage de la page editDocument
-    {
+    {   
+        //Création des variables
+
 	    $doc = htmlspecialchars($_GET['doc']);
         if(isset($_GET['type_id'])){
             $type_id = htmlspecialchars($_GET['type_id']);
@@ -20,7 +22,12 @@
             $a_s = htmlspecialchars($_GET['a_s']);
         }
 
+        //Récupération du document au format curseur
+
         $result = getDocument($doc,$type_id,$coll,$db,$serve);
+
+        // Création du lien d'envoi du formulaire
+
 	    $link_doc = getLink_doc($a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page);
 
 	    require('view/editDocument.php');
@@ -72,10 +79,11 @@
     function getCollection()
     {
     	try{
-            if(isset($_GET['coll'])){
+            if(isset($_GET['coll']) and isset($_GET['serve']) and isset($_GET['db'])){
             	$coll=htmlspecialchars($_GET['coll']);
+                $serve=htmlspecialchars($_GET['serve']);
+                $db=htmlspecialchars($_GET['db']);
             }
-
         	else{
         		header('Location: index.php?action=error');
         	}
@@ -86,18 +94,18 @@
             else{
                 $bypage = 20;
             }
-            
-        	$nbDocs = countDocs();
+
+            if(isset($_GET['page'])){
+                $page = htmlspecialchars($_GET['page']);
+            }
+            else{
+                $page = 1;
+            }
+
+        	$nbDocs = countDocs($serve,$db,$coll);
         	$nbPages = getNbPages($nbDocs,$bypage);
 
-        	if(isset($_GET['page'])){
-        		$page = htmlspecialchars($_GET['page']);
-        	}
-        	else{
-        		$page = 1;
-        	}
-
-    	    $docs = getDocs($page,$bypage);
+    	    $docs = getDocs($page,$bypage,$serve,$db,$coll);
 
         	require('view/getCollection.php');
         }
@@ -113,10 +121,13 @@
 
     function traitement_nD()
     {
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+
         try{
         	$doc = getNew_doc();
         	insertDoc($doc);
-        	header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'');
+        	header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.htmlspecialchars($_GET['coll']).'');
         }
         catch(Exception $e){
             echo $e;

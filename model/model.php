@@ -263,12 +263,11 @@ function init_json($doc){
 	return $doc;
 }
 
-function getDocs($page,$bypage)
+function getDocs($page,$bypage,$serve,$db,$coll)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -278,12 +277,11 @@ function getDocs($page,$bypage)
 	return $result;
 }
 
-function countDocs()
+function countDocs($serve,$db,$coll)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 	$result = $collection->count([]);
 	return $result;
