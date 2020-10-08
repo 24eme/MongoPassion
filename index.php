@@ -69,9 +69,6 @@ try{
             case 'home':
                 home();
             break;
-            case 'thread':
-                thread();
-            break;
             case 'advancedSearch':
                 advancedSearch();
             break;

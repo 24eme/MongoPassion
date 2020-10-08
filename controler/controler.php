@@ -308,13 +308,17 @@
 
     function renameCollection()
     {
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+
         try{
             $newname = str_replace(' ', '_', htmlspecialchars($_POST['newname']));
-            renameCollec($newname);
-            header('Location: index.php?action=editCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.$newname.'');
+            renameCollec($newname,$serve,$db,$coll);
+            header('Location: index.php?action=editCollection&serve='.$serve.'&db='.$db.'&coll='.$newname.'');
         }
         catch(Exception $e){
-            echo "<script>alert(\"Le nouveau nom est identique à l'ancien\");document.location.href = 'index.php?action=getDb&db_id=".htmlspecialchars($_GET['db'])."';</script>";
+            echo "<script>alert(\"Le nouveau nom est identique à l'ancien\");document.location.href = 'index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$coll."';</script>";
         }
     }
 
@@ -325,45 +329,57 @@
 
     function createCollection()
     {
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+
         try{
             $newname = str_replace(' ', '_', htmlspecialchars($_POST['name']));
-            createCollec($newname);
-            header('Location: index.php?action=getDb&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'');
+            createCollec($newname,$serve,$db);
+            header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
         }
         catch(Exception $e){
-            echo "<script>alert(\"Cette collection existe déjà\");document.location.href = 'index.php?action=getDb&serve=".htmlspecialchars($_GET['serve'])."&db=".htmlspecialchars($_GET['db'])."';</script>";
-            echo $e;
+            echo "<script>alert(\"Cette collection existe déjà\");document.location.href = 'index.php?action=getDb&serve=".$serve."&db=".$db."';</script>";
         }
     }
 
     function deleteCollection()
     {
-        deleteColl();
-        header('Location: index.php?action=getDb&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'');
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+
+        deleteColl($serve,$db,$coll);
+        header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
     }
 
     function moveCollection()
     {
-        $db = htmlspecialchars($_POST['newdb']);
-        moveCollec($db);
-        header('Location: index.php?action=getDb&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'');
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+
+        $newdb = htmlspecialchars($_POST['newdb']);
+
+        moveCollec($newdb,$serve,$db,$coll);
+        header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
     }
 
     function getDb()
     {
-    	if(isset($_GET['db']))
-    	$db=htmlspecialchars($_GET['db']);
-
+    	if(isset($_GET['db']) and isset($_GET['serve'])){
+        	$db=htmlspecialchars($_GET['db']);
+            $serve=htmlspecialchars($_GET['serve']);
+        }
     	else{
     		header('Location: index.php?action=error');
     	}
-    	$collections = getCollections($db);
+    	$collections = getCollections($serve,$db);
     	require('view/getDb.php');
     }
 
     function getDb_search()
     {
-        if(isset($_GET['db'])){
+        if(isset($_GET['db']) and isset($_GET['serve'])){
             if(isset($_POST['recherche_db'])){
                 $search = htmlspecialchars($_POST['recherche_db']);
             }
@@ -371,13 +387,14 @@
                 $search = urldecode(htmlspecialchars($_GET['search_db']));
             }
             $db = htmlspecialchars($_GET['db']);
+            $serve=htmlspecialchars($_GET['serve']);
         }
 
         else{
             header('Location: index.php?action=error');
         }
 
-        $docs = getSearch_db($search,$db);
+        $docs = getSearch_db($search,$db,$serve);
 
         $nbDocs = 0;        
 
@@ -405,19 +422,19 @@
         	}
         	elseif(isset($_POST['serve'])){
         		$serve=htmlspecialchars($_POST['serve']);
-        		if(!in_array(htmlspecialchars($_POST['serve']), $serve_list)){
+        		if(!in_array($serve, $serve_list)){
         			array_push($serve_list, $serve);
                     setcookie('serve_list',json_encode($serve_list));
         		}
         	}
-        	elseif(!isset($_SESSION['serve'])){
+        	else{
         		header('Location: index.php?action=error');
         	}
         	$dbs = getDbs($serve);
         	require('view/getServer.php');
         }
         catch(Exception $e){
-            if (($key = array_search(htmlspecialchars($_POST['serve']), $serve_list)) !== false) {
+            if (($key = array_search($serve, $serve_list)) !== false) {
                 unset($serve_list[$key]);
                 setcookie('serve_list',json_encode($serve_list));
                 $serve='localhost';
@@ -429,15 +446,4 @@
     function home()
     {
     	require('view/home.php');
-    }
-
-    function thread()
-    {
-        try{
-            $link_thread = getLink_thread();
-                header('Location: '.$link_thread.'');
-        }
-        catch(Exception $e){
-            echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
-        }
     }

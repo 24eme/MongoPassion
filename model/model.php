@@ -332,7 +332,8 @@ function deleteDoc($serve,$db,$coll,$doc,$type_id)
 	$collection->deleteOne(['_id'=>$id]);
 }
 
-function getSearch_id($search,$page,$bypage,$serve,$db,$coll){
+function getSearch_id($search,$page,$bypage,$serve,$db,$coll)
+{
 	$client = getClient($serve);
 	$db = strval($db);
 	$collec = strval($coll);
@@ -356,7 +357,8 @@ function getSearch_id($search,$page,$bypage,$serve,$db,$coll){
 	return $result;
 }
 
-function getSearch_g($search,$page,$bypage,$serve,$db,$coll){
+function getSearch_g($search,$page,$bypage,$serve,$db,$coll)
+{
 	$client = getClient($serve);
 	$db = strval($db);
 	$collec = strval($coll);
@@ -380,7 +382,6 @@ function getSearch_g($search,$page,$bypage,$serve,$db,$coll){
 }
 
 function getSearch($search_g,$page,$bypage,$serve,$db,$coll){
-
 	if ($search_g !=='') {
 		$tab_search = explode(':', $search_g);
 		if (count($tab_search) === 2) {
@@ -608,10 +609,9 @@ function countSpecialSearch($search)
 	return $result;
 }
 
-function getCollections($db)
+function getCollections($serve,$db)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$client = getClient($serve);
 	$database = $client->$db;
 
 	$result = $database->listCollections();
@@ -619,10 +619,9 @@ function getCollections($db)
 	return $result;
 }
 
-function getSearch_db($search,$db)
+function getSearch_db($search,$db,$serve)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$client = getClient($serve);
 	$database = $client->$db;
 
 	$collections = $database->listCollections();
@@ -647,119 +646,50 @@ function getSearch_db($search,$db)
 
 function getDbs($serve)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($serve).':27017');
+	$client = getClient($serve);
 
 	$result = $client->listDatabases();
 
 	return $result;
 }
 
-function renameCollec($newName)
+function renameCollec($newName,$serve,$db,$coll)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$client = getClient($serve);
 
 	$database = $client->admin;
 
-	$database->command(array('renameCollection'=>htmlspecialchars($_GET['db']).'.'.htmlspecialchars($_GET['coll']),'to'=>htmlspecialchars($_GET['db']).'.'.$newName));
+	$database->command(array('renameCollection'=>$db.'.'.$coll,'to'=>$db.'.'.$newName));
 }
 
-function createCollec($name)
+function createCollec($name,$serve,$db)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$client = getClient($serve);
 
-	$db = strval(htmlspecialchars($_GET['db']));
+	$db = strval($db);
 
 	$database = $client->$db;
 
 	$database->createCollection($name);
 }
 
-function deleteColl()
+function deleteColl($serve,$db,$coll)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$client = getClient($serve);
 
-	$db = strval(htmlspecialchars($_GET['db']));
+	$db = strval($db);
 
 	$database = $client->$db;
 
-	$database->dropCollection(htmlspecialchars($_GET['coll']));
+	$database->dropCollection(htmlspecialchars($coll));
 }
 
 
-function moveCollec($db)
+function moveCollec($newdb,$serve,$db,$coll)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
+	$client = getClient($serve);
 
 	$database = $client->admin;
 
-	$database->command(array('renameCollection'=>htmlspecialchars($_GET['db']).'.'.htmlspecialchars($_GET['coll']),'to'=>$db.'.'.htmlspecialchars($_GET['coll'])));
+	$database->command(array('renameCollection'=>$db.'.'.$coll,'to'=>$newdb.'.'.$coll));
 }
-
-function getLink_thread()
-{
-	if(isset($_POST['serve_thread']) and $_POST['serve_thread']!= ''){
-		$action = 'getServer';
-	}
-	if(isset($_POST['db_thread']) and $_POST['db_thread']!= ''){
-		$action = 'getDb';
-	}
-	if(isset($_POST['coll_thread']) and $_POST['coll_thread']!= ''){
-		$action = 'getCollection';
-	}
-	if(isset($_POST['doc_thread']) and $_POST['doc_thread']!= ''){
-		$action = 'viewDocument';
-	}
-
-	$link = $link='index.php?action='.$action;
-
-	$error = false;
-
-	switch ($action) 
-	{
-		case 'getServer':
-			break;
-		case 'getDb':
-			if (!(isset($_POST['serve_thread']) and $_POST['serve_thread']!= '')) {
-				$error = true;
-				header('Location: index.php?action=error');
-			}
-			break;
-		case 'getCollection':
-			if (!(isset($_POST['serve_thread']) and $_POST['serve_thread']!= '') or !(isset($_POST['db_thread']) and $_POST['db_thread']!= '')) {
-				$error = true;
-				header('Location: index.php?action=error');
-			}
-			break;
-		case 'viewDocument':
-			if (!(isset($_POST['serve_thread']) and $_POST['serve_thread']!= '') or !(isset($_POST['db_thread']) and $_POST['db_thread']!= '') or !(isset($_POST['coll_thread']) and $_POST['coll_thread']!= '')) {
-				$error = true;
-				header('Location: index.php?action=error');
-			}
-			break;
-	}
-
-	if($error){
-		return 'index.php?action=error';
-	}
-
-	if(isset($_POST['serve_thread']) and $_POST['serve_thread']!= ''){
-		$link=$link.'&serve='.htmlspecialchars($_POST['serve_thread']);
-	}
-	if(isset($_POST['db_thread']) and $_POST['db_thread']!= ''){
-		$link=$link.'&db='.htmlspecialchars($_POST['db_thread']);
-	}
-	if(isset($_POST['coll_thread']) and $_POST['coll_thread']!= ''){
-		$link=$link.'&coll='.htmlspecialchars($_POST['coll_thread']);
-	}
-	if(isset($_POST['doc_thread']) and $_POST['doc_thread']!= ''){
-		$link=$link.'&doc='.htmlspecialchars($_POST['doc_thread']).'&page=1';
-	}
-
-	return $link;
-}
-
