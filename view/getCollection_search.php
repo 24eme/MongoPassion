@@ -244,13 +244,15 @@ echo ' of '.$nbDocs.'</h2>';
 				// 	else{
 				// 	 $id = $doc['_id'];
 				// 	}
-				echo '<tr>';
+				echo '<tr class="bg-dark text-light">';
 				echo '<th class="text-center">Id</th>';
+				$keys = array();
 				$i=0;
 					foreach ($docs[0] as $key => $value) {
 					$type = gettype($value);
 					if ($key !== '_id' && $type !=='object') {
 						 echo '<th class="text-center">'.$key.'</th>';
+						  array_push($keys, $key);
 	                	 $i++;
 	                 	if($i==3){
 	                 		break;
@@ -287,21 +289,13 @@ echo ' of '.$nbDocs.'</h2>';
 
 					//Affichage du tableau
 
-					echo "<td id='d'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
+					echo "<td class='text-center' id='d'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
+
+					foreach ($keys as $k) {
+					echo '<td class="text-center">'.(array_key_exists($k, $doc) ? $doc[$k] : '').'</td>';	
+
+			        }
 				
-
-					$i=0;
-					foreach ($doc as $key => $value) {
-						$type = gettype($value);
-						if ($key !== '_id' && $type !=='object') {
-							echo '<td class="text-center">'.$value.'</td>';	
-			                 $i++;
-			                 if($i==3){
-			                 	break;
-			                 }
-						}
-
-					}
 					echo "<td class='text-center'><button  class='btn py-0'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
 					echo '</tr>';
 
