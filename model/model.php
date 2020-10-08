@@ -97,7 +97,7 @@ function getDocument($doc,$type_id,$coll,$db,$serve)
 			$id = new MongoDB\BSON\ObjectId($doc);
 		}
 		catch (Exception $e){
-			$id = htmlspecialchars($doc);
+			$id = $doc;
 		}
 	}
 
@@ -288,48 +288,54 @@ function countDocs($serve,$db,$coll)
 
 }
 
-function getNew_doc()
+function getNew_doc($doc_text)
 {
-	$dec = json_decode(strip_tags($_POST['doc_text']));
+	$dec = json_decode($doc_text);
 	$test = improved_var_export($dec);
-	var_dump($test);
 	return $test;
 }
 
-function insertDoc($doc)
+function insertDoc($doc,$serve,$db,$coll)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 
 	$collection->insertOne($doc);
 }
 
-function deleteDoc()
+function deleteDoc($serve,$db,$coll,$doc,$type_id)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 
-	if($_GET['type_id']=='object'){
-		$id = new MongoDB\BSON\ObjectId(htmlspecialchars($_GET['doc']));
+	if(isset($type_id)){
+		if($type_id=='object'){
+			$id = new MongoDB\BSON\ObjectId($doc);
+		}
+		else{
+			$id = $doc;
+		}
 	}
 	else{
-		$id = htmlspecialchars($_GET['doc']);
+		try{
+			$id = new MongoDB\BSON\ObjectId($doc);
+		}
+		catch (Exception $e){
+			$id = $doc;
+		}
 	}
 
 	$collection->deleteOne(['_id'=>$id]);
 }
 
-function getSearch_id($search,$page,$bypage){
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+function getSearch_id($search,$page,$bypage,$serve,$db,$coll){
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -350,11 +356,10 @@ function getSearch_id($search,$page,$bypage){
 	return $result;
 }
 
-function getSearch_g($search,$page,$bypage){
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+function getSearch_g($search,$page,$bypage,$serve,$db,$coll){
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 
 	$skip = ($page-1)*$bypage;
@@ -374,8 +379,7 @@ function getSearch_g($search,$page,$bypage){
 	return $result;
 }
 
-// function getSearch($search_id,$search_g,$page,$bypage){
-function getSearch($search_g,$page,$bypage){
+function getSearch($search_g,$page,$bypage,$serve,$db,$coll){
 
 	if ($search_g !=='') {
 		$tab_search = explode(':', $search_g);
@@ -389,52 +393,10 @@ function getSearch($search_g,$page,$bypage){
 		$key = trim($key);
 		$value = trim($value);
 		if ($key === '_id') {
-			// var_dump($key, $value);
-			$result = getSearch_id($value,$page,$bypage);
+			$result = getSearch_id($value,$page,$bypage,$serve,$db,$coll);
 		} else {
-			$result = getSearch_g($search_g,$page,$bypage);
+			$result = getSearch_g($search_g,$page,$bypage,$serve,$db,$coll);
 		}
-	}
-	// if($search_id ==''){
-
-	// 	$result = getSearch_g($search_g,$page,$bypage);
-	// }
-
-	// else if($search_g=='field : content[...]'){
-	// 	$result = getSearch_id($search_id,$page,$bypage);
-	// }
-
-	else{
-
-		require 'vendor/autoload.php';
-		$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-		$db = strval(htmlspecialchars($_GET['db']));
-		$collec = strval(htmlspecialchars($_GET['coll']));
-		$collection = $client->$db->$collec;
-
-		$skip = ($page-1)*$bypage;
-
-		$tab_search = explode(':', $search_g);
-
-		$tab_find = array();
-
-		foreach ($tab_search as $x) {
-			$y = trim($x);
-			array_push($tab_find, $y);
-		}
-
-		$regex = new MongoDB\BSON\Regex ($search_id);
-		$result1 = $collection->find(['_id'=>$regex,$tab_find[0] => $tab_find[1]],['skip'=>$skip,'limit'=>$bypage])->toArray();
-
-		try{
-			$test = new MongoDB\BSON\ObjectId($search_id);
-			$result2 = $collection->find(['_id'=>$test,$tab_find[0] => $tab_find[1]],['skip'=>$skip,'limit'=>$bypage])->toArray();
-		}
-		catch(Exception $e){
-			$result2 = array();
-		}
-
-		$result = array_merge($result1,$result2);
 	}
 
 	return $result;

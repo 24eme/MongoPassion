@@ -186,40 +186,6 @@ echo ' of '.$nbDocs.'</h2>';
 		</form>
 	</div>
 		<!-- Fin du formulaire de recherche par id et clé:valeur -->
-
-
-		<!-- Formulaire de recherche par commande-->
-
-<!-- 	<div id="command" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2"> -->
-	<div id="commandS" class="mt-1">   
-		<!-- <label class="font-weight-bold">Search by command: </label> -->
-		<?php echo '<form method="post" action="index.php?action=getCollection_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; ?>
-			<div class="input-group mb-3">
-					<?php
-					if(isset($s_search)){
-						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="'.$s_search.'"/>';
-					}
-					else{
-						echo '<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>';
-					}
-				?>
-			<!-- 	<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/> -->
-				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
-			</div>
-		</form>
-	</div>
-
-	<!-- Fin du formulaire de la recherche par commande -->
-
-
-
-
-	</div>
-
-	
-
-
-
 </nav>
 
 <!-- Fin de la partie recherche -->

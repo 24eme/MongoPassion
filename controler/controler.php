@@ -10,16 +10,24 @@
         if(isset($_GET['type_id'])){
             $type_id = htmlspecialchars($_GET['type_id']);
         }
+        else{
+            $type_id=null;
+        }
         $coll = htmlspecialchars($_GET['coll']);
         $db = htmlspecialchars($_GET['db']);
         $serve = htmlspecialchars($_GET['serve']);
         $page = htmlspecialchars($_GET['page']);
-
         if(isset($_GET['s_g'])){
             $s_g = htmlspecialchars($_GET['s_g']);
         }
-        elseif(isset($_GET['a_s'])){
+        else{
+            $s_g=null;
+        }
+        if(isset($_GET['a_s'])){
             $a_s = htmlspecialchars($_GET['a_s']);
+        }
+        else{
+            $a_s=null;
         }
 
         //Récupération du document au format curseur
@@ -123,11 +131,14 @@
     {
         $serve = htmlspecialchars($_GET['serve']);
         $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+
+        $doc_text = strip_tags($_POST['doc_text']);
 
         try{
-        	$doc = getNew_doc();
-        	insertDoc($doc);
-        	header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.htmlspecialchars($_GET['coll']).'');
+        	$doc = getNew_doc($doc_text);
+        	insertDoc($doc,$serve,$db,$coll);
+        	header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
         }
         catch(Exception $e){
             echo $e;
@@ -136,15 +147,45 @@
 
     function deleteDocument()
     {
-    	deleteDoc();
-    	if(isset($_GET['search'])){
-            header('Location: index.php?action=getCollection_search&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&s_id='.htmlspecialchars($_GET['s_id']).'&s_g='.htmlspecialchars($_GET['s_g']).'&page='.htmlspecialchars($_GET['search']).'');
-        }
-        elseif(isset($_GET['search_db'])){
-            header('Location: index.php?action=getDb_search&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&search_db='.htmlspecialchars($_GET['search_db']).'');
+    	$serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+        $doc = htmlspecialchars($_GET['doc']);
+        if(isset($_GET['page'])){
+            $page = htmlspecialchars($_GET['page']);
         }
         else{
-            header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'&page='.htmlspecialchars($_GET['page']).'');
+            $page = 1;
+        }
+        if(isset($_GET['type_id'])){
+            $type_id = htmlspecialchars($_GET['type_id']);
+        }
+        else{
+            $type_id=null;
+        }
+        if(isset($_GET['s_g'])){
+            $s_g = htmlspecialchars($_GET['s_g']);
+        }
+        if(isset($_GET['a_s'])){
+            $a_s = htmlspecialchars($_GET['a_s']);
+        }
+        if(isset($_GET['search_db'])){
+            $search_db = htmlspecialchars($_GET['search_db']);
+        }
+
+        deleteDoc($serve,$db,$coll,$doc,$type_id);
+
+    	if(isset($s_g)){
+            header('Location: index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'&page='.$page.'');
+        }
+        elseif(isset($search_db)){
+            header('Location: index.php?action=getDb_search&serve='.$serve.'&db='.$db.'&search_db='.$search_db.'');
+        }
+        elseif(isset($a_s)){
+            header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$page.'');
+        }
+        else{
+            header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'');
         }
     }
 
@@ -152,12 +193,17 @@
     {
     	try{
             $doc = htmlspecialchars($_GET['doc']);
-            $type_id = htmlspecialchars($_GET['type_id']);
+            if(isset($type_id)){
+                $type_id = htmlspecialchars($_GET['type_id']);
+            }
+            else{
+                $type_id = null;
+            }
             $coll = htmlspecialchars($_GET['coll']);
             $db = htmlspecialchars($_GET['db']);
             $serve = htmlspecialchars($_GET['serve']);
 
-            $result = getDocument($doc,$type_id,$coll,$db,$serve);
+            $result = getDocument($doc,$type_id,$coll,$db,$serve);;
             require('view/viewDocument.php');
         }
         catch(Exception $e){
@@ -167,6 +213,10 @@
 
     function getCollection_search()
     {
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+
         try{
         	if(isset($_GET['bypage'])){
                 $bypage = intval($_GET['bypage']);
@@ -175,57 +225,32 @@
                 $bypage = 20;
             }
 
-        	if(isset($_POST['special_search'])){
-                if(isset($_GET['page'])){
-                    $page = htmlspecialchars($_GET['page']);
-                }
-                else{
-                    $page = 1;
-                }
-                $s_search = htmlspecialchars($_POST['special_search']);
-                $docs = getSpecialSearch($s_search,$page,$bypage);
-                $nbDocs = countSpecialSearch($s_search);
-
+            if(isset($_GET['page'])){
+                $page = htmlspecialchars($_GET['page']);
             }
-            elseif (isset($_GET['s_s'])) {
-                if(isset($_GET['page'])){
-                    $page = htmlspecialchars($_GET['page']);
-                }
-                else{
-                    $page = 1;
-                }
-                $s_search = htmlspecialchars(urldecode($_GET['s_s']));
-                $docs = getSpecialSearch($s_search,$page,$bypage);
-                $nbDocs = countSpecialSearch($s_search);
-            }
-            else
-            {
-                if(isset($_GET['page'])){
-                    $page = htmlspecialchars($_GET['page']);
-                }
-                else{
-                    $page = 1; 
-                }
-                if(isset($_GET['s_g'])){
-                    $recherche_g = htmlspecialchars(urldecode($_GET['s_g']));
-                }
-                else{
-                   $recherche_g = htmlspecialchars($_POST['recherche_g']); 
-                }
-                if(isset($recherche_g)){
-                     if($recherche_g=="field : content[...]"){
-                        header('Location: index.php?action=getCollection&serve='.htmlspecialchars($_GET['serve']).'&db='.htmlspecialchars($_GET['db']).'&coll='.htmlspecialchars($_GET['coll']).'');
-                    }
-                    else{
-                        $docs = getSearch($recherche_g,$page,$bypage);
-                    }
-                }
-                else{
-                    $docs = getDocs($page,$bypage);
-                }
-                $nbDocs = countSearch($recherche_g);
+            else{
+                $page = 1; 
             }
 
+            if(isset($_GET['s_g'])){
+                $recherche_g = htmlspecialchars(urldecode($_GET['s_g']));
+            }
+            else{
+                $recherche_g = htmlspecialchars($_POST['recherche_g']); 
+            }
+
+            if(isset($recherche_g)){
+                if($recherche_g==""){
+                    header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
+                }
+                else{
+                    $docs = getSearch($recherche_g,$page,$bypage,$serve,$db,$coll);
+                }
+            }
+            else{
+                header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
+            }
+            $nbDocs = countSearch($recherche_g);
         	$nbPages = getNbPages($nbDocs,$bypage);
 
         	require('view/getCollection_search.php');
