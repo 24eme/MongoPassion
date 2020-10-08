@@ -96,9 +96,13 @@ if(isset($a_s)){
 		else{
 			echo '<textarea name="a_s" id="a_" rows="5" cols="100">db.'.$coll.'.find()</textarea>';
 		} ?>
-		<input type="submit" class="btn btn-success" name="a_search" id="a_search" value="Execute">
+		<input type="submit" class="btn btn-success float-right" name="a_search" id="a_search" value="Execute">
+	
+				<?php echo '<button class="btn bg-secondary "><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
+			
+	
 	</form>
-	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
+	
 </div>
 
 <!-- Fin de la partie recherche -->
