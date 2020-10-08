@@ -234,8 +234,7 @@ function getDoc_id($doc,$type_id)
 
 function updateDoc($id,$doc,$serve,$db,$coll)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$serve.':27017');
+	$client = getClient($serve);
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;

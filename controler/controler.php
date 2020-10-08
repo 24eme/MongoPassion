@@ -86,6 +86,7 @@
             else{
                 $bypage = 20;
             }
+            
         	$nbDocs = countDocs();
         	$nbPages = getNbPages($nbDocs,$bypage);
 
