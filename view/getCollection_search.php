@@ -35,7 +35,7 @@
 
 //Fil d'Ariane
 
-echo "<div class='container sticky-top' style='margin-left: 100px;'>";
+echo "<div class='container col-lg-7 sticky-top' >";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($_GET['serve'])){
@@ -262,7 +262,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 			        }
 				
-					echo "<td class='text-center'><button  class='btn py-0'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
+					echo "<td class='text-center'><button  class='btn py-0'><a class='text-success text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
 					echo '</tr>';
 
 					// echo '<tr>';

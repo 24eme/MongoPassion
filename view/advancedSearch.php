@@ -22,7 +22,7 @@
 
 //Fil d'Ariane
 
-echo "<div  class='container col-lg-8 sticky-top' style='margin-left: 100px;'>";
+echo "<div  class='container col-lg-7 sticky-top'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($serve)){
@@ -96,9 +96,12 @@ if(isset($a_s)){
 		else{
 			echo '<textarea name="a_s" id="a_" rows="5" cols="100">db.'.$coll.'.find()</textarea>';
 		} ?>
-		<input type="submit" class="btn btn-success" name="a_search" id="a_search" value="Execute">
+		<input type="submit" class="btn btn-success float-right" name="a_search" id="a_search" value="Execute">
+	
 	</form>
-	<?php echo '<button class="btn bg-secondary"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
+		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
+			
+	
 </div>
 
 <!-- Fin de la partie recherche -->
