@@ -22,3 +22,7 @@ body{
 #newColl{
 	display: none;
 }
+
+#searchInAllColl{
+	display: none;
+}

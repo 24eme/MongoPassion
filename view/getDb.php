@@ -58,29 +58,14 @@ echo '</div>';
 
 ?>
 
-<!-- Recherche -->
 
-<div  class="m-auto border col-lg-6 offset-lg-3 bg-light mt-1">
-	<hr>
-	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
-	
-	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
-		<div class="input-group mb-3">
-			<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
-			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
-			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-history"></i>Reinit</a></button>'; ?>
-		</div>
-	</form>
-</div>
-<br>
 
-<!-- Fin de la recherche -->
 
 
 <!-- Titre de la page -->
 
 <?php
-	echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
+	echo "<h1 align='center' class='title font-weight-bold mt-5'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
 ?>
 
 <!-- Fin du titre de la page -->
@@ -91,8 +76,12 @@ echo '</div>';
 
 <nav class="mb-3">
 	<div id="options" class="text-center mb-3">
-		<button type="button" class="btn btn-success"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
-			  <i class="fa fa-fw fa-server"></i> New Collection 
+		<button type="button" class="btn btn-dark mr-5"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
+			  <i class="fa fa-fw fa-plus"></i> New Collection 
+		</button>
+
+		<button type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()" data-toggle="modal" data-target="#myModal2">
+			   <i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
 		</button>
 	</div>
 	<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
@@ -108,6 +97,21 @@ echo '</div>';
 			</div>
 		</form>
 	</div>
+	<!-- Recherche -->
+
+<div  id="searchInAllColl" class="m-auto border col-lg-6 offset-lg-3 bg-light mt-1">
+	<hr>
+	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
+	
+	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
+		<div class="input-group mb-3">
+			<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
+			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
+			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-history"></i>Reinit</a></button>'; ?>
+		</div>
+	</form>
+</div>
+<!-- Fin de la recherche -->
 </nav>
 
 <!-- Fin du bouton nouvelle collection -->
@@ -125,7 +129,7 @@ echo '</div>';
 				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
 				echo $collection->getName();
 				echo '</a></td>';
-				echo "<td><button  class='btn  py-0'><a class='text-primary' href=index.php?action=editCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
+				echo "<td><button  class='btn  py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
 				echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$_GET['serve'].'&db='.$_GET['db']."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
 				echo '</tr>';
 			}

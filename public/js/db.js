@@ -52,7 +52,7 @@ function myFunctionCommandGet() {
 
 
   function myFunctionNewColl(){
- 
+    document.getElementById("searchInAllColl").style.display = "none";
 	var x = document.getElementById("newColl");
 	if (x.style.display === "none") {
     	x.style.display = "block";
@@ -61,6 +61,17 @@ function myFunctionCommandGet() {
     	x.style.display = "none";
     }
 
+  }
+
+function myFunctionSearchInAllCollections(){
+ document.getElementById("newColl").style.display = "none";
+	var x = document.getElementById("searchInAllColl");
+	if (x.style.display === "none") {
+    	x.style.display = "block";
+  	} 
+  	else {
+    	x.style.display = "none";
+    }
 
   }
 
