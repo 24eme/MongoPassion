@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>Edit ".$_GET['coll']."</title>"?>
+	<?php echo "<title>Edit ".$coll."</title>"?>
 
 	<meta charset="UTF-8">
 
@@ -21,32 +21,32 @@
 echo "<div class='container col-lg-7 sticky-top'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
-		if(isset($_GET['serve'])){
+		if(isset($serve)){
 			if($_GET['action']=='getServer'){
-				echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
+				echo '<li class="breadcrumb-item active">'.$serve.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i> '.$_GET['serve'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
 			}
 		}
-		if(isset($_GET['db'])){
+		if(isset($db)){
 			if($_GET['action']=='getDb'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$db.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-database"></i>'.$db.'</a></li>';
 			}
 		}
-		if(isset($_GET['coll'])){
+		if(isset($coll)){
 			if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$coll.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-server"></i>'.$coll.'</a></li>';
 			}
 		}
-		if(isset($_GET['doc'])){
-			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$_GET['doc'].'</li>';
+		if(isset($doc)){
+			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$doc.'</li>';
 		}
 	echo '</ol>';
 echo '</div>';
@@ -56,7 +56,7 @@ echo '</div>';
 
 //Titre de la page
 
-echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa-server'></i> ".$_GET['coll']."</h1>";
+echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa-server'></i> ".$coll."</h1>";
 
 ?>
 
@@ -70,17 +70,17 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa
 
 		//Renommer la collection
 
-		echo '<form method="post" action="index.php?action=renameCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
+		echo '<form method="post" action="index.php?action=renameCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; 
 		echo '<br><label>Rename Collection</label><br>';
 		echo ' <div class="input-group mb-3">';
-		echo '<input type="text" class="form-control" name="newname" id="newname" value="'.$_GET['coll'].'" required />';
+		echo '<input type="text" class="form-control" name="newname" id="newname" value="'.$coll.'" required />';
 		echo '<input type="submit" class="btn  bg-success text-light" name="rename" id="rename" value="Rename"></div>';
 
 		echo '</form><hr>';
 
 		//Déplacer la collection
 	    
-		echo '<form method="post" action="index.php?action=moveCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'">'; 
+		echo '<form method="post" action="index.php?action=moveCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; 
 		echo '<br><label>Move Collection</label>';
 		echo ' <div class="input-group mb-3">';
 		echo '<input type="text" class="form-control" name="newdb" id="newdb" placeholder="New Database" required />';
@@ -89,7 +89,7 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa
 
 		//Bouton de retour
 
-		echo '<br><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><button class="return btn btn-primary font-weight-bold">< Database</button></a>'; 
+		echo '<br><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary font-weight-bold">< Database</button></a>'; 
 	?>
 </div>
 

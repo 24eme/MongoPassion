@@ -49,8 +49,8 @@ echo "<div  class='container col-lg-7 sticky-top'>";
 				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-server"></i>'.$coll.'</a></li>';
 			}
 		}
-		if(isset($_GET['doc'])){
-			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$_GET['doc'].'</li>';
+		if(isset($doc)){
+			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$doc.'</li>';
 		}
 	echo '</ol>';
 echo '</div>';

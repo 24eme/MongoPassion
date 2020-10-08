@@ -24,37 +24,37 @@
 	echo "<div class='container  col-lg-8 sticky-top'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
-			if(isset($_GET['serve'])){
+			if(isset($serve)){
 				if($_GET['action']=='getServer'){
-					echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
+					echo '<li class="breadcrumb-item active">'.$serve.'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i>'.$serve.'</a></li>';
 				}
 
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i> '.$_GET['serve'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
 			}
 		
-		if(isset($_GET['db'])){
+		if(isset($db)){
 			if($_GET['action']=='getDb'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$db.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-database"></i>'.$db.'</a></li>';
 			}
 		}
-		if(isset($_GET['coll'])){
+		if(isset($coll)){
 			if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$coll.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-server"></i>'.$coll.'</a></li>';
 			}
 		}
-		if(isset($_GET['doc'])){
-			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$_GET['doc'].'</li>';
+		if(isset($doc)){
+			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$doc.'</li>';
 		}
 	echo '</ol>';
 
@@ -69,11 +69,11 @@ echo '</div>';
 <div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
-	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
+	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
 		<div class="input-group mb-3">
 			<input type="search" class="form-control border border-success mr" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 			<input class="btn bg-success text-light mr-2 " type="submit" name="search" id="search" value="Search">
-			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'">Reinit</a></button>'; ?>
+			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'">Reinit</a></button>'; ?>
 		</div>
 	</form>
 </div>
@@ -109,10 +109,10 @@ echo '</div>';
 
 							//Liens des options de gestion des collections
 
-							$link_v = 'index.php?action=viewDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
-							$link_e = 'index.php?action=editDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
-							$link_d = 'index.php?action=deleteDocument&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
-							$link_c = 'index.php?action=getCollection&serve='.strip_tags($_GET['serve']).'&db='.$db.'&coll='.$coll.'';
+							$link_v = 'index.php?action=viewDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+							$link_e = 'index.php?action=editDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+							$link_d = 'index.php?action=deleteDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+							$link_c = 'index.php?action=getCollection&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'';
 
 							//Affichage du tableau
 
@@ -133,7 +133,7 @@ echo '</div>';
 	<!-- Bouton de retour -->
 
 	<?php
-		echo '<br><a href="index.php?action=getServer&serve='.strip_tags($_GET['serve']).'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+		echo '<br><a href="index.php?action=getServer&serve='.strip_tags($serve).'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
 	?>
 </div>
 

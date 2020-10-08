@@ -23,32 +23,32 @@
 echo "<div class=' container  col-lg-7 sticky-top'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
-		if(isset($_GET['serve'])){
+		if(isset($serve)){
 			if($_GET['action']=='getServer'){
-				echo '<li class="breadcrumb-item active">'.$_GET['serve'].'</li>';
+				echo '<li class="breadcrumb-item active">'.$serve.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><i class="fa fa-fw fa-desktop"></i>'.$_GET['serve'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i>'.$serve.'</a></li>';
 			}
 		}
-		if(isset($_GET['db'])){
+		if(isset($db)){
 			if($_GET['action']=='getDb'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$db.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-database"></i>'.$_GET['db'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-database"></i>'.$db.'</a></li>';
 			}
 		}
-		if(isset($_GET['coll'])){
+		if(isset($coll)){
 			if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$coll.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'"><i class="fa fa-fw fa-server"></i>'.$_GET['coll'].'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-server"></i>'.$coll.'</a></li>';
 			}
 		}
-		if(isset($_GET['doc'])){
-			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$_GET['doc'].'</li>';
+		if(isset($doc)){
+			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$doc.'</li>';
 		}
 	echo '</ol>';
 
@@ -87,7 +87,7 @@ echo '</div>';
 	<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
 		<hr>
 		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
-		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
+		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
 			<div class="input-group mb-3">
 				<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="name"  />
 
@@ -103,11 +103,11 @@ echo '</div>';
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	
-	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$_GET['serve'].'&db='.$_GET['db'].'">'; ?>
+	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
 		<div class="input-group mb-3">
 			<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
-			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$_GET['serve'].'&db='.$_GET['db'].'"><i class="fa fa-fw fa-history"></i>Reinit</a></button>'; ?>
+			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-history"></i>Reinit</a></button>'; ?>
 		</div>
 	</form>
 </div>
@@ -122,15 +122,15 @@ echo '</div>';
 <div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1 m-auto">
 	<br>
 	<table class="table table-sm table-striped">
-		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-server\"></i> Collections of ".$_GET['db']."</strong></span></h3>";
+		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-server\"></i> Collections of ".$db."</strong></span></h3>";
 		
 			foreach ($collections as $collection) {
 				echo "<tr>";
-				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
+				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
 				echo $collection->getName();
 				echo '</a></td>';
-				echo "<td><button  class='btn  py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$_GET['serve']."&db=".$_GET['db']."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
-				echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$_GET['serve'].'&db='.$_GET['db']."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
+				echo "<td><button  class='btn  py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
+				echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
 				echo '</tr>';
 			}
 		?>
@@ -139,7 +139,7 @@ echo '</div>';
 	<!-- Bouton de retour -->
 
 	<?php
-	echo '<br><a href="index.php?action=getServer&serve='.$_GET['serve'].'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+	echo '<br><a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
 	?>
 </div>
 

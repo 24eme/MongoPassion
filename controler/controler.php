@@ -124,7 +124,12 @@
 
     function createDocument()
     {
-    	require('view/createDocument.php');
+    	$serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+        $s_g = htmlspecialchars($_GET['s_g']);
+        
+        require('view/createDocument.php');
     }
 
     function traitement_nD()
@@ -324,6 +329,10 @@
 
     function editCollection()
     {
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $coll = htmlspecialchars($_GET['coll']);
+        
         require('view/editCollection.php');
     }
 
