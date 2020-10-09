@@ -114,7 +114,7 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Partie recherche -->
 
 <nav class="mb-2">
-	<div  class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+	<div  class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2">
 
 	<!-- Barre de boutons -->
 
@@ -169,7 +169,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 <div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto ">
-	<br>
+
 	<table class="table table-sm table-striped">
 		<?php 
 			echo"<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-book\"></i>Documents of ".$coll." </strong></span></h3>"; 
