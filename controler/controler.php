@@ -397,13 +397,21 @@
 
     function getDb()
     {
-    	if(isset($_GET['db']) and isset($_GET['serve'])){
-        	$db=htmlspecialchars($_GET['db']);
+    	if(isset($_GET['serve'])){
             $serve=htmlspecialchars($_GET['serve']);
         }
     	else{
     		header('Location: index.php?action=error');
     	}
+        if(isset($_GET['db'])){
+            $db=htmlspecialchars($_GET['db']);
+        }
+        elseif (isset($_POST['newdb'])) {
+            $db=htmlspecialchars($_POST['newdb']);
+        }
+        else{
+            header('Location: index.php?action=error');
+        }
     	$collections = getCollections($serve,$db);
     	require('view/getDb.php');
     }
