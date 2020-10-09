@@ -87,10 +87,10 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 
 <!-- Tableau des bases de données -->
 
-<div id="main" class="border col-lg-8 offset-lg-2 mt-5 bg-light">
+<div id="main" class="border col-lg-8 offset-lg-2 mt-2 bg-light">
 	<br>
 	<table class="table table-sm table-striped ">
-		<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-database\"></i> Databases of ".$serve."</strong></span></h3>" ?>
+		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-database\"></i> Databases of ".$serve."</strong></span></h3>" ?>
 		<?php
 			foreach ($dbs as $db) {
 				echo '<tr>';
