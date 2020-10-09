@@ -84,7 +84,7 @@ echo '</div>';
 			<i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
 		</button>
 	</div>
-	<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2" style="display: none">
+	<div id="newColl" class="border col-lg-8 offset-lg-2 bg-light m-auto" style="display: none">
 		<hr>
 		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
@@ -94,13 +94,13 @@ echo '</div>';
 			</div>
 		</form>
 	</div>
-</nav>
+
 
 <!-- Fin du bouton de recherche -->
 
 
 <!-- Recherche -->
-<div  id="searchInAllColl" class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1" style="display: none">
+<div  id="searchInAllColl" class="m-auto border  col-lg-8 offset-lg-2 bg-light" style="display: none">
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
@@ -112,12 +112,12 @@ echo '</div>';
 	</form>
 </div>
 
-
+</nav>
 <!-- Fin de la recherche -->
 
 
 <!-- Tableau des résultats de la recherche -->
-<div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1 m-auto">
+<div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto">
 	<br>
 	<table class="table table-sm table-striped">
 		<?php
