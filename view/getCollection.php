@@ -82,7 +82,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 	<!-- Formulaire de recherche par id et clé:valeur -->
 
-	<div  class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+	<div  class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2">
 		<!-- <hr> -->
 	
 	<div id="options" class="text-center my-2">
@@ -197,7 +197,7 @@ echo ' of '.$nbDocs.'</h2>';
 				$link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 
 				
-				echo "<td class='text-center' id='d'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
+				echo "<td class='text-center' id='d'><a class='text-success text-center' href=".$link_v."><i class='text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
 				
 				//Affichage du tableau
 				foreach ($keys as $k) {
@@ -206,7 +206,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 				}
 
-				echo "<td class='text-center'><button  class='btn py-0'><a class='text-success' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
+				echo "<td class='text-center'><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
 				echo '</tr>';
 			}
 				

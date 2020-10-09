@@ -25,7 +25,7 @@
 
 	<!-- Formulaire serveurs -->
 
-	<form align="center" method="post" class="col-lg-6 offset-lg-3 " action="index.php?action=getServer">
+	<form align="center" method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
 		<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
 		<input type="submit" class="btn btn-success btn-sm mt-1 font-weight-bold" name="add" id="add" value="ADD">
 	</form>
@@ -36,7 +36,7 @@
 <!-- Tableau des serveurs -->
 
 <br>
-<div class="border col-lg-6 offset-lg-3 bg-light m-auto">
+<div class="border col-lg-8 offset-lg-2 bg-light m-auto">
 	<?php
 		$serve_list=json_decode($_COOKIE['serve_list']);
 		if(sizeof($serve_list)>0){
@@ -44,7 +44,7 @@
 			echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Server list <i class=\"fa fa-fw fa-desktop\"></i></strong></span></h3>" ;
 			foreach ($serve_list as $x) {
 				echo '<tr>';
-				echo "<td><a  class='text-dark' href='index.php?action=getServer&serve=".$x."'><i class='mr-2 fa fa-fw fa-desktop'></i>";
+				echo "<td><a  class='text-success' href='index.php?action=getServer&serve=".$x."'><i class=' text-dark mr-2 fa fa-fw fa-desktop'></i>";
 				echo $x;
 				echo '</a></td>';
 				echo '</tr>';

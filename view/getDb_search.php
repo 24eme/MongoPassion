@@ -66,7 +66,7 @@ echo '</div>';
 
 <!-- Recherche -->
 
-<div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
+<div  class="m-auto border border-success col-lg-8 offset-lg-2 bg-light mt-1">
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
@@ -117,7 +117,7 @@ echo '</div>';
 							//Affichage du tableau
 
 							echo '<tr>';
-							echo '<td><a class="text-dark" href="'.$link_v.'"><i class="mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
+							echo '<td><a class="text-success" href="'.$link_v.'"><i class=" text-dark mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
 							echo '<td><a class="text-dark" href="'.$link_c.'">'.$coll.'</a></td>';
 							echo "<td id='id'><button  class='btn'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 							echo "<td id='edit'><button  class='btn'><a class='text-success'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
