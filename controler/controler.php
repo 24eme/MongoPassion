@@ -139,7 +139,9 @@
     	$serve = htmlspecialchars($_GET['serve']);
         $db = htmlspecialchars($_GET['db']);
         $coll = htmlspecialchars($_GET['coll']);
-        $s_g = htmlspecialchars($_GET['s_g']);
+        if(isset($_GET['s_g'])){
+            $s_g = htmlspecialchars($_GET['s_g']);
+        }
         
         require('view/createDocument.php');
     }
