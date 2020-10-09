@@ -28,12 +28,12 @@ echo "<div class=' container  col-lg-8 sticky-top'>";
 				echo '<li class="breadcrumb-item active">'.$serve.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i>'.$serve.'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
 			}
 		}
 		if(isset($db)){
 			if($_GET['action']=='getDb'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$db.'</li>';
+				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i> '.$db.'</li>';
 			}
 			else{
 				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-database"></i>'.$db.'</a></li>';
@@ -71,8 +71,8 @@ echo '</div>';
 
 <nav class="mb-3">
 	<div id="options" class="text-center mb-3">
-		<button type="button" class="btn btn-dark mr-5"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
-			  <i class="fa fa-fw fa-plus"></i> New Collection 
+		<button type="button" class="btn btn-dark mr-3"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
+			  <i class="fa fa-fw fa-plus"></i><i class='fa fa-fw fa-server'></i>
 		</button>
 
 		<button type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()" data-toggle="modal" data-target="#myModal2">

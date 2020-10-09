@@ -28,7 +28,7 @@ echo "<div class='container col-lg-8 sticky-top'>";
 				echo '<li class="breadcrumb-item active">'.$serve.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i>'.$serve.'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
 			}
 		}
 		if(isset($db)){

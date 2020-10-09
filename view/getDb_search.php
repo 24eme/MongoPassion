@@ -29,12 +29,12 @@
 					echo '<li class="breadcrumb-item active">'.$serve.'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i>'.$serve.'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
 				}
 
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i>'.$serve.'</a></li>';
 			}
 		
 		if(isset($db)){
@@ -77,7 +77,7 @@ echo '</div>';
 <nav class="mb-3">
 	<div id="options" class="text-center mb-3">
 		<button type="button" class="btn btn-dark mr-5"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
-			  <i class="fa fa-fw fa-plus"></i> New Collection 
+			  <i class="fa fa-fw fa-plus"></i> <i class='fa fa-fw fa-server'></i>
 		</button>
 
 		<button id="db_search" type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()">
