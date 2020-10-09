@@ -5,7 +5,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 session_start();
 
 if(!isset($_COOKIE['serve_list'])){
-	$_COOKIE['serve_list'] = json_encode(array('localhost'));
+	$_COOKIE['serve_list'] = json_encode(array('localhost:27017'));
 }
 
 require('controler/controler.php');
