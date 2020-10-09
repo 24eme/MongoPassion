@@ -29,6 +29,12 @@
         else{
             $a_s=null;
         }
+        if(isset($_GET['search_db'])){
+            $search_db = htmlspecialchars($_GET['search_db']);
+        }
+        else{
+            $search_db = null;
+        }
 
         //Récupération du document au format curseur
 
@@ -36,7 +42,7 @@
 
         // Création du lien d'envoi du formulaire
 
-	    $link_doc = getLink_doc($a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page);
+	    $link_doc = getLink_doc($search_db,$a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page);
 
 	    require('view/editDocument.php');
     }
@@ -59,6 +65,9 @@
         elseif(isset($_GET['a_s'])){
             $a_s = htmlspecialchars($_GET['a_s']);
         }
+        elseif(isset($_GET['search_db'])){
+            $search_db = htmlspecialchars($_GET['search_db']);
+        }
 
         $doc_text = strip_tags($_POST['doc_text']);
         $date_array = unserialize($_POST['date_array']);
@@ -74,6 +83,9 @@
             }
             elseif (isset($a_s)) {
                 header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$page.'');
+            }
+            elseif (isset($search_db)) {
+                header('Location: index.php?action=getDb_search&serve='.$serve.'&db='.$db.'&search_db='.$search_db.'');
             }
             else{
                 header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'');
@@ -198,7 +210,16 @@
     {
     	try{
             $doc = htmlspecialchars($_GET['doc']);
-            if(isset($type_id)){
+            if(isset($_GET['s_g'])){
+                $s_g = htmlspecialchars($_GET['s_g']);
+            }
+            if(isset($_GET['a_s'])){
+                $a_s = htmlspecialchars($_GET['a_s']);
+            }
+            if(isset($_GET['search_db'])){
+                $search_db = htmlspecialchars($_GET['search_db']);
+            }
+            if(isset($_GET['type_id'])){
                 $type_id = htmlspecialchars($_GET['type_id']);
             }
             else{

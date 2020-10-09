@@ -63,19 +63,44 @@ echo '</div>';
 //Fin fil d'Ariane
 
 ?>
+<br><br>
+
+<!-- Titre de la page -->
+
+<?php
+	echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h1>";
+?>
+
+<!-- Fin du titre de la page -->
 
 <!-- Bouton recherche -->
+<nav class="mb-3">
+	<div id="options" class="text-center mb-3">
+		<button type="button" class="btn btn-dark mr-5"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
+			  <i class="fa fa-fw fa-plus"></i> New Collection 
+		</button>
 
-<button type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()" data-toggle="modal" data-target="#myModal2">
-	<i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
-</button>
+		<button id="db_search" type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()">
+			<i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
+		</button>
+	</div>
+	<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2" style="display: none">
+		<hr>
+		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
+		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
+			<div class="input-group mb-3">
+				<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="name"  />
+				<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+			</div>
+		</form>
+	</div>
+</nav>
 
 <!-- Fin du bouton de recherche -->
 
 
 <!-- Recherche -->
-
-<div  class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1">
+<div  id="searchInAllColl" class="m-auto border border-success col-lg-6 offset-lg-3 bg-light mt-1" style="display: none">
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
@@ -86,23 +111,12 @@ echo '</div>';
 		</div>
 	</form>
 </div>
-<br>
+
 
 <!-- Fin de la recherche -->
 
 
-<!-- Titre de la page -->
-
-<?php
-	echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h1>";
-?>
-
-<!-- Fin du titre de la page -->
-
-
 <!-- Tableau des résultats de la recherche -->
-
-<br><br>
 <div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1 m-auto">
 	<br>
 	<table class="table table-sm table-striped">

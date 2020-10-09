@@ -68,7 +68,6 @@ echo "<h1 class='title text-center '>View <i class='fa fa-fw fa-book'></i>".$doc
 echo '<div id="nav_view">';
 
 //Bouton de retour
-
 if(isset($s_g)){
 	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($s_g).'&page='.$page.'"><button class="return btn btn-primary">< Collection</button></a>';
 }
@@ -103,8 +102,10 @@ if(isset($s_g)){
 	$link_edit=$link_edit.'&s_g='.$s_g;
 	$link_d=$link_d.'&s_g='.$s_g;
 }
-$link_edit=$link_edit.'&page='.$page;
-$link_d=$link_d.'&page='.$page;
+if(isset($search_db)){
+	$link_edit=$link_edit.'&search_db='.$search_db;
+	$link_d=$link_d.'&search_db='.$search_db;
+}
 
 echo '<div class=" text-center  m-auto py-2"><a href="'.$link_edit.'"><button class="btn btn-success font-weight-bold">Edit</button></a>
     <button  class="btn btn-danger "><a class="text-light font-weight-bold" href="'.$link_d.'" onclick="return confirmDelete()">Delete</a></button>

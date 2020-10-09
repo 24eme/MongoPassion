@@ -164,13 +164,16 @@ function getColor($num) {
 	return $doc;
 }
 
-function getLink_doc($a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page)
+function getLink_doc($search_db,$a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page)
 {
 	if(isset($s_g)){
 		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&s_g='.urlencode($s_g).'&page='.$page;
 	}
 	elseif(isset($a_s)){
 		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&a_s='.urlencode($a_s).'&page='.$page;
+	}
+	elseif(isset($search_db)){
+		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&search_db='.urlencode($search_db).'&page='.$page;
 	}
 	else{
 		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&page='.$page;

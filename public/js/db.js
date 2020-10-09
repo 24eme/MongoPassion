@@ -64,7 +64,7 @@ function myFunctionCommandGet() {
   }
 
 function myFunctionSearchInAllCollections(){
- document.getElementById("newColl").style.display = "none";
+	document.getElementById("newColl").style.display = "none";
 	var x = document.getElementById("searchInAllColl");
 	if (x.style.display === "none") {
     	x.style.display = "block";
@@ -72,8 +72,4 @@ function myFunctionSearchInAllCollections(){
   	else {
     	x.style.display = "none";
     }
-
-  }
-
-
-
+ }
