@@ -50,10 +50,20 @@ function myFunctionCommandGet() {
 
  }
 
-
-  function myFunctionNewColl(){
+function myFunctionNewColl(){
     document.getElementById("searchInAllColl").style.display = "none";
 	var x = document.getElementById("newColl");
+	if (x.style.display === "none") {
+    	x.style.display = "block";
+  	} 
+  	else {
+    	x.style.display = "none";
+    }
+
+  }
+
+function myFunctionNewDb(){
+	var x = document.getElementById("newDb");
 	if (x.style.display === "none") {
     	x.style.display = "block";
   	} 

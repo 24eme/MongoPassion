@@ -10,6 +10,8 @@
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
+
+	<script src="public/js/db.js"></script>
 </head>
 
 <?php
@@ -61,6 +63,27 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 //Fin du titre de la page
 
 ?>
+
+<!-- Barre de boutons -->
+
+<nav class="mb-3">
+	<div id="options" class="text-center mb-3">
+		<button type="button" class="btn btn-dark mr-5"  onclick="myFunctionNewDb()">
+			  <i class="fa fa-fw fa-plus"></i><i class='fa fa-fw fa-database'></i>
+		</button>
+	</div>
+	<div id="newDb" class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2" style="display: none">
+		<hr>
+		<label for="pet-select" class="font-weight-bold">Create a new database :</label>
+		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getDb&serve='.$serve.'">'; ?>
+			<div class="input-group mb-3">
+				<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="newdb"  />
+				<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+			</div>
+		</form>
+	</div>
+
+<!-- Fin de la barre de boutons -->
 
 <!-- Tableau des bases de données -->
 
