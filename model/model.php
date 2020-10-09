@@ -2,7 +2,7 @@
 
 function getManager($serve)
 {
-	$manager = new MongoDB\Driver\Manager('mongodb://'.$serve.':27017');
+	$manager = new MongoDB\Driver\Manager('mongodb://'.$serve.'');
 	return $manager;
 }
 

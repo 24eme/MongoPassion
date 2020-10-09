@@ -80,13 +80,6 @@ if(isset($recherche_g)){
 	<?php
 }
 
-if(isset($s_search)){
-	echo '<p id="clé" style="display: none">s_s</p>';
-	?>
-	<input type=hidden id=valeur value=<?php echo urlencode($s_search); ?>>
-	<?php
-}
-
 //Fin de la préparation des variables de recherche pour leur utilisation en JS
 
 
@@ -97,14 +90,6 @@ if(isset($recherche_g)){
 	if($recherche_g==""){echo "\"Aucun critère\""; $p='none';}
 	if($recherche_g!=""){
 		echo "\"<font color='#62a252'>".$recherche_g."</font>\"";
-	}
-	echo "</h1>";
-}
-elseif(isset($s_search)){
-	echo "<h1 class='title text-center font-weight-bold mt-5'><span>Search results for </span><i class='fa fa-fw fa-book'></i> ";
-	if($s_search=="find([])"){echo "\"Aucun critère\""; $p='none';}
-	if($s_search!="find([])"){
-		echo "\"<font color='#62a252'>".$s_search."</font>\"";
 	}
 	echo "</h1>";
 }
@@ -129,26 +114,17 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Partie recherche -->
 
 <nav class="mb-2">
-
-	
-
-
 	<div  class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
-		<!-- <hr> -->
+
 	<!-- Barre de boutons -->
 
 	<div id="options" class="text-center my-2">
 		<span>
 			<?php echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$recherche_g.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
 		</span>
-
-		<button type="button" class="btn btn-success " onclick="myFunctionSearchGet()" data-toggle="modal" data-target="#myModal">
-	
-			<i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
-		</button>
 		<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'">' ?>
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
-				<i class="fa fa-fw fa-search"></i>Search by command
+				<i class="fa fa-fw fa-search"></i>Advanced Search
 			</button>
 		</a>
 		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 

@@ -89,14 +89,9 @@ echo ' of '.$nbDocs.'</h2>';
 		<span>
 			<?php echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
 		</span>
-
-		<button type="button" class="btn btn-success " onclick="myFunctionSearch()" data-toggle="modal" data-target="#myModal">
-	
-			<i class="fa fa-fw fa-search"></i>Search by Id or Key : Value
-		</button>
 		<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'">' ?>
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
-				<i class="fa fa-fw fa-search"></i>Search by command
+				<i class="fa fa-fw fa-search"></i>Advanced Search
 			</button>
 		</a>
 	</div>
@@ -124,24 +119,6 @@ echo ' of '.$nbDocs.'</h2>';
 		</form>
 	</div>
 		<!-- Fin du formulaire de recherche par id et clé:valeur -->
-
-
-		<!-- Formulaire de recherche par commande-->
-
-	<div id="command" class="mt-1">   
-		<?php /*echo '<form method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; */?>
-			<div class="input-group mb-3">
-				<input type="search" class="form-control" name="special_search" id="special_search" size=100 value="find([])"/>
-				<input type="submit" class="btn  bg-success text-light " name="search" id="search" value="Search"/>
-			</div>
-		</form>
-	</div>
-
-	<!-- Fin du formulaire de la recherche par commande -->
-
-
-
-
 	</div>
 </nav>
 

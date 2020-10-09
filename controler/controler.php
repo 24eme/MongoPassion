@@ -453,6 +453,9 @@
         	}
         	elseif(isset($_POST['serve'])){
         		$serve=htmlspecialchars($_POST['serve']);
+                if(!strpos($serve, ':')){
+                    $serve = $serve.':27017';
+                }
         		if(!in_array($serve, $serve_list)){
         			array_push($serve_list, $serve);
                     setcookie('serve_list',json_encode($serve_list));
@@ -468,7 +471,7 @@
             if (($key = array_search($serve, $serve_list)) !== false) {
                 unset($serve_list[$key]);
                 setcookie('serve_list',json_encode($serve_list));
-                $serve='localhost';
+                $serve='localhost:27017';
             }
             echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
         }
