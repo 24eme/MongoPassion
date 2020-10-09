@@ -58,10 +58,6 @@ echo '</div>';
 
 ?>
 
-
-
-
-
 <!-- Titre de la page -->
 
 <?php
@@ -71,8 +67,7 @@ echo '</div>';
 <!-- Fin du titre de la page -->
 
 
-<!-- Bouton nouvelle collection -->
-
+<!-- Barre de boutons -->
 
 <nav class="mb-3">
 	<div id="options" class="text-center mb-3">
@@ -90,14 +85,15 @@ echo '</div>';
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
 			<div class="input-group mb-3">
 				<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="name"  />
-
-				
-
 				<input class="btn bg-success text-light "  type="submit"   value="Create"/>
 			</div>
 		</form>
 	</div>
-	<!-- Recherche -->
+
+<!-- Fin de la barre de boutons -->
+
+
+<!-- Recherche -->
 
 <div  id="searchInAllColl" class="m-auto border col-lg-8 offset-lg-2 bg-light mt-1">
 	<hr>
@@ -111,7 +107,9 @@ echo '</div>';
 		</div>
 	</form>
 </div>
+
 <!-- Fin de la recherche -->
+
 </nav>
 
 <!-- Fin du bouton nouvelle collection -->
@@ -144,5 +142,6 @@ echo '</div>';
 </div>
 
 <!-- Fin du tableau des collections -->
+
 </body>
 </html>

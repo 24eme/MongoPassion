@@ -64,6 +64,15 @@ echo '</div>';
 
 ?>
 
+<!-- Bouton recherche -->
+
+<button type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()" data-toggle="modal" data-target="#myModal2">
+	<i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
+</button>
+
+<!-- Fin du bouton de recherche -->
+
+
 <!-- Recherche -->
 
 <div  class="m-auto border border-success col-lg-8 offset-lg-2 bg-light mt-1">
