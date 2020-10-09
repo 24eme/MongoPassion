@@ -207,6 +207,7 @@
             $coll = htmlspecialchars($_GET['coll']);
             $db = htmlspecialchars($_GET['db']);
             $serve = htmlspecialchars($_GET['serve']);
+            $page = htmlspecialchars($_GET['page']);
 
             $result = getDocument($doc,$type_id,$coll,$db,$serve);;
             require('view/viewDocument.php');
