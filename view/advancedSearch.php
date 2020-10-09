@@ -42,7 +42,7 @@ echo "<div  class='container col-lg-8 sticky-top'>";
 			}
 		}
 		if(isset($coll)){
-			if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
+			if($_GET['action']=='getCollection' or $_GET['action']=='advancedSearch'){
 				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$coll.'</li>';
 			}
 			else{
@@ -150,8 +150,10 @@ if(isset($a_s)){
 <!-- Pagination -->
 
 <?php
-
-if(isset($nbDocs)){	
+if($nbDocs==0){
+	echo '<footer></footer>';
+}
+else{	
 	echo '<footer>';
 	    echo '<nav aria-label="pagination">
 	            <ul class="pagination">';
@@ -178,9 +180,7 @@ if(isset($nbDocs)){
                     switch ($i) {
                         case 1:
                             echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
-                            if($page!=2 and $page=!3){
-	                            echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
-	                        }
+                            echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                         break;
                         case $page-2:
                             echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
@@ -223,11 +223,11 @@ if(isset($nbDocs)){
                     }
                 }
             }
-            if($page!=$nbPages and $page!=($nbPages-1) and $page!=($nbPages-2) and $p!='none'){echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.($page+1).'"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';}
+            if($page!=$nbPages and $page!=($nbPages-1) and $page!=($nbPages-2)){echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.($page+1).'"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';}
 
 echo '</ul>
     </nav>
-</footer><br>';
+</footer>';
 }
 ?>
 
