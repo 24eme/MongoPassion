@@ -16,7 +16,7 @@
 
 //Fil d'Ariane
 
-	echo "<div class='container  col-lg-7 sticky-top'>";
+	echo "<div class='container  col-lg-8 sticky-top'>";
 		echo '<ol class="breadcrumb">';
 			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($serve)){
@@ -64,14 +64,14 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 
 <!-- Tableau des bases de données -->
 
-<div id="main" class="border col-lg-6 offset-lg-3 mt-5 bg-light">
+<div id="main" class="border col-lg-8 offset-lg-2 mt-5 bg-light">
 	<br>
 	<table class="table table-sm table-striped ">
 		<?php echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-database\"></i> Databases of ".$serve."</strong></span></h3>" ?>
 		<?php
 			foreach ($dbs as $db) {
 				echo '<tr>';
-				echo "<td><a class='text-dark' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class='mr-3 fa fa-fw fa-database'></i>";
+				echo "<td><a class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
 				echo $db->getName();
 				echo '</a></td>';
 				echo '</tr>';

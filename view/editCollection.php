@@ -18,7 +18,7 @@
 
 //Fil d'Ariane
 
-echo "<div class='container col-lg-7 sticky-top'>";
+echo "<div class='container col-lg-8 sticky-top'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($serve)){
@@ -65,7 +65,7 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa
 
 <!-- Formulaire -->
 
-<div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1">
+<div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1">
 	<?php
 
 		//Renommer la collection

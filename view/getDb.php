@@ -20,7 +20,7 @@
 
 //Fil d'Ariane
 
-echo "<div class=' container  col-lg-7 sticky-top'>";
+echo "<div class=' container  col-lg-8 sticky-top'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($serve)){
@@ -79,7 +79,7 @@ echo '</div>';
 			   <i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
 		</button>
 	</div>
-	<div id="newColl" class="border col-lg-6 offset-lg-3 bg-light m-auto mb-2">
+	<div id="newColl" class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2">
 		<hr>
 		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
@@ -95,7 +95,7 @@ echo '</div>';
 
 <!-- Recherche -->
 
-<div  id="searchInAllColl" class="m-auto border col-lg-6 offset-lg-3 bg-light mt-1">
+<div  id="searchInAllColl" class="m-auto border col-lg-8 offset-lg-2 bg-light mt-1">
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	
@@ -117,14 +117,14 @@ echo '</div>';
 
 <!-- Tableau des collections -->
 
-<div id="main" class="border  col-lg-6 offset-lg-3 bg-light mt-1 m-auto">
+<div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto">
 	<br>
 	<table class="table table-sm table-striped">
 		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-server\"></i> Collections of ".$db."</strong></span></h3>";
 		
 			foreach ($collections as $collection) {
 				echo "<tr>";
-				echo "<td><a class='text-dark' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."'><i class='mr-2 fa fa-fw fa-server'></i>";
+				echo "<td><a class='text-success' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."'><i class='text-dark mr-2 fa fa-fw fa-server'></i>";
 				echo $collection->getName();
 				echo '</a></td>';
 				echo "<td><button  class='btn  py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";

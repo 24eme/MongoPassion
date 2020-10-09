@@ -35,7 +35,7 @@
 
 //Fil d'Ariane
 
-echo "<div class='container col-lg-7 sticky-top' >";
+echo "<div class='container col-lg-8 sticky-top' >";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($serve)){
@@ -248,14 +248,14 @@ echo ' of '.$nbDocs.'</h2>';
 
 					//Affichage du tableau
 
-					echo "<td class='text-center' id='d'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-fw fa-book'></i>".$id."</a></td>";
+					echo "<td class='text-center' id='d'><a class='text-success text-center' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
 
 					foreach ($keys as $k) {
 					echo '<td class="text-center">'.(array_key_exists($k, $doc) ? $doc[$k] : '').'</td>';	
 
 			        }
 				
-					echo "<td class='text-center'><button  class='btn py-0'><a class='text-success text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
+					echo "<td class='text-center'><button  class='btn py-0'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
 					echo '</tr>';
 				}
 			}

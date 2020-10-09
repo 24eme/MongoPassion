@@ -140,7 +140,7 @@ echo '</div>';
 							//Affichage du tableau
 
 							echo '<tr>';
-							echo '<td><a class="text-dark" href="'.$link_v.'"><i class="mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
+							echo '<td><a class="text-success" href="'.$link_v.'"><i class=" text-dark mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
 							echo '<td><a class="text-dark" href="'.$link_c.'">'.$coll.'</a></td>';
 							echo "<td id='id'><button  class='btn'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";
 							echo "<td id='edit'><button  class='btn'><a class='text-success'href=".$link_e."><i class='fa fa-edit'></a></button></td>";
