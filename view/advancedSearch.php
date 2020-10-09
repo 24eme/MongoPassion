@@ -42,7 +42,7 @@ echo "<div  class='container col-lg-8 sticky-top'>";
 			}
 		}
 		if(isset($coll)){
-			if($_GET['action']=='getCollection' or $_GET['action']=='advancedSearch'){
+			if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
 				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$coll.'</li>';
 			}
 			else{
@@ -150,6 +150,7 @@ if(isset($a_s)){
 <!-- Pagination -->
 
 <?php
+if(isset($nbDocs)){	
 if($nbDocs==0){
 	echo '<footer></footer>';
 }
@@ -157,77 +158,78 @@ else{
 	echo '<footer>';
 	    echo '<nav aria-label="pagination">
 	            <ul class="pagination">';
-            if($page!=1 and $page!=2 and $page !=3){echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.($page-1).'"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';}
+            if($page!=1 and $page!=2 and $page !=3){echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.($page-1).'&bypage='.$bypage.'"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';}
             for ($i=1;$i<=$nbPages;$i++){
                 if($page==1){
                     switch ($i) {
                         case $page:
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
                         break;
                         case $page+1:
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
                         break;
                         case $page+2:
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
                             echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                         break;
                         case $nbPages:
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
                         break;
                     }
                 }
                 elseif ($page==$nbPages) {
                     switch ($i) {
                         case 1:
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>1</a></li>';
                             echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                         break;
                         case $page-2:
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
                         break;
                         case $page-1:
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
                         break;
                         case $page:
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
                         break;
                     }
                 }
                 else{
                     if($i==1){
                         if((null!=($page-1) and ($page-1)!=1) and (null!=($page-2) and ($page-2)!=1)){
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>1</a></li>';
                             echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                         }
                     }
                     if(null!=($page-2) and $i==($page-2)){
-                        echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
+                        echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
                     }
                     if(null!=($page-1) and $i==($page-1)){
                         echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
                     }
                     if($i==$page){
-                        echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
+                        echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
                     }
                     if(null!=($page+1) and $i==($page+1)){
-                        echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
+                        echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
                     }
                     if(null!=($page+2) and $i==($page+2)){
-                        echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
+                        echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
                         echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
                     }
                     if($i==$nbPages){
                         if((($page+1)!=$nbPages) and ($page+2)!=$nbPages){
-                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
+                            echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$i.'&bypage='.$bypage.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
                         }
                     }
                 }
             }
-            if($page!=$nbPages and $page!=($nbPages-1) and $page!=($nbPages-2)){echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.($page+1).'"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';}
+            if($page!=$nbPages and $page!=($nbPages-1) and $page!=($nbPages-2)){echo '<li><a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.($page+1).'&bypage='.$bypage.'"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';}
 
 echo '</ul>
     </nav>
 </footer>';
+}
 }
 ?>
 

@@ -337,7 +337,7 @@ else{
 
 echo '</ul>
     </nav>
-</footer>';
+</footer><br>';
 }
 ?>
 

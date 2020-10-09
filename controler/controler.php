@@ -277,7 +277,7 @@
             else{
                 header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
             }
-            $nbDocs = countSearch($recherche_g);
+            $nbDocs = countSearch($recherche_g,$serve,$db,$coll);
         	$nbPages = getNbPages($nbDocs,$bypage);
 
         	require('view/getCollection_search.php');
@@ -320,8 +320,8 @@
             if(testProjection($a_s,$serve,$db)){
                 $docs = toJSON($result);
             }
-            $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
 
+            $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
             $nbPages = getNbPages($nbDocs,$bypage);
         }
 

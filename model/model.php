@@ -457,7 +457,7 @@ function getAdvancedSearch($search,$page,$bypage,$serve,$db,$coll)
 function getNbPages($result,$pages)
 {
 	$temp = $result/$pages;
-	if(gettype($temp)=='integer'){
+	if(intval($temp)==$temp){
 		$nb=$temp;
 	}
 	else{
@@ -471,11 +471,10 @@ function getNbPages_search($result,$pages){
 	return $nb;
 }
 
-function countSearch_id($search){
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+function countSearch_id($search,$serve,$db,$coll){
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 	
 	$regex = new MongoDB\BSON\Regex ($search);
@@ -510,12 +509,11 @@ function countAdvancedSearch($search,$serve,$db,$coll)
 	return $test;
 }
 
-function countSearch_g($search)
+function countSearch_g($search,$serve,$db,$coll)
 {
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
+	$client = getClient($serve);
+	$db = strval($db);
+	$collec = strval($coll);
 	$collection = $client->$db->$collec;
 
 	$tab_search = explode(':', $search);
@@ -532,9 +530,8 @@ function countSearch_g($search)
 
 	return $result;
 }
-
-//j'ai retiré le paramètre $searche_id 
-function countSearch($search_g)
+ 
+function countSearch($search_g,$serve,$db,$coll)
 {
 	if ($search_g !=='field : content[...]') {
 		$tab_search = explode(':', $search_g);
@@ -548,26 +545,16 @@ function countSearch($search_g)
 		$key = trim($key);
 		$value = trim($value);
 		if ($key === '_id') {
-			$result = countSearch_id($value);
+			$result = countSearch_id($value,$serve,$db,$coll);
 		} else {
-			$result = countSearch_g($search_g);
+			$result = countSearch_g($search_g,$serve,$db,$coll);
 		}
 	}
-	// if($search_id == ''){
-
-	// 	$result = countSearch_g($search_g);
-	// }
-
-	// elseif($search_g=='field : content[...]'){
-	// 	$result = countSearch_id($search_id);
-	// }
 
 	else{
-
-		require 'vendor/autoload.php';
-		$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-		$db = strval(htmlspecialchars($_GET['db']));
-		$collec = strval(htmlspecialchars($_GET['coll']));
+		$client = getClient($serve);
+		$db = strval($db);
+		$collec = strval($coll);
 		$collection = $client->$db->$collec;
 
 		$tab_search = explode('=', $search_g);
