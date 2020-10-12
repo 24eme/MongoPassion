@@ -70,20 +70,14 @@ echo '</div>';
 <!-- Fin du titre de la page -->
 
 
-<!-- Barre de boutons -->
+<!-- Modal new Db -->
 
 <nav class="mb-1">
-
-
-
-
 	<!-- StartModal -->
 	<div class="modal" id="myModal">
 		<div class="modal-dialog">
 		    <div class="modal-content">
-
-			      <div class="modal-body">
-				      				
+			      <div class="modal-body">  				
 						<div  class="border  bg-light m-auto mb-2">
 							<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
 							<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
@@ -94,25 +88,20 @@ echo '</div>';
 							</form>
 						</div>
 				 </div>
-			
-
-
 			</div>
-
-
-
-
 		</div>
 	</div>
 
-<!-- endModal -->
+	<!-- endModal -->
+
+<!-- Fin modal new Db -->
 
 
 
 <!-- Recherche -->
 
 <div  class="m-auto border col-lg-8 offset-lg-2 bg-light mt-1">
-	<!-- <hr> -->
+	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>

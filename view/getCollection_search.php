@@ -122,7 +122,7 @@ echo ' of '.$nbDocs.'</h2>';
 		<span>
 			<?php echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$recherche_g.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
 		</span>
-		<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'">' ?>
+		<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'">' ?>
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
 				<i class="fa fa-fw fa-search"></i>Advanced Search
 			</button>

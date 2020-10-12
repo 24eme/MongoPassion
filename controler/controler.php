@@ -315,6 +315,23 @@
         elseif(isset($_GET['a_s'])){
             $a_s = htmlspecialchars(urldecode($_GET['a_s']),ENT_NOQUOTES);
         }
+        elseif (isset($_GET['s_g'])) {
+            $s_g = htmlspecialchars(urldecode($_GET['s_g']),ENT_NOQUOTES);
+            if(!strpos($s_g, ':')){
+                try{
+                    new MongoDB\BSON\ObjectId($s_g);
+                    $a_s = 'db.'.$coll.'.find("'.$s_g.'")';
+                }
+                catch (Exception $e){
+                    $a_s = 'db.'.$coll.'.find({_id:"'.$s_g.'"})';
+                }
+            }
+            else{
+                $s_g = str_replace(' ', '', $s_g);
+                $s_g_array = explode(':', $s_g);
+                $a_s = 'db.'.$coll.'.find({'.$s_g_array[0].':"'.$s_g_array[1].'"})';
+            }
+        }
 
         if(isset($a_s)){
             $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
