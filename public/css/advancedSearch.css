@@ -34,22 +34,19 @@ textarea{
 	font-family: courier;
 }
 
-/*Bouton Execute*/
-
-/*input[type="submit"]{
-	margin-left: 90%;
-}
-*/
-/*Bouton Reinit*/
-
-/*.btn.bg-secondary{
-	position: absolute;
-	margin-left: 40.5%;
-	margin-top: -1.94%;
-}*/
-
 /*Fin de la partie Recherche*/
 
+/*Bouton export to CSV*/
+
+button#test_csv{
+	background-color: #4CAF50;
+	border-radius: 2px;
+	border:none;
+	padding:5px;
+	margin-bottom: 1%;
+	margin-top: 1%;
+	margin-left: 2%;
+}
 
 /*Tableau des résultats*/
 
@@ -80,6 +77,10 @@ h5{
 }
 
 td{
+	text-align: center;
+}
+
+th{
 	text-align: center;
 }
 

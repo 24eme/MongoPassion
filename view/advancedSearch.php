@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
@@ -110,11 +109,12 @@ if(isset($a_s)){
 <!-- Tableau des résulats -->
 
 <?php if(isset($a_s)){?>
-	<div id='result' align="center">
+	<div id='result'>
 		<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
 					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 					else{echo $nbDocs;}
-					echo ' of '.$nbDocs.') :</h5><br>'?>
+					echo ' of '.$nbDocs.') :</h5>'?>
+		<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
 		<table class="table table-sm table-striped">
 			<?php if(empty($result)){
 				echo 'No document matches your search';
@@ -122,11 +122,25 @@ if(isset($a_s)){
 			else{
 			?>
 				<?php
-				foreach ($result as $key=>$entry) {
-					$link_v = '?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
-					echo '<tr><td><a href="'.$link_v.'">'.$entry['_id'].'</a></td></tr>';
-					if(isset($docs)){
-						echo '<tr><td class="json"><pre>'.$docs[$key].'</pre></td></tr>';
+				if(isset($docs)){
+					echo '<tr>';
+					foreach ($docs[0] as $key => $value) {
+						echo '<th>'.$key.'</th>';
+					}
+					echo '</tr>';
+					foreach ($docs as $entry) {
+						$link_v = '?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
+						echo '<tr>';
+						foreach ($entry as $value) {
+							echo '<td><a href="'.$link_v.'">'.$value.'</a></td>';
+						}
+						echo '</tr>';
+					}
+				}
+				else{
+					foreach ($result as $key=>$entry) {
+						$link_v = '?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
+						echo '<tr><td><a href="'.$link_v.'">'.$entry['_id'].'</a></td></tr>';
 					}
 				}
 			} 
@@ -141,7 +155,6 @@ if(isset($a_s)){
 		</div>
 	</div>
 <?php } ?>
-	
 
 
 <!-- Fin du tableau des résultats -->
@@ -237,3 +250,54 @@ echo '</ul>
 
 </body>
 </html>
+
+<script type="text/javascript">
+  function download_csv(csv, filename) {
+      var csvFile;
+      var downloadLink;
+
+      // CSV FILE
+      csvFile = new Blob([csv], {type: "text/csv"});
+
+      // Download link
+      downloadLink = document.createElement("a");
+
+      // File name
+      downloadLink.download = filename;
+
+      // We have to create a link to the file
+      downloadLink.href = window.URL.createObjectURL(csvFile);
+
+      // Make sure that the link is not displayed
+      downloadLink.style.display = "none";
+
+      // Add the link to your DOM
+      document.body.appendChild(downloadLink);
+
+      // Lanzamos
+      downloadLink.click();
+  }
+
+  function export_table_to_csv(html, filename) {
+    var csv = [];
+    var rows = document.querySelectorAll("table tr");
+    
+      for (var i = 0; i < rows.length; i++) {
+      var row = [], cols = rows[i].querySelectorAll("td, th");
+      
+          for (var j = 0; j < cols.length; j++) 
+              row.push(cols[j].innerText);
+          
+      csv.push(row.join(","));    
+    }
+
+      // Download CSV
+      download_csv(csv.join("\n"), filename);
+  }
+
+  document.querySelector("#test_csv").addEventListener("click", function () {
+  	var random = (Math.floor(Math.random() * Math.floor(100000000))).toString(16);
+    var html = document.querySelector("table").outerHTML;
+    export_table_to_csv(html, "result_"+random+".csv");
+  });
+</script>

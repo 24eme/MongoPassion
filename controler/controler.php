@@ -320,7 +320,7 @@
             $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
             
             if(testProjection($a_s,$serve,$db)){
-                $docs = toJSON($result);
+                $docs = $result;
             }
 
             $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
