@@ -29,3 +29,9 @@ h2.subtitle{
   text-decoration: none !important;
 }
 
+h3{
+	color: red;
+	padding: 0.5%;
+	font-family: 'Rubik-Light', sans-serif; 
+}
+
