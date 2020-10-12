@@ -10,8 +10,10 @@
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
-
 	<script src="public/js/db.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 
 <?php
@@ -63,34 +65,46 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 //Fin du titre de la page
 
 ?>
+		
+		<!-- StartModal -->
+		<div class="modal" id="myModal">
+		 <div class="modal-dialog">
+		    <div class="modal-content">
 
-<!-- Barre de boutons -->
+			      <div class="modal-body">
+			      		<div class="border  bg-light m-auto mb-2">
+							<label for="pet-select" class="font-weight-bold">Create a new database :</label>
+							<?php echo '<form autocomplete="off" method="post" action="index.php?action=getDb&serve='.$serve.'">'; ?>
+								<div class="input-group mb-3">
+									<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="newdb"  />
+									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+								</div>
+							</form>
+						</div>
+				</div>
+			
 
-<nav class="mb-3">
-	<div id="options" class="text-center mb-3">
-		<button type="button" class="btn btn-dark mr-5"  onclick="myFunctionNewDb()">
-			  <i class="fa fa-fw fa-plus"></i><i class='fa fa-fw fa-database'></i>
-		</button>
-	</div>
-	<div id="newDb" class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2" style="display: none">
-		<hr>
-		<label for="pet-select" class="font-weight-bold">Create a new database :</label>
-		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getDb&serve='.$serve.'">'; ?>
-			<div class="input-group mb-3">
-				<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="newdb"  />
-				<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+
 			</div>
-		</form>
+
+
+
+
+		    
+		  </div>
+		</div>
 	</div>
 
-<!-- Fin de la barre de boutons -->
+<!-- endModal -->
+
 
 <!-- Tableau des bases de données -->
 
 <div id="main" class="border col-lg-8 offset-lg-2 mt-2 bg-light">
-	<br>
+
 	<table class="table table-sm table-striped ">
-		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-database\"></i> Databases of ".$serve."</strong></span></h3>" ?>
+		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-database\"></i> Databases of ".$serve." </strong></span></h3>" ?>
+
 		<?php
 			foreach ($dbs as $db) {
 				echo '<tr>';
@@ -101,8 +115,14 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 			}
 		?>
 	</table>
+	
+	<!-- Start Button add database -->
+	<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
+			<i class='fa fa-fw fa-database'></i><i class='fa fa-fw fa-plus'></i>
+	</button>
+	<!-- End Button add database -->
 	<?php
-		echo '<br><a href="index.php"><button class="return btn btn-primary font-weight-bold">< Home</button></a>'
+		echo '<a href="index.php"><button class="return btn btn-primary font-weight-bold">< Home</button></a>'
 	?>
 </div>
 
