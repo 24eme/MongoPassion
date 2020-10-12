@@ -14,6 +14,9 @@
 	<link href="public/css/getDb.css" rel="stylesheet" type="text/css">
 
 	<script src="public/js/db.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 
 <?php
@@ -61,7 +64,7 @@ echo '</div>';
 <!-- Titre de la page -->
 
 <?php
-	echo "<h1 align='center' class='title font-weight-bold mt-5'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
+	echo "<h1 align='center' class='title font-weight-bold mt-2'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
 ?>
 
 <!-- Fin du titre de la page -->
@@ -69,41 +72,54 @@ echo '</div>';
 
 <!-- Barre de boutons -->
 
-<nav class="mb-3">
-	<div id="options" class="text-center mb-3">
-		<button type="button" class="btn btn-dark mr-3"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
-			  <i class="fa fa-fw fa-plus"></i><i class='fa fa-fw fa-server'></i>
-		</button>
+<nav class="mb-1">
 
-		<button type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()" data-toggle="modal" data-target="#myModal2">
-			   <i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
-		</button>
-	</div>
-	<div id="newColl" class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2">
-		<hr>
-		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
-		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
-			<div class="input-group mb-3">
-				<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="name"  />
-				<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+
+
+
+	<!-- StartModal -->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+
+			      <div class="modal-body">
+				      				
+						<div  class="border  bg-light m-auto mb-2">
+							<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
+							<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
+								<div class="input-group mb-3">
+									<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="name"  />
+									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+								</div>
+							</form>
+						</div>
+				 </div>
+			
+
+
 			</div>
-		</form>
+
+
+
+
+		</div>
 	</div>
 
-<!-- Fin de la barre de boutons -->
+<!-- endModal -->
+
 
 
 <!-- Recherche -->
 
-<div  id="searchInAllColl" class="m-auto border col-lg-8 offset-lg-2 bg-light mt-1">
-	<hr>
+<div  class="m-auto border col-lg-8 offset-lg-2 bg-light mt-1">
+	<!-- <hr> -->
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
 		<div class="input-group mb-3">
-			<input type="search" class="form-control border border-success" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
+			<input type="search" class="form-control border border-success" required="required" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
-			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-history"></i>Reinit</a></button>'; ?>
+			<!--  -->
 		</div>
 	</form>
 </div>
@@ -112,13 +128,13 @@ echo '</div>';
 
 </nav>
 
-<!-- Fin du bouton nouvelle collection -->
+
 
 
 <!-- Tableau des collections -->
 
 <div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto">
-	<br>
+
 	<table class="table table-sm table-striped">
 		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-server\"></i> Collections of ".$db."</strong></span></h3>";
 		
@@ -134,10 +150,16 @@ echo '</div>';
 		?>
 	</table>
 
+	<!-- Start Button add database -->
+	<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
+			<i class='fa fa-fw fa-plus'></i>New Collection
+	</button>
+	<!-- End Button add database -->	
+
 	<!-- Bouton de retour -->
 
 	<?php
-	echo '<br><a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+	echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
 	?>
 </div>
 
