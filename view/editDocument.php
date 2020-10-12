@@ -167,7 +167,8 @@ echo '</div>';
     /* Création du formulaire */
 
     const initialJson = variableRecuperee;
-    editor.set(initialJson)
+    editor.set(initialJson);
+    editor.expandAll();
 
     /* Fonction d'envoi du formulaire */
 
