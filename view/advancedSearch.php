@@ -94,7 +94,7 @@ if(isset($a_s)){
 			echo '<textarea name="a_s" id="a_" rows="5" cols="100">'.$a_s.'</textarea>';
 		}
 		else{
-			echo '<textarea name="a_s" id="a_" rows="5" cols="100">db.'.$coll.'.find()</textarea>';
+			echo '<textarea name="a_s" id="a_" rows="5" cols="100">db.'.$coll.'.find({})</textarea>';
 		} ?>
 		<input type="submit" class="btn btn-success float-right" name="a_search" id="a_search" value="Execute">
 	

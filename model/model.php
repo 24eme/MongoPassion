@@ -9,7 +9,7 @@ function getManager($serve)
 function getClient($serve)
 {
 	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.$serve.':27017');
+	$client = new MongoDB\Client('mongodb://'.$serve.'');
 	return $client;
 }
 

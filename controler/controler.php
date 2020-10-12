@@ -484,6 +484,7 @@
                 $serve='localhost:27017';
             }
             echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
+            echo $e;
         }
     }
 
