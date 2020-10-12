@@ -12,13 +12,13 @@
 	<link href="public/css/home.css" rel="stylesheet" type="text/css">
 </head>
 
-<div id="main" class=" text-center ">
+<div id="main" class=" text-center m-auto">
 
 	<!-- Titre de la page -->
 
-	<div class ='title' align="center">
+	<div class ='title text-center mt-2'>
 		<img align="center" src="public/images/mongo.png" alt="24eme">
-		<h1 class='title font-weight-bold'align="center">mongoCRUD</h1>
+		<h1 class='text-center title font-weight-bold'>mongoCRUD</h1>
 	</div>
 
 	<!-- Fin du titre de la page -->
@@ -26,7 +26,8 @@
 	<!-- Formulaire serveurs -->
 
 	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
-		<div>
+
+			<div class="input-group mb-3">
 			<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="ADD">
 		</div>
