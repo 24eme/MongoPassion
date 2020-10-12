@@ -114,10 +114,12 @@ if(isset($a_s)){
 					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 					else{echo $nbDocs;}
 					echo ' of '.$nbDocs.') :</h5>'?>
+		<?php if(!empty($result)){ ?>
 		<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
+	<?php } ?>
 		<table class="table table-sm table-striped">
 			<?php if(empty($result)){
-				echo 'No document matches your search';
+				echo '<p align="center">No document matches your search</p>';
 			}
 			else{
 			?>
