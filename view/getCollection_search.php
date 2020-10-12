@@ -186,7 +186,7 @@ echo ' of '.$nbDocs.'</h2>';
 				// 	 $id = $doc['_id'];
 				// 	}
 				echo '<tr class="bg-dark text-light">';
-				echo '<th class="text-center">Id</th>';
+				echo '<th>Id</th>';
 				$keys = array();
 				$i=0;
 					foreach ($docs[0] as $key => $value) {
@@ -200,7 +200,7 @@ echo ' of '.$nbDocs.'</h2>';
 	                 	}
              		}
 			}
-			echo '<th class="text-center">Action</th>';
+			echo '<th>Action</th>';
 			echo '</tr>';
 			foreach ($docs as $doc) {
 				echo '<tr class="mr-5">';
@@ -224,14 +224,14 @@ echo ' of '.$nbDocs.'</h2>';
 
 					//Affichage du tableau
 
-					echo "<td class='text-center' id='d'><a class='text-success text-center' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+					echo "<td id='d'><a class='text-success' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
 
 					foreach ($keys as $k) {
-					echo '<td class="text-center">'.(array_key_exists($k, $doc) ? $doc[$k] : '').'</td>';	
+					echo '<td>'.(array_key_exists($k, $doc) ? $doc[$k] : '').'</td>';	
 
 			        }
 				
-					echo "<td class='text-center'><button  class='btn py-0'><a class='text-dark text-center' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
+					echo "<td><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
 					echo '</tr>';
 				}
 			}
