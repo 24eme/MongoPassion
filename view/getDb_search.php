@@ -117,6 +117,7 @@ echo '</div>';
 <!-- Recherche -->
 <nav class="mb-2">
 	<div   class="m-auto border  col-lg-8 offset-lg-2 bg-light">
+		<hr>
 		<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 		<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
 			<div class="input-group mb-3">
