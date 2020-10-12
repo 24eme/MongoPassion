@@ -15,6 +15,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<script src="public/js/db.js"></script>
+	   <!-- Modal -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<!-- ModalEnd -->
 </head>
 
 <?php
@@ -63,54 +68,64 @@ echo '</div>';
 //Fin fil d'Ariane
 
 ?>
-<br><br>
+
 
 <!-- Titre de la page -->
 
 <?php
-	echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h1>";
+	echo "<h1 align='center' class='title font-weight-bold mt-5'><i class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h1>";
 ?>
 
 <!-- Fin du titre de la page -->
 
-<!-- Bouton recherche -->
-<nav class="mb-3">
-	<div id="options" class="text-center mb-3">
-		<button type="button" class="btn btn-dark mr-5"  onclick="myFunctionNewColl()" data-toggle="modal" data-target="#myModal2">
-			  <i class="fa fa-fw fa-plus"></i> <i class='fa fa-fw fa-server'></i>
-		</button>
+	
 
-		<button id="db_search" type="button" class="btn btn-success"  onclick="myFunctionSearchInAllCollections()">
-			<i class="fa fa-fw fa-search"></i>Search ID in all <i class="fa fa-fw fa-server"></i> collections
-		</button>
-	</div>
-	<div id="newColl" class="border col-lg-8 offset-lg-2 bg-light m-auto" style="display: none">
-		<hr>
-		<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
-		<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
-			<div class="input-group mb-3">
-				<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="name"  />
-				<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+	<!-- StartModal -->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+		    <div class="modal-content">
+
+			      <div class="modal-body">
+				      				
+						<div  class="border  bg-light m-auto mb-2">
+							<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
+							<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
+								<div class="input-group mb-3">
+									<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="name"  />
+									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+								</div>
+							</form>
+						</div>
+				 </div>
+			
+
+
 			</div>
-		</form>
+
+
+
+
+		</div>
 	</div>
+
+<!-- endModal -->
 
 
 <!-- Fin du bouton de recherche -->
 
 
 <!-- Recherche -->
-<div  id="searchInAllColl" class="m-auto border  col-lg-8 offset-lg-2 bg-light" style="display: none">
-	<hr>
-	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
-	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
-		<div class="input-group mb-3">
-			<input type="search" class="form-control border border-success mr" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
-			<input class="btn bg-success text-light mr-2 " type="submit" name="search" id="search" value="Search">
-			<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'">Reinit</a></button>'; ?>
-		</div>
-	</form>
-</div>
+<nav class="mb-2">
+	<div   class="m-auto border  col-lg-8 offset-lg-2 bg-light">
+		<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
+		<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
+			<div class="input-group mb-3">
+				<input type="search" class="form-control border border-success mr" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
+				<input class="btn bg-success text-light mr-2 " type="submit" name="search" id="search" value="Search">
+				<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'">Reinit</a></button>'; ?>
+			</div>
+		</form>
+	</div>
 
 </nav>
 <!-- Fin de la recherche -->
@@ -148,10 +163,16 @@ echo '</div>';
 		?>
 	</table>
 
+	<!-- Start Button new collection -->
+	<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
+			<i class='fa fa-fw fa-plus'></i>New Collection
+	</button>
+	<!-- End Button add new collection -->	
+
 	<!-- Bouton de retour -->
 
 	<?php
-		echo '<br><a href="index.php?action=getServer&serve='.strip_tags($serve).'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+		echo '<a href="index.php?action=getServer&serve='.strip_tags($serve).'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
 	?>
 </div>
 
