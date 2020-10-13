@@ -12,7 +12,7 @@
 	<link href="public/css/home.css" rel="stylesheet" type="text/css">
 </head>
 
-<div id="main" class=" text-center m-auto">
+<div id="main" class=" text-center m-auto ">
 
 	<!-- Titre de la page -->
 
@@ -25,9 +25,9 @@
 
 	<!-- Formulaire serveurs -->
 
-	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
+	<form autocomplete="off" method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
 
-			<div class="input-group mb-3">
+			<div class="input-group ">
 			<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="ADD">
 		</div>
@@ -38,7 +38,6 @@
 
 <!-- Tableau des serveurs -->
 
-<br>
 <div class="border col-lg-8 offset-lg-2 bg-light m-auto">
 	<?php
 		$serve_list=json_decode($_COOKIE['serve_list']);

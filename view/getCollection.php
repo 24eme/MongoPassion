@@ -86,9 +86,9 @@ echo ' of '.$nbDocs.'</h2>';
 		<!-- <hr> -->
 	
 	<div id="options" class="text-center my-2">
-		<span>
-			<?php echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
-		</span>
+	<!-- 	<span>
+			<?php /*echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>';*/ ?>
+		</span> -->
 		<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'">' ?>
 			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
 				<i class="fa fa-fw fa-search"></i>Advanced Search
@@ -129,8 +129,14 @@ echo ' of '.$nbDocs.'</h2>';
 	
 <div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto ">
 	<table class="table table-sm table-striped">
-	<?php 
-		echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-book\"></i> Documents of ".$coll."</h3>";
+	    <?php 
+			echo  	'<h3 class="text-center mb-1 bg-success text-light"><span><strong><i class="fa fa-fw fa-book"></i> Documents of "'.$coll.'"<span>
+				 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve="'.$serve.'"&db="'.$db.'"&coll="'.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
+			</span></h3>';
+			
+		?>
+
+		<?php 
 		if($nbDocs==0){
 			echo 'Aucun document ne correspond à votre recherche.';
 		}
