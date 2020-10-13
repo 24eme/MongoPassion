@@ -79,45 +79,37 @@ echo ' of '.$nbDocs.'</h2>';
 
 <nav class="mb-2">
 
-
 	<!-- Formulaire de recherche par id et clé:valeur -->
 
 	<div  class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2">
-		<!-- <hr> -->
-	
-	<div id="options" class="text-center my-2">
-	<!-- 	<span>
-			<?php /*echo '<button class="btn btn-dark new_doc font-weight-bold mr-5"><a class=text-light href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>';*/ ?>
-		</span> -->
-		<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'">' ?>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
-				<i class="fa fa-fw fa-search"></i>Advanced Search
-			</button>
-		</a>
-	</div>
-	
+		<div id="options" class="text-center my-2">
+			<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'">' ?>
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
+					<i class="fa fa-fw fa-search"></i>Advanced Search
+				</button>
+			</a>
+		</div>
+		<div id="searchId" class="mt-1">
+			<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
+				<div class="input-group mb-3">
+					<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
 
-	<div id="searchId" class="mt-1">
-		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
-			<div class="input-group mb-3">
-				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
+					<!-- Autocomplétion des champs -->
 
-				<!-- Autocomplétion des champs -->
+					<datalist id="browsers">
+				        <?php 
+				        	foreach ($docs[0] as $key => $value) {  
+				        		echo  "<option value=".$key.":>";
+							}
+				        ?> 
+			 		</datalist> 
 
-				<datalist id="browsers">
-			        <?php 
-			        	foreach ($docs[0] as $key => $value) {  
-			        		echo  "<option value=".$key.":>";
-						}
-			        ?> 
-		 		</datalist> 
+			 		<!-- Fin de l'autocomplétion des champs -->
 
-		 		<!-- Fin de l'autocomplétion des champs -->
-
-				<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
-			</div>
-		</form>
-	</div>
+					<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+				</div>
+			</form>
+		</div>
 		<!-- Fin du formulaire de recherche par id et clé:valeur -->
 	</div>
 </nav>
@@ -127,11 +119,11 @@ echo ' of '.$nbDocs.'</h2>';
 
 <!-- Tableau des documents de la collection -->
 	
-<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto ">
+<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto " style="background-color: red;">
 	<table class="table table-sm table-striped">
 	    <?php 
-			echo  	'<h3 class="text-center mb-1 bg-success text-light"><span><strong><i class="fa fa-fw fa-book"></i> Documents of "'.$coll.'"<span>
-				 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve="'.$serve.'"&db="'.$db.'"&coll="'.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
+			echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong><i class="fa fa-fw fa-book"></i> Documents of "'.$coll.'"<span>
+				 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
 			</span></h3>';
 			
 		?>
@@ -141,24 +133,6 @@ echo ' of '.$nbDocs.'</h2>';
 			echo 'Aucun document ne correspond à votre recherche.';
 		}
 		else{
-			echo '<tr class="bg-dark text-light">';
-			echo '<th>Id</th>';
-			$keys = array();
-			$i=0;
-				foreach ($docs[0] as $key => $value) {
-				$type = gettype($value);
-				if ($key !== '_id' && $type !=='object') {
-					 echo '<th>'.$key.'</th>';
-					 array_push($keys, $key);
-	                 $i++;
-	                 if($i==3){
-	                 	break;
-	                 }
-             	}
-
-			}
-			echo '<th>Action</th>';
-			echo '</tr>';
 			foreach ($docs as $doc) {
 				echo '<tr class="mr-5">';
 				$type_id = gettype($doc['_id']);
@@ -168,9 +142,6 @@ echo ' of '.$nbDocs.'</h2>';
 				else{
 					$id = $doc['_id'];
 				}
-
-		
-			        		// echo  "<option value=".$key.":>";
 						
 
 				//Liens des options de gestion des documents
@@ -181,15 +152,6 @@ echo ' of '.$nbDocs.'</h2>';
 
 				
 				echo "<td id='d'><a class='text-success text-center' href=".$link_v."><i class='text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
-				
-				//Affichage du tableau
-				foreach ($keys as $k) {
-					echo '<td>'.(array_key_exists($k, $doc) ? $doc[$k] : '').'</td>';	
-
-
-				}
-
-				echo "<td><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
 				echo '</tr>';
 			}
 				
@@ -198,55 +160,67 @@ echo ' of '.$nbDocs.'</h2>';
 		?>
 	</table>
 
+	<div style="width: 100%;">
+
+		<!-- Bouton de retour -->
+
+		<div style="width: 30%; display: inline-block; margin-left: 5%">
+			<?php
+			echo '<br><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
+			?>
+		</div>
+
+		<!-- Fin du bouton de retour -->
 
 
-	<div id="radio" class="text-center font-weight-bold">
-		<i class="fa fa-fw fa-book mr-3"></i>
-		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="10">10</label>
-		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="20">20</label>
-		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="30">30</label>
-		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage()" /> <label for="50">50</label>
+		<!-- Pagination -->
+
+		<nav aria-label="pagination" style="width: 30%; display: inline-block;">
+	        <ul class="pagination">
+
+	        <?php
+	            if($page!=1){
+	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
+	            }
+	            else{
+	            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
+	            } ?>
+
+	            <span id="radio" class="text-center font-weight-bold">
+					<select name="bypage" onchange="bypage()">
+					    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
+					    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
+					    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
+					    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
+					</select>
+				</span>
+
+	            <?php if($page!=$nbPages){
+	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
+	            }
+	            else{
+	            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
+	            }
+	        ?>
+	        </ul>
+	    </nav>
+
+	    <!-- Fin de la pagination -->
+
+
+	    <!-- Bouton nouveau document -->
+
+	    <div style="width: 30%; display: inline-block; padding-left: 24.5%;">
+		    <?php echo '<button class="btn btn-dark align-items-center py-0 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
+		</div>
+
+	    <!-- Fin du bouton nouveau document -->
 	</div>
-          	<!-- Fin de la barre de boutons radio-->
 
-	<!-- Bouton de retour -->
-
-	<?php
-	echo '<br><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
-	?>
-
-	<!-- Fin du bouton de retour -->
-
-</div>
+</div><br>
 
 <!-- Fin du tableau des documents de la collection -->
 
-
-<!-- Pagination -->
-
-<footer>
-	<nav aria-label="pagination" >
-        <ul class="pagination">
-
-        <?php
-            if($page!=1){
-            	echo '<li><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'" aria-current="page"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';
-            }
-            else{
-            	echo '<li><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';
-            }
-            if($page!=$nbPages){
-            	echo '<li><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'" aria-current="page"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';
-            }
-            else{
-            	echo '<li><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';
-            }
-        ?>
-        </ul>
-    </nav>
-</footer>
-
-<!-- Fin de la pagination -->
 
 </body>
 </html>

@@ -3,25 +3,27 @@
 
 function bypage()
 {
-	var r10 = document.getElementById("10");
-	var r20 = document.getElementById("20");
-	var r30 = document.getElementById("30");
-	var r50 = document.getElementById("50");
+	var s10 = document.getElementById("10");
+	var s20 = document.getElementById("20");
+	var s30 = document.getElementById("30");
+	var s50 = document.getElementById("50");
 
-	if(r10.checked){
-		var radio = r10;
+	if(s10.selected){
+		var select = s10;
 	}
-	else if(r20.checked){
-		var radio = r20;
+	else if(s20.selected){
+		var select = s20;
 	}
-	else if(r30.checked){
-		var radio = r30;
+	else if(s30.selected){
+		var select = s30;
 	}
-	else if(r50.checked){
-		var radio = r50;
+	else if(s50.selected){
+		var select = s50;
 	}
 
-	var link = document.location.href+'&bypage='+radio.value;
+	var link = document.location.href+'&bypage='+select.value;
+
+
 
 	document.location.href = link;
 
@@ -29,28 +31,28 @@ function bypage()
 
 function bypage_search()
 {
-	var r10 = document.getElementById("10");
-	var r20 = document.getElementById("20");
-	var r30 = document.getElementById("30");
-	var r50 = document.getElementById("50");
+	var s10 = document.getElementById("10");
+	var s20 = document.getElementById("20");
+	var s30 = document.getElementById("30");
+	var s50 = document.getElementById("50");
 
 	var clé = document.getElementById("clé").innerHTML;
 	var valeur = document.getElementById("valeur").value;
 
-	if(r10.checked){
-		var radio = r10;
+	if(s10.selected){
+		var select = s10;
 	}
-	else if(r20.checked){
-		var radio = r20;
+	else if(s20.selected){
+		var select = s20;
 	}
-	else if(r30.checked){
-		var radio = r30;
+	else if(s30.selected){
+		var select = s30;
 	}
-	else if(r50.checked){
-		var radio = r50;
+	else if(s50.selected){
+		var select = s50;
 	}
 
-	var link = document.location.href+'&bypage='+radio.value+'&'+clé+'='+valeur;
+	var link = document.location.href+'&bypage='+select.value;
 
 	document.location.href = link;
 	

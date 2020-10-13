@@ -177,42 +177,15 @@ echo ' of '.$nbDocs.'</h2>';
 				echo 'Aucun document ne correspond à votre recherche.';
 			}
 			else{
-				// foreach ($docs as $doc) {
-				// 	$type_id = gettype($doc['_id']);
-				// 	if ($type_id=='object'){
-				// 		$id = (string)$doc['_id'];
-				// 	}
-				// 	else{
-				// 	 $id = $doc['_id'];
-				// 	}
-				echo '<tr class="bg-dark text-light">';
-				echo '<th>Id</th>';
-				$keys = array();
-				$i=0;
-					foreach ($docs[0] as $key => $value) {
-					$type = gettype($value);
-					if ($key !== '_id' && $type !=='object') {
-						 echo '<th class="text-center">'.$key.'</th>';
-						  array_push($keys, $key);
-	                	 $i++;
-	                 	if($i==3){
-	                 		break;
-	                 	}
-             		}
-			}
-			echo '<th>Action</th>';
-			echo '</tr>';
-			foreach ($docs as $doc) {
-				echo '<tr class="mr-5">';
-				$type_id = gettype($doc['_id']);
-				if ($type_id=='object'){
-					$id = (string)$doc['_id'];
-				}
-				else{
-					$id = $doc['_id'];
-				}
-
-
+				foreach ($docs as $doc) {
+					echo '<tr class="mr-5">';
+					$type_id = gettype($doc['_id']);
+					if ($type_id=='object'){
+						$id = (string)$doc['_id'];
+					}
+					else{
+						$id = $doc['_id'];
+					}
 
 					//Liens des options de gestion des documents
 
@@ -225,123 +198,67 @@ echo ' of '.$nbDocs.'</h2>';
 					//Affichage du tableau
 
 					echo "<td id='d'><a class='text-success' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
-
-					foreach ($keys as $k) {
-					echo '<td>'.(array_key_exists($k, $doc) ? $doc[$k] : '').'</td>';	
-
-			        }
-				
-					echo "<td><button  class='btn py-0'><a class='text-dark' href=".$link_v."><i class='fa fa-eye'></a></button></td>";	
 					echo '</tr>';
 				}
 			}
 		?>
 	</table>
+	<div style="width: 100%;">
+		
+		<!-- Bouton de retour -->
+
+		<div style="width: 30%; display: inline-block; margin-left: 5%">
+			<?php
+			echo '<br><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
+			?>
+		</div>
+
+		<!-- Fin du bouton de retour -->
 
 
-	<div id="radio" class="text-center font-weight-bold">
-		<i class="fa fa-fw fa-book mr-3"></i>
-		<input type="radio" name="bypage" value="10" id="10" <?php if($bypage==10){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="10">10</label>
-		<input type="radio" name="bypage" value="20" id="20" <?php if($bypage==20){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="20">20</label>
-		<input type="radio" name="bypage" value="30" id="30" <?php if($bypage==30){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="30">30</label>
-		<input type="radio" name="bypage" value="50" id="50" <?php if($bypage==50){echo 'checked="checked"';}?> onclick="bypage_search()" /> <label for="50">50</label>
+		<!-- Pagination -->
+
+		<nav aria-label="pagination" style="width: 30%; display: inline-block;">
+	        <ul class="pagination">
+
+	        <?php
+	            if($page!=1){
+	            	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'&s_g='.urlencode($recherche_g).'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
+	            }
+	            else{
+	            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
+	            } ?>
+
+	            <span id="radio" class="text-center font-weight-bold">
+					<select name="bypage" onchange="bypage_search()">
+					    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
+					    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
+					    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
+					    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
+					</select>
+				</span>
+
+	            <?php if($page!=$nbPages){
+	            	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'&s_g='.urlencode($recherche_g).'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
+	            }
+	            else{
+	            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
+	            }
+	        ?>
+	        </ul>
+	    </nav>
+
+	    <!-- Fin de la pagination -->
+
+
+	    <!-- Bouton nouveau document -->
+
+	    <div style="width: 30%; display: inline-block; padding-left: 24.5%">
+		    <?php echo '<button class="btn btn-dark align-items-center py-0 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$recherche_g.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
+		</div>
+
+	    <!-- Fin du bouton nouveau document -->
 	</div>
-
-	<!-- Bouton de retour -->
-
-    <?php
-		echo '<br><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
-	?>
-</div>
-
-<!-- Fin du tableau des documents de la collection -->
-
-
-<!-- Pagination -->
-
-<?php
-if($nbDocs==0){
-	echo '<footer></footer>';
-}
-else{	
-	echo '<footer>';
-	    echo '<nav aria-label="pagination">
-	            <ul class="pagination">';
-            if($page!=1 and $page!=2 and $page !=3){echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.($page-1).'"><span aria-hidden="true">&laquo;</span><span class="visuallyhidden">previous set of pages</span></a></li>';}
-            for ($i=1;$i<=$nbPages;$i++){
-                if($page==1){
-                    switch ($i) {
-                        case $page:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
-                        break;
-                        case $page+1:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
-                        break;
-                        case $page+2:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
-                            echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
-                        break;
-                        case $nbPages:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
-                        break;
-                    }
-                }
-                elseif ($page==$nbPages) {
-                    switch ($i) {
-                        case 1:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
-                            echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
-                        break;
-                        case $page-2:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
-                        break;
-                        case $page-1:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
-                        break;
-                        case $page:
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
-                        break;
-                    }
-                }
-                else{
-                    if($i==1){
-                        if((null!=($page-1) and ($page-1)!=1) and (null!=($page-2) and ($page-2)!=1)){
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>1</a></li>';
-                            echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
-                        }
-                    }
-                    if(null!=($page-2) and $i==($page-2)){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-2).'</a></li>';
-                    }
-                    if(null!=($page-1) and $i==($page-1)){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page-1).'</a></li>';
-                    }
-                    if($i==$page){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'" aria-current="page"><span class="visuallyhidden">page </span>'.$page.'</a></li>';
-                    }
-                    if(null!=($page+1) and $i==($page+1)){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+1).'</a></li>';
-                    }
-                    if(null!=($page+2) and $i==($page+2)){
-                        echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.($page+2).'</a></li>';
-                        echo '<li><a href=""><span class="visuallyhidden">page </span>...</a></li>';
-                    }
-                    if($i==$nbPages){
-                        if((($page+1)!=$nbPages) and ($page+2)!=$nbPages){
-                            echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.$i.'"><span class="visuallyhidden">page </span>'.$nbPages.'</a></li>';
-                        }
-                    }
-                }
-            }
-            if($page!=$nbPages and $page!=($nbPages-1) and $page!=($nbPages-2)){echo '<li><a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'&page='.($page+1).'"><span class="visuallyhidden">next set of pages</span><span aria-hidden="true">&raquo;</span></a></li>';}
-
-echo '</ul>
-    </nav>
-</footer><br>';
-}
-?>
-
-<!-- Fin de la pagination -->
 
 </body>
 </html>
