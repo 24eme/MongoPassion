@@ -125,7 +125,7 @@ echo '</div>';
 <div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto">
 
 	<table class="table table-sm table-striped">
-		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong><i class=\"fa fa-fw fa-server\"></i> Collections of ".$db."</strong></span></h3>";
+		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong> Collections of ".$db."</strong></span></h3>";
 		
 			foreach ($collections as $collection) {
 				echo "<tr>";

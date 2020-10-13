@@ -110,7 +110,9 @@ echo ' of '.$nbDocs.'</h2>';
 				</div>
 			</form>
 		</div>
+
 		<!-- Fin du formulaire de recherche par id et clé:valeur -->
+
 	</div>
 </nav>
 
@@ -122,10 +124,11 @@ echo ' of '.$nbDocs.'</h2>';
 <div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto " style="background-color: red;">
 	<table class="table table-sm table-striped">
 	    <?php 
-			echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong><i class="fa fa-fw fa-book"></i> Documents of "'.$coll.'"<span>
+
+			echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents of "'.$coll.'"<span>
 				 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
 			</span></h3>';
-			
+
 		?>
 
 		<?php 
