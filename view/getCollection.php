@@ -99,8 +99,8 @@ echo ' of '.$nbDocs.'</h2>';
 
 	<div id="searchId" class="mt-1">
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
-			<div class="input-group mb-3">
-				<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
+			<div class="input-group mb-1">
+				<input type="search"  list="browsers" placeholder="Search by id or key:value"  class="form-control border border-success" name="recherche_g" id="recherche_g" />
 
 				<!-- Autocomplétion des champs -->
 
@@ -130,7 +130,7 @@ echo ' of '.$nbDocs.'</h2>';
 <div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto ">
 	<table class="table table-sm table-striped">
 	    <?php 
-			echo  	'<h3 class="text-center mb-1 bg-success text-light"><span><strong><i class="fa fa-fw fa-book"></i> Documents of "'.$coll.'"<span>
+			echo  	'<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents of "'.$coll.'"<span>
 				 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
 			</span></h3>';
 
