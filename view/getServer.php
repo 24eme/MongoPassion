@@ -81,8 +81,10 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 								</div>
 							</form>
 						</div>
-				</div>
-			
+				  </div>
+			 <div class="modal-footer">
+        		    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+             </div>
 
 
 			</div>

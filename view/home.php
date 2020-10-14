@@ -27,7 +27,7 @@
 
 	<form autocomplete="off" method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
 
-			<div class="input-group ">
+			<div class="input-group">
 			<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="ADD">
 		</div>
