@@ -168,10 +168,20 @@ echo ' of '.$nbDocs.'</h2>';
 <div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto ">
 
 	<table class="table table-sm table-striped">
-		<?php 
-			echo  	'<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents of "'.$coll.'"<span>
-				 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
-			</span></h3>';
+
+		 <?php 
+
+			echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents '.(1+(($page-1)*$bypage)).'-';
+				if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+				else{echo $nbDocs;}
+				echo ' of '.$nbDocs.'
+				<span>
+					 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
+				</span>
+
+			</h3>';
+
+
 		?>
 		<?php
 			if($nbDocs==0){
