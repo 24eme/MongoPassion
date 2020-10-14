@@ -71,6 +71,9 @@ try{
             case 'advancedSearch':
                 advancedSearch();
             break;
+            case 'removeServer':
+                removeServer();
+            break;
             default:
                 error();
             break;

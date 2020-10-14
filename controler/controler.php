@@ -509,3 +509,16 @@
     {
     	require('view/home.php');
     }
+
+    function removeServer()
+    {
+        $serve = htmlspecialchars($_GET['serve']);
+        $serve_list=json_decode($_COOKIE['serve_list']);
+
+        $key = array_search($serve, $serve_list);
+
+        unset($serve_list[$key]);
+        setcookie('serve_list',json_encode($serve_list));
+
+        echo "<script>document.location.href = 'index.php';</script>";
+    }
