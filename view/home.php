@@ -16,9 +16,10 @@
 
 	<!-- Titre de la page -->
 
-	<div class ='title text-center mt-2'>
-		<img align="center" src="public/images/mongo.png" alt="24eme">
-		<h1 class='text-center title font-weight-bold'>mongoCRUD</h1>
+	<div class=' text-center align-items-end mt-3 d-inline-flex'>
+			<img align="center" src="public/images/mongo.png" alt="24eme">
+			<h1 class='text-center title font-weight-bold'>mongo<span class="text-secondary">CRUD</span></h1>
+		
 	</div>
 
 	<!-- Fin du titre de la page -->
