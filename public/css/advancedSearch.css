@@ -13,7 +13,6 @@
 
 .mt-1{
 	background-color: #f7f7f7;
-	width: 50%;
 	padding: 1%;
 	margin: auto;
 	color : #3F3B3B;
@@ -55,7 +54,6 @@ button#test_csv{
 
 #result{
 	background-color: #f7f7f7;
-	width: 50%;
 	padding: 1%;
 	margin: auto;
 	margin-top: 1%;
@@ -91,6 +89,10 @@ td.json{
 	text-align: left;
 }
 
+td.classic{
+	text-align: left;
+}
+
 pre{
 	color : #3F3B3B;
 	width: 41%;
@@ -100,6 +102,12 @@ pre{
 
 td > a{
 	color:#3F3B3B;
+}
+
+td#json{
+	color:#6c757d;
+	font-family: courier;
+	font-size:14px;
 }
 
 /*Fin du tableau des résultats*/

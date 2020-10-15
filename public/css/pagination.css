@@ -35,18 +35,52 @@ nav[aria-label = "pagination"] {
     margin-top: -1%;
 }
 
-.pagination a#next {
-    margin-left: 10%;
+.pagination span#next {
+    margin-left: 14%;
+    display: block;
+    padding: .1em 1em;
+    border: 1px solid #ececec;
+    border-radius: .2em;
+    text-decoration: none;
+    color: #3F3B3B;
+    margin-top: -1%;
 }
 
-.pagination a#prev {
+.pagination span#prev {
     margin-right: 6%;
+    display: block;
+    padding: .1em 1em;
+    border: 1px solid #ececec;
+    border-radius: .2em;
+    text-decoration: none;
+    color: #3F3B3B;
+    margin-top: -1%;
 }
 
-.pagination a[aria-current="page"] {
+.pagination a#next[aria-current="page"] {
     background-color: #4CAF50;
     border:none;
     color: #fff;
+    margin-left: 14%;
+    display: block;
+    padding: .1em 1em;
+    border: 1px solid #ececec;
+    border-radius: .2em;
+    text-decoration: none;
+    margin-top: -1%;
+}
+
+.pagination a#prev[aria-current="page"] {
+    background-color: #4CAF50;
+    border:none;
+    color: #fff;
+    margin-right: 6%;
+    display: block;
+    padding: .1em 1em;
+    border: 1px solid #ececec;
+    border-radius: .2em;
+    text-decoration: none;
+    margin-top: -1%;
 }
 
 /*Select bypage*/

@@ -52,7 +52,7 @@ function bypage_search()
 		var select = s50;
 	}
 
-	var link = document.location.href+'&bypage='+select.value;
+	var link = document.location.href+'&bypage='+select.value+'&'+clé+'='+valeur;
 
 	document.location.href = link;
 	

@@ -86,7 +86,7 @@ if(isset($a_s)){
 
 <!-- Partie recherche -->
 
-<div class="mt-1">
+<div class="mt-1 col-lg-8">
 	<?php echo '<form method="post" action="'.$link_search.'">';
 		echo '<label for="a_s">Execute a query in '.$coll.':</label>';
 		if(isset($a_s)){
@@ -109,12 +109,12 @@ if(isset($a_s)){
 <!-- Tableau des résulats -->
 
 <?php if(isset($a_s)){?>
-	<div id='result'>
+	<div id='result' class="col-lg-8">
 		<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
 					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 					else{echo $nbDocs;}
 					echo ' of '.$nbDocs.') :</h5>'?>
-		<?php if(!empty($result)){ ?>
+		<?php if(!empty($result) and isset($docs)){ ?>
 		<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
 	<?php } ?>
 		<table class="table table-sm table-striped">
@@ -140,9 +140,29 @@ if(isset($a_s)){
 					}
 				}
 				else{
-					foreach ($result as $key=>$entry) {
+					foreach ($result as $entry) {
 						$link_v = '?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
-						echo '<tr><td><a href="'.$link_v.'">'.$entry['_id'].'</a></td></tr>';
+						$content = array();
+						foreach ($entry as $x => $x_value) {
+							if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
+					 			$value = $x_value;
+					 		}
+					 		elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
+					 			$value = $x_value->toDateTime();
+					 		}
+					 		else{
+					 	  		$value = printable($x_value);
+					 		}
+					 		$content[$x] =  improved_var_export($value);
+						}
+						$content = init_json($content);
+						unset($content['_id']);
+			 			$json = stripslashes(json_encode($content));
+						echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i class="text-dark fa fa-fw fa-book"></i>'.$entry['_id'].'</a></td>';
+						echo '<td id="json">'.substr($json, 0, 100).'';
+						if(strlen($json)>100){echo ' [...] }';}
+						echo '</td>';
+						echo '</tr>';
 					}
 				}
 			} 
@@ -159,7 +179,7 @@ if(isset($a_s)){
 	            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
 	            }
 	            else{
-	            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
+	            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
 	            } ?>
 
 	            <span id="radio" class="text-center font-weight-bold">
@@ -175,7 +195,7 @@ if(isset($a_s)){
 	            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
 	            }
 	            else{
-	            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
+	            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
 	            }
 	        ?>
 	        </ul>
@@ -185,6 +205,7 @@ if(isset($a_s)){
 
 	</div>
 	</div>
+	<br>
 <?php } ?>
 
 

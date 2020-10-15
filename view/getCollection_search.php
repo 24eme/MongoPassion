@@ -211,6 +211,7 @@ echo ' of '.$nbDocs.'</h2>';
 				 		$content[$x] =  improved_var_export($value);
 				 	}
 				 	$content = init_json($content);
+				 	unset($content['_id']);
 				 	$json = stripslashes(json_encode($content));
 
 					//Liens des options de gestion des documents
@@ -261,14 +262,14 @@ echo ' of '.$nbDocs.'</h2>';
 
 	        <?php
 	            if($page!=1){
-	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
+	            	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'&s_g='.urlencode($recherche_g).'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
 	            }
 	            else{
-	            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
+	            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
 	            } ?>
 
 	            <span  class="text-center bg-light font-weight-bold">
-					<select name="bypage" onchange="bypage()">
+					<select name="bypage" onchange="bypage_search()">
 					    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
 					    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
 					    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
@@ -277,23 +278,16 @@ echo ' of '.$nbDocs.'</h2>';
 				</span>
 
 	            <?php if($page!=$nbPages){
-	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
+	            	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'&s_g='.urlencode($recherche_g).'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
 	            }
 	            else{
-	            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
+	            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
 	            }
 	        ?>
 	        </ul>
 	    </div>
        
 	    <!-- Fin de la pagination -->
-
-
-	
-
-	    
-
-	  
 	</div>
 	    <!-- Bouton nouveau document -->
 	<div class="float-right pt-2">
@@ -301,7 +295,7 @@ echo ' of '.$nbDocs.'</h2>';
 	</div>
 	  <!-- Fin du bouton nouveau document -->
 
-</div>
+</div><br></div><br>
 <!-- Fin du tableau des documents de la collection -->
 
 </body>

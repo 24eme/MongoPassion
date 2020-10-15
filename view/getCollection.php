@@ -63,17 +63,7 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 
 //Fin du titre de la page
 
-
-//Sous-titre
-
-/*echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
-if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-else{echo $nbDocs;}
-echo ' of '.$nbDocs.'</h2>';
-*/?>
-
-<!-- Fin du sous-titre -->
-
+?>
 
 <!-- Partie recherche -->
 
@@ -121,7 +111,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 <!-- Tableau des documents de la collection -->
 	
-<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto " style="background-color: red;">
+<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto">
 	<table class="table table-sm table-striped">
 	    <?php 
 
@@ -166,6 +156,7 @@ echo ' of '.$nbDocs.'</h2>';
 			 		$content[$x] =  improved_var_export($value);
 			 	}
 			 	$content = init_json($content);
+			 	unset($content['_id']);
 			 	$json = stripslashes(json_encode($content));
 						
 
@@ -217,7 +208,7 @@ echo ' of '.$nbDocs.'</h2>';
 	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
 	            }
 	            else{
-	            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
+	            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
 	            } ?>
 
 	            <span  class="text-center bg-light font-weight-bold">
@@ -233,7 +224,7 @@ echo ' of '.$nbDocs.'</h2>';
 	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
 	            }
 	            else{
-	            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
+	            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
 	            }
 	        ?>
 	        </ul>
@@ -241,12 +232,6 @@ echo ' of '.$nbDocs.'</h2>';
        
 	    <!-- Fin de la pagination -->
 
-
-	
-
-	    
-
-	  
 	</div>
 	    <!-- Bouton nouveau document -->
 	<div class="float-right pt-2">
@@ -254,10 +239,9 @@ echo ' of '.$nbDocs.'</h2>';
 	</div>
 	  <!-- Fin du bouton nouveau document -->
 
-</div>
+</div><br></div><br>
 
 <!-- Fin du tableau des documents de la collection -->
-
 
 </body>
 </html>
