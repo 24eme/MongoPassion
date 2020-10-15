@@ -23,7 +23,7 @@
 
 //Fil d'Ariane
 
-echo "<div class='container col-lg-8 sticky-top'>";
+echo "<div class='container border-top  border-success bg-success col-lg-8 sticky-top'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($serve)){
