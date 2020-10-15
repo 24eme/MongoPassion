@@ -111,10 +111,15 @@ function improved_var_export ($variable) {
     	$sendable=false;
     	while ($sendable==false) {
     		$send = array();
-    		foreach ($variable as $key => $value) {
-    			$send[$key]=improved_var_export($value);
+    		if(empty((array) $variable)){
     			$sendable=true;
     		}
+    		else{
+	    		foreach ($variable as $key => $value) {
+		    		$send[$key]=improved_var_export($value);
+	    			$sendable=true;
+	    		}
+	    	}
     	}
     }
     if(gettype($variable)=='array'){
@@ -250,9 +255,14 @@ function init_json($doc){
 	if(gettype($doc)=="array"){
 		$ok=false;
 		while($ok==false){
-			foreach ($doc as $key => $value) {
-				$doc[$key]=init_json($value);
+			if(empty($doc)){
 				$ok=true;
+			}
+			else{
+				foreach ($doc as $key => $value) {
+					$doc[$key]=init_json($value);
+					$ok=true;
+				}
 			}
 		}
 	}
