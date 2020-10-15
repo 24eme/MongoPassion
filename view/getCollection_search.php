@@ -167,142 +167,142 @@ echo ' of '.$nbDocs.'</h2>';
 
 <div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto ">
 
-	<table class="table table-sm table-striped">
+  <table class="table table-sm table-striped">
 
-		 <?php 
+			 <?php 
 
-			echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents '.(1+(($page-1)*$bypage)).'-';
+				echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents '.(1+(($page-1)*$bypage)).'-';
+					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+					else{echo $nbDocs;}
+					echo ' of '.$nbDocs.'
+					<span>
+						 <button class="btn btn-dark align-items-center py-1 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
+					</span>
+
+				</h3>';
+
+
+			?>
+			<?php
+				if($nbDocs==0){
+					echo 'Aucun document ne correspond à votre recherche.';
+				}
+				else{
+					foreach ($docs as $doc) {
+						echo '<tr class="mr-5">';
+						$type_id = gettype($doc['_id']);
+						if ($type_id=='object'){
+							$id = (string)$doc['_id'];
+						}
+						else{
+							$id = $doc['_id'];
+						}
+						$content = array();
+						foreach($doc as $x => $x_value) {
+					 		if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
+					 			$value = $x_value;
+					 		}
+					 		elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
+					 			$value = $x_value->toDateTime();
+					 		}
+					 		else{
+					 	  		$value = printable($x_value);
+					 		}
+					 		$content[$x] =  improved_var_export($value);
+					 	}
+					 	$content = init_json($content);
+					 	$json = stripslashes(json_encode($content));
+
+						//Liens des options de gestion des documents
+
+						if(isset($recherche_g)){
+							$link_v = 'index.php?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&page='.$page;
+							$link_e = 'index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&page='.$page;
+							$link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page.'&s_g='.urlencode($recherche_g);
+						}
+
+						//Affichage du tableau
+
+						echo "<td id='d'><a class='text-success' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+						echo '<td id="json">'.substr($json, 0, 100).'';
+						if(strlen($json)>100){echo ' [...] }';}
+						echo '</td>';
+						echo '</tr>';
+					}
+				}
+			?>
+	</table>
+	<div class="row justify-content-around mb-2">
+
+			<!-- Bouton de retour -->
+
+			<div>
+				<?php
+				echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
+				?>
+			</div>
+
+			<!-- Fin du bouton de retour -->
+
+
+			<!-- Pagination -->
+			<div class="row mr-2">
+			<div >
+			<?php
+
+			echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
 				if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 				else{echo $nbDocs;}
-				echo ' of '.$nbDocs.'
-				<span>
-					 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
-				</span>
+				echo ' of '.$nbDocs.'</h2>';
+				?>
+			</div>
+			<div aria-label="pagination" >
+		        <ul class="pagination">
 
-			</h3>';
+		        <?php
+		            if($page!=1){
+		            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
+		            }
+		            else{
+		            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
+		            } ?>
+
+		            <span  class="text-center bg-light font-weight-bold mr-1">
+						<select name="bypage" onchange="bypage()">
+						    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
+						    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
+						    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
+						    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
+						</select>
+					</span>
+
+		            <?php if($page!=$nbPages){
+		            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
+		            }
+		            else{
+		            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
+		            }
+		        ?>
+		        </ul>
+		    </div>
+	       
+		    <!-- Fin de la pagination -->
 
 
-		?>
-		<?php
-			if($nbDocs==0){
-				echo 'Aucun document ne correspond à votre recherche.';
-			}
-			else{
-				foreach ($docs as $doc) {
-					echo '<tr class="mr-5">';
-					$type_id = gettype($doc['_id']);
-					if ($type_id=='object'){
-						$id = (string)$doc['_id'];
-					}
-					else{
-						$id = $doc['_id'];
-					}
-					$content = array();
-					foreach($doc as $x => $x_value) {
-				 		if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
-				 			$value = $x_value;
-				 		}
-				 		elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
-				 			$value = $x_value->toDateTime();
-				 		}
-				 		else{
-				 	  		$value = printable($x_value);
-				 		}
-				 		$content[$x] =  improved_var_export($value);
-				 	}
-				 	$content = init_json($content);
-				 	$json = stripslashes(json_encode($content));
+		
 
-					//Liens des options de gestion des documents
+		    
 
-					if(isset($recherche_g)){
-						$link_v = 'index.php?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&page='.$page;
-						$link_e = 'index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&page='.$page;
-						$link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page.'&s_g='.urlencode($recherche_g);
-					}
-
-					//Affichage du tableau
-
-					echo "<td id='d'><a class='text-success' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
-					echo '<td id="json">'.substr($json, 0, 100).'';
-					if(strlen($json)>100){echo ' [...] }';}
-					echo '</td>';
-					echo '</tr>';
-				}
-			}
-		?>
-	</table>
-	<div class="row justify-content-around">
-
-		<!-- Bouton de retour -->
-
-		<div>
-			<?php
-			echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
-			?>
+		  
 		</div>
-
-		<!-- Fin du bouton de retour -->
-
-
-		<!-- Pagination -->
-		<div class="row mr-2">
-		<div >
-		<?php
-
-		echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
-			if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-			else{echo $nbDocs;}
-			echo ' of '.$nbDocs.'</h2>';
-			?>
+		    <!-- Bouton nouveau document -->
+		<div class="float-right pb-1">
+			    <?php echo '<button class="btn btn-dark  py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
 		</div>
-		<div aria-label="pagination" >
-	        <ul class="pagination">
+		  <!-- Fin du bouton nouveau document -->
 
-	        <?php
-	            if($page!=1){
-	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
-	            }
-	            else{
-	            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
-	            } ?>
-
-	            <span  class="text-center bg-light font-weight-bold">
-					<select name="bypage" onchange="bypage()">
-					    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
-					    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
-					    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
-					    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
-					</select>
-				</span>
-
-	            <?php if($page!=$nbPages){
-	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
-	            }
-	            else{
-	            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
-	            }
-	        ?>
-	        </ul>
-	    </div>
-       
-	    <!-- Fin de la pagination -->
-
-
-	
-
-	    
-
-	  
 	</div>
-	    <!-- Bouton nouveau document -->
-	<div class="float-right pt-2">
-		    <?php echo '<button class="btn btn-dark   py-0 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
-	</div>
-	  <!-- Fin du bouton nouveau document -->
-
+	<!-- Fin du tableau des documents de la collection -->
 </div>
-<!-- Fin du tableau des documents de la collection -->
-
 </body>
 </html>

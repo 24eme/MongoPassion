@@ -130,7 +130,7 @@ echo ' of '.$nbDocs.'</h2>';
 				else{echo $nbDocs;}
 				echo ' of '.$nbDocs.'
 				<span>
-					 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
+					 <button class="btn btn-dark align-items-center py-1 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
 				</span>
 
 			</h3>';
@@ -185,7 +185,7 @@ echo ' of '.$nbDocs.'</h2>';
 		?>
 	</table>
 
-	<div class="row justify-content-around">
+	<div class="row justify-content-around mb-2">
 
 		<!-- Bouton de retour -->
 
@@ -220,7 +220,7 @@ echo ' of '.$nbDocs.'</h2>';
 	            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
 	            } ?>
 
-	            <span  class="text-center bg-light font-weight-bold">
+	            <span  class="text-center bg-light font-weight-bold mr-1">
 					<select name="bypage" onchange="bypage()">
 					    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
 					    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
@@ -249,11 +249,12 @@ echo ' of '.$nbDocs.'</h2>';
 	  
 	</div>
 	    <!-- Bouton nouveau document -->
-	<div class="float-right pt-2">
-		    <?php echo '<button class="btn btn-dark   py-0 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
+	<div class="float-right ">
+		    <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
 	</div>
 	  <!-- Fin du bouton nouveau document -->
 
+</div>
 </div>
 
 <!-- Fin du tableau des documents de la collection -->
