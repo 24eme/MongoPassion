@@ -45,7 +45,7 @@
 }
 
 
-/*pre#doc_text{
+pre#doc_text{
 	background-color: #ececec;
 	color : #3F3B3B;
 	width: 50%;
@@ -55,7 +55,7 @@
 	border-radius: 10px;
 	margin-top: 20px;
 
-}*/
+}
 
 td#json{
 	color:#6c757d;

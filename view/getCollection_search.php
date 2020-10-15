@@ -197,6 +197,21 @@ echo ' of '.$nbDocs.'</h2>';
 					else{
 						$id = $doc['_id'];
 					}
+					$content = array();
+					foreach($doc as $x => $x_value) {
+				 		if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
+				 			$value = $x_value;
+				 		}
+				 		elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
+				 			$value = $x_value->toDateTime();
+				 		}
+				 		else{
+				 	  		$value = printable($x_value);
+				 		}
+				 		$content[$x] =  improved_var_export($value);
+				 	}
+				 	$content = init_json($content);
+				 	$json = stripslashes(json_encode($content));
 
 					//Liens des options de gestion des documents
 
@@ -209,6 +224,9 @@ echo ' of '.$nbDocs.'</h2>';
 					//Affichage du tableau
 
 					echo "<td id='d'><a class='text-success' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+					echo '<td id="json">'.substr($json, 0, 100).'';
+					if(strlen($json)>100){echo ' [...] }';}
+					echo '</td>';
 					echo '</tr>';
 				}
 			}
