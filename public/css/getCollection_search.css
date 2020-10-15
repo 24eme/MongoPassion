@@ -34,3 +34,9 @@
  a {
   text-decoration: none !important;
 }
+
+td#json{
+	color:#6c757d;
+	font-family: courier;
+	font-size:14px;
+}
