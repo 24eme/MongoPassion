@@ -230,10 +230,10 @@ echo ' of '.$nbDocs.'</h2>';
 				</span>
 
 	            <?php if($page!=$nbPages){
-	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
+	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
 	            }
 	            else{
-	            	echo '<a href="" id="next"><span aria-hidden="true">&laquo;</span></a>';
+	            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
 	            }
 	        ?>
 	        </ul>
