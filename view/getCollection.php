@@ -172,11 +172,11 @@ echo ' of '.$nbDocs.'</h2>';
 				//Liens des options de gestion des documents
 
 				$link_v = 'index.php?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
-				$link_e = 'index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
-				$link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 
-				
 				echo "<td id='d'><a class='text-success text-center' href=".$link_v."><i class='text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+				echo '<td id="json">'.substr($json, 0, 100).'';
+				if(strlen($json)>100){echo ' [...] }';}
+				echo '</td>';
 				echo '</tr>';
 			}
 				
