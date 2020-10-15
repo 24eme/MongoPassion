@@ -167,20 +167,19 @@ echo ' of '.$nbDocs.'</h2>';
 
 <div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto ">
 
-	<table class="table table-sm table-striped">
+  <table class="table table-sm table-striped">
 
-		 <?php 
+			 <?php 
 
-			echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents '.(1+(($page-1)*$bypage)).'-';
-				if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-				else{echo $nbDocs;}
-				echo ' of '.$nbDocs.'
-				<span>
-					 <button class="btn btn-dark align-items-center py-0 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
-				</span>
+				echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents '.(1+(($page-1)*$bypage)).'-';
+					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+					else{echo $nbDocs;}
+					echo ' of '.$nbDocs.'
+					<span>
+						 <button class="btn btn-dark align-items-center py-1 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
+					</span>
 
-			</h3>';
-
+				</h3>';
 
 		?>
 		<?php
@@ -222,40 +221,40 @@ echo ' of '.$nbDocs.'</h2>';
 						$link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page.'&s_g='.urlencode($recherche_g);
 					}
 
-					//Affichage du tableau
+						//Affichage du tableau
 
-					echo "<td id='d'><a class='text-success' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
-					echo '<td id="json">'.substr($json, 0, 100).'';
-					if(strlen($json)>100){echo ' [...] }';}
-					echo '</td>';
-					echo '</tr>';
+						echo "<td id='d'><a class='text-success' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+						echo '<td id="json">'.substr($json, 0, 100).'';
+						if(strlen($json)>100){echo ' [...] }';}
+						echo '</td>';
+						echo '</tr>';
+					}
 				}
-			}
-		?>
+			?>
 	</table>
-	<div class="row justify-content-around">
+	<div class="row justify-content-around mb-2">
 
-		<!-- Bouton de retour -->
+			<!-- Bouton de retour -->
 
-		<div>
+			<div>
+				<?php
+				echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
+				?>
+			</div>
+
+			<!-- Fin du bouton de retour -->
+
+
+			<!-- Pagination -->
+			<div class="row mr-2">
+			<div >
 			<?php
-			echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
-			?>
-		</div>
 
-		<!-- Fin du bouton de retour -->
-
-
-		<!-- Pagination -->
-		<div class="row mr-2">
-		<div >
-		<?php
-
-		echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
-			if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-			else{echo $nbDocs;}
-			echo ' of '.$nbDocs.'</h2>';
-			?>
+			echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
+				if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+				else{echo $nbDocs;}
+				echo ' of '.$nbDocs.'</h2>';
+				?>
 		</div>
 		<div aria-label="pagination" >
 	        <ul class="pagination">
@@ -296,6 +295,7 @@ echo ' of '.$nbDocs.'</h2>';
 	  <!-- Fin du bouton nouveau document -->
 
 </div><br></div><br>
+
 <!-- Fin du tableau des documents de la collection -->
 
 </body>
