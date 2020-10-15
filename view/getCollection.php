@@ -20,7 +20,7 @@
 
 //Fil d'Ariane
 
-echo "<div class='container col-lg-8 sticky-top'>";
+echo "<div class='container border-top  border-success bg-success col-lg-8 sticky-top'>";
 	echo '<ol class="breadcrumb">';
 		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($serve)){
@@ -66,11 +66,11 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 
 //Sous-titre
 
-echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
+/*echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
 if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 else{echo $nbDocs;}
 echo ' of '.$nbDocs.'</h2>';
-?>
+*/?>
 
 <!-- Fin du sous-titre -->
 
@@ -185,13 +185,13 @@ echo ' of '.$nbDocs.'</h2>';
 		?>
 	</table>
 
-	<div style="width: 100%;">
+	<div class="row justify-content-around">
 
 		<!-- Bouton de retour -->
 
-		<div style="width: 30%; display: inline-block; margin-left: 5%">
+		<div>
 			<?php
-			echo '<br><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
+			echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
 			?>
 		</div>
 
@@ -199,8 +199,17 @@ echo ' of '.$nbDocs.'</h2>';
 
 
 		<!-- Pagination -->
+		<div class="row mr-2">
+		<div >
+		<?php
 
-		<nav aria-label="pagination" style="width: 30%; display: inline-block;">
+		echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
+			if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+			else{echo $nbDocs;}
+			echo ' of '.$nbDocs.'</h2>';
+			?>
+		</div>
+		<div aria-label="pagination" >
 	        <ul class="pagination">
 
 	        <?php
@@ -211,7 +220,7 @@ echo ' of '.$nbDocs.'</h2>';
 	            	echo '<a href="" id="prev"><span aria-hidden="true">&laquo;</span></a>';
 	            } ?>
 
-	            <span id="radio" class="text-center font-weight-bold">
+	            <span  class="text-center bg-light font-weight-bold">
 					<select name="bypage" onchange="bypage()">
 					    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
 					    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
@@ -221,28 +230,31 @@ echo ' of '.$nbDocs.'</h2>';
 				</span>
 
 	            <?php if($page!=$nbPages){
-	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
+	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
 	            }
 	            else{
-	            	echo '<a href="" id="next"><span aria-hidden="true">&raquo;</span></a>';
+	            	echo '<a href="" id="next"><span aria-hidden="true">&laquo;</span></a>';
 	            }
 	        ?>
 	        </ul>
-	    </nav>
-
+	    </div>
+       
 	    <!-- Fin de la pagination -->
 
 
-	    <!-- Bouton nouveau document -->
+	
 
-	    <div style="width: 30%; display: inline-block; padding-left: 24.5%;">
-		    <?php echo '<button class="btn btn-dark align-items-center py-0 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
-		</div>
+	    
 
-	    <!-- Fin du bouton nouveau document -->
+	  
 	</div>
+	    <!-- Bouton nouveau document -->
+	<div class="float-right pt-2">
+		    <?php echo '<button class="btn btn-dark   py-0 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
+	</div>
+	  <!-- Fin du bouton nouveau document -->
 
-</div><br>
+</div>
 
 <!-- Fin du tableau des documents de la collection -->
 
