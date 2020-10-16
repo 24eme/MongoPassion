@@ -149,8 +149,8 @@ echo '</div>';
 
 <!-- Affichage du formulaire -->
 
-<div id="json" style="display: block;">
-     <div id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
+<div id="json"  style="display: block;">
+     <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
      <span id="nC"></span>
 	<div id="jsoneditor" style="width: 50%; height: 700px;"></div>
 </div>

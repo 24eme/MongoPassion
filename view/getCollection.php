@@ -163,8 +163,9 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 				//Liens des options de gestion des documents
 
 				$link_v = 'index.php?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
+				$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 
-				echo "<td id='d'><a class='text-success text-center' href=".$link_v."><i class='text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+				echo "<td id='d'><a class='text-success text-center' href=".$link_e."><i class='text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
 				echo '<td id="json">'.substr($json, 0, 100).'';
 				if(strlen($json)>100){echo ' [...] }';}
 				echo '</td>';
@@ -175,7 +176,7 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 		}
 		?>
 	</table>
-
+    <hr>
 	<div class="row justify-content-around mb-2">
 
 		<!-- Bouton de retour -->
@@ -234,14 +235,15 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 
 	</div>
 	    <!-- Bouton nouveau document -->
-	<div class="float-right ">
+	<div class="float-right">
 		    <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
 	</div>
 	  <!-- Fin du bouton nouveau document -->
 
-</div></div>
+</div>
+</div>
 
 <!-- Fin du tableau des documents de la collection -->
-
+<hr>
 </body>
 </html>
