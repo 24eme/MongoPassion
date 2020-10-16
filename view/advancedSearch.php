@@ -131,7 +131,7 @@ if(isset($a_s)){
 					}
 					echo '</tr>';
 					foreach ($docs as $entry) {
-						$link_v = '?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
+						$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
 						echo '<tr>';
 						foreach ($entry as $value) {
 							echo '<td><a href="'.$link_v.'">'.$value.'</a></td>';
@@ -141,7 +141,7 @@ if(isset($a_s)){
 				}
 				else{
 					foreach ($result as $entry) {
-						$link_v = '?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
+						$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
 						$content = array();
 						foreach ($entry as $x => $x_value) {
 							if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
