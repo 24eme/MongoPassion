@@ -108,7 +108,7 @@ echo '</div>';
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
 	
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
-		<div class="input-group mb-3">
+		<div class="input-group mb-1">
 			<input type="search" class="form-control border border-success" required="required" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
 			<!--  -->
@@ -128,7 +128,10 @@ echo '</div>';
 <div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto">
 
 	<table class="table table-sm table-striped">
-		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong> Collections of ".$db."</strong></span></h3>";
+			<?php echo  "<h3 class=\"text-center bg-success text-light \"><span><strong> Collections of ".$db." </strong></span><button type='button' class='btn btn-dark py-1 float-right ' data-toggle='modal' data-target='#myModal'>
+				<i class='fa fa-fw fa-plus'></i>New Collection
+		           </button>
+		                </h3>";
 		
 			foreach ($collections as $collection) {
 				echo "<tr>";
@@ -141,18 +144,19 @@ echo '</div>';
 			}
 		?>
 	</table>
+    <div class="mb-2">
+		<!-- Start Button add database -->
+		<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
+				<i class='fa fa-fw fa-plus'></i>New Collection
+		</button>
+		<!-- End Button add database -->	
 
-	<!-- Start Button add database -->
-	<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
-			<i class='fa fa-fw fa-plus'></i>New Collection
-	</button>
-	<!-- End Button add database -->	
+		<!-- Bouton de retour -->
 
-	<!-- Bouton de retour -->
-
-	<?php
-	echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
-	?>
+		<?php
+		echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+		?>
+    </div>
 </div>
 
 <!-- Fin du tableau des collections -->
