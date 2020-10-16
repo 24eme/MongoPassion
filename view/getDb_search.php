@@ -73,7 +73,7 @@ echo '</div>';
 <!-- Titre de la page -->
 
 <?php
-	echo "<h1 align='center' class='title font-weight-bold mt-5'><i class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h1>";
+	echo "<h2 align='center' class='title font-weight-bold mt-5'><i class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h2>";
 ?>
 
 <!-- Fin du titre de la page -->

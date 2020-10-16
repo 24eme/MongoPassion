@@ -61,7 +61,7 @@ echo '</div>';
 
 //Titre de la page
 
-echo "<h1 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$doc."</h1>";
+echo "<h2 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$doc."</h2>";
 
 //Fin du titre de la page
 
