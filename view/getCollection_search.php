@@ -86,12 +86,12 @@ if(isset($recherche_g)){
 //Titre de la page
 
 if(isset($recherche_g)){
-	echo "<h2 class='title text-center font-weight-bold mt-5'><span>Search results for </span><i class='fa fa-fw fa-book'></i> ";
+	echo "<h1 class='title text-center font-weight-bold'><span>Search results for </span><i class='fa fa-fw fa-book'></i> ";
 	if($recherche_g==""){echo "\"Aucun critère\""; $p='none';}
 	if($recherche_g!=""){
 		echo "\"<font color='#62a252'>".$recherche_g."</font>\"";
 	}
-	echo "</h2>";
+	echo "</h1>";
 }
 else{
 	echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-server'></i>".$coll."</h1>";

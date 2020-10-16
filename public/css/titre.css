@@ -15,6 +15,14 @@ h1.title{
 	padding-left: 2%;
 }
 
+h2.title{
+	color : #3F3B3B;
+	font-size: 48px; 
+	font-family: 'Rubik-Light', sans-serif; 
+	padding-bottom: 10px;
+	padding-left: 2%;
+}
+
 /*Sous-titre*/
 
 h2.subtitle{
