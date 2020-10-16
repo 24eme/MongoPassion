@@ -20,7 +20,7 @@
 
 	<div class='text-center align-items-end mt-3 d-inline-flex'>
 			<img align="center" src="public/images/mongo.png" alt="24eme">
-			<h1 class='text-center title font-weight-bold'>mongo<span class="text-secondary">CRUD</span></h1>
+			<h1 class='text-center title font-weight-bold'>mongo<span class="text-secondary">DoAllCRUD</span></h1>
 		
 	</div>
 
@@ -91,7 +91,7 @@
 <!-- Fin du tableau des serveurs -->
 <!-- Copyright Footer -->
   <div class="container footer-copyright font-weight-bold col-lg-8 offset-lg-2  text-light text-center py-3 bg-success">© 2020 Copyright:
-    <a class="text-light" href="https://github.com/24eme/Interface-MongoDB">MongoCRUD<i class="text-light fa fa-fw fa-github"></i></a>
+    <a class="text-light" href="https://github.com/24eme/Interface-MongoDB">MongoDoAllCRUD<i class="text-light fa fa-fw fa-github"></i></a>
   </div>
   <!-- Copyright footer -->
 
