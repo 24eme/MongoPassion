@@ -13,6 +13,12 @@ function getClient($serve)
 	return $client;
 }
 
+function getAuthClient($serve,$user,$passwd,$auth_db){
+	require 'vendor/autoload.php';
+	$client = new MongoDB\Client('mongodb://'.$user.':'.$passwd.'@'.$serve.'/'.$auth_db.'');
+	return $client;
+}
+
 function formatResult($result)
 {
 	$result_format = array();
@@ -79,7 +85,12 @@ function testProjection($search,$serve,$db)
 
 function getDocument($doc,$type_id,$coll,$db,$serve)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -242,7 +253,12 @@ function getDoc_id($doc,$type_id)
 
 function updateDoc($id,$doc,$serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -278,7 +294,12 @@ function init_json($doc){
 
 function getDocs($page,$bypage,$serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -292,7 +313,12 @@ function getDocs($page,$bypage,$serve,$db,$coll)
 
 function countDocs($serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -310,7 +336,12 @@ function getNew_doc($doc_text)
 
 function insertDoc($doc,$serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -320,7 +351,12 @@ function insertDoc($doc,$serve,$db,$coll)
 
 function deleteDoc($serve,$db,$coll,$doc,$type_id)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -347,7 +383,12 @@ function deleteDoc($serve,$db,$coll,$doc,$type_id)
 
 function getSearch_id($search,$page,$bypage,$serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -372,7 +413,12 @@ function getSearch_id($search,$page,$bypage,$serve,$db,$coll)
 
 function getSearch_g($search,$page,$bypage,$serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -482,7 +528,12 @@ function getNbPages_search($result,$pages){
 }
 
 function countSearch_id($search,$serve,$db,$coll){
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -521,7 +572,12 @@ function countAdvancedSearch($search,$serve,$db,$coll)
 
 function countSearch_g($search,$serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
@@ -562,7 +618,12 @@ function countSearch($search_g,$serve,$db,$coll)
 	}
 
 	else{
-		$client = getClient($serve);
+		if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+			$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+		}
+		else{
+			$client = getClient($serve);
+		}
 		$db = strval($db);
 		$collec = strval($coll);
 		$collection = $client->$db->$collec;
@@ -593,25 +654,14 @@ function countSearch($search_g,$serve,$db,$coll)
 	return $result;
 }
 
-function countSpecialSearch($search)
-{
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
-	$collection = $client->$db->$collec;
-
-	$temp = '$result = $collection->'.$search.'';
-
-	$command = str_replace('find', 'count', $temp);
-	$command = $command.';';
-	eval(strip_tags(htmlspecialchars_decode($command)));
-	return $result;
-}
-
 function getCollections($serve,$db)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$database = $client->$db;
 
 	$result = $database->listCollections();
@@ -621,7 +671,12 @@ function getCollections($serve,$db)
 
 function getSearch_db($search,$db,$serve)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$database = $client->$db;
 
 	$collections = $database->listCollections();
@@ -644,10 +699,14 @@ function getSearch_db($search,$db,$serve)
 	return $result;
 }
 
-function getDbs($serve)
+function getDbs($serve,$user=null,$passwd=null,$auth_db=null)
 {
-	$client = getClient($serve);
-
+	if(isset($user) and isset($passwd) and isset($auth_db)){
+		$client = getAuthClient($serve,$user,$passwd,$auth_db);
+	}
+	else{
+		$client = getClient($serve);
+	}
 	$result = $client->listDatabases();
 
 	return $result;
@@ -655,7 +714,12 @@ function getDbs($serve)
 
 function renameCollec($newName,$serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 
 	$database = $client->admin;
 
@@ -664,7 +728,12 @@ function renameCollec($newName,$serve,$db,$coll)
 
 function createCollec($name,$serve,$db)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 
 	$db = strval($db);
 
@@ -675,7 +744,12 @@ function createCollec($name,$serve,$db)
 
 function deleteColl($serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 
 	$db = strval($db);
 
@@ -687,7 +761,12 @@ function deleteColl($serve,$db,$coll)
 
 function moveCollec($newdb,$serve,$db,$coll)
 {
-	$client = getClient($serve);
+	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
+		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	}
+	else{
+		$client = getClient($serve);
+	}
 
 	$database = $client->admin;
 

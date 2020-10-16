@@ -244,6 +244,5 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 </div>
 
 <!-- Fin du tableau des documents de la collection -->
-<hr>
 </body>
 </html>

@@ -473,41 +473,64 @@
 
     function getServer()
     {
-        $serve_list=json_decode($_COOKIE['serve_list']);
-    	try{
-            if(isset($_GET['serve'])){
-        		$serve=htmlspecialchars($_GET['serve']);
-        	}
-        	elseif(isset($_POST['serve'])){
-        		$serve=htmlspecialchars($_POST['serve']);
+        if(isset($_POST['authentification'])){
+            try{
+                $serve=htmlspecialchars($_POST['serve']);
                 if(!strpos($serve, ':')){
                     $serve = $serve.':27017';
                 }
-        		if(!in_array($serve, $serve_list)){
-        			array_push($serve_list, $serve);
-                    setcookie('serve_list',json_encode($serve_list));
-        		}
-        	}
-        	else{
-        		header('Location: index.php?action=error');
-        	}
-        	$dbs = getDbs($serve);
-        	require('view/getServer.php');
-        }
-        catch(Exception $e){
-            if (($key = array_search($serve, $serve_list)) !== false) {
-                unset($serve_list[$key]);
-                setcookie('serve_list',json_encode($serve_list));
-                $serve='localhost:27017';
+                $user = htmlspecialchars($_POST['user']);
+                $passwd = htmlspecialchars($_POST['passwd']);
+                $auth_db = htmlspecialchars($_POST['auth_db']);
+
+                $_SESSION['user'] = $user;
+                $_SESSION['passwd'] = $passwd;
+                $_SESSION['auth_db'] = $auth_db;
+
+                $dbs = getDbs($serve,$user,$passwd,$auth_db);
+                require('view/getServer.php');                
             }
-            echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
-            echo $e;
+            catch(Exception $e){
+                echo "<script>alert(\"L'authentification a échoué\");document.location.href = 'index.php';</script>";
+            }
+        }
+        else{
+            $serve_list=json_decode($_COOKIE['serve_list']);
+        	try{
+                if(isset($_GET['serve'])){
+            		$serve=htmlspecialchars($_GET['serve']);
+            	}
+            	elseif(isset($_POST['serve'])){
+            		$serve=htmlspecialchars($_POST['serve']);
+                    if(!strpos($serve, ':')){
+                        $serve = $serve.':27017';
+                    }
+            		if(!in_array($serve, $serve_list)){
+            			array_push($serve_list, $serve);
+                        setcookie('serve_list',json_encode($serve_list));
+            		}
+            	}
+            	else{
+            		header('Location: index.php?action=error');
+            	}
+            	$dbs = getDbs($serve);
+            	require('view/getServer.php');
+            }
+            catch(Exception $e){
+                if (($key = array_search($serve, $serve_list)) !== false) {
+                    unset($serve_list[$key]);
+                    setcookie('serve_list',json_encode($serve_list));
+                    $serve='localhost:27017';
+                }
+                echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
+            }
         }
     }
 
     function home()
     {
-    	require('view/home.php');
+    	session_destroy();
+        require('view/home.php');
     }
 
     function removeServer()

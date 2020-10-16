@@ -159,7 +159,7 @@ if(isset($a_s)){
 						unset($content['_id']);
 			 			$json = stripslashes(json_encode($content));
 						echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i class="text-dark fa fa-fw fa-book"></i>'.$entry['_id'].'</a></td>';
-						echo '<td id="json">'.substr($json, 0, 100).'';
+						echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
 						if(strlen($json)>100){echo ' [...] }';}
 						echo '</td>';
 						echo '</tr>';

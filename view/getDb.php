@@ -160,7 +160,6 @@ echo '</div>';
 </div>
 
 <!-- Fin du tableau des collections -->
-<hr>
 
 </body>
 </html>
