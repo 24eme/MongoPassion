@@ -6,9 +6,13 @@
 	margin:auto;
 	padding: 10px;
 	font-family: Courier;
-	min-height: 600px;
+/*	min-height: 600px;*/
 	border-radius: 10px; 
 	border-color: #ececec;
+	max-height: 400pt;
+	overflow: auto;
+
+
 }
 
 #doc_text:focus{
@@ -44,4 +48,14 @@
 
  a {
   text-decoration: none !important;
+<<<<<<< HEAD
 }
+
+
+/*.creatDocDiv{
+	max-height: 350pt;
+	overflow: auto;
+}*/
+=======
+}
+>>>>>>> 2ce9c1db80bbd32988f86f74ce6be143bfe5e255

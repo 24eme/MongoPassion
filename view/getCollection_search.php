@@ -297,4 +297,14 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Fin du tableau des documents de la collection -->
 
 </body>
+
+
+<!-- footer -->
+
+<?php 
+	require_once('footer.php')
+?>
+
+   <!-- footer -->
+
 </html>

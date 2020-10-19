@@ -111,7 +111,9 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 
 <!-- Tableau des documents de la collection -->
 	
-<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto">
+
+<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto getCollDiv">
+
 	<table class="table table-sm table-striped">
 	    <?php 
 
@@ -241,8 +243,20 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 	  <!-- Fin du bouton nouveau document -->
 
 </div>
-</div>
+</div> 
 
 <!-- Fin du tableau des documents de la collection -->
+
+<!-- footer -->
+
+<?php 
+	require_once('footer.php')
+?>
+
+   <!-- footer -->
+
+
+<!-- Fin du tableau des documents de la collection -->
+
 </body>
 </html>
