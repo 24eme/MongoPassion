@@ -130,7 +130,7 @@ echo '</div>';
 
 	<table class="table table-sm table-striped">
 			<?php echo  "<h3 class=\"text-center bg-success text-light \"><span><strong> Collections of ".$db." </strong></span><button type='button' class='btn btn-dark py-1 float-right ' data-toggle='modal' data-target='#myModal'>
-				<i class='fa fa-fw fa-plus'></i>New Collection
+				<i class='fa fa-fw fa-plus'></i><i class='fa fa-fw fa-server'></i>
 		           </button>
 		                </h3>";
 		
@@ -139,8 +139,8 @@ echo '</div>';
 				echo "<td><a class='text-success' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."'><i class='text-dark mr-2 fa fa-fw fa-server'></i>";
 				echo $collection->getName();
 				echo '</a></td>';
-				echo "<td><button  class='btn  py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
-				echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
+				echo "<td><button  class='btn  float-right py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
+				// echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
 				echo '</tr>';
 			}
 		?>
@@ -148,7 +148,7 @@ echo '</div>';
     <div class="mb-2">
 		<!-- Start Button add database -->
 		<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
-				<i class='fa fa-fw fa-plus'></i>New Collection
+				<i class='fa fa-fw fa-plus'></i><i class='fa fa-fw fa-server'></i>
 		</button>
 		<!-- End Button add database -->	
 
