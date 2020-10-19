@@ -90,11 +90,12 @@
 
 <!-- Fin du tableau des serveurs -->
 <!-- Copyright Footer -->
+
 <?php 
 require_once('footer.php')
 ?>
 
-  <!-- Copyright footer -->
+
 
 </body>
 </html>

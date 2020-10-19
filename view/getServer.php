@@ -130,6 +130,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
    </div>
 </div>
 
+
 	<!-- footer -->
 
 <?php 
@@ -137,6 +138,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 ?>
 
    <!-- footer -->
+
 <!-- Fin du tableau des bases de données -->
 
 </body>

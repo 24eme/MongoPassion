@@ -127,6 +127,7 @@ echo '</div>';
 
 <div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto getDbDiv">
 
+
 	<table class="table table-sm table-striped">
 			<?php echo  "<h3 class=\"text-center bg-success text-light \"><span><strong> Collections of ".$db." </strong></span><button type='button' class='btn btn-dark py-1 float-right ' data-toggle='modal' data-target='#myModal'>
 				<i class='fa fa-fw fa-plus'></i>New Collection
@@ -162,6 +163,7 @@ echo '</div>';
 <!-- Fin du tableau des collections -->
 
 
+
 <!-- footer -->
 
 <?php 
@@ -169,6 +171,7 @@ echo '</div>';
 ?>
 
    <!-- footer -->
+
 
 </body>
 </html>

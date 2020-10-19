@@ -79,7 +79,10 @@ echo '</div>';
 
 <!-- Zone de texte -->
 
+
 <div id="main" class="creatDocDiv">
+
+
 	<?php
 	 	$doc = array();
 	 	$doc['example_field']='content[...]';
@@ -93,6 +96,7 @@ echo '</div>';
 
 <!-- Fin de la zone de texte -->
 
+
 <!-- footer -->
 
 <?php 
@@ -100,6 +104,7 @@ echo '</div>';
 ?>
 
    <!-- footer -->
+
 
 </body>
 </html>

@@ -103,6 +103,8 @@ echo '</div>';
 <!-- Formulaire mode édition classique -->
 
 <div id="main" style="display: none" class="getEdiDiv">
+
+
 	<?php
 
 		//Formatage des données du document en JSON
@@ -152,7 +154,9 @@ echo '</div>';
 <div id="json"  style="display: block;">
      <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
      <span id="nC"></span>
+
 	<div id="jsoneditor" style="width: 50%; height: 500px; overflow: auto;"></div>
+
 </div>
 
 <!-- Script de création et d'envoi du formulaire -->
@@ -199,6 +203,7 @@ echo '</div>';
 
 <!-- Fin du formulaire mode édition JsonEditor -->
 
+
 <!-- footer -->
 
 <?php 
@@ -206,6 +211,7 @@ echo '</div>';
 ?>
 
    <!-- footer -->
+
 
 </body>
 </html>

@@ -11,6 +11,8 @@
 	border-color: #ececec;
 	max-height: 400pt;
 	overflow: auto;
+
+
 }
 
 #doc_text:focus{
@@ -46,6 +48,7 @@
 
  a {
   text-decoration: none !important;
+<<<<<<< HEAD
 }
 
 
@@ -53,3 +56,6 @@
 	max-height: 350pt;
 	overflow: auto;
 }*/
+=======
+}
+>>>>>>> 2ce9c1db80bbd32988f86f74ce6be143bfe5e255

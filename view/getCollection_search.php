@@ -298,6 +298,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 </body>
 
+
 <!-- footer -->
 
 <?php 
@@ -305,4 +306,5 @@ echo ' of '.$nbDocs.'</h2>';
 ?>
 
    <!-- footer -->
+
 </html>

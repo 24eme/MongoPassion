@@ -183,6 +183,7 @@ echo '</div>';
 
 <!-- Fin du tableau des résultats de la recherche -->
 
+
 <!-- footer -->
 
 <?php 

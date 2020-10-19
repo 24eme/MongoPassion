@@ -95,6 +95,7 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa
 
 <!-- Fin du formulaire -->
 
+
 <!-- footer -->
 
 <?php 
@@ -102,6 +103,7 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa
 ?>
 
    <!-- footer -->
+
 
 </body>
 </html>
