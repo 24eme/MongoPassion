@@ -40,3 +40,9 @@ td#json{
 	font-family: courier;
 	font-size:14px;
 }
+
+
+.getCollSearchDiv{
+	max-height: 320pt;
+	overflow: auto;
+}
