@@ -26,3 +26,8 @@ body{
 #searchInAllColl{
 	display: none;
 }
+
+.getDbDiv{
+	max-height: 350pt;
+	overflow: auto;
+}

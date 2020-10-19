@@ -90,9 +90,10 @@
 
 <!-- Fin du tableau des serveurs -->
 <!-- Copyright Footer -->
-  <div class="container footer-copyright font-weight-bold col-lg-8 offset-lg-2  text-light text-center py-3 bg-success">© 2020 Copyright:
-    <a class="text-light" href="https://github.com/24eme/Interface-MongoDB">MongoDoAllCRUD<i class="text-light fa fa-fw fa-github"></i></a>
-  </div>
+<?php 
+require_once('footer.php')
+?>
+
   <!-- Copyright footer -->
 
 </body>

@@ -183,5 +183,13 @@ echo '</div>';
 
 <!-- Fin du tableau des résultats de la recherche -->
 
+<!-- footer -->
+
+<?php 
+	require_once('footer.php')
+?>
+
+   <!-- footer -->
+
 </body>
 </html>

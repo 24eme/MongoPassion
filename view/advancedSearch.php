@@ -211,6 +211,14 @@ if(isset($a_s)){
 
 <!-- Fin du tableau des résultats -->
 
+<!-- footer -->
+
+<?php 
+	require_once('footer.php')
+?>
+
+   <!-- footer -->
+
 </body>
 </html>
 

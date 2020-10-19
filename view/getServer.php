@@ -130,6 +130,13 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
    </div>
 </div>
 
+	<!-- footer -->
+
+<?php 
+	require_once('footer.php')
+?>
+
+   <!-- footer -->
 <!-- Fin du tableau des bases de données -->
 
 </body>

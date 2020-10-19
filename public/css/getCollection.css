@@ -63,3 +63,8 @@ td#json{
 	font-size:14px;
 	text-align: left;
 }
+
+.getCollDiv{
+	max-height: 360pt;
+	overflow: auto;
+}
