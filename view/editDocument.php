@@ -102,7 +102,7 @@ echo '</div>';
 
 <!-- Formulaire mode édition classique -->
 
-<div id="main" style="display: none" class="getEdiDiv">
+<div id="main"  style="display: none" class="getEdiDiv">
 
 
 	<?php
@@ -155,7 +155,7 @@ echo '</div>';
      <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
      <span id="nC"></span>
 
-	<div id="jsoneditor" style="width: 50%; height: 500px; overflow: auto;"></div>
+	<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 500px; overflow: auto;"></div>
 
 </div>
 
