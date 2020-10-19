@@ -10,6 +10,7 @@
 	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
 	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
 	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
+	<script src="public/js/db.js"></script>
 </head>
 
 <body>
@@ -56,7 +57,8 @@ echo '</div>';
 
 //Titre de la page
 
-echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa-server'></i> ".$coll."</h1>";
+echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa-server'></i> ".$coll." <button  class='btn mr-5'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></h1>";
+
 
 ?>
 
@@ -104,6 +106,6 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa
 
    <!-- footer -->
 
-
+	<script src="public/js/db.js"></script>
 </body>
 </html>

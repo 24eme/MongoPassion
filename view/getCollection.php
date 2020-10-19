@@ -179,70 +179,70 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 		?>
 	</table>
     <hr>
-	<div class="row justify-content-around mb-2">
+	<div class="row  justify-content-between m-1">
 
-		<!-- Bouton de retour -->
+			<!-- Bouton de retour -->
 
-		<div>
-			<?php
-			echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
-			?>
-		</div>
+			<div>
+				<?php
+				echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
+				?>
+			</div>
 
-		<!-- Fin du bouton de retour -->
+			<!-- Fin du bouton de retour -->
 
 
-		<!-- Pagination -->
-		<div class="row mr-2">
-		<div >
-		<?php
+			<!-- Pagination -->
+			<div class="row mr-2">
+				<div >
+					<?php
 
-		echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
-			if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-			else{echo $nbDocs;}
-			echo ' of '.$nbDocs.'</h2>';
-			?>
-		</div>
-		<div aria-label="pagination" >
-	        <ul class="pagination">
+					echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
+						if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+						else{echo $nbDocs;}
+						echo ' of '.$nbDocs.'</h2>';
+						?>
+				</div>
+				<div aria-label="pagination" >
+			        <ul class="pagination">
 
-	        <?php
-	            if($page!=1){
-	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
-	            }
-	            else{
-	            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
-	            } ?>
+			        <?php
+			            if($page!=1){
+			            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
+			            }
+			            else{
+			            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
+			            } ?>
 
-	            <span  class="text-center bg-light font-weight-bold mr-1">
-					<select name="bypage" onchange="bypage()">
-					    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
-					    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
-					    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
-					    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
-					</select>
-				</span>
+			            <span  class="text-center bg-light font-weight-bold mr-1">
+							<select name="bypage" onchange="bypage()">
+							    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
+							    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
+							    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
+							    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
+							</select>
+						</span>
 
-	            <?php if($page!=$nbPages){
-	            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
-	            }
-	            else{
-	            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
-	            }
-	        ?>
-	        </ul>
-	    </div>
-       
-	    <!-- Fin de la pagination -->
+			            <?php if($page!=$nbPages){
+			            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
+			            }
+			            else{
+			            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
+			            }
+			        ?>
+			        </ul>
+			    </div>
+	       
+		    <!-- Fin de la pagination -->
+
+			</div>
+		   		<!-- Bouton nouveau document -->
+			<div class="ml-2">
+				    <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
+			</div>
+		  <!-- Fin du bouton nouveau document -->
 
 	</div>
-	    <!-- Bouton nouveau document -->
-	<div class="float-right">
-		    <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
-	</div>
-	  <!-- Fin du bouton nouveau document -->
-
-</div>
 </div> 
 
 <!-- Fin du tableau des documents de la collection -->
