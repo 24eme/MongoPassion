@@ -98,7 +98,7 @@ echo '</div>';
 						</div>
 				 </div>
 				<div class="modal-footer">
-        		    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        		    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 			
 
@@ -159,7 +159,7 @@ echo '</div>';
 							//Affichage du tableau
 
 							echo '<tr>';
-							echo '<td><a class="text-success" href="'.$link_v.'"><i class=" text-dark mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
+							echo '<td><a class="text-success" href="'.$link_e.'"><i class=" text-dark mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
 						}
 					}
 				}
