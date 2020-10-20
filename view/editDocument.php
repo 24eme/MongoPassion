@@ -15,6 +15,7 @@
 
 	<script src="jsoneditor/dist/jsoneditor.min.js"></script>
     <script src="public/js/switch.js"></script>
+    <script src="public/js/db.js"></script>
 </head>
 
 <body>
@@ -59,9 +60,10 @@ echo '</div>';
 //Fin fil d'Ariane
 
 
+$link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&page='.$page;
 //Titre de la page
 
-echo "<h2 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$doc."</h2>";
+echo "<h2 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$doc."<button  class=\"btn \"><a class=\"text-danger font-weight-bold\" href=".$link_d." onclick=\"return confirmDelete()\"><i class='fa fa-2x fa-trash'></i></a></button></h2>";
 
 //Fin du titre de la page
 
@@ -82,6 +84,26 @@ echo '<div id="nav_view">';
 		echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'"><button class="return btn btn-primary">< Collection</button></a>';
 	} 
 echo '</div>';
+
+
+
+
+if(isset($type_id)){
+	
+	$link_d=$link_d.'&type_id='.$type_id;
+}
+if(isset($a_s)){
+
+	$link_d=$link_d.'&a_s='.$a_s;
+}
+if(isset($s_g)){
+	
+	$link_d=$link_d.'&s_g='.$s_g;
+}
+if(isset($search_db)){
+
+	$link_d=$link_d.'&search_db='.$search_db;
+}
 ?>
 
 <!-- Fin du bouton de retour -->
@@ -152,7 +174,9 @@ echo '</div>';
 <!-- Affichage du formulaire -->
 
 <div id="json"  style="display: block;">
-     <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button></div>
+     <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button>
+
+    </div>
      <span id="nC"></span>
 
 	<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 500px; overflow: auto;"></div>
