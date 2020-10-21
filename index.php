@@ -75,6 +75,9 @@ try{
             case 'removeServer':
                 removeServer();
             break;
+            case 'install':
+                install();
+            break;
             default:
                 error();
             break;

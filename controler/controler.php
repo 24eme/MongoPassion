@@ -530,6 +530,23 @@
     function home()
     {
     	session_destroy();
+
+        if(extension_loaded('mongodb') == false){
+            header('Location: index.php?action=install');
+        }
+
+        $file_compopser = 'composer.json'; 
+        $data_composer = file_get_contents($file_compopser);
+        if(strpos($data_composer, 'mongodb/mongodb') == false){
+            header('Location: index.php?action=install');
+        }
+
+        $file_json = 'jsoneditor/package.json'; 
+        $data_json = file_get_contents($file_json);
+        if(strpos($data_json, 'jsoneditor') == false){
+            header('Location: index.php?action=install');
+        }
+
         require('view/home.php');
     }
 
@@ -544,4 +561,34 @@
         setcookie('serve_list',json_encode($serve_list));
 
         echo "<script>document.location.href = 'index.php';</script>";
+    }
+
+    function install()
+    {
+        if(extension_loaded('mongodb') !== false){
+            $php_mongo = true;
+        }
+        else{
+            $php_mongo = false;
+        }
+
+        $file_compopser = 'composer.json'; 
+        $data_composer = file_get_contents($file_compopser);
+        if(strpos($data_composer, 'mongodb/mongodb') !== false){
+            $composer_mongo = true;
+        }
+        else{
+            $composer_mongo = false;
+        }
+
+        $file_json = 'jsoneditor/package.json'; 
+        $data_json = file_get_contents($file_json);
+        if(strpos($data_json, 'jsoneditor') !== false){
+            $jsoneditor = true;
+        }
+        else{
+            $jsoneditor = false;
+        }
+
+        require('view/install.php');
     }
