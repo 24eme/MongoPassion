@@ -125,10 +125,7 @@ if(isset($search_db)){
 <!-- Formulaire mode édition classique -->
 
 <div id="main"  style="display: none">
-
-
 	<?php
-
 		//Formatage des données du document en JSON
 
 		foreach ($result as $entry) {
@@ -164,8 +161,6 @@ if(isset($search_db)){
 	 	echo '</form>';
 	 	echo '<br>'
 	?>
-
-
 <!-- Fin du formulaire mode édition classique -->
 </div>
 
@@ -174,14 +169,13 @@ if(isset($search_db)){
 <!-- Affichage du formulaire -->
 <div id="DivContentTable">
 	<div id="json"  style="display: block;">
-	     <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Save</button>
-
+	    <div  id="getJson_content">
+	     	<button class="btn btn-secondary" id="getJSON">Save</button>
 	    </div>
-	     <span id="nC"></span>
-	 <div id="DivContentTable">
-		<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 750px;"></div>
-	 </div>
-
+	    <span id="nC"></span>
+		<div id="DivContentTable">
+			<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 750px;"></div>
+		</div>
 	</div>
 </div>
 <!-- Script de création et d'envoi du formulaire -->
@@ -230,7 +224,7 @@ if(isset($search_db)){
 
 
 <!-- footer -->
-
+<br><br>
 <?php 
 	require_once('footer.php')
 ?>
