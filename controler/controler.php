@@ -153,9 +153,23 @@
         $coll = htmlspecialchars($_GET['coll']);
 
         $doc_text = strip_tags($_POST['doc_text']);
+        // var_dump($doc_text);
+        // if ($doc_text ) {
+        //     # code...
+        // }
 
         try{
+          if(is_null(json_decode($doc_text))) {
+            header('Location: index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&msg=Désolé mauvais format nous acceptons que du format json { }'.'&doc_text='. json_encode(array(data => $doc_text)));
+           
+           
+            return;
+
+          } 
+              // var_dump('tata');
+
         	$doc = getNew_doc($doc_text);
+
         	insertDoc($doc,$serve,$db,$coll);
         	header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
         }
