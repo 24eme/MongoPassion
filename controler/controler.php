@@ -309,10 +309,7 @@
             $page = 1;
         }
 
-        if(isset($_POST['a_s'])){
-            $a_s = htmlspecialchars($_POST['a_s'],ENT_NOQUOTES);
-        }
-        elseif(isset($_GET['a_s'])){
+        if(isset($_GET['a_s'])){
             $a_s = htmlspecialchars(urldecode($_GET['a_s']),ENT_NOQUOTES);
         }
         elseif (isset($_GET['s_g'])) {
@@ -331,6 +328,9 @@
                 $s_g_array = explode(':', $s_g);
                 $a_s = 'db.'.$coll.'.find({'.$s_g_array[0].':"'.$s_g_array[1].'"})';
             }
+        }
+        else{
+            $a_s = 'db.'.$coll.'.find({})';
         }
 
         if(isset($a_s)){

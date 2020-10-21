@@ -87,15 +87,19 @@ if(isset($a_s)){
 <!-- Partie recherche -->
 
 <div class="mt-1 col-lg-8">
-	<?php echo '<form method="post" action="'.$link_search.'">';
-		echo '<label for="a_s">Execute a query in '.$coll.':</label>';
-		if(isset($a_s)){
-			echo '<textarea name="a_s" id="a_" rows="5" cols="100">'.$a_s.'</textarea>';
+	<?php echo '<form action="'.$link_search.'">';
+		echo '<label>Execute a query in '.$coll.':</label>'; ?>
+		<input type="hidden" name="action" value="advancedSearch">
+		<?php echo'<input type="hidden" name="serve" value='.$serve.'>';
+		echo'<input type="hidden" name="db" value='.$db.'>';
+		echo'<input type="hidden" name="coll" value='.$coll.'>'; ?>
+		<?php if(isset($a_s)){
+			echo '<textarea name="a_s" id="a_s" rows="5" cols="100">'.$a_s.'</textarea>';
 		}
 		else{
-			echo '<textarea name="a_s" id="a_" rows="5" cols="100">db.'.$coll.'.find({})</textarea>';
+			echo '<textarea name="a_s" id="a_s" rows="5" cols="100">db.'.$coll.'.find({})</textarea>';
 		} ?>
-		<input type="submit" class="btn btn-success float-right" name="a_search" id="a_search" value="Execute">
+		<input type="submit" class="btn btn-success float-right" value="Execute">
 	
 	</form>
 		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
