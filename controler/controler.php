@@ -483,9 +483,11 @@
                 $passwd = htmlspecialchars($_POST['passwd']);
                 $auth_db = htmlspecialchars($_POST['auth_db']);
 
-                $_SESSION['user'] = $user;
-                $_SESSION['passwd'] = $passwd;
-                $_SESSION['auth_db'] = $auth_db;
+                $cookie_option = array('path'=> $_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']);
+
+                setcookie('user', $user, $cookie_option);
+                setcookie('passwd',$passwd, $cookie_option);
+                setcookie('auth_db',$auth_db, $cookie_option);
 
                 $dbs = getDbs($serve,$user,$passwd,$auth_db);
                 require('view/getServer.php');                
@@ -529,7 +531,9 @@
 
     function home()
     {
-    	session_destroy();
+        setcookie('user', "", time() - 3600);
+        setcookie('passwd',"", time() - 3600);
+        setcookie('auth_db',"", time() - 3600);
 
         if(extension_loaded('mongodb') == false){
             header('Location: index.php?action=install');
