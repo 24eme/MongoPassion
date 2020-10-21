@@ -79,19 +79,20 @@ echo '</div>';
 
 <!-- Zone de texte -->
 
+<div id="DivContentTable">
+	<div id="main" class="creatDocDiv">
 
-<div id="main" class="creatDocDiv">
 
-
-	<?php
-	 	$doc = array();
-	 	$doc['example_field']='content[...]';
-	 	$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
-	 	echo '<form method="post" action="index.php?action=traitement_nD&serve='.$serve.'&db='.$db.'&coll='.$coll.'">';
-	 	echo '<div id="create_content"><input type="submit" class="btn btn-primary" name="create" id="create" value="Create"></div>';
-	 	echo '<div id="doc_content"><textarea name="doc_text" id="doc_text" rows="20" cols="200" required>'.$docs.'</textarea></div>';
-	 	echo '</form>';
-	?>
+		<?php
+		 	$doc = array();
+		 	$doc['example_field']='content[...]';
+		 	$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
+		 	echo '<form method="post" action="index.php?action=traitement_nD&serve='.$serve.'&db='.$db.'&coll='.$coll.'">';
+		 	echo '<div id="create_content"><input type="submit" class="btn btn-primary" name="create" id="create" value="Create"></div>';
+		 	echo '<div id="doc_content"><textarea name="doc_text" id="doc_text" rows="20" cols="200" required>'.$docs.'</textarea></div>';
+		 	echo '</form>';
+		?>
+	</div>
 </div>
 
 <!-- Fin de la zone de texte -->

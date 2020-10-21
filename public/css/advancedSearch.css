@@ -111,3 +111,7 @@ td#json{
 }
 
 /*Fin du tableau des résultats*/
+
+#DivContentTable{
+	padding-bottom: 60px;
+}

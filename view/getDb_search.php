@@ -136,51 +136,52 @@ echo '</div>';
 
 
 <!-- Tableau des résultats de la recherche -->
-<div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto">
-	<br>
-	<table class="table table-sm table-striped">
-		<?php
-		echo"<h3 class=\"text-center bg-success text-light\"><span><strong>Search results for :".$search."</strong></span></h3>"; 
-			if($nbDocs==0){
-				echo 'Aucun document ne correspond à votre recherche.';
-			}
-			else{
-				foreach ($docs as $coll => $doc) {
-					if(sizeof($doc)!=0){
-						foreach ($doc as $field) {
+<div id="DivContentTable">
+	<div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto">
+		
+		<table class="table table-sm table-striped">
+			<?php
+			echo"<h3 class=\"text-center bg-success text-light\"><span><strong>Search results for :".$search."</strong></span></h3>"; 
+				if($nbDocs==0){
+					echo 'Aucun document ne correspond à votre recherche.';
+				}
+				else{
+					foreach ($docs as $coll => $doc) {
+						if(sizeof($doc)!=0){
+							foreach ($doc as $field) {
 
-							//Liens des options de gestion des collections
+								//Liens des options de gestion des collections
 
-							$link_v = 'index.php?action=viewDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
-							$link_e = 'index.php?action=editDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
-							$link_d = 'index.php?action=deleteDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
-							$link_c = 'index.php?action=getCollection&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'';
+								$link_v = 'index.php?action=viewDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+								$link_e = 'index.php?action=editDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+								$link_d = 'index.php?action=deleteDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$field['_id'].'&search_db='.urlencode($search).'&page=1';
+								$link_c = 'index.php?action=getCollection&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'';
 
-							//Affichage du tableau
+								//Affichage du tableau
 
-							echo '<tr>';
-							echo '<td><a class="text-success" href="'.$link_e.'"><i class=" text-dark mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
+								echo '<tr>';
+								echo '<td><a class="text-success" href="'.$link_e.'"><i class=" text-dark mr-2 fa fa-fw fa-server"></i>'.$field['_id'].'</a></td>';
+							}
 						}
 					}
 				}
-			}
-		?>
-	</table>
-    <div class="mb-2">
-		<!-- Start Button new collection -->
-		<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
-				<i class='fa fa-fw fa-plus'></i><i class='fa fa-fw fa-server'></i>
-		</button>
-		<!-- End Button add new collection -->	
+			?>
+		</table>
+	    <div class="mb-2">
+			<!-- Start Button new collection -->
+			<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
+					<i class='fa fa-fw fa-plus'></i><i class='fa fa-fw fa-server'></i>
+			</button>
+			<!-- End Button add new collection -->	
 
-		<!-- Bouton de retour -->
+			<!-- Bouton de retour -->
 
-		<?php
-			echo '<a href="index.php?action=getServer&serve='.strip_tags($serve).'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
-		?>
-    </div>
+			<?php
+				echo '<a href="index.php?action=getServer&serve='.strip_tags($serve).'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+			?>
+	    </div>
+	</div>
 </div>
-
 <!-- Fin du tableau des résultats de la recherche -->
 
 

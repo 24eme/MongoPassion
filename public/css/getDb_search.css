@@ -21,3 +21,7 @@ body{
 }
 
 /*Bouton de recherche */
+
+#DivContentTable{
+	padding-bottom: 60px;
+}
