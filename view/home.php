@@ -60,7 +60,7 @@
 
 			<div class="input-group">
 			<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
-			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="ADD">
+			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connexion">
 		</div>
 	</form>
 

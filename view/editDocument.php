@@ -174,7 +174,7 @@ if(isset($search_db)){
 <!-- Affichage du formulaire -->
 <div id="DivContentTable">
 	<div id="json"  style="display: block;">
-	     <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button>
+	     <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Save</button>
 
 	    </div>
 	     <span id="nC"></span>
