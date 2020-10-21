@@ -109,102 +109,104 @@ if(isset($a_s)){
 <!-- Tableau des résulats -->
 
 <?php if(isset($a_s)){?>
-	<div id='result' class="col-lg-8">
-		<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
-					if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-					else{echo $nbDocs;}
-					echo ' of '.$nbDocs.') :</h5>'?>
-		<?php if(!empty($result) and isset($docs)){ ?>
-		<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
-	<?php } ?>
-		<table class="table table-sm table-striped">
-			<?php if(empty($result)){
-				echo '<p align="center">No document matches your search</p>';
-			}
-			else{
-			?>
-				<?php
-				if(isset($docs)){
-					echo '<tr>';
-					foreach ($docs[0] as $key => $value) {
-						echo '<th>'.$key.'</th>';
+	<div id="DivContentTable">
+			<div id='result' class="col-lg-8">
+				<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
+							if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+							else{echo $nbDocs;}
+							echo ' of '.$nbDocs.') :</h5>'?>
+				<?php if(!empty($result) and isset($docs)){ ?>
+				<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
+			<?php } ?>
+				<table class="table table-sm table-striped">
+					<?php if(empty($result)){
+						echo '<p align="center">No document matches your search</p>';
 					}
-					echo '</tr>';
-					foreach ($docs as $entry) {
-						$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
-						echo '<tr>';
-						foreach ($entry as $value) {
-							echo '<td><a href="'.$link_v.'">'.$value.'</a></td>';
+					else{
+					?>
+						<?php
+						if(isset($docs)){
+							echo '<tr>';
+							foreach ($docs[0] as $key => $value) {
+								echo '<th>'.$key.'</th>';
+							}
+							echo '</tr>';
+							foreach ($docs as $entry) {
+								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
+								echo '<tr>';
+								foreach ($entry as $value) {
+									echo '<td><a href="'.$link_v.'">'.$value.'</a></td>';
+								}
+								echo '</tr>';
+							}
 						}
-						echo '</tr>';
-					}
-				}
-				else{
-					foreach ($result as $entry) {
-						$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
-						$content = array();
-						foreach ($entry as $x => $x_value) {
-							if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
-					 			$value = $x_value;
-					 		}
-					 		elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
-					 			$value = $x_value->toDateTime();
-					 		}
-					 		else{
-					 	  		$value = printable($x_value);
-					 		}
-					 		$content[$x] =  improved_var_export($value);
+						else{
+							foreach ($result as $entry) {
+								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
+								$content = array();
+								foreach ($entry as $x => $x_value) {
+									if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
+							 			$value = $x_value;
+							 		}
+							 		elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
+							 			$value = $x_value->toDateTime();
+							 		}
+							 		else{
+							 	  		$value = printable($x_value);
+							 		}
+							 		$content[$x] =  improved_var_export($value);
+								}
+								$content = init_json($content);
+								unset($content['_id']);
+					 			$json = stripslashes(json_encode($content));
+								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i class="text-dark fa fa-fw fa-book"></i>'.$entry['_id'].'</a></td>';
+								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
+								if(strlen($json)>100){echo ' [...] }';}
+								echo '</td>';
+								echo '</tr>';
+							}
 						}
-						$content = init_json($content);
-						unset($content['_id']);
-			 			$json = stripslashes(json_encode($content));
-						echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i class="text-dark fa fa-fw fa-book"></i>'.$entry['_id'].'</a></td>';
-						echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
-						if(strlen($json)>100){echo ' [...] }';}
-						echo '</td>';
-						echo '</tr>';
-					}
-				}
-			} 
-			?>
-		</table>
-		<div style="width: 100%;">
+					} 
+					?>
+				</table>
+				<div style="width: 100%;">
 
-		<!-- Pagination -->
+				<!-- Pagination -->
 
-		<nav aria-label="pagination" style="width: 16%; margin: auto; padding-left: 0;">
-	        <ul class="pagination">
-	        <?php
-	            if($page!=1){
-	            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
-	            }
-	            else{
-	            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
-	            } ?>
+				<nav aria-label="pagination" style="width: 16%; margin: auto; padding-left: 0;">
+			        <ul class="pagination">
+			        <?php
+			            if($page!=1){
+			            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
+			            }
+			            else{
+			            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
+			            } ?>
 
-	            <span id="radio" class="text-center font-weight-bold">
-					<select name="bypage" onchange="bypage_search()">
-					    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
-					    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
-					    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
-					    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
-					</select>
-				</span>
+			            <span id="radio" class="text-center font-weight-bold">
+							<select name="bypage" onchange="bypage_search()">
+							    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
+							    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
+							    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
+							    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
+							</select>
+						</span>
 
-	            <?php if($page!=$nbPages){
-	            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
-	            }
-	            else{
-	            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
-	            }
-	        ?>
-	        </ul>
-	    </nav>
+			            <?php if($page!=$nbPages){
+			            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
+			            }
+			            else{
+			            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
+			            }
+			        ?>
+			        </ul>
+			    </nav>
 
-	    <!-- Fin de la pagination -->
+			    <!-- Fin de la pagination -->
 
-	</div>
-	</div>
+			</div>
+			</div>
+</div>
 	<br>
 <?php } ?>
 

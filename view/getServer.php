@@ -101,35 +101,35 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 
 
 <!-- Tableau des bases de données -->
+<div id="DivContentTable">
+	<div id="main" class="border col-lg-8 offset-lg-2 mt-2 bg-light">
 
-<div id="main" class="border col-lg-8 offset-lg-2 mt-2 bg-light">
+		<table class="table table-sm table-striped ">
+			<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Databases of ".$serve." </strong></span></h3>" ?>
 
-	<table class="table table-sm table-striped ">
-		<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Databases of ".$serve." </strong></span></h3>" ?>
-
-		<?php
-			foreach ($dbs as $db) {
-				echo '<tr>';
-				echo "<td><a class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
-				echo $db->getName();
-				echo '</a></td>';
-				echo '</tr>';
-			}
-		?>
-	</table>
-	
-	<div class="mb-2">
-		<!-- Start Button add database -->
-		<button type='button' class='btn btn-dark  float-right' data-toggle='modal' data-target='#myModal'>
-				<i class='fa fa-fw fa-database'></i><i class='fa fa-fw fa-plus'></i>
-		</button>
-		<!-- End Button add database -->
-		<?php
-			echo '<a href="index.php"><button class="return btn btn-primary font-weight-bold">< Home</button></a>'
-		?>
-   </div>
+			<?php
+				foreach ($dbs as $db) {
+					echo '<tr>';
+					echo "<td><a class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
+					echo $db->getName();
+					echo '</a></td>';
+					echo '</tr>';
+				}
+			?>
+		</table>
+		
+		<div class="mb-2">
+			<!-- Start Button add database -->
+			<button type='button' class='btn btn-dark  float-right' data-toggle='modal' data-target='#myModal'>
+					<i class='fa fa-fw fa-database'></i><i class='fa fa-fw fa-plus'></i>
+			</button>
+			<!-- End Button add database -->
+			<?php
+				echo '<a href="index.php"><button class="return btn btn-primary font-weight-bold">< Home</button></a>'
+			?>
+	   </div>
+	</div>
 </div>
-
 
 	<!-- footer -->
 

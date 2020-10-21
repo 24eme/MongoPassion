@@ -65,7 +65,7 @@ td#json{
 
 }
 
-.getCollDiv{
-	max-height: 360pt;
-	overflow: auto;
+
+#DivContentTable{
+	padding-bottom: 60px;
 }

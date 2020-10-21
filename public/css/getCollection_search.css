@@ -42,7 +42,6 @@ td#json{
 }
 
 
-.getCollSearchDiv{
-	max-height: 320pt;
-	overflow: auto;
+#DivContentTable{
+	padding-bottom: 60px;
 }

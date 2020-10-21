@@ -124,7 +124,7 @@ if(isset($search_db)){
 
 <!-- Formulaire mode édition classique -->
 
-<div id="main"  style="display: none" class="getEdiDiv">
+<div id="main"  style="display: none">
 
 
 	<?php
@@ -164,25 +164,26 @@ if(isset($search_db)){
 	 	echo '</form>';
 	 	echo '<br>'
 	?>
-</div>
+
 
 <!-- Fin du formulaire mode édition classique -->
-
+</div>
 
 <!-- Formulaire mode édition JsonEditor -->
 
 <!-- Affichage du formulaire -->
+<div id="DivContentTable">
+	<div id="json"  style="display: block;">
+	     <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button>
 
-<div id="json"  style="display: block;">
-     <div  id="getJson_content"><button class="btn btn-secondary" id="getJSON">Update</button>
+	    </div>
+	     <span id="nC"></span>
+	 <div id="DivContentTable">
+		<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 750px;"></div>
+	 </div>
 
-    </div>
-     <span id="nC"></span>
-
-	<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 500px; overflow: auto;"></div>
-
+	</div>
 </div>
-
 <!-- Script de création et d'envoi du formulaire -->
 
 <script type="text/javascript">
