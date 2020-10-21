@@ -541,11 +541,11 @@
             header('Location: index.php?action=install');
         }
 
-        $file_json = 'jsoneditor/package.json'; 
-        $data_json = file_get_contents($file_json);
-        if(strpos($data_json, 'jsoneditor') == false){
-            header('Location: index.php?action=install');
-        }
+        // $file_json = 'jsoneditor/package.json'; 
+        // $data_json = file_get_contents($file_json);
+        // if(strpos($data_json, 'jsoneditor') == false){
+        //     header('Location: index.php?action=install');
+        // }
 
         require('view/home.php');
     }
