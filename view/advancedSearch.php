@@ -78,7 +78,7 @@ if(isset($a_s)){
 	}
 	else{
 ?>
-<h1 class='title font-weight-bold'align="center"><i class="fa fa-fw fa-check"></i>Advanced Search</h1>
+<h1 class='title font-weight-bold'align="center"><i class="fa fa-fw fa-search"></i>Advanced Search</h1>
 <?php } ?>
 
 <!-- Fin du titre de la page -->

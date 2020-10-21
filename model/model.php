@@ -85,8 +85,8 @@ function testProjection($search,$serve,$db)
 
 function getDocument($doc,$type_id,$coll,$db,$serve)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -253,8 +253,8 @@ function getDoc_id($doc,$type_id)
 
 function updateDoc($id,$doc,$serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -294,8 +294,8 @@ function init_json($doc){
 
 function getDocs($page,$bypage,$serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -313,8 +313,8 @@ function getDocs($page,$bypage,$serve,$db,$coll)
 
 function countDocs($serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -336,8 +336,8 @@ function getNew_doc($doc_text)
 
 function insertDoc($doc,$serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -351,8 +351,8 @@ function insertDoc($doc,$serve,$db,$coll)
 
 function deleteDoc($serve,$db,$coll,$doc,$type_id)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -383,8 +383,8 @@ function deleteDoc($serve,$db,$coll,$doc,$type_id)
 
 function getSearch_id($search,$page,$bypage,$serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -413,8 +413,8 @@ function getSearch_id($search,$page,$bypage,$serve,$db,$coll)
 
 function getSearch_g($search,$page,$bypage,$serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -528,8 +528,8 @@ function getNbPages_search($result,$pages){
 }
 
 function countSearch_id($search,$serve,$db,$coll){
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -572,8 +572,8 @@ function countAdvancedSearch($search,$serve,$db,$coll)
 
 function countSearch_g($search,$serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -618,8 +618,8 @@ function countSearch($search_g,$serve,$db,$coll)
 	}
 
 	else{
-		if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-			$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+		if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+			$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 		}
 		else{
 			$client = getClient($serve);
@@ -656,8 +656,8 @@ function countSearch($search_g,$serve,$db,$coll)
 
 function getCollections($serve,$db)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -671,8 +671,8 @@ function getCollections($serve,$db)
 
 function getSearch_db($search,$db,$serve)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -714,8 +714,8 @@ function getDbs($serve,$user=null,$passwd=null,$auth_db=null)
 
 function renameCollec($newName,$serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -728,8 +728,8 @@ function renameCollec($newName,$serve,$db,$coll)
 
 function createCollec($name,$serve,$db)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -744,8 +744,8 @@ function createCollec($name,$serve,$db)
 
 function deleteColl($serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);
@@ -761,8 +761,8 @@ function deleteColl($serve,$db,$coll)
 
 function moveCollec($newdb,$serve,$db,$coll)
 {
-	if(isset($_SESSION['user']) and isset($_SESSION['passwd']) and isset($_SESSION['auth_db'])){
-		$client = getAuthClient($serve,$_SESSION['user'],$_SESSION['passwd'],$_SESSION['auth_db']);
+	if(isset($_COOKIE['user']) and isset($_COOKIE['passwd']) and isset($_COOKIE['auth_db'])){
+		$client = getAuthClient($serve,$_COOKIE['user'],$_COOKIE['passwd'],$_COOKIE['auth_db']);
 	}
 	else{
 		$client = getClient($serve);

@@ -18,3 +18,10 @@ function switchJ() {
     main.style.display = "block";
   }
 }
+
+
+function cacherAlert() {
+   document.getElementById("cacherAlert").style.display = "none";
+  
+
+}

@@ -160,7 +160,7 @@
 
         try{
           if(is_null(json_decode($doc_text))) {
-            header('Location: index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&msg=Désolé mauvais format nous acceptons que du format json { }'.'&doc_text='. json_encode(array(data => $doc_text)));
+            header('Location: index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&msg=Désolé mauvais format nous acceptons que du format json { }'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
            
            
             return;
@@ -497,9 +497,11 @@
                 $passwd = htmlspecialchars($_POST['passwd']);
                 $auth_db = htmlspecialchars($_POST['auth_db']);
 
-                $_SESSION['user'] = $user;
-                $_SESSION['passwd'] = $passwd;
-                $_SESSION['auth_db'] = $auth_db;
+                $cookie_option = array('path'=> $_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']);
+
+                setcookie('user', $user, $cookie_option);
+                setcookie('passwd',$passwd, $cookie_option);
+                setcookie('auth_db',$auth_db, $cookie_option);
 
                 $dbs = getDbs($serve,$user,$passwd,$auth_db);
                 require('view/getServer.php');                
@@ -543,7 +545,9 @@
 
     function home()
     {
-    	session_destroy();
+        setcookie('user', "", time() - 3600);
+        setcookie('passwd',"", time() - 3600);
+        setcookie('auth_db',"", time() - 3600);
 
         if(extension_loaded('mongodb') == false){
             header('Location: index.php?action=install');
