@@ -171,7 +171,7 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 					$link_v = 'index.php?action=viewDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 					$link_e = 'index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$id.'&type_id='.$type_id.'&page='.$page;
 
-					echo "<td id='d'><a class='text-success text-center'  data-toggle='tooltip' title='".$jsonView."' href=".$link_e."><i class='text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+					echo "<td id='d'><a class='text-success text-center'  data-toggle='tooltip' title='".$json."' href=".$link_e."><i class='text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
 					echo '<td id="json">'.substr($json, 0, 100).'';
 					if(strlen($json)>100){echo ' [...] }';}
 					echo '</td>';

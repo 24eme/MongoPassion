@@ -212,7 +212,7 @@ echo ' of '.$nbDocs.'</h2>';
 					 	$content = init_json($content);
 					 	unset($content['_id']);
 					 	$json = stripslashes(json_encode($content));
-					 	$jsonView = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
+					 	// $jsonView = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
 
 						//Liens des options de gestion des documents
 
@@ -222,7 +222,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 							//Affichage du tableau
 
-							echo "<td id='d'><a class='text-success'   data-toggle='tooltip' title='".$jsonView."'href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+							echo "<td id='d'><a class='text-success'   data-toggle='tooltip' title='".$json."' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
 							echo '<td id="json">'.substr($json, 0, 100).'';
 							if(strlen($json)>100){echo ' [...] }';}
 							echo '</td>';
