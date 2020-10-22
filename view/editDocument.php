@@ -68,6 +68,24 @@ echo "<h2 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$doc.
 //Fin du titre de la page
 
 
+//Message d'erreur
+if(isset($_GET['msg'])){
+
+  echo '<div id="cacherAlert" class="text-center alert col-lg-8 offset-lg-2 alert-danger alert-dismissible fade show" role="alert">';
+   echo $_GET['msg'];
+  echo '<button type="button" class="close" onclick="cacherAlert()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>';
+  echo '</div>';
+
+
+}
+
+
+
+//Fin Messagege d'erreur
+
+
 //Bouton de retour
 
 echo '<div id="nav_view">';
@@ -111,10 +129,17 @@ if(isset($search_db)){
 
 <!-- Bouton switch JsonEditor -->
 
+
 <div id="switch">
 	<label id="switch_json">JSONEditor</label>
 	<label class="switch">
-	  <input type="checkbox" id="myCheck" checked onclick="switchJ()">
+		<?php
+		if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
+	  		echo '<input type="checkbox" id="myCheck" onclick="switchJ()">';
+	  	} else {
+	  		echo '<input type="checkbox" id="myCheck" checked onclick="switchJ()">';
+	  	}
+	  ?>
 	  <span class="slider round"></span>
 	</label>
 </div>
@@ -123,8 +148,15 @@ if(isset($search_db)){
 
 
 <!-- Formulaire mode édition classique -->
-
-<div id="main"  style="display: none">
+<!-- 
+<div id="main"  style="display: none"> -->
+	<?php
+	if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
+		echo '<div id="main"  style="display: block">';
+	} else {
+		echo '<div id="main" style="display: none">';
+	}
+	?>
 	<?php
 		//Formatage des données du document en JSON
 
@@ -148,7 +180,15 @@ if(isset($search_db)){
 		 		$doc[$x] = improved_var_export($value);
 		 	}
 		 	$doc = init_json($doc);
-		 	$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
+		 	//contenu de l'erreur
+		 	 if(isset($_GET['doc_text'])){
+		 		$docs= $_GET['doc_text'];
+		 		$docs = json_decode($docs);
+		 		$docs = $docs->data;
+		 	 }else{
+		 	 	$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
+		 	 }
+		 	
 	 	}
 
 	 	//Affichage du formulaire
@@ -157,7 +197,7 @@ if(isset($search_db)){
 	 		echo '<input type="hidden" name="date_array" value="'.htmlspecialchars(serialize($date_array)).'"></input>';
 	 		echo '<input type="hidden" name="up_date_array" value="'.htmlspecialchars(serialize($up_date_array)).'"></input>';
 	 		echo '<div id="update_content"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Update"></div>';
-	 		echo '<div id="doc_content"><textarea name="doc_text" id="doc_text" rows="20" cols="200" required>'.$docs.'</textarea></div>';
+	 		echo '<div id="doc_content"><textarea name="doc_text" class="col-lg-8 offset-lg-2" id="doc_text"  rows="20" cols="200" required>'.$docs.'</textarea></div>';
 	 	echo '</form>';
 	 	echo '<br>'
 	?>
@@ -168,7 +208,14 @@ if(isset($search_db)){
 
 <!-- Affichage du formulaire -->
 <div id="DivContentTable">
-	<div id="json"  style="display: block;">
+
+		<?php
+			if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
+				echo '<div id="json"  style="display: none;">';
+			} else {
+				echo '<div id="json"  style="display: block;">';
+			}
+		?>
 	    <div  id="getJson_content">
 	     	<button class="btn btn-secondary" id="getJSON">Save</button>
 	    </div>

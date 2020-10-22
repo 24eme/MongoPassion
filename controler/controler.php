@@ -49,7 +49,7 @@
 
 
     function traitement_uD()
-    {
+    {   
     	$doc = htmlspecialchars($_GET['id']);
         if(isset($_GET['type_id'])){
             $type_id = htmlspecialchars($_GET['type_id']);
@@ -70,11 +70,25 @@
         }
 
         $doc_text = strip_tags($_POST['doc_text']);
+      
         $date_array = unserialize($_POST['date_array']);
         $up_date_array = unserialize($_POST['up_date_array']);
 
         try{
+           
+           //on Check si le contenu respecte le format json si il reste sur la page avec l'erreur
+
+             if(is_null(json_decode($doc_text)) ) {
+            header('Location: index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$doc.'&type_id='.$type_id.'&page='.$page.'&msg=Désolé mauvais format nous acceptons que du format json {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
+           
+                return;
+
+             } 
+       
+           
+         
 	    	$update = getUpdate_doc($doc_text,$date_array,$up_date_array);
+
 	    	$id = getDoc_id($doc,$type_id);
 	    	updateDoc($id,$update,$serve,$db,$coll);
 
@@ -153,20 +167,19 @@
         $coll = htmlspecialchars($_GET['coll']);
 
         $doc_text = strip_tags($_POST['doc_text']);
-        // var_dump($doc_text);
-        // if ($doc_text ) {
-        //     # code...
-        // }
-
+    
         try{
+
+            //on Check si le contenu respecte le format json si il reste sur la page avec l'erreur 
+
           if(is_null(json_decode($doc_text))) {
-            header('Location: index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&msg=Désolé mauvais format nous acceptons que du format json { }'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
+            header('Location: index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&msg=Désolé mauvais format nous acceptons que du format json {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
            
            
             return;
 
           } 
-              // var_dump('tata');
+            
 
         	$doc = getNew_doc($doc_text);
 
