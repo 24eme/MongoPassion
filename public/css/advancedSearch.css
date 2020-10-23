@@ -46,8 +46,7 @@ button#test_csv{
 	padding-left: 8px;
 	padding-right: 8px;
 	margin-bottom: 1%;
-	margin-top: 1%;
-	margin-left: 2%;
+	margin-left: 25%;
 }
 
 /*Tableau des résultats*/
@@ -114,4 +113,10 @@ td#json{
 
 #DivContentTable{
 	padding-bottom: 60px;
+}
+
+#head_content{
+	display: flex;
+	align-items: center;
+	padding-left: 31%;
 }
