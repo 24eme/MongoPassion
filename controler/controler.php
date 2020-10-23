@@ -522,7 +522,7 @@
         }
 
         $passwd = htmlspecialchars($_POST['passwd']);
-        $auth_db = htmlspecialchars($_POST['auth_db']);
+        $auth_db = htmlspecialchars($_POST['database']);
 
         if($user){
             try{
@@ -536,6 +536,7 @@
                 require('view/getServer.php');
             }
             catch(Exception $e){
+                setcookie('flash_error', $e->getMessage());
                 header("Location: index.php?error=1&host=".$host."&user=".$user."&port=".$port."&db=".$auth_db);
             }
             return;
@@ -547,7 +548,6 @@
         		array_push($serve_list, $serve);
                 setcookie('serve_list',json_encode($serve_list));
         	}
-
         	$dbs = getDbs($serve);
         	require('view/getServer.php');
             return;
@@ -558,12 +558,19 @@
                 setcookie('serve_list',json_encode($serve_list));
                 $serve='localhost:27017';
             }
+            setcookie('flash_error', $e->getMessage());
             header("Location: index.php?error=2&host=".$host."&user=".$user."&port=".$port."&db=".$auth_db);
         }
     }
 
     function home()
     {
+        $file_compopser = 'composer.json';
+        $data_composer = file_get_contents($file_compopser);
+        if(strpos($data_composer, 'mongodb/mongodb') == false){
+            header('Location: index.php?action=install');
+        }
+
         $modal_opened = isset($_GET['modal_opened']);
         $modal_error = isset($_GET['error']);
 
@@ -593,18 +600,10 @@
         if ($modal_error) {
             $flash_error = "Unable to connect to server";
         }
-
-        $file_compopser = 'composer.json';
-        $data_composer = file_get_contents($file_compopser);
-        if(strpos($data_composer, 'mongodb/mongodb') == false){
-            header('Location: index.php?action=install');
+        if (isset($_COOKIE['flash_error'])) {
+            $flash_error = $_COOKIE['flash_error'];
+            setcookie('flash_error');
         }
-
-        // $file_json = 'jsoneditor/package.json';
-        // $data_json = file_get_contents($file_json);
-        // if(strpos($data_json, 'jsoneditor') == false){
-        //     header('Location: index.php?action=install');
-        // }
 
         require('view/home.php');
     }
