@@ -515,20 +515,22 @@
 
         else{
             header('Location: index.php?action=error');
+            return;
         }
 
-        $docs = getSearch_db($search,$db,$serve);
+        $collections = getSearch_db($search,$db,$serve);
 
         $nbDocs = 0;
 
-        foreach ($docs as $key => $value) {
-            if(sizeof($value)!=0){
-                $nbDocs =+sizeof($value);
+        foreach ($collections as $coll => $docs) {
+            foreach($docs as $doc) {
+                header('Location: index.php?action=editDocument&serve='.strip_tags($serve).'&db='.$db.'&coll='.$coll.'&doc='.$doc->_id.'&search_db=1&page=1');
+                return;
             }
+
         }
 
-        require('view/getDb_search.php');
-
+        header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
     }
 
     function error()

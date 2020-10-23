@@ -150,6 +150,9 @@ function printable($obj){
 			$printable=false;
 			while($printable==false){
 				$print = array();
+				if(empty((array) $obj)){
+	    			$printable=true;
+	    		}
 				foreach($obj as $x => $x_value) {
 					$print[$x]=printable($x_value);
 					$printable=true;

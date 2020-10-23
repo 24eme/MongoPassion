@@ -430,15 +430,11 @@ nav[aria-label=pagination] {
     margin-right: 6%
 }
 
-.btn.btn-primary,select {
-    background-color: #4caf50;
-    border: 0
-}
-
 select {
     border-radius: 2px;
     padding: 15%;
-    color: #fff
+    color: black;
+    background-color: #dee2e6;
 }
 
 @font-face {
