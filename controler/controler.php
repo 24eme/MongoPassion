@@ -36,6 +36,15 @@
             $search_db = null;
         }
 
+        $file_json = 'jsoneditor/package.json';
+        $data_json = file_get_contents($file_json);
+        if($data_json!==false){
+            $jsoneditor = (strpos($data_json, 'jsoneditor') !== false);
+        }
+        else{
+            $jsoneditor = false;
+        }
+
         //Récupération du document au format curseur
 
         $result = getDocument($doc,$type_id,$coll,$db,$serve);

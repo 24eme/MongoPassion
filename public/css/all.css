@@ -246,7 +246,7 @@ input:focus+.slider {
     margin-bottom: -5px
 }
 
-div#json{
+div#json.createDoc{
     margin-top: -3.15%;
 }
 
