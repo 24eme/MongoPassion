@@ -9,6 +9,8 @@
 
 <?php include('breadcrumb.php'); ?>
 
+<div id="advancedSearch">
+
 <?php
 
 //Préparation des variables de recherche pour leur utilisation en JS
