@@ -18,6 +18,44 @@
 
 	<!-- Fin du titre de la page -->
 
+	<!-- Formulaire serveurs -->
+	<div class="col-lg-8 offset-lg-2">
+	<form method="post" action="index.php?action=getServer">
+			<div class="input-group btn-group">
+			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength=20 required />
+			<div class="input-group-append">
+			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
+			</div>
+		</div>
+	</form>
+	<p class="text-right"><a href="#" data-toggle="modal" data-target="#modal-connection">Advanced Connection</a></p>
+	</div>
+
+	<!-- Fin du formulaire serveurs -->
+</div>
+
+<!-- Tableau des serveurs -->
+
+<div class="border col-lg-8 offset-lg-2 bg-light m-auto">
+	<?php
+		$serve_list=json_decode($_COOKIE['serve_list']);
+		if(sizeof($serve_list)>0){
+			echo '<table class="table table-sm table-striped ">';
+			echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Server list </strong></span></h3>" ;
+			foreach ($serve_list as $x) {
+				echo '<tr>';
+				echo "<td><a  class='text-success'  href='index.php?action=getServer&serve=".$x."'><i title='address IP of server' class='text-dark mr-2 fa fa-fw fa-desktop'></i>";
+				echo $x;
+				echo '</a></td>';
+				echo '<td><a href="?action=removeServer&serve='.$x.'"><i title="Delete server" class="fa fa-fw fa-remove"></i></a></td>';
+				echo '</tr>';
+			}
+			echo '</table>';
+		}
+	?>
+</div>
+
+<!-- Fin du tableau des serveurs -->
 
 	<!-- Modal connexion -->
 	<div class="modal fade" id="modal-connection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -77,45 +115,7 @@
 	<!-- Fin du modal connexion -->
 
 
-	<!-- Formulaire serveurs -->
-	<div class="col-lg-8 offset-lg-2">
-	<form method="post" action="index.php?action=getServer">
-			<div class="input-group btn-group">
-			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength=20 required />
-			<div class="input-group-append">
-			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
-			</div>
-		</div>
-	</form>
-	<p class="text-right"><a href="#" data-toggle="modal" data-target="#modal-connection">Advanced Connection</a></p>
-	</div>
-
-	<!-- Fin du formulaire serveurs -->
-</div>
-
-<!-- Tableau des serveurs -->
-
-<div class="border col-lg-8 offset-lg-2 bg-light m-auto">
-	<?php
-		$serve_list=json_decode($_COOKIE['serve_list']);
-		if(sizeof($serve_list)>0){
-			echo '<table class="table table-sm table-striped ">';
-			echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Server list </strong></span></h3>" ;
-			foreach ($serve_list as $x) {
-				echo '<tr>';
-				echo "<td><a  class='text-success'  href='index.php?action=getServer&serve=".$x."'><i title='address IP of server' class='text-dark mr-2 fa fa-fw fa-desktop'></i>";
-				echo $x;
-				echo '</a></td>';
-				echo '<td><a href="?action=removeServer&serve='.$x.'"><i title="Delete server" class="fa fa-fw fa-remove"></i></a></td>';
-				echo '</tr>';
-			}
-			echo '</table>';
-		}
-	?>
-</div>
-
-<!-- Fin du tableau des serveurs -->
-<!-- Copyright Footer -->
+<!-- Footer -->
 
 <?php
 require_once('footer.php')
