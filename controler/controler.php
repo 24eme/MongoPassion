@@ -588,6 +588,13 @@
         $modal_user = htmlspecialchars($_GET['user']);
         $modal_db = htmlspecialchars($_GET['db']);
 
+        if(isset($_GET['serve'])){
+            $serve=htmlspecialchars($_GET['serve']);
+            $server_info = explode(":", $serve);
+            $modal_host = $server_info[0];
+            $modal_port = $server_info[1];
+        }
+
         if ($modal_host || $modal_db || $modal_port || $modal_user || $modal_error) {
             $modal_opened = 1 ;
         }
