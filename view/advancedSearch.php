@@ -94,13 +94,13 @@ if(isset($a_s)){
 		echo'<input type="hidden" name="db" value='.$db.'>';
 		echo'<input type="hidden" name="coll" value='.$coll.'>'; ?>
 		<?php if(isset($a_s)){
-			echo '<textarea name="a_s" id="a_s" rows="5" cols="100">'.$a_s.'</textarea>';
+			echo '<textarea name="a_s" id="a_s" rows="5" cols="100" autofocus="autofocus">'.$a_s.'</textarea>';
 		}
 		else{
-			echo '<textarea name="a_s" id="a_s" rows="5" cols="100">db.'.$coll.'.find({})</textarea>';
+			echo '<textarea name="a_s" id="a_s" rows="5" cols="100" autofocus="autofocus">db.'.$coll.'.find({})</textarea>';
 		} ?>
 		<input type="submit" class="btn btn-success float-right" value="Execute">
-	
+
 	</form>
 		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?> 
 			
@@ -115,13 +115,15 @@ if(isset($a_s)){
 <?php if(isset($a_s)){?>
 	<div id="DivContentTable">
 			<div id='result' class="col-lg-8">
-				<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
-							if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-							else{echo $nbDocs;}
-							echo ' of '.$nbDocs.') :</h5>'?>
-				<?php if(!empty($result) and isset($docs)){ ?>
-				<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
-			<?php } ?>
+				<div id="head_content">
+					<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
+								if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+								else{echo $nbDocs;}
+								echo ' of '.$nbDocs.') :</h5>'?>
+					<?php if(!empty($result) and isset($docs)){ ?>
+					<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
+					<?php } ?>
+				</div>
 				<table class="table table-sm table-striped">
 					<?php if(empty($result)){
 						echo '<p align="center">No document matches your search</p>';
