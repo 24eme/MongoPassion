@@ -28,14 +28,9 @@ if(isset($a_s)){
 
 <!-- Titre de la page -->
 
-<?php
-	if(isset($a_s)){
-		echo '<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>Search results for "'.$a_s.'"</h1>';
-	}
-	else{
-?>
-<h1 class='title font-weight-bold'align="center"><i class="fa fa-fw fa-search"></i>Advanced Search</h1>
-<?php } ?>
+<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>
+    <?php echo (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
+</h1>
 
 <!-- Fin du titre de la page -->
 
@@ -77,7 +72,10 @@ if(isset($a_s)){
 								else{echo $nbDocs;}
 								echo ' of '.$nbDocs.') :</h5>'?>
 					<?php if(!empty($result) and isset($docs)){ ?>
-					<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
+					<button id="test_csv" style="color:white;"><i class="text-light fa fa-fw fa-download"></i>CSV</button>
+					<?php } ?>
+					<?php if(!empty($result) and !isset($docs)){ ?>
+					<button id="export_json" onclick="download_json()" style="color:white;"><i class="text-light fa fa-fw fa-download"></i>JSON</button>
 					<?php } ?>
 				</div>
 				<table class="table table-sm table-striped">
@@ -88,6 +86,7 @@ if(isset($a_s)){
 					?>
 						<?php
 						if(isset($docs)){
+							$export_json = "";
 							echo '<tr>';
 							foreach ($docs[0] as $key => $value) {
 								echo '<th>'.$key.'</th>';
@@ -103,6 +102,7 @@ if(isset($a_s)){
 							}
 						}
 						else{
+							$export_json = "[";
 							foreach ($result as $entry) {
 								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
 								$content = array();
@@ -119,14 +119,18 @@ if(isset($a_s)){
 							 		$content[$x] =  improved_var_export($value);
 								}
 								$content = init_json($content);
+								$json_exp = json_encode($content);
 								unset($content['_id']);
 					 			$json = stripslashes(json_encode($content));
+					 			$export_json = $export_json.$json_exp.',';
 								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i class="text-dark fa fa-fw fa-book"></i>'.$entry['_id'].'</a></td>';
 								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
 								if(strlen($json)>100){echo ' [...] }';}
 								echo '</td>';
 								echo '</tr>';
 							}
+							$export_json = substr($export_json, 0, -1);
+							$export_json = $export_json.']';
 						}
 					} 
 					?>
@@ -146,12 +150,11 @@ if(isset($a_s)){
 			            } ?>
 
 			            <span id="radio" class="text-center font-weight-bold">
-							<select name="bypage" onchange="bypage_search()">
-							    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
-							    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
-							    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
-							    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
-							</select>
+                                <select id="select_pagination" name="bypage" onchange="bypage_search(this)">
+                                <?php foreach([10, 20, 30, 50] as $nb) : ?>
+                                  <option value="<?= $nb ?>" <?= ($bypage == $nb) ? 'selected="selected"': '' ?>><?= $nb ?></option>
+                                <?php endforeach ?>
+                                </select>
 						</span>
 
 			            <?php if($page!=$nbPages){
@@ -188,6 +191,25 @@ if(isset($a_s)){
 </html>
 
 <script type="text/javascript">
+
+	function download_json()
+  {
+  	var element = document.createElement('a');
+  	var random = (Math.floor(Math.random() * Math.floor(100000000))).toString(16);
+  	var filename = "json_"+random+".json";
+  	var text = '<?php echo $export_json; ?>';
+  	var jsonPretty = JSON.stringify(JSON.parse(text),null,2);
+  	element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonPretty));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
+	// Export CSV
   function download_csv(csv, filename) {
       var csvFile;
       var downloadLink;
@@ -236,4 +258,7 @@ if(isset($a_s)){
     var html = document.querySelector("table").outerHTML;
     export_table_to_csv(html, "result_"+random+".csv");
   });
+  // Fin de l'export CSV
+
 </script>
+

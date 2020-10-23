@@ -2,18 +2,7 @@
 <html lang="fr">
 <head>
 	<?php echo "<title>Setup Help</title>"?>
-	<meta charset="UTF-8">
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
-	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
-	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
-	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
-	<link href="public/css/modal.css" rel="stylesheet" type="text/css">
-	<link href="public/css/install.css" rel="stylesheet" type="text/css">
-
-	<script src="public/js/install.js"></script>
+	<?php require_once('header.php') ?>
 </head>
 
 <body>
@@ -40,7 +29,14 @@
       		<div id="collapsePhpMongo" class="collapse<?php if (!$php_mongo): ?> show<?php endif; ?>" aria-labelledby="headingPhpMongo" data-parent="#accordionInstall">
         		<div class="card-body">
 					<p>To install the php-mongodb package, you can use the following command:</p>
-					<code>sudo pecl install mongodb</code>
+					<?php if ($system == "Debian"): ?>
+						<code>sudo apt-get install php-mongodb</code>
+					<?php elseif ($system == "RedHat"): ?>
+						<code>sudo yum install php-mongodb</code>
+					<?php else: ?>
+						<code>sudo pecl install mongodb</code>
+					<?php endif; ?>
+					<p>Don't forget to restart your php service ;)</p>
         		</div>
       		</div>
     	</div>
@@ -86,23 +82,22 @@
 <br>
 <div class="col text-center">
 
-	<button class="btn btn-primary" href="?action=install"><i class="fa fa-undo">&nbsp;</i>&nbsp;Re-check</button>
+	<a class="btn btn-primary" href="?action=install"><i class="fa fa-undo">&nbsp;</i>&nbsp;Re-check</a>
 
 	&nbsp;
 
-	<button href="index.php" class="btn <?php if (!$php_mongo || !$composer_mongo): ?>btn-secondary" disabled="disabled<?php else: ?>btn-success<?php endif; ?>">Start</button>
+	<?php if (!$php_mongo || !$composer_mongo): ?>
+		<button class="btn btn-secondary" disabled="disabled">Start</button>
+	<?php else: ?>
+		<a href="index.php" class="btn btn-success">Start</a>
+	<?php endif; ?>
 
 </div>
 <!-- Fin du bouton de retour au menu home -->
 
 </div>
 <!-- footer -->
-
-<?php
-	require_once('footer.php')
-?>
-
+<?php require_once('footer.php') ?>
 <!-- footer -->
-
 </body>
 </html>

@@ -83,13 +83,19 @@
 					<i class='fa fa-fw fa-plus'></i><i class='fa fa-fw fa-server'></i>
 			           </button>
 			                </h3>";
-			
+
+				$tabcollections= array();
 				foreach ($collections as $collection) {
+					array_push($tabcollections,$collection->getName());
+				}
+				sort($tabcollections);
+
+				foreach ($tabcollections as $collection) {
 					echo "<tr>";
-					echo "<td><a class='text-success' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."'><i class='text-dark mr-2 fa fa-fw fa-server'></i>";
-					echo $collection->getName();
+					echo "<td><a class='text-success' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection."'><i class='text-dark mr-2 fa fa-fw fa-server'></i>";
+					echo $collection;
 					echo '</a></td>';
-					echo "<td><button  class='btn  float-right py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
+					echo "<td><button  class='btn  float-right py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection."><i class='fa fa-edit'></i></a></button></td>";
 					// echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
 					echo '</tr>';
 				}
