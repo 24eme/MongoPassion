@@ -2,7 +2,7 @@
 <link href="public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="/public/css/all.css">
+<link rel="stylesheet" href="public/css/all.css">
 
 <script src="public/js/jquery-3.5.1.slim.min.js"></script>
 <script src="public/js/popper.min.js"></script>
