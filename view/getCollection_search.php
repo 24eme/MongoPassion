@@ -115,71 +115,8 @@ echo ' of '.$nbDocs.'</h2>';
 
 <div id="DivContentTable">
 	<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto getCollSearchDiv">
+		<?php include('tableauDocuments.php'); ?>
 
-	  <table class="table table-sm table-striped">
-
-				 <?php 
-
-					echo '<h3 class="text-center mb-1 bg-success text-light"><span><strong>Documents '.(1+(($page-1)*$bypage)).'-';
-						if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-						else{echo $nbDocs;}
-						echo ' of '.$nbDocs.'
-						<span>
-							 <button class="btn btn-dark align-items-center py-1 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i title="Create new doc" class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-fw fa-file"></i></a></button>
-						</span>
-
-					</h3>';
-
-			?>
-			<?php
-				if($nbDocs==0){
-					echo 'Aucun document ne correspond à votre recherche.';
-				}
-				else{
-					foreach ($docs as $doc) {
-						echo '<tr class="mr-5">';
-						$type_id = gettype($doc['_id']);
-						if ($type_id=='object'){
-							$id = (string)$doc['_id'];
-						}
-						else{
-							$id = $doc['_id'];
-						}
-						$content = array();
-						foreach($doc as $x => $x_value) {
-					 		if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
-					 			$value = $x_value;
-					 		}
-					 		elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
-					 			$value = $x_value->toDateTime();
-					 		}
-					 		else{
-					 	  		$value = printable($x_value);
-					 		}
-					 		$content[$x] =  improved_var_export($value);
-					 	}
-					 	$content = init_json($content);
-					 	unset($content['_id']);
-					 	$json = stripslashes(json_encode($content));
-					 	// $jsonView = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
-
-						//Liens des options de gestion des documents
-
-						if(isset($recherche_g)){
-							$link_v = 'index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&s_g='.urlencode($recherche_g).'&type_id='.$type_id.'&page='.$page;
-						}
-
-							//Affichage du tableau
-
-							echo "<td id='d'><a class='text-success'   data-toggle='tooltip' title='".$json."' href=".$link_v."><i class=' text-dark fa fa-fw fa-file'></i>".$id."</a></td>";
-							echo '<td id="json">'.substr($json, 0, 100).'';
-							if(strlen($json)>100){echo ' [...] }';}
-							echo '</td>';
-							echo '</tr>';
-						}
-					}
-				?>
-		</table>
 	   <div class="row justify-content-between m-1">
 
 				<!-- Bouton de retour -->
