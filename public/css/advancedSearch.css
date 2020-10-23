@@ -46,7 +46,8 @@ button#test_csv{
 	padding-left: 8px;
 	padding-right: 8px;
 	margin-bottom: 1%;
-	margin-left: 25%;
+	margin-left: auto;
+	margin-right: 5px;
 }
 
 /*Tableau des résultats*/
@@ -74,6 +75,8 @@ h5{
 	font-family: 'Rubik-Light', sans-serif; 
 	font-size: 18px;
 	font-weight: bold;
+	width: 50%;
+	margin-left: auto;
 }
 
 td{
@@ -118,5 +121,5 @@ td#json{
 #head_content{
 	display: flex;
 	align-items: center;
-	padding-left: 31%;
+	padding: auto;
 }

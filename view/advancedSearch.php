@@ -116,7 +116,7 @@ if(isset($a_s)){
 	<div id="DivContentTable">
 			<div id='result' class="col-lg-8">
 				<div id="head_content">
-					<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
+					<?php echo '<h5 align="center">Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
 								if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 								else{echo $nbDocs;}
 								echo ' of '.$nbDocs.') :</h5>'?>
