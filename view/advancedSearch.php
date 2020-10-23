@@ -9,7 +9,7 @@
 
 <?php include('breadcrumb.php'); ?>
 
-<div id="advancedSearch">
+<div id="advancedSearch" class="container">
 
 <?php
 
@@ -37,7 +37,8 @@ if(isset($a_s)){
 
 <!-- Partie recherche -->
 
-<div class="mt-1 col-lg-8">
+<div class="card">
+  <div class="card-body">
 	<?php if ($flash_error): ?>
 	<div class="alert alert-danger">
 		<?php echo $flash_error; ?>
@@ -55,11 +56,12 @@ if(isset($a_s)){
 		else{
 			echo '<textarea name="a_s" id="a_s" rows="5" cols="100" autofocus="autofocus">db.'.$coll.'.find({})</textarea>';
 		} ?>
-		<input type="submit" class="btn btn-success float-right" value="Execute">
-		<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="<?php echo $link_reinit; ?>"><i title="reset" class="fa fa-fw fa-remove"></i></a></button>
+		<div class="text-right">
+			<input type="submit" class="btn btn-success" value="Execute">
+			<button class="btn bg-secondary mr-2"><a class="text-light" href="<?php echo $link_reinit; ?>"><i title="reset" class="fa fa-fw fa-remove"></i></a></button>
+		</div>
 	</form>
-
-
+   </div>
 </div>
 
 <!-- Fin de la partie recherche -->
@@ -69,7 +71,7 @@ if(isset($a_s)){
 
 <?php if(isset($a_s)){?>
 	<div id="DivContentTable">
-			<div id='result' class="col-lg-8">
+			<div id='result'>
 				<div id="head_content">
 					<?php echo '<h5 align="center">Search results '.(1+(($page-1)*$bypage)).'-';
 								if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
@@ -139,7 +141,7 @@ if(isset($a_s)){
 							$export_json = substr($export_json, 0, -1);
 							$export_json = $export_json.']';
 						}
-					} 
+					}
 					?>
 				</table>
 				<div style="width: 100%;">
@@ -188,7 +190,7 @@ if(isset($a_s)){
 
 <!-- footer -->
 
-<?php 
+<?php
 	require_once('footer.php')
 ?>
 
