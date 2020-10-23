@@ -14,7 +14,7 @@
 
 //Titre de la page
 
-echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa-server'></i> ".$coll." <button  class='btn mr-5'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."  onclick='return confirmDelete()'><i class='fa fa-2x fa-trash'></i></a></button></h1>";
+echo "<h1 align=center class='title font-weight-bold'>Edit <i title='name of collection' class='fa fa-fw fa-server'></i> ".$coll." <button  class='btn mr-5'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."  onclick='return confirmDelete()'><i title='delete this collection' class='fa fa-2x fa-trash'></i></a></button></h1>";
 
 
 ?>
