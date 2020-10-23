@@ -40,7 +40,13 @@
       		<div id="collapsePhpMongo" class="collapse<?php if (!$php_mongo): ?> show<?php endif; ?>" aria-labelledby="headingPhpMongo" data-parent="#accordionInstall">
         		<div class="card-body">
 					<p>To install the php-mongodb package, you can use the following command:</p>
-					<code>sudo pecl install mongodb</code>
+					<?php if ($system == "Debian"): ?>
+						<code>sudo apt install php-mongodb</code>
+					<?php elseif ($system == "RedHat"): ?>
+						<code>sudo yum install php-mongodb</code>
+					<?php else: ?>
+						<code>sudo pecl install mongodb</code>
+					<?php endif; ?>
         		</div>
       		</div>
     	</div>

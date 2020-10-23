@@ -596,6 +596,13 @@
 
     function install()
     {
+        $system = "Other";
+        if (preg_match('/debian/i', php_uname())) {
+            $system = "Debian";
+        }elseif (preg_match('/redhat/i', php_uname())) {
+            $system = "RedHat";
+        }
+
         if(extension_loaded('mongodb') !== false){
             $php_mongo = true;
         }
