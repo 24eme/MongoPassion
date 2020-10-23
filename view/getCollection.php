@@ -91,8 +91,9 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 			 		</datalist> 
 
 			 		<!-- Fin de l'autocomplétion des champs -->
-
+					<div class="input-group-append">
 					<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+					</div>
 				</div>
 				<div class="text-right">
 				<a class="btn btn-link btn-sm" href="?action=advancedSearch&serve=<?php echo $serve ?>&db=<?php echo $db ?>&coll=<?php echo $coll ?>"><i class="fa fa-fw fa-search"></i>Advanced Search</a>
@@ -206,7 +207,7 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 							echo ' of '.$nbDocs.'</h2>';
 							?>
 					</div>
-					<div aria-label="pagination" >
+					<div class="text-center" aria-label="pagination" >
 				        <ul class="pagination">
 
 				        <?php
@@ -218,11 +219,10 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 				            } ?>
 
 				            <span  class="text-center bg-light font-weight-bold mr-1">
-								<select name="bypage" onchange="bypage()">
-								    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
-								    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
-								    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
-								    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
+								<select id="select_pagination" name="bypage" onchange="bypage(this)">
+                    <?php foreach([10, 20, 30, 50] as $nb) : ?>
+                      <option value="<?= $nb ?>" <?= ($bypage == $nb) ? 'selected="selected"': '' ?>><?= $nb ?></option>
+                    <?php endforeach ?>
 								</select>
 							</span>
 
@@ -235,7 +235,7 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 				        ?>
 				        </ul>
 				    </div>
-		       
+
 			    <!-- Fin de la pagination -->
 
 				</div>
