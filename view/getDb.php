@@ -6,47 +6,8 @@
 	<?php require_once('header.php') ?>
 </head>
 
-<?php
 
-//Fil d'Ariane
-
-echo "<div class=' container border-top  border-success bg-success col-lg-8 sticky-top'>";
-	echo '<ol class="breadcrumb">';
-		echo '<li class="breadcrumb-item"><a href="index.php?"><i title="return to page home" class="fa fa-fw fa-home"></i>Home</a></li>';
-		if(isset($serve)){
-			if($_GET['action']=='getServer'){
-				echo '<li class="breadcrumb-item active">'.$serve.'</li>';
-			}
-			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i title="return to page server" class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
-			}
-		}
-		if(isset($db)){
-			if($_GET['action']=='getDb'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i> '.$db.'</li>';
-			}
-			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i title="Create database" class="fa fa-fw fa-database"></i>'.$db.'</a></li>';
-			}
-		}
-		if(isset($coll)){
-			if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$coll.'</li>';
-			}
-			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-server"></i>'.$coll.'</a></li>';
-			}
-		}
-		if(isset($doc)){
-			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$doc.'</li>';
-		}
-	echo '</ol>';
-
-echo '</div>';
-
-//Fin fil d'Ariane
-
-?>
+<?php include('breadcrumb.php'); ?>
 
 <!-- Titre de la page -->
 
