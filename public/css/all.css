@@ -246,6 +246,10 @@ input:focus+.slider {
     margin-bottom: -5px
 }
 
+div#json{
+    margin-top: -3.15%;
+}
+
 #json {
     align-items: center
 }
