@@ -81,11 +81,15 @@
 <br>
 <div class="col text-center">
 
-	<button class="btn btn-primary" href="?action=install"><i class="fa fa-undo">&nbsp;</i>&nbsp;Re-check</button>
+	<a class="btn btn-primary" href="?action=install"><i class="fa fa-undo">&nbsp;</i>&nbsp;Re-check</a>
 
 	&nbsp;
 
-	<button href="index.php" class="btn <?php if (!$php_mongo || !$composer_mongo): ?>btn-secondary" disabled="disabled<?php else: ?>btn-success<?php endif; ?>">Start</button>
+	<?php if (!$php_mongo || !$composer_mongo): ?>
+		<button class="btn btn-secondary" disabled="disabled">Start</button>
+	<?php else: ?>
+		<a href="index.php" class="btn btn-success">Start</a>
+	<?php endif; ?>
 
 </div>
 <!-- Fin du bouton de retour au menu home -->
