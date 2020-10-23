@@ -554,6 +554,12 @@
 
     function home()
     {
+        $file_compopser = 'composer.json';
+        $data_composer = file_get_contents($file_compopser);
+        if(strpos($data_composer, 'mongodb/mongodb') == false){
+            header('Location: index.php?action=install');
+        }
+
         $modal_opened = isset($_GET['modal_opened']);
         $modal_error = isset($_GET['error']);
 
@@ -583,18 +589,6 @@
         if ($modal_error) {
             $flash_error = "Unable to connect to server";
         }
-
-        $file_compopser = 'composer.json';
-        $data_composer = file_get_contents($file_compopser);
-        if(strpos($data_composer, 'mongodb/mongodb') == false){
-            header('Location: index.php?action=install');
-        }
-
-        // $file_json = 'jsoneditor/package.json';
-        // $data_json = file_get_contents($file_json);
-        // if(strpos($data_json, 'jsoneditor') == false){
-        //     header('Location: index.php?action=install');
-        // }
 
         require('view/home.php');
     }
