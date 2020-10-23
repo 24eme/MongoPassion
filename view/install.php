@@ -85,7 +85,7 @@
 
 <br>
 <div class="col text-center">
-<button class="btn btn-primary" href="?action=install">Recheck</button>
+<button class="btn btn-primary" href="?action=install"><i class="fa fa-undo">&nbsp;</i>&nbsp;Recheck</button>
 &nbsp;
 
 <button href="index.php" class="btn <?php if (!$php_mongo || !$composer_mongo): ?>btn-secondary" disabled="disabled"<?php else: ?>btn-success"<?php endif; ?>>Start</button>
