@@ -135,10 +135,10 @@
 require_once('footer.php')
 ?>
 </div>
-</body>
 <script type="text/javascript">
 <?php if ($modal_opened): ?>
 	$('#modal-connection').modal("show")
 <?php endif; ?>
 </script>
+</body>
 </html>
