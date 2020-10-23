@@ -72,10 +72,10 @@ if(isset($a_s)){
 	<div id="DivContentTable">
 			<div id='result' class="col-lg-8">
 				<div id="head_content">
-					<?php echo '<h5 align="center">Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
+					<?php echo '<h5 align="center">Search results '.(1+(($page-1)*$bypage)).'-';
 								if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 								else{echo $nbDocs;}
-								echo ' of '.$nbDocs.') :</h5>'?>
+								echo ' of '.$nbDocs.' :</h5>'?>
 					<?php if(!empty($result) and isset($docs)){ ?>
 					<button id="test_csv" style="color:white;"><i class="text-light fa fa-fw fa-download"></i>CSV</button>
 					<?php } ?>
