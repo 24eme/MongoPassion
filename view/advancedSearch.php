@@ -2,17 +2,9 @@
 <html lang="fr">
 <head>
 	<?php echo "<title>Advanced Search</title>"?>
-	<meta charset="UTF-8">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
-	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
-	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
+	<?php require_once('header.php') ?>
 	<link href="public/css/advancedSearch.css" rel="stylesheet" type="text/css">
-	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
-
- 	<script src="public/js/radio.js"></script>
 </head>
 
 <body>
@@ -72,14 +64,9 @@ if(isset($a_s)){
 
 <!-- Titre de la page -->
 
-<?php
-	if(isset($a_s)){
-		echo '<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>Search results for "'.$a_s.'"</h1>';
-	}
-	else{
-?>
-<h1 class='title font-weight-bold'align="center"><i class="fa fa-fw fa-search"></i>Advanced Search</h1>
-<?php } ?>
+<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>
+    <?php (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
+</h1>
 
 <!-- Fin du titre de la page -->
 
@@ -199,12 +186,11 @@ if(isset($a_s)){
 			            } ?>
 
 			            <span id="radio" class="text-center font-weight-bold">
-							<select name="bypage" onchange="bypage_search()">
-							    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
-							    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
-							    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
-							    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
-							</select>
+                                <select id="select_pagination" name="bypage" onchange="bypage_search(this)">
+                                <?php foreach([10, 20, 30, 50] as $nb) : ?>
+                                  <option value="<?= $nb ?>" <?= ($bypage == $nb) ? 'selected="selected"': '' ?>><?= $nb ?></option>
+                                <?php endforeach ?>
+                                </select>
 						</span>
 
 			            <?php if($page!=$nbPages){
@@ -308,9 +294,7 @@ if(isset($a_s)){
     var html = document.querySelector("table").outerHTML;
     export_table_to_csv(html, "result_"+random+".csv");
   });
-
-
   // Fin de l'export CSV
 
-
 </script>
+

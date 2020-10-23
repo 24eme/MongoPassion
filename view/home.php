@@ -2,18 +2,11 @@
 <html lang="fr">
 <head>
 	<?php echo "<title>Welcome</title>"?>
-
-
-	<meta charset="UTF-8">
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
-	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
+	<?php require_once('header.php') ?>
 	<link href="public/css/home.css" rel="stylesheet" type="text/css">
 	<link href="public/css/modal.css" rel="stylesheet" type="text/css">
 </head>
-
+<body>
 <div id="main" class=" text-center m-auto ">
 
 	<!-- Titre de la page -->
@@ -99,8 +92,6 @@ require_once('footer.php')
 
 
 </body>
-</html>
-
 <script type="text/javascript">
 	// Get the modal
 	var modal = document.getElementById("connex");
@@ -128,3 +119,4 @@ require_once('footer.php')
 	  }
 	}
 </script>
+</html>

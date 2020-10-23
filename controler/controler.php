@@ -517,42 +517,42 @@
                 setcookie('auth_db',$auth_db, $cookie_option);
 
                 $dbs = getDbs($serve,$user,$passwd,$auth_db);
-                require('view/getServer.php');                
+                require('view/getServer.php');
             }
             catch(Exception $e){
                 echo "<script>alert(\"L'authentification a échoué\");document.location.href = 'index.php';</script>";
             }
+            return;
         }
-        else{
-            $serve_list=json_decode($_COOKIE['serve_list']);
-        	try{
-                if(isset($_GET['serve'])){
-            		$serve=htmlspecialchars($_GET['serve']);
-            	}
-            	elseif(isset($_POST['serve'])){
-            		$serve=htmlspecialchars($_POST['serve']);
-                    if(!strpos($serve, ':')){
-                        $serve = $serve.':27017';
-                    }
-            		if(!in_array($serve, $serve_list)){
-            			array_push($serve_list, $serve);
-                        setcookie('serve_list',json_encode($serve_list));
-            		}
-            	}
-            	else{
-            		header('Location: index.php?action=error');
-            	}
-            	$dbs = getDbs($serve);
-            	require('view/getServer.php');
-            }
-            catch(Exception $e){
-                if (($key = array_search($serve, $serve_list)) !== false) {
-                    unset($serve_list[$key]);
-                    setcookie('serve_list',json_encode($serve_list));
-                    $serve='localhost:27017';
+
+        $serve_list=json_decode($_COOKIE['serve_list']);
+    	try{
+            if(isset($_GET['serve'])){
+        		$serve=htmlspecialchars($_GET['serve']);
+        	}
+        	elseif(isset($_POST['serve'])){
+        		$serve=htmlspecialchars($_POST['serve']);
+                if(!strpos($serve, ':')){
+                    $serve = $serve.':27017';
                 }
-                echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
+        		if(!in_array($serve, $serve_list)){
+        			array_push($serve_list, $serve);
+                    setcookie('serve_list',json_encode($serve_list));
+        		}
+        	}
+        	else{
+        		header('Location: index.php?action=error');
+        	}
+        	$dbs = getDbs($serve);
+        	require('view/getServer.php');
+        }
+        catch(Exception $e){
+            if (($key = array_search($serve, $serve_list)) !== false) {
+                unset($serve_list[$key]);
+                setcookie('serve_list',json_encode($serve_list));
+                $serve='localhost:27017';
             }
+            echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
         }
     }
 
@@ -596,30 +596,22 @@
 
     function install()
     {
-        if(extension_loaded('mongodb') !== false){
-            $php_mongo = true;
-        }
-        else{
-            $php_mongo = false;
+        $system = "Other";
+        if (preg_match('/debian/i', php_uname())) {
+            $system = "Debian";
+        }elseif (preg_match('/redhat/i', php_uname())) {
+            $system = "RedHat";
         }
 
-        $file_compopser = 'composer.json'; 
+        $php_mongo = (extension_loaded('mongodb') !== false);
+
+        $file_compopser = 'composer.json';
         $data_composer = file_get_contents($file_compopser);
-        if(strpos($data_composer, 'mongodb/mongodb') !== false){
-            $composer_mongo = true;
-        }
-        else{
-            $composer_mongo = false;
-        }
+        $composer_mongo = (strpos($data_composer, 'mongodb/mongodb') !== false);
 
-        $file_json = 'jsoneditor/package.json'; 
+        $file_json = 'jsoneditor/package.json';
         $data_json = file_get_contents($file_json);
-        if(strpos($data_json, 'jsoneditor') !== false){
-            $jsoneditor = true;
-        }
-        else{
-            $jsoneditor = false;
-        }
+        $jsoneditor = (strpos($data_json, 'jsoneditor') !== false);
 
         require('view/install.php');
     }
