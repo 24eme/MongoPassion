@@ -84,7 +84,9 @@ echo '</div>';
 							<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
 								<div class="input-group mb-3">
 									<input type="text" list="browsers" placeholder="Collection name" required="required" class="form-control border border-success autofocus" name="name"  />
+									<div class="input-group-append">
 									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+									</div>
 								</div>
 							</form>
 						</div>
@@ -111,7 +113,9 @@ echo '</div>';
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
 		<div class="input-group mb-1">
 			<input type="search" autofocus="autofocus" class="form-control border border-success" required="required" name="recherche_db" id="recherche_db" placeholder="Search by document id"/>
+			<div class="input-group-append">
 			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
+			</div>
 			<!--  -->
 		</div>
 	</form>
