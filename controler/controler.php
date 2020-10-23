@@ -148,6 +148,16 @@
     	$serve = htmlspecialchars($_GET['serve']);
         $db = htmlspecialchars($_GET['db']);
         $coll = htmlspecialchars($_GET['coll']);
+
+        $file_json = 'jsoneditor/package.json';
+        $data_json = file_get_contents($file_json);
+        if($data_json!==false){
+            $jsoneditor = (strpos($data_json, 'jsoneditor') !== false);
+        }
+        else{
+            $jsoneditor = false;
+        }
+
         if(isset($_GET['s_g'])){
             $s_g = htmlspecialchars($_GET['s_g']);
         }
