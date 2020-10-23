@@ -29,7 +29,6 @@
 
 	<!-- Modal connexion -->
 	<br><br>
-	<button id="authen" class="btn btn-success font-weight-bold" style="width: 6%; margin: auto; margin-bottom: 10px;">Login</button>
 	<div id="connex" class="modal text-left">
 	  <div class="modal-content">
 	    <span id="close">&times;</span>
@@ -56,13 +55,13 @@
 
 	<!-- Formulaire serveurs -->
 
-	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer" style="margin-bottom: 50px;">
-
-			<div class="input-group">
+	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
+		<div class="input-group">
 			<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
 		</div>
 	</form>
+	<button id="authen" style="">Advanced Connection</button>
 
 	<!-- Fin du formulaire serveurs -->
 </div>
