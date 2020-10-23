@@ -76,12 +76,15 @@ if(isset($a_s)){
 								if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
 								else{echo $nbDocs;}
 								echo ' of '.$nbDocs.' :</h5>'?>
-					<?php if(!empty($result) and isset($docs)){ ?>
-					<button id="test_csv" style="color:white;"><i class="text-light fa fa-fw fa-download"></i>CSV</button>
-					<?php } ?>
-					<?php if(!empty($result) and !isset($docs)){ ?>
-					<button id="export_json" onclick="download_json()" style="color:white;"><i class="text-light fa fa-fw fa-download"></i>JSON</button>
-					<?php } ?>
+					<div class="dropdown">
+					  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						  <i class="text-light fa fa-fw fa-download"></i>
+					  </button>
+					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					    <button class="dropdown-item" <?php if (!isset($docs)): ?>disabled=disabled<?php endif; ?> id="export_csv" href="#">CSV</button>
+					    <button class="dropdown-item" <?php if (isset($docs)): ?>disabled=disabled<?php endif; ?>  id="export_json" href="#">JSON</button>
+					  </div>
+					</div>
 				</div>
 				<table class="table table-sm table-striped">
 					<?php if(empty($result)){
@@ -244,26 +247,28 @@ if(isset($a_s)){
   function export_table_to_csv(html, filename) {
     var csv = [];
     var rows = document.querySelectorAll("table tr");
-    
+
       for (var i = 0; i < rows.length; i++) {
       var row = [], cols = rows[i].querySelectorAll("td, th");
-      
-          for (var j = 0; j < cols.length; j++) 
+
+          for (var j = 0; j < cols.length; j++)
               row.push(cols[j].innerText);
-          
-      csv.push(row.join(","));    
+
+      csv.push(row.join(","));
     }
 
       // Download CSV
       download_csv(csv.join("\n"), filename);
   }
 
-  document.querySelector("#test_csv").addEventListener("click", function () {
+  document.querySelector("#export_csv").addEventListener("click", function () {
   	var random = (Math.floor(Math.random() * Math.floor(100000000))).toString(16);
     var html = document.querySelector("table").outerHTML;
     export_table_to_csv(html, "result_"+random+".csv");
   });
+
+  document.querySelector("#export_json").addEventListener("click", download_json);
+
   // Fin de l'export CSV
 
 </script>
-
