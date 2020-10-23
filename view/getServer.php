@@ -101,16 +101,22 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 			<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Databases of ".$serve." </strong></span></h3>" ?>
 
 			<?php
+				$tabdbs= array();
 				foreach ($dbs as $db) {
+					array_push($tabdbs,$db->getName());
+				}
+				sort($tabdbs);
+				foreach ($tabdbs as $db) {
 					echo '<tr>';
-					echo "<td><a autofocus='autofocus' class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
-					echo $db->getName();
+					echo "<td><a autofocus='autofocus' class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
+					echo $db;
 					echo '</a></td>';
 					echo '</tr>';
 				}
+
 			?>
 		</table>
-		
+
 		<div class="mb-2">
 			<!-- Start Button add database -->
 			<button type='button' class='btn btn-dark  float-right' data-toggle='modal' data-target='#myModal'>
