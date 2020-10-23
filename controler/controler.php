@@ -603,30 +603,15 @@
             $system = "RedHat";
         }
 
-        if(extension_loaded('mongodb') !== false){
-            $php_mongo = true;
-        }
-        else{
-            $php_mongo = false;
-        }
+        $php_mongo = (extension_loaded('mongodb') !== false);
 
-        $file_compopser = 'composer.json'; 
+        $file_compopser = 'composer.json';
         $data_composer = file_get_contents($file_compopser);
-        if(strpos($data_composer, 'mongodb/mongodb') !== false){
-            $composer_mongo = true;
-        }
-        else{
-            $composer_mongo = false;
-        }
+        $composer_mongo = (strpos($data_composer, 'mongodb/mongodb') !== false);
 
-        $file_json = 'jsoneditor/package.json'; 
+        $file_json = 'jsoneditor/package.json';
         $data_json = file_get_contents($file_json);
-        if(strpos($data_json, 'jsoneditor') !== false){
-            $jsoneditor = true;
-        }
-        else{
-            $jsoneditor = false;
-        }
+        $jsoneditor = (strpos($data_json, 'jsoneditor') !== false);
 
         require('view/install.php');
     }
