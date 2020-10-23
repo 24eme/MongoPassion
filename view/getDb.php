@@ -3,21 +3,7 @@
 <head>
 	<?php echo "<title>".$db."</title>"?>
 
-	<meta charset="UTF-8">
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link href="public/css/breadcrumb.css" rel="stylesheet" type="text/css">
-	<link href="public/css/titre.css" rel="stylesheet" type="text/css">
-	<link href="public/css/btn_return.css" rel="stylesheet" type="text/css">
-	<link href="public/css/pagination.css" rel="stylesheet" type="text/css">
-	<link href="public/css/getDb.css" rel="stylesheet" type="text/css">
-
-	<script src="public/js/db.js"></script>
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-	<script src="public/js/main.js"></script>
+	<?php require_once('header.php') ?>
 </head>
 
 <?php
@@ -135,13 +121,21 @@ echo '</div>';
 					<i title='Add new collection' class='fa fa-fw fa-plus'></i><i title='Add new collection' class='fa fa-fw fa-server'></i>
 			           </button>
 			                </h3>";
-			
+
+				$tabcollections= array();
 				foreach ($collections as $collection) {
-					echo "<tr>";
-					echo "<td><a class='text-success' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."'><i title='Name of collection' class='text-dark mr-2 fa fa-fw fa-server'></i>";
-					echo $collection->getName();
+					array_push($tabcollections,$collection->getName());
+				}
+				sort($tabcollections);
+
+				foreach ($tabcollections as $collection) {
+				echo "<tr>";
+
+				echo "<td><a class='text-success' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection."'><i title='Name of collection' class='text-dark mr-2 fa fa-fw fa-server'></i>";
+					echo $collection;
+
 					echo '</a></td>';
-					echo "<td><button  class='btn  float-right py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
+					echo "<td><button  class='btn  float-right py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection."><i class='fa fa-edit'></i></a></button></td>";
 					// echo "<td><button  class='btn py-0'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."&coll=".$collection->getName()."  onclick='return confirmDelete()'><i class='fa fa-trash'></i></a></button></td>";
 					echo '</tr>';
 				}
