@@ -395,6 +395,11 @@
             }
         }
 
+        if (empty($result) && $page > 1) {
+            header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($nbPages).'&bypage='.$bypage.'&a_s='.urlencode($a_s));
+            return;
+        }
+
         $link_search = '?'.$_SERVER['QUERY_STRING'];
 
         require('view/advancedSearch.php');
