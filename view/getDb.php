@@ -107,12 +107,12 @@
 			<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
 					<i title="Add new collection" class='fa fa-fw fa-plus'></i><i title="Add new collection" class='fa fa-fw fa-server'></i>
 			</button>
-			<!-- End Button add database -->	
+			<!-- End Button add database -->
 
 			<!-- Bouton de retour -->
 
 			<?php
-			echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< db list</button></a>';
+			echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< Database list</button></a>';
 			?>
 	    </div>
 	</div>
