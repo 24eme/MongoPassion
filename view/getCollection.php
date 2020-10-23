@@ -91,8 +91,9 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 			 		</datalist> 
 
 			 		<!-- Fin de l'autocomplétion des champs -->
-
+					<div class="input-group-append">
 					<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+					</div>
 				</div>
 				<div class="text-right">
 				<a class="btn btn-link btn-sm" href="?action=advancedSearch&serve=<?php echo $serve ?>&db=<?php echo $db ?>&coll=<?php echo $coll ?>"><i class="fa fa-fw fa-search"></i>Advanced Search</a>

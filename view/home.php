@@ -58,7 +58,9 @@
 	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
 			<div class="input-group btn-group">
 			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength = 20 required />
+			<div class="input-group-append">
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
+			</div>
 		</div>
 	</form>
 	<button id="authen" style="">Advanced Connection</button>

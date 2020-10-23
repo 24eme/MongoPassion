@@ -80,7 +80,9 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 							<?php echo '<form autocomplete="off" method="post" action="index.php?action=getDb&serve='.$serve.'">'; ?>
 								<div class="input-group mb-3">
 									<input type="text"  list="browsers" placeholder="Database name" required="required" class="form-control border border-success autofocus" name="newdb"  />
+									<div class="input-group-append">
 									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+									</div>
 								</div>
 							</form>
 						</div>
