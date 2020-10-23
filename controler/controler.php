@@ -82,23 +82,22 @@
                 header('Location: index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$doc.'&type_id='.$type_id.'&page='.$page.'&msg=Syntax error : your document does not respect JSON syntax rules, example : {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
                 return;
              }
-
 	    	$update = getUpdate_doc($doc_text,$date_array,$up_date_array);
 
 	    	$id = getDoc_id($doc,$type_id);
 	    	updateDoc($id,$update,$serve,$db,$coll);
 
 	    	if(isset($s_g)){
-                header('Location: index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'&page='.$page.'');
+                header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&type_id='.$type_id.'&s_g='.$s_g.'&page='.$page.'');
             }
             elseif (isset($a_s)) {
-                header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$page.'');
+                header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&type_id='.$type_id.'&a_s='.urlencode($a_s).'&page='.$page.'');
             }
             elseif (isset($search_db)) {
-                header('Location: index.php?action=getDb_search&serve='.$serve.'&db='.$db.'&search_db='.$search_db.'');
+                header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&type_id='.$type_id.'&search_db='.$search_db.'&page='.$page.'');
             }
             else{
-                header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'');
+                header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&type_id='.$type_id.'&page='.$page.'');
             }
 	    }
         catch(Exception $e){
