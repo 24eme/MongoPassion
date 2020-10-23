@@ -44,6 +44,7 @@ echo '</div>';
 
 <!-- Bouton switch JsonEditor -->
 
+<?php if($jsoneditor){?>
 <div id="switch">
 	<label id="switch_json">JSONEditor</label>
 	<label class="switch">
@@ -57,6 +58,7 @@ echo '</div>';
 	  <span class="slider round"></span>
 	</label>
 </div>
+<?php }?>
 
 <!-- Fin du bouton switch JsonEditor -->
 
@@ -68,7 +70,12 @@ echo '</div>';
 	if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
 		echo '<div id="main" class="creatDocDiv" style="display: block">';
 	} else {
-		echo '<div id="main" class="creatDocDiv" style="display: none">';
+		if($jsoneditor){
+			echo '<div id="main" class="creatDocDiv" style="display: none">';
+		}
+		else{
+			echo '<div id="main" class="creatDocDiv">';
+		}
 	}
 	?>
 		<?php
@@ -97,6 +104,7 @@ echo '</div>';
 
 <!-- Affichage du formulaire -->
 
+<?php if($jsoneditor){?>
 <div id="DivContentTable">
 	<?php
 	if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
@@ -115,6 +123,7 @@ echo '</div>';
 
 	</div>
 </div>
+<?php }?>
 
 <!-- Script de création et d'envoi du formulaire -->
 
