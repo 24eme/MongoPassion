@@ -580,6 +580,10 @@
         $flash_message = htmlspecialchars($_COOKIE['flash_message']);
         setcookie('flash_message');
 
+        if ($modal_error) {
+            $flash_error = "Unable to connect to server";
+        }
+
         $file_compopser = 'composer.json';
         $data_composer = file_get_contents($file_compopser);
         if(strpos($data_composer, 'mongodb/mongodb') == false){

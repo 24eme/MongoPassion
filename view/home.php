@@ -81,8 +81,10 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-			  <?php if ($modal_error): ?>
-	  			<p class="text-danger">Unable to connect to the server</p>
+			  <?php if ($flash_error): ?>
+			  <div class="alert alert-danger">
+	  			<?php echo $flash_error; ?>
+			  </div>
 	  		<?php endif; ?>
 				<div class="form-group row">
 			      	<label for="host" class="col-sm-3 col-form-label">Host:</label>
