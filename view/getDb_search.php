@@ -126,7 +126,7 @@ echo '</div>';
 			<div class="input-group mb-1">
 				<input type="search" class="form-control border border-success mr" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 				<input class="btn bg-success text-light mr-2 " type="submit" name="search" id="search" value="Search">
-				<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?>
+				<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?>
 			</div>
 		</form>
 	</div>
