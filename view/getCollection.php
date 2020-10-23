@@ -73,11 +73,7 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 
 	<div  class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2">
 		<div id="options" class="text-center my-2">
-			<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'">' ?>
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
-					<i class="fa fa-fw fa-search"></i>Advanced Search
-				</button>
-			</a>
+
 		</div>
 		<div id="searchId" class="mt-1">
 			<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
@@ -97,6 +93,9 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 			 		<!-- Fin de l'autocomplétion des champs -->
 
 					<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+				</div>
+				<div class="text-right">
+				<a class="btn btn-link btn-sm" href="?action=advancedSearch&serve=<?php echo $serve ?>&db=<?php echo $db ?>&coll=<?php echo $coll ?>"><i class="fa fa-fw fa-search"></i>Advanced Search</a>
 				</div>
 			</form>
 		</div>
