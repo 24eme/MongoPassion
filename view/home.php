@@ -3,7 +3,6 @@
 <head>
 	<?php echo "<title>Welcome</title>"?>
 	<?php require_once('header.php') ?>
-	<link href="public/css/home.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="main" class=" text-center m-auto ">
@@ -17,38 +16,6 @@
 	</div>
 
 	<!-- Fin du titre de la page -->
-
-
-	<!-- Modal connexion -->
-	<br><br>
-	<div id="modal-connection" class="modal text-left">
-	  <div class="modal-content">
-	    <span id="close">&times;</span>
-	    <h2 align="center">Connexion</h2><br>
-		<?php if ($modal_error): ?>
-			<p class="text-danger">La connexion au server a échoué</p>
-		<?php endif; ?>
-	    <form method="post" action="index.php?action=getServer">
-	    	<input align="left" type="hidden" name="authentification">
-	    	<label>Server :</label>
-	    	<input type="text" class="border border-success" name="host" id="host" maxLength=20 required value="<?php echo $modal_host; ?>"/><br>
-			<label>Port :</label>
-	    	<input type="text" class="border border-success" name="port" id="port" maxLength=20 value="<?php echo $modal_port; ?>"/><br>
-	    	<label>Username :</label>
-	    	<input type="text" class="border border-success" name="user" id="user" maxLength=20 value="<?php echo $modal_user; ?>"/><br>
-	    	<label>Password :</label>
-	    	<input type="password" class="border border-success" name="passwd" id="passwd" maxLength=20 /><br>
-	    	<label>Authentification Database :</label>
-	    	<input type="text" class="border border-success" name="auth_db" id="auth_db" maxLength=20 value="<?php echo $modal_db; ?>" /><br><br>
-	    	<div id="submit">
-				<input type="submit" class="btn btn-success font-weight-bold" name="connexion" id="connexion" value="Connexion">
-			</div>
-	    </form>
-	  </div>
-	</div>
-
-	<!-- Fin du modal connexion -->
-
 
 	<!-- Formulaire serveurs -->
 	<div class="col-lg-8 offset-lg-2">
@@ -88,7 +55,66 @@
 </div>
 
 <!-- Fin du tableau des serveurs -->
-<!-- Copyright Footer -->
+
+	<!-- Modal connexion -->
+	<div class="modal fade" id="modal-connection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	 <form method="post" action="index.php?action=getServer">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Connection</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			  <?php if ($modal_error): ?>
+	  			<p class="text-danger">Unable to connect to the server</p>
+	  		<?php endif; ?>
+				<div class="form-group row">
+			      	<label for="host" class="col-sm-3 col-form-label">Host:</label>
+			      	<div class="col-sm-9">
+	      				<input type="text" class="form-control" id="host" placeholder="mongo.example.org" value="<?php echo $modal_host; ?>">
+	  		      	</div>
+		    	</div>
+				<div class="form-group row">
+			      	<label for="port" class="col-sm-3 col-form-label">Port:</label>
+			      	<div class="col-sm-9">
+	      				<input type="text" class="form-control" id="port" placeholder="27017" value="<?php echo $modal_port; ?>">
+	  		      	</div>
+		    	</div>
+				<div class="form-group row">
+			      	<label for="user" class="col-sm-3 col-form-label">User:</label>
+			      	<div class="col-sm-9">
+	      				<input type="text" class="form-control" id="user" placeholder="myuser" value="<?php echo $modal_user; ?>">
+	  		      	</div>
+		    	</div>
+				<div class="form-group row">
+			      	<label for="passwd" class="col-sm-3 col-form-label">Password:</label>
+			      	<div class="col-sm-9">
+	      				<input type="password" class="form-control" id="passwd" placeholder="mypassword">
+	  		      	</div>
+		    	</div>
+				<div class="form-group row">
+			      	<label for="database" class="col-sm-3 col-form-label">Database:</label>
+			      	<div class="col-sm-9">
+	      				<input type="text" class="form-control" id="database" placeholder="mydatabase" value="<?php echo $modal_db; ?>">
+	  		      	</div>
+		    	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-success" type="submit">Connection</button>
+	      </div>
+	    </div>
+	  </div>
+     </form>
+	</div>
+
+	<!-- Fin du modal connexion -->
+
+
+<!-- Footer -->
 
 <?php
 require_once('footer.php')

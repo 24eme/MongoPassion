@@ -261,7 +261,7 @@
             require('view/viewDocument.php');
         }
         catch(Exception $e){
-            echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
+            header("Location: index.php?error=1&serve=".$serve."&db=".$db);
         }
     }
 
@@ -607,7 +607,9 @@
         unset($serve_list[$key]);
         setcookie('serve_list',json_encode($serve_list));
 
-        echo "<script>document.location.href = 'index.php';</script>";
+        header("Location: index.php\n");
+        return;
+
     }
 
     function install()
