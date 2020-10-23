@@ -349,10 +349,10 @@
         }
 
         if(isset($_GET['a_s'])){
-            $a_s = htmlspecialchars(urldecode($_GET['a_s']),ENT_NOQUOTES);
+            $a_s = htmlspecialchars($_GET['a_s'], ENT_NOQUOTES);
         }
         elseif (isset($_GET['s_g'])) {
-            $s_g = htmlspecialchars(urldecode($_GET['s_g']),ENT_NOQUOTES);
+            $s_g = htmlspecialchars($_GET['s_g'], ENT_NOQUOTES);
             if(!strpos($s_g, ':')){
                 try{
                     new MongoDB\BSON\ObjectId($s_g);
