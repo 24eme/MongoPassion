@@ -24,13 +24,13 @@
 
 	echo "<div class='container  border-top  border-success bg-success col-lg-8 sticky-top'>";
 		echo '<ol class="breadcrumb">';
-			echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
+			echo '<li class="breadcrumb-item"><a href="index.php?"><i title="return page of home" class="fa fa-fw fa-home"></i>Home</a></li>';
 			if(isset($serve)){
 				if($_GET['action']=='getServer'){
-					echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</li>';
+					echo '<li class="breadcrumb-item active"><i title="return address ip of server" class="fa fa-fw fa-desktop"></i> '.$serve.'</li>';
 				}
 				else{
-					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
+					echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i  class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
 				}
 			
 		}
@@ -63,7 +63,7 @@ echo "</div>";
 
 //Titre de la page
 
-echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-desktop'></i>".$serve."</h1>";
+echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of server' class='fa fa-fw fa-desktop'></i>".$serve."</h1>";
 
 //Fin du titre de la page
 
@@ -113,7 +113,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 			<?php
 				foreach ($dbs as $db) {
 					echo '<tr>';
-					echo "<td><a autofocus='autofocus' class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
+					echo "<td><a autofocus='autofocus' class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i title='It is database".$db->getName()."' class='text-dark mr-3 fa fa-fw fa-database'></i>";
 					echo $db->getName();
 					echo '</a></td>';
 					echo '</tr>';
@@ -124,7 +124,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 		<div class="mb-2">
 			<!-- Start Button add database -->
 			<button type='button' class='btn btn-dark  float-right' data-toggle='modal' data-target='#myModal'>
-					<i class='fa fa-fw fa-database'></i><i class='fa fa-fw fa-plus'></i>
+					<i title="Create database" class='fa fa-fw fa-database'></i><i title="Create database" class='fa fa-fw fa-plus'></i>
 			</button>
 			<!-- End Button add database -->
 			<?php
