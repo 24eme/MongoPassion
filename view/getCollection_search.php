@@ -39,7 +39,7 @@ if(isset($recherche_g)){
 //Titre de la page
 
 if(isset($recherche_g)){
-	echo "<h1 class='title text-center font-weight-bold'><span>Search results for </span><i class='fa fa-fw fa-book'></i> ";
+	echo "<h1 class='title text-center font-weight-bold'><span>Search results for </span><i title='Search results for $recherche_g' class='fa fa-fw fa-file'></i> ";
 	if($recherche_g==""){echo "\"Aucun critère\""; $p='none';}
 	if($recherche_g!=""){
 		echo "\"<font color='#62a252'>".$recherche_g."</font>\"";
@@ -97,7 +97,7 @@ echo ' of '.$nbDocs.'</h2>';
 		 		<!-- Fin de l'autocomplétion des champs -->
 
 				<div class="input-group-append">
-				   <a href="index.php?action=getCollection&serve=<?php echo $serve ?>&db=<?php echo $db ?>&coll=<?php echo $coll ?>" class="btn bg-secondary text-light" type="button"><i class="fa fa-fw fa-remove"></i></a>
+				   <a href="index.php?action=getCollection&serve=<?php echo $serve ?>&db=<?php echo $db ?>&coll=<?php echo $coll ?>" class="btn bg-secondary text-light" type="button"><i title="Reset and return to the getCollection page" class="fa fa-fw fa-remove"></i></a>
 				   <input class="btn bg-success text-light" type="submit" name="search" id="search" value="Search"/>
 			   	</div>
 			</div>
@@ -125,7 +125,7 @@ echo ' of '.$nbDocs.'</h2>';
 						else{echo $nbDocs;}
 						echo ' of '.$nbDocs.'
 						<span>
-							 <button class="btn btn-dark align-items-center py-1 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>
+							 <button class="btn btn-dark align-items-center py-1 float-right new_doc font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i title="Create new doc" class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-fw fa-file"></i></a></button>
 						</span>
 
 					</h3>';
@@ -171,7 +171,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 							//Affichage du tableau
 
-							echo "<td id='d'><a class='text-success'   data-toggle='tooltip' title='".$json."' href=".$link_v."><i class=' text-dark fa fa-fw fa-book'></i>".$id."</a></td>";
+							echo "<td id='d'><a class='text-success'   data-toggle='tooltip' title='".$json."' href=".$link_v."><i class=' text-dark fa fa-fw fa-file'></i>".$id."</a></td>";
 							echo '<td id="json">'.substr($json, 0, 100).'';
 							if(strlen($json)>100){echo ' [...] }';}
 							echo '</td>';
@@ -238,7 +238,7 @@ echo ' of '.$nbDocs.'</h2>';
 			</div>
 		    	<!-- Bouton nouveau document -->
 				<div class="ml-2">
-					    <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
+					    <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i title="Create new doc" class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-fw fa-file"></i></a></button>'; ?>
 				</div>
 		 		 <!-- Fin du bouton nouveau document -->
 
