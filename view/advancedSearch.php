@@ -102,7 +102,7 @@ if(isset($a_s)){
 		<input type="submit" class="btn btn-success float-right" value="Execute">
 	
 	</form>
-		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
+		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?> 
 			
 	
 </div>
