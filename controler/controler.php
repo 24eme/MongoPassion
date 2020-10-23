@@ -558,10 +558,10 @@
         $modal_opened = isset($_GET['modal_opened']);
         $modal_error = isset($_GET['error']);
 
-        $modal_host = $_GET['host'];
-        $modal_port = $_GET['port'];
-        $modal_user = $_GET['user'];
-        $modal_db = $_GET['db'];
+        $modal_host = htmlspecialchars($_GET['host']);
+        $modal_port = htmlspecialchars($_GET['port']);
+        $modal_user = htmlspecialchars($_GET['user']);
+        $modal_db = htmlspecialchars($_GET['db']);
 
         if ($modal_host || $modal_db || $modal_port || $modal_user || $modal_error) {
             $modal_opened = 1 ;
@@ -578,7 +578,10 @@
             header('Location: index.php?action=install');
         }
 
-        $file_compopser = 'composer.json'; 
+        $flash_message = htmlspecialchars($_COOKIE['flash_message']);
+        setcookie('flash_message');
+
+        $file_compopser = 'composer.json';
         $data_composer = file_get_contents($file_compopser);
         if(strpos($data_composer, 'mongodb/mongodb') == false){
             header('Location: index.php?action=install');
@@ -603,6 +606,7 @@
         unset($serve_list[$key]);
         setcookie('serve_list',json_encode($serve_list));
 
+        setcookie('flash_message',"Server $serve removed from the bookmark");
         header("Location: index.php\n");
         return;
 
