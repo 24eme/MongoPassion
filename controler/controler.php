@@ -500,16 +500,29 @@
 
     function getServer()
     {
-        if(isset($_POST['authentification'])){
-            try{
-                $serve=htmlspecialchars($_POST['serve']);
-                if(!strpos($serve, ':')){
-                    $serve = $serve.':27017';
-                }
-                $user = htmlspecialchars($_POST['user']);
-                $passwd = htmlspecialchars($_POST['passwd']);
-                $auth_db = htmlspecialchars($_POST['auth_db']);
+        $host = htmlspecialchars($_POST['host']);
+        $user = htmlspecialchars($_POST['user']);
+        $port = htmlspecialchars($_POST['port']);
+        if(isset($_GET['serve'])){
+            $serve=htmlspecialchars($_GET['serve']);
+        }elseif(isset($_POST['serve'])){
+            $serve=htmlspecialchars($_POST['serve']);
+        }
+        if (!$serve) {
+            $serve = $host.":".$port;
+        }
+        $server_info = explode(":", $serve);
+        $host = $server_info[0];
+        $port = $server_info[1];
+        if (!$port) {
+            $port = 27017;
+        }
 
+        $passwd = htmlspecialchars($_POST['passwd']);
+        $auth_db = htmlspecialchars($_POST['auth_db']);
+
+        if($user){
+            try{
                 $cookie_option = array('path'=> $_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']);
 
                 setcookie('user', $user, $cookie_option);
@@ -520,31 +533,21 @@
                 require('view/getServer.php');
             }
             catch(Exception $e){
-                echo "<script>alert(\"L'authentification a échoué\");document.location.href = 'index.php';</script>";
+                header("Location: index.php?error=1&host=".$host."&user=".$user."&port=".$port."&db=".$auth_db);
             }
             return;
         }
 
         $serve_list=json_decode($_COOKIE['serve_list']);
     	try{
-            if(isset($_GET['serve'])){
-        		$serve=htmlspecialchars($_GET['serve']);
+        	if(!in_array($serve, $serve_list)){
+        		array_push($serve_list, $serve);
+                setcookie('serve_list',json_encode($serve_list));
         	}
-        	elseif(isset($_POST['serve'])){
-        		$serve=htmlspecialchars($_POST['serve']);
-                if(!strpos($serve, ':')){
-                    $serve = $serve.':27017';
-                }
-        		if(!in_array($serve, $serve_list)){
-        			array_push($serve_list, $serve);
-                    setcookie('serve_list',json_encode($serve_list));
-        		}
-        	}
-        	else{
-        		header('Location: index.php?action=error');
-        	}
+
         	$dbs = getDbs($serve);
         	require('view/getServer.php');
+            return;
         }
         catch(Exception $e){
             if (($key = array_search($serve, $serve_list)) !== false) {
@@ -552,12 +555,27 @@
                 setcookie('serve_list',json_encode($serve_list));
                 $serve='localhost:27017';
             }
-            echo "<script>alert(\"Le serveur n'autorise pas la connexion\");document.location.href = 'index.php';</script>";
+            header("Location: index.php?error=2&host=".$host."&user=".$user."&port=".$port."&db=".$auth_db);
         }
     }
 
     function home()
     {
+        $modal_opened = isset($_GET['modal_opened']);
+        $modal_error = isset($_GET['error']);
+
+        $modal_host = $_GET['host'];
+        $modal_port = $_GET['port'];
+        $modal_user = $_GET['user'];
+        $modal_db = $_GET['db'];
+
+        if ($modal_host || $modal_db || $modal_port || $modal_user || $modal_error) {
+            $modal_opened = 1 ;
+        }
+        if(!$modal_port) {
+            $modal_port = 27017;
+        }
+
         setcookie('user', "", time() - 3600);
         setcookie('passwd',"", time() - 3600);
         setcookie('auth_db',"", time() - 3600);

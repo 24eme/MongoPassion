@@ -4,7 +4,6 @@
 	<?php echo "<title>Welcome</title>"?>
 	<?php require_once('header.php') ?>
 	<link href="public/css/home.css" rel="stylesheet" type="text/css">
-	<link href="public/css/modal.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="main" class=" text-center m-auto ">
@@ -22,20 +21,25 @@
 
 	<!-- Modal connexion -->
 	<br><br>
-	<div id="connex" class="modal text-left">
+	<div id="modal-connection" class="modal text-left">
 	  <div class="modal-content">
 	    <span id="close">&times;</span>
 	    <h2 align="center">Connexion</h2><br>
+		<?php if ($modal_error): ?>
+			<p class="text-danger">La connexion au server a échoué</p>
+		<?php endif; ?>
 	    <form method="post" action="index.php?action=getServer">
 	    	<input align="left" type="hidden" name="authentification">
 	    	<label>Server :</label>
-	    	<input type="text" class="border border-success" name="serve" id="serve" maxLength = 20 required /><br>
+	    	<input type="text" class="border border-success" name="host" id="host" maxLength=20 required value="<?php echo $modal_host; ?>"/><br>
+			<label>Port :</label>
+	    	<input type="text" class="border border-success" name="port" id="port" maxLength=20 value="<?php echo $modal_port; ?>"/><br>
 	    	<label>Username :</label>
-	    	<input type="text" class="border border-success" name="user" id="user" maxLength = 20 required /><br>
+	    	<input type="text" class="border border-success" name="user" id="user" maxLength=20 value="<?php echo $modal_user; ?>"/><br>
 	    	<label>Password :</label>
-	    	<input type="password" class="border border-success" name="passwd" id="passwd" maxLength = 20 required /><br>
+	    	<input type="password" class="border border-success" name="passwd" id="passwd" maxLength=20 /><br>
 	    	<label>Authentification Database :</label>
-	    	<input type="text" class="border border-success" name="auth_db" id="auth_db" maxLength = 20 required /><br><br>
+	    	<input type="text" class="border border-success" name="auth_db" id="auth_db" maxLength=20 value="<?php echo $modal_db; ?>" /><br><br>
 	    	<div id="submit">
 				<input type="submit" class="btn btn-success font-weight-bold" name="connexion" id="connexion" value="Connexion">
 			</div>
@@ -47,16 +51,17 @@
 
 
 	<!-- Formulaire serveurs -->
-
-	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
+	<div class="col-lg-8 offset-lg-2">
+	<form method="post" action="index.php?action=getServer">
 			<div class="input-group btn-group">
-			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength = 20 required />
+			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength=20 required />
 			<div class="input-group-append">
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
 			</div>
 		</div>
 	</form>
-	<button id="authen" style="">Advanced Connection</button>
+	<p class="text-right"><a href="#" data-toggle="modal" data-target="#modal-connection">Advanced Connection</a></p>
+	</div>
 
 	<!-- Fin du formulaire serveurs -->
 </div>
@@ -88,35 +93,10 @@
 <?php
 require_once('footer.php')
 ?>
-
-
-
 </body>
 <script type="text/javascript">
-	// Get the modal
-	var modal = document.getElementById("connex");
-
-	// Get the button that opens the modal
-	var btn = document.getElementById("authen");
-
-	// Get the <span> element that closes the modal
-	var span = document.getElementById("close");
-
-	// When the user clicks on the button, open the modal
-	btn.onclick = function() {
-	  modal.style.display = "block";
-	}
-
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-	  modal.style.display = "none";
-	}
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-	    modal.style.display = "none";
-	  }
-	}
+<?php if ($modal_opened): ?>
+	$('#modal-connection').modal("show")
+<?php endif; ?>
 </script>
 </html>
