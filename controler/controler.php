@@ -353,20 +353,30 @@
             $a_s = 'db.'.$coll.'.find({})';
         }
 
+        if (isset($_COOKIE['flash_error'])) {
+          $flash_error = $_COOKIE['flash_error'];
+          setcookie('flash_error');
+        }
+
+        $link_reinit = '?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'';
+
         if(isset($a_s)){
-            $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
+            try {
+              $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
 
-            if(testProjection($a_s,$serve,$db)){
-                $docs = $result;
+              if(testProjection($a_s,$serve,$db)){
+                  $docs = $result;
+              }
+
+              $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
+              $nbPages = getNbPages($nbDocs,$bypage);
             }
-
-            $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
-            $nbPages = getNbPages($nbDocs,$bypage);
+            catch(Exception $e){
+              $flash_error = "Failed to execute query: ".$e->getMessage();
+            }
         }
 
         $link_search = '?'.$_SERVER['QUERY_STRING'];
-
-        $link_reinit = '?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'';
 
         require('view/advancedSearch.php');
 
