@@ -512,7 +512,7 @@
         }
 
         $passwd = htmlspecialchars($_POST['passwd']);
-        $auth_db = htmlspecialchars($_POST['auth_db']);
+        $auth_db = htmlspecialchars($_POST['database']);
 
         if($user){
             try{
@@ -538,7 +538,6 @@
         		array_push($serve_list, $serve);
                 setcookie('serve_list',json_encode($serve_list));
         	}
-
         	$dbs = getDbs($serve);
         	require('view/getServer.php');
             return;
