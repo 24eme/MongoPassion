@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
 	<?php echo "<title>Advanced Search</title>"?>
-
 	<?php require_once('header.php') ?>
 </head>
 
