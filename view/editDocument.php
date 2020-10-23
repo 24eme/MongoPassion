@@ -15,7 +15,7 @@
 $link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&page='.$page;
 //Titre de la page
 
-echo "<h2 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$doc."<button  class=\"btn \"><a class=\"text-danger font-weight-bold\" href=".$link_d." onclick=\"return confirmDelete()\"><i class='fa fa-2x fa-trash'></i></a></button></h2>";
+echo "<h2 class='title text-center'>Edit <i title='id of document' class='fa fa-fw fa-file'></i>".$doc."<button  class=\"btn \"><a class=\"text-danger font-weight-bold\" href=".$link_d." onclick=\"return confirmDelete()\"><i title='Delete this document'class='fa fa-2x fa-trash'></i></a></button></h2>";
 
 //Fin du titre de la page
 

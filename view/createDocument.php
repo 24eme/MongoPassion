@@ -12,7 +12,7 @@
 <?php
 //Titre de la page
 
-echo '<h1 class = "title text-center font-weight-bold"><i class="fa fa-fw fa-book"></i> New Document</h1>';
+echo '<h1 class = "title text-center font-weight-bold"><i title="Create new document" class="fa fa-fw fa-file"></i> New Document</h1>';
 
 //Fin titre de la page
 if(isset($_GET['msg'])){
