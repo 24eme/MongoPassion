@@ -6,7 +6,7 @@
 	<link href="public/css/home.css" rel="stylesheet" type="text/css">
 	<link href="public/css/modal.css" rel="stylesheet" type="text/css">
 </head>
-
+<body>
 <div id="main" class=" text-center m-auto ">
 
 	<!-- Titre de la page -->
@@ -92,8 +92,6 @@ require_once('footer.php')
 
 
 </body>
-</html>
-
 <script type="text/javascript">
 	// Get the modal
 	var modal = document.getElementById("connex");
@@ -121,3 +119,4 @@ require_once('footer.php')
 	  }
 	}
 </script>
+</html>
