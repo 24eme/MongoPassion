@@ -56,7 +56,7 @@
 <div  class="m-auto border col-lg-8 offset-lg-2 bg-light mt-1">
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
 		<div class="input-group mb-1 mt-1">
-			<input type="search" autofocus="autofocus" class="form-control border border-success" required="required" name="recherche_db" id="recherche_db" placeholder="Search by document id in all collection"/>
+			<input type="search" autofocus="autofocus" class="form-control border border-success" required="required" name="recherche_db" id="recherche_db" placeholder="Acces direct to a document by id"/>
 			<div class="input-group-append">
 			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
 			</div>
