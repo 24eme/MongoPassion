@@ -9,45 +9,9 @@
 
 <body>
 
+<?php include('breadcrumb.php'); ?>
+
 <?php
-
-//Fil d'Ariane
-
-echo "<div  class='container border-top  border-success bg-success col-lg-8 sticky-top'>";
-	echo '<ol class="breadcrumb">';
-		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
-		if(isset($serve)){
-			if($_GET['action']=='getServer'){
-				echo '<li class="breadcrumb-item active">'.$serve.'</li>';
-			}
-			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i>'.$serve.'</a></li>';
-			}
-		}
-		if(isset($db)){
-			if($_GET['action']=='getDb'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i>'.$db.'</li>';
-			}
-			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-database"></i>'.$db.'</a></li>';
-			}
-		}
-		if(isset($coll)){
-			if($_GET['action']=='getCollection' or $_GET['action']=='getCollection_search'){
-				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-server"></i>'.$coll.'</li>';
-			}
-			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-server"></i>'.$coll.'</a></li>';
-			}
-		}
-		if(isset($doc)){
-			echo '<li class="breadcrumb-item active"><i class="icon-book"></i>'.$doc.'</li>';
-		}
-	echo '</ol>';
-echo '</div>';
-
-//Fin fil d'Ariane
-
 
 //Préparation des variables de recherche pour leur utilisation en JS
 
@@ -65,7 +29,7 @@ if(isset($a_s)){
 <!-- Titre de la page -->
 
 <h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>
-    <?php (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
+    <?php echo (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
 </h1>
 
 <!-- Fin du titre de la page -->
@@ -108,7 +72,10 @@ if(isset($a_s)){
 								else{echo $nbDocs;}
 								echo ' of '.$nbDocs.') :</h5>'?>
 					<?php if(!empty($result) and isset($docs)){ ?>
-					<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
+					<button id="test_csv" style="color:white;"><i class="text-light fa fa-fw fa-download"></i>CSV</button>
+					<?php } ?>
+					<?php if(!empty($result) and !isset($docs)){ ?>
+					<button id="export_json" onclick="download_json()" style="color:white;"><i class="text-light fa fa-fw fa-download"></i>JSON</button>
 					<?php } ?>
 				</div>
 				<table class="table table-sm table-striped">
@@ -119,6 +86,7 @@ if(isset($a_s)){
 					?>
 						<?php
 						if(isset($docs)){
+							$export_json = "";
 							echo '<tr>';
 							foreach ($docs[0] as $key => $value) {
 								echo '<th>'.$key.'</th>';
@@ -134,6 +102,7 @@ if(isset($a_s)){
 							}
 						}
 						else{
+							$export_json = "[";
 							foreach ($result as $entry) {
 								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
 								$content = array();
@@ -150,14 +119,18 @@ if(isset($a_s)){
 							 		$content[$x] =  improved_var_export($value);
 								}
 								$content = init_json($content);
+								$json_exp = json_encode($content);
 								unset($content['_id']);
 					 			$json = stripslashes(json_encode($content));
+					 			$export_json = $export_json.$json_exp.',';
 								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i class="text-dark fa fa-fw fa-book"></i>'.$entry['_id'].'</a></td>';
 								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
 								if(strlen($json)>100){echo ' [...] }';}
 								echo '</td>';
 								echo '</tr>';
 							}
+							$export_json = substr($export_json, 0, -1);
+							$export_json = $export_json.']';
 						}
 					} 
 					?>
@@ -218,6 +191,25 @@ if(isset($a_s)){
 </html>
 
 <script type="text/javascript">
+
+	function download_json()
+  {
+  	var element = document.createElement('a');
+  	var random = (Math.floor(Math.random() * Math.floor(100000000))).toString(16);
+  	var filename = "json_"+random+".json";
+  	var text = '<?php echo $export_json; ?>';
+  	var jsonPretty = JSON.stringify(JSON.parse(text),null,2);
+  	element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonPretty));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
+	// Export CSV
   function download_csv(csv, filename) {
       var csvFile;
       var downloadLink;
@@ -266,4 +258,7 @@ if(isset($a_s)){
     var html = document.querySelector("table").outerHTML;
     export_table_to_csv(html, "result_"+random+".csv");
   });
+  // Fin de l'export CSV
+
 </script>
+
