@@ -526,6 +526,7 @@
                 require('view/getServer.php');
             }
             catch(Exception $e){
+                setcookie('flash_error', $e->getMessage());
                 header("Location: index.php?error=1&host=".$host."&user=".$user."&port=".$port."&db=".$auth_db);
             }
             return;
@@ -548,6 +549,7 @@
                 setcookie('serve_list',json_encode($serve_list));
                 $serve='localhost:27017';
             }
+            setcookie('flash_error', $e->getMessage());
             header("Location: index.php?error=2&host=".$host."&user=".$user."&port=".$port."&db=".$auth_db);
         }
     }
@@ -588,6 +590,10 @@
 
         if ($modal_error) {
             $flash_error = "Unable to connect to server";
+        }
+        if (isset($_COOKIE['flash_error'])) {
+            $flash_error = $_COOKIE['flash_error'];
+            setcookie('flash_error');
         }
 
         require('view/home.php');
