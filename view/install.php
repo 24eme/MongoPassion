@@ -88,7 +88,7 @@
 <button class="btn btn-primary" href="?action=install">Recheck</button>
 &nbsp;
 
-<button class="btn btn-success" href="index.php">Start</button>
+<button href="index.php" class="btn <?php if (!$php_mongo || !$composer_mongo): ?>btn-secondary" disabled="disabled"<?php else: ?>btn-success"<?php endif; ?>>Start</button>
 
 </div>
 <!-- Fin du bouton de retour au menu home -->
