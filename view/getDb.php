@@ -26,13 +26,13 @@
 
 echo "<div class=' container border-top  border-success bg-success col-lg-8 sticky-top'>";
 	echo '<ol class="breadcrumb">';
-		echo '<li class="breadcrumb-item"><a href="index.php?"><i class="fa fa-fw fa-home"></i>Home</a></li>';
+		echo '<li class="breadcrumb-item"><a href="index.php?"><i title="return to page home" class="fa fa-fw fa-home"></i>Home</a></li>';
 		if(isset($serve)){
 			if($_GET['action']=='getServer'){
 				echo '<li class="breadcrumb-item active">'.$serve.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getServer&serve='.$serve.'"><i title="return to page server" class="fa fa-fw fa-desktop"></i> '.$serve.'</a></li>';
 			}
 		}
 		if(isset($db)){
@@ -40,7 +40,7 @@ echo "<div class=' container border-top  border-success bg-success col-lg-8 stic
 				echo '<li class="breadcrumb-item active"><i class="fa fa-fw fa-database"></i> '.$db.'</li>';
 			}
 			else{
-				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-database"></i>'.$db.'</a></li>';
+				echo '<li class="breadcrumb-item"><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i title="Create database" class="fa fa-fw fa-database"></i>'.$db.'</a></li>';
 			}
 		}
 		if(isset($coll)){
@@ -65,7 +65,7 @@ echo '</div>';
 <!-- Titre de la page -->
 
 <?php
-	echo "<h1 align='center' class='title font-weight-bold mt-2'><i class='fa fa-fw fa-database'></i>".$db."</h1>";
+	echo "<h1 align='center' class='title font-weight-bold mt-2'><i title='Name of database' class='fa fa-fw fa-database'></i>".$db."</h1>";
 ?>
 
 <!-- Fin du titre de la page -->
@@ -132,13 +132,13 @@ echo '</div>';
 
 		<table class="table table-sm table-striped">
 				<?php echo  "<h3 class=\"text-center bg-success text-light \"><span><strong> Collections of ".$db." </strong></span><button type='button' class='btn btn-dark py-1 float-right ' data-toggle='modal' data-target='#myModal'>
-					<i class='fa fa-fw fa-plus'></i><i class='fa fa-fw fa-server'></i>
+					<i title='Add new collection' class='fa fa-fw fa-plus'></i><i title='Add new collection' class='fa fa-fw fa-server'></i>
 			           </button>
 			                </h3>";
 			
 				foreach ($collections as $collection) {
 					echo "<tr>";
-					echo "<td><a class='text-success' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."'><i class='text-dark mr-2 fa fa-fw fa-server'></i>";
+					echo "<td><a class='text-success' href='index.php?action=getCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."'><i title='Name of collection' class='text-dark mr-2 fa fa-fw fa-server'></i>";
 					echo $collection->getName();
 					echo '</a></td>';
 					echo "<td><button  class='btn  float-right py-0'><a class='text-success' href=index.php?action=editCollection&serve=".$serve."&db=".$db."&coll=".$collection->getName()."><i class='fa fa-edit'></i></a></button></td>";
@@ -150,7 +150,7 @@ echo '</div>';
 	    <div class="mb-2">
 			<!-- Start Button add database -->
 			<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
-					<i class='fa fa-fw fa-plus'></i><i class='fa fa-fw fa-server'></i>
+					<i title="Add new collection" class='fa fa-fw fa-plus'></i><i title="Add new collection" class='fa fa-fw fa-server'></i>
 			</button>
 			<!-- End Button add database -->	
 
