@@ -1,59 +1,32 @@
-
 // Fonction qui gère le nombre de documents affichés par page
 
-function bypage()
+function bypage(select)
 {
-	var s10 = document.getElementById("10");
-	var s20 = document.getElementById("20");
-	var s30 = document.getElementById("30");
-	var s50 = document.getElementById("50");
+    var nb = select.options[select.selectedIndex].text
 
-	if(s10.selected){
-		var select = s10;
-	}
-	else if(s20.selected){
-		var select = s20;
-	}
-	else if(s30.selected){
-		var select = s30;
-	}
-	else if(s50.selected){
-		var select = s50;
-	}
+    var url = window.location.search
+    var parameters = new URLSearchParams(url)
 
-	var link = document.location.href+'&bypage='+select.value;
+    parameters.delete('bypage')
+    parameters.set('bypage', nb)
 
-
-
-	document.location.href = link;
+    document.location.href = '/?'+parameters.toString()
 
 }
 
-function bypage_search()
+function bypage_search(select)
 {
-	var s10 = document.getElementById("10");
-	var s20 = document.getElementById("20");
-	var s30 = document.getElementById("30");
-	var s50 = document.getElementById("50");
+    var nb = select.options[select.selectedIndex].text
+    var key = document.getElementById("clé").innerHTML;
+    var valeur = document.getElementById("valeur").value;
 
-	var clé = document.getElementById("clé").innerHTML;
-	var valeur = document.getElementById("valeur").value;
+    var url = window.location.search
+    var parameters = new URLSearchParams(url)
 
-	if(s10.selected){
-		var select = s10;
-	}
-	else if(s20.selected){
-		var select = s20;
-	}
-	else if(s30.selected){
-		var select = s30;
-	}
-	else if(s50.selected){
-		var select = s50;
-	}
+    parameters.delete('bypage')
+    parameters.set('bypage', nb)
 
-	var link = document.location.href+'&bypage='+select.value+'&'+clé+'='+valeur;
+    parameters.set(key, valeur)
 
-	document.location.href = link;
-	
+    document.location.href = '/?'+parameters.toString()
 }
