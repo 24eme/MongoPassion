@@ -87,33 +87,33 @@
 			  </div>
 	  		<?php endif; ?>
 				<div class="form-group row">
-			      	<label for="host" class="col-sm-3 col-form-label">Host:</label>
-			      	<div class="col-sm-9">
+			      	<label for="host" class="col-sm-4 col-form-label">Host:</label>
+			      	<div class="col-sm-8">
 	      				<input type="text" class="form-control" id="host" name="host" placeholder="mongo.example.org" value="<?php echo $modal_host; ?>">
 	  		      	</div>
 		    	</div>
 				<div class="form-group row">
-			      	<label for="port" class="col-sm-3 col-form-label">Port:</label>
-			      	<div class="col-sm-9">
+			      	<label for="port" class="col-sm-4 col-form-label">Port:</label>
+			      	<div class="col-sm-8">
 	      				<input type="text" class="form-control" id="port" name="port" placeholder="27017" value="<?php echo $modal_port; ?>">
 	  		      	</div>
 		    	</div>
 				<div class="form-group row">
-			      	<label for="user" class="col-sm-3 col-form-label">User:</label>
-			      	<div class="col-sm-9">
-	      				<input type="text" class="form-control" id="user" name="user" placeholder="myuser" value="<?php echo $modal_user; ?>">
+			      	<label for="user" class="col-sm-4 col-form-label">User:</label>
+			      	<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="user" name="user" placeholder="my user" value="<?php echo $modal_user; ?>">
 	  		      	</div>
 		    	</div>
 				<div class="form-group row">
-			      	<label for="passwd" class="col-sm-3 col-form-label">Password:</label>
-			      	<div class="col-sm-9">
-	      				<input type="password" class="form-control" id="passwd" name="passwd" placeholder="mypassword">
+			      	<label for="passwd" class="col-sm-4 col-form-label">Password:</label>
+			      	<div class="col-sm-8">
+	      				<input type="password" class="form-control" id="passwd" name="passwd" placeholder="my password">
 	  		      	</div>
 		    	</div>
 				<div class="form-group row">
-			      	<label for="database" class="col-sm-3 col-form-label">Database:</label>
-			      	<div class="col-sm-9">
-	      				<input type="text" class="form-control" id="database" name="database" placeholder="mydatabase" value="<?php echo $modal_db; ?>">
+			      	<label for="auth_db" class="col-sm-4 col-form-label">Auth. Database:</label>
+			      	<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="auth_db" name="auth_db" placeholder="the auth database" value="<?php echo $modal_auth_db; ?>">
 	  		      	</div>
 		    	</div>
 	      </div>

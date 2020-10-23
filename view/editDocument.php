@@ -228,11 +228,13 @@ if(isset($search_db)){
 </script>
 
 <!-- Fin du formulaire mode édition JsonEditor -->
-
+<div  id="getJson_content">
+	<button class="btn btn-primary" id="getJSON">Save</button>
+</div>
 
 <!-- footer -->
 <br><br>
-<?php 
+<?php
 	require_once('footer.php')
 ?>
 
