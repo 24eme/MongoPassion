@@ -12,7 +12,7 @@
 
 //Titre de la page
 
-echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-server'></i>".$coll."</h1>";
+echo "<h1 class='title text-center font-weight-bold'><i title='Name of collection' class='fa fa-fw fa-server'></i>".$coll."</h1>";
 
 //Fin du titre de la page
 
@@ -36,12 +36,12 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 					<!-- Autocomplétion des champs -->
 
 					<datalist id="browsers">
-				        <?php 
-				        	foreach ($docs[0] as $key => $value) {  
+				        <?php
+				        	foreach ($docs[0] as $key => $value) {
 				        		echo  "<option value=".$key.":>";
 							}
-				        ?> 
-			 		</datalist> 
+				        ?>
+			 		</datalist>
 
 			 		<!-- Fin de l'autocomplétion des champs -->
 					<div class="input-group-append">
@@ -124,24 +124,23 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 				<!-- Pagination -->
 				<div class="row mr-2">
 					<div >
-						<?php
+					<?php if($page!=1): ?>
+					<a href="index.php?action=getCollection&serve=".<?= $serve ?>."&db=".<?= $db ?>."&coll=".<?= $coll ?>."&page=".<?= ($page-1) ?>."&bypage=".<?= $bypage ?>."\" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>
+				         <?php else : ?>
+				            <span id="prev"><span aria-hidden="true">&laquo;</span></span>
+				         <?php endif ?>
 
-						echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
-							if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-							else{echo $nbDocs;}
-							echo ' of '.$nbDocs.'</h2>';
-							?>
+					 <h6 class="mr-2 pt-2">Documents <?= (1+(($page-1)*$bypage)) ?> -
+						<?php if(($page*$bypage)<$nbDocs): ?>
+							<?= $page*$bypage; ?>
+						<?php else: ?>
+							<?= $nbDocs . ' of '.$nbDocs ?>
+						<?php endif; ?>
+					</h6>
 					</div>
 					<div class="text-center" aria-label="pagination" >
 				        <ul class="pagination">
 
-				        <?php
-				            if($page!=1){
-				            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
-				            }
-				            else{
-				            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
-				            } ?>
 
 				            <span  class="text-center bg-light font-weight-bold mr-1">
 								<select id="select_pagination" name="bypage" onchange="bypage(this)">
@@ -166,19 +165,19 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 				</div>
 			   		<!-- Bouton nouveau document -->
 				<div class="ml-2">
-					    <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-plus"></i><i class="fa fa-fw fa-book"></i></a></button>'; ?>
+					    <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i title="Create new doc"class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-fw fa-file"></i></a></button>'; ?>
 				</div>
 			  <!-- Fin du bouton nouveau document -->
 
 		</div>
-	</div> 
+	</div>
 </div>
 
 <!-- Fin du tableau des documents de la collection -->
 
 <!-- footer -->
 
-<?php 
+<?php
 	require_once('footer.php')
 ?>
 

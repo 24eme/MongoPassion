@@ -11,7 +11,7 @@
 <!-- Titre de la page -->
 
 <?php
-	echo "<h2 align='center' class='title font-weight-bold mt-5'><i class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h2>";
+	echo "<h2 align='center' class='title font-weight-bold mt-5'><i title='search results in database $db' class='fa fa-fw fa-database'></i>Search results for <font color='#62a252'>".$search."</font> in <font color='#62a252'>".$db."</font></h2>";
 ?>
 
 <!-- Fin du titre de la page -->
@@ -64,7 +64,7 @@
 			<div class="input-group mb-1">
 				<input type="search" class="form-control border border-success mr" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
 				<input class="btn bg-success text-light mr-2 " type="submit" name="search" id="search" value="Search">
-				<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?>
+				<?php echo '<button class="btn bg-secondary"><a class="text-light" href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><i title="Reset and return to the getDb page" class="fa fa-fw fa-remove"></i></a></button>'; ?>
 			</div>
 		</form>
 	</div>
@@ -108,14 +108,14 @@
 	    <div class="mb-2">
 			<!-- Start Button new collection -->
 			<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
-					<i class='fa fa-fw fa-plus'></i><i class='fa fa-fw fa-server'></i>
+					<i title="Add new collection" class='fa fa-fw fa-plus'></i><i title="Add new collection" class='fa fa-fw fa-server'></i>
 			</button>
 			<!-- End Button add new collection -->	
 
 			<!-- Bouton de retour -->
 
 			<?php
-				echo '<a href="index.php?action=getServer&serve='.strip_tags($serve).'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+				echo '<a href="index.php?action=getServer&serve='.strip_tags($serve).'"><button class="return btn btn-primary font-weight-bold">< db list</button></a>';
 			?>
 	    </div>
 	</div>

@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>Advanced Search</title>"?>
-
+	<?php echo "<title>MongoDoAllCRUDAdvanced Search</title>"?>
 	<?php require_once('header.php') ?>
-	<link href="public/css/advancedSearch.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
 <?php include('breadcrumb.php'); ?>
+
+<div id="advancedSearch">
 
 <?php
 
@@ -28,7 +28,7 @@ if(isset($a_s)){
 
 <!-- Titre de la page -->
 
-<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>
+<h1 class = "title font-weight-bold" align="center"><i title="title of search" class="fa fa-fw fa-search"></i>
     <?php echo (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
 </h1>
 
@@ -38,6 +38,11 @@ if(isset($a_s)){
 <!-- Partie recherche -->
 
 <div class="mt-1 col-lg-8">
+	<?php if ($flash_error): ?>
+	<div class="alert alert-danger">
+		<?php echo $flash_error; ?>
+	</div>
+  <?php endif; ?>
 	<?php echo '<form action="'.$link_search.'">';
 		echo '<label>Execute a query in '.$coll.':</label>'; ?>
 		<input type="hidden" name="action" value="advancedSearch">
@@ -53,7 +58,7 @@ if(isset($a_s)){
 		<input type="submit" class="btn btn-success float-right" value="Execute">
 
 	</form>
-		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?> 
+		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i title="reset" class="fa fa-fw fa-remove"></i></a></button>'; ?> 
 			
 	
 </div>
@@ -123,7 +128,7 @@ if(isset($a_s)){
 								unset($content['_id']);
 					 			$json = stripslashes(json_encode($content));
 					 			$export_json = $export_json.$json_exp.',';
-								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i class="text-dark fa fa-fw fa-book"></i>'.$entry['_id'].'</a></td>';
+								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark fa fa-fw fa-file"></i>'.$entry['_id'].'</a></td>';
 								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
 								if(strlen($json)>100){echo ' [...] }';}
 								echo '</td>';

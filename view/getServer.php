@@ -7,13 +7,16 @@
 </head>
 <body>
 
+
+
 <?php include('breadcrumb.php'); ?>
+
 
 <?php
 
 //Titre de la page
 
-echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-desktop'></i>".$serve."</h1>";
+echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of server' class='fa fa-fw fa-desktop'></i>".$serve."</h1>";
 
 //Fin du titre de la page
 
@@ -70,8 +73,10 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 				sort($tabdbs);
 				foreach ($tabdbs as $db) {
 					echo '<tr>';
-					echo "<td><a autofocus='autofocus' class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
+
+					echo "<td><a autofocus='autofocus' class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db."'><i title='It is database $db'class=' text-dark mr-3 fa fa-fw fa-database'></i>";
 					echo $db;
+
 					echo '</a></td>';
 					echo '</tr>';
 				}
@@ -82,7 +87,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 		<div class="mb-2">
 			<!-- Start Button add database -->
 			<button type='button' class='btn btn-dark  float-right' data-toggle='modal' data-target='#myModal'>
-					<i class='fa fa-fw fa-database'></i><i class='fa fa-fw fa-plus'></i>
+					<i title="Create database" class='fa fa-fw fa-database'></i><i title="Create database" class='fa fa-fw fa-plus'></i>
 			</button>
 			<!-- End Button add database -->
 			<?php

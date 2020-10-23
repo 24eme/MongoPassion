@@ -13,14 +13,16 @@
 <?php
 
 $link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&page='.$page;
+
 //Titre de la page
 
-echo "<h2 class='title text-center'>Edit <i class='fa fa-fw fa-book'></i>".$doc."<button  class=\"btn \"><a class=\"text-danger font-weight-bold\" href=".$link_d." onclick=\"return confirmDelete()\"><i class='fa fa-2x fa-trash'></i></a></button></h2>";
+echo "<h2 class='title text-center'>Edit <i title='id of document' class='fa fa-fw fa-file'></i>".$doc."<button  class=\"btn \"><a class=\"text-danger font-weight-bold\" href=".$link_d." onclick=\"return confirmDelete()\"><i title='Delete this document'class='fa fa-2x fa-trash'></i></a></button></h2>";
 
 //Fin du titre de la page
 
 
 //Message d'erreur
+
 if(isset($_GET['msg'])){
 
   echo '<div id="cacherAlert" class="text-center alert col-lg-8 offset-lg-2 alert-danger alert-dismissible fade show" role="alert">';
@@ -32,8 +34,6 @@ if(isset($_GET['msg'])){
 
 
 }
-
-
 
 //Fin Messagege d'erreur
 
@@ -51,10 +51,9 @@ echo '<div id="nav_view">';
 		echo '<a href="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'&search_db='.$search_db.'"><button class="return btn btn-primary">< Collection</button></a>';
 	}
 	else{
-		echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'"><button class="return btn btn-primary">< Collection</button></a>';
+		echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'"><button class="return btn btn-primary">< list of docs</button></a>';
 	} 
 echo '</div>';
-
 
 
 
@@ -81,7 +80,7 @@ if(isset($search_db)){
 
 <!-- Bouton switch JsonEditor -->
 
-
+<?php if($jsoneditor){?>
 <div id="switch">
 	<label id="switch_json">JSONEditor</label>
 	<label class="switch">
@@ -95,6 +94,7 @@ if(isset($search_db)){
 	  <span class="slider round"></span>
 	</label>
 </div>
+<?php }?>
 
 <!-- Fin du bouton switch JsonEditor -->
 
@@ -106,7 +106,12 @@ if(isset($search_db)){
 	if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
 		echo '<div id="main"  style="display: block">';
 	} else {
-		echo '<div id="main" style="display: none">';
+		if($jsoneditor){
+			echo '<div id="main" style="display: none">';
+		}
+		else{
+			echo '<div id="main">';
+		}
 	}
 	?>
 	<?php
@@ -148,7 +153,7 @@ if(isset($search_db)){
 	 	echo '<form method="post" action="'.$link_doc.'">';
 	 		echo '<input type="hidden" name="date_array" value="'.htmlspecialchars(serialize($date_array)).'"></input>';
 	 		echo '<input type="hidden" name="up_date_array" value="'.htmlspecialchars(serialize($up_date_array)).'"></input>';
-	 		echo '<div id="update_content"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Update"></div>';
+	 		echo '<div id="update_content"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Save"></div>';
 	 		echo '<div id="doc_content"><textarea autofocus="autofocus" name="doc_text" class="col-lg-8 offset-lg-2" id="doc_text"  rows="20" cols="200" required>'.$docs.'</textarea></div>';
 	 	echo '</form>';
 	 	echo '<br>'
@@ -159,8 +164,9 @@ if(isset($search_db)){
 <!-- Formulaire mode édition JsonEditor -->
 
 <!-- Affichage du formulaire -->
-<div id="DivContentTable">
 
+<?php if($jsoneditor){?>
+<div id="DivContentTable">
 		<?php
 			if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
 				echo '<div id="json"  style="display: none;">';
@@ -177,6 +183,8 @@ if(isset($search_db)){
 		</div>
 	</div>
 </div>
+<?php }?>
+
 <!-- Script de création et d'envoi du formulaire -->
 
 <script type="text/javascript">
@@ -220,11 +228,13 @@ if(isset($search_db)){
 </script>
 
 <!-- Fin du formulaire mode édition JsonEditor -->
-
+<div  id="getJson_content">
+	<button class="btn btn-primary" id="getJSON">Save</button>
+</div>
 
 <!-- footer -->
 <br><br>
-<?php 
+<?php
 	require_once('footer.php')
 ?>
 

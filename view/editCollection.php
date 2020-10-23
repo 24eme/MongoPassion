@@ -14,7 +14,7 @@
 
 //Titre de la page
 
-echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa-server'></i> ".$coll." <button  class='btn mr-5'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."  onclick='return confirmDelete()'><i class='fa fa-2x fa-trash'></i></a></button></h1>";
+echo "<h1 align=center class='title font-weight-bold'>Edit <i title='name of collection' class='fa fa-fw fa-server'></i> ".$coll." <button  class='btn mr-5'><a class='text-danger' href=index.php?action=deleteCollection&serve=".$serve.'&db='.$db."  onclick='return confirmDelete()'><i title='delete this collection' class='fa fa-2x fa-trash'></i></a></button></h1>";
 
 
 ?>
@@ -48,7 +48,7 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i class='fa fa-fw fa
 
 		//Bouton de retour
 
-		echo '<br><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary font-weight-bold">< Database</button></a>'; 
+		echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary font-weight-bold mb-2">< list collection</button></a>'; 
 	?>
 </div>
 

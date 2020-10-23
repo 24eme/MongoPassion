@@ -3,11 +3,10 @@
 <head>
 	<?php echo "<title>Welcome</title>"?>
 	<?php require_once('header.php') ?>
-	<link href="public/css/home.css" rel="stylesheet" type="text/css">
-	<link href="public/css/modal.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="main" class=" text-center m-auto ">
+<div class="container" id="home">
+<div id="main" class="text-center m-auto ">
 
 	<!-- Titre de la page -->
 
@@ -17,106 +16,129 @@
 
 	</div>
 
-	<!-- Fin du titre de la page -->
-
-
-	<!-- Modal connexion -->
-	<br><br>
-	<div id="connex" class="modal text-left">
-	  <div class="modal-content">
-	    <span id="close">&times;</span>
-	    <h2 align="center">Connexion</h2><br>
-	    <form method="post" action="index.php?action=getServer">
-	    	<input align="left" type="hidden" name="authentification">
-	    	<label>Server :</label>
-	    	<input type="text" class="border border-success" name="serve" id="serve" maxLength = 20 required /><br>
-	    	<label>Username :</label>
-	    	<input type="text" class="border border-success" name="user" id="user" maxLength = 20 required /><br>
-	    	<label>Password :</label>
-	    	<input type="password" class="border border-success" name="passwd" id="passwd" maxLength = 20 required /><br>
-	    	<label>Authentification Database :</label>
-	    	<input type="text" class="border border-success" name="auth_db" id="auth_db" maxLength = 20 required /><br><br>
-	    	<div id="submit">
-				<input type="submit" class="btn btn-success font-weight-bold" name="connexion" id="connexion" value="Connexion">
+	<div class="col-lg-8 offset-lg-2 bg-light m-auto">
+		<?php if (isset($flash_message) && $flash_message): ?>
+			<div class="alert alert-success" role="alert">
+				<?php echo $flash_message; ?>
 			</div>
-	    </form>
-	  </div>
+		<?php endif; ?>
 	</div>
 
-	<!-- Fin du modal connexion -->
-
-
+	<!-- Fin du titre de la page -->
 	<!-- Formulaire serveurs -->
-
-	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
+	<div>
+	<form method="post" action="index.php?action=getServer">
 			<div class="input-group btn-group">
-			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength = 20 required />
+			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength=20 required />
 			<div class="input-group-append">
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
 			</div>
 		</div>
 	</form>
-	<button id="authen" style="">Advanced Connection</button>
+	<div class="text-right">
+		<a href="#" data-toggle="modal" data-target="#modal-connection">Advanced Connection</a>
+	</div>
+	</div>
 
 	<!-- Fin du formulaire serveurs -->
 </div>
 
+<br/><br/>
+
 <!-- Tableau des serveurs -->
 
-<div class="border col-lg-8 offset-lg-2 bg-light m-auto">
+<div class="bg-light m-auto">
+	<div class="border">
 	<?php
 		$serve_list=json_decode($_COOKIE['serve_list']);
 		if(sizeof($serve_list)>0){
-			echo '<table class="table table-sm table-striped ">';
+			echo '<table class="table table-sm table-striped serverlist">';
 			echo  	"<h3 class=\"text-center bg-success text-light\"><span><strong>Server list </strong></span></h3>" ;
 			foreach ($serve_list as $x) {
 				echo '<tr>';
 				echo "<td><a  class='text-success'  href='index.php?action=getServer&serve=".$x."'><i title='address IP of server' class='text-dark mr-2 fa fa-fw fa-desktop'></i>";
 				echo $x;
 				echo '</a></td>';
-				echo '<td><a href="?action=removeServer&serve='.$x.'"><i title="Delete server" class="fa fa-fw fa-remove"></i></a></td>';
+				echo '<td class="text-right"><a href="?modal_opened=1&serve='.$x.'"><i title="Edit server" class="fa fa-fw fa-edit"></i></a> &nbsp; <a href="?action=removeServer&serve='.$x.'" class="text-mutted"><i title="Delete server" class="fa fa-fw fa-remove"></i></a></td>';
 				echo '</tr>';
 			}
 			echo '</table>';
 		}
 	?>
-</div>
+</div></div>
 
 <!-- Fin du tableau des serveurs -->
-<!-- Copyright Footer -->
+
+	<!-- Modal connexion -->
+	<div class="modal fade" id="modal-connection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	 <form method="POST" action="index.php?action=getServer">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Connection</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			  <?php if ($flash_error): ?>
+			  <div class="alert alert-danger">
+	  			<?php echo $flash_error; ?>
+			  </div>
+	  		<?php endif; ?>
+				<div class="form-group row">
+			      	<label for="host" class="col-sm-4 col-form-label">Host:</label>
+			      	<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="host" name="host" placeholder="mongo.example.org" value="<?php echo $modal_host; ?>">
+	  		      	</div>
+		    	</div>
+				<div class="form-group row">
+			      	<label for="port" class="col-sm-4 col-form-label">Port:</label>
+			      	<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="port" name="port" placeholder="27017" value="<?php echo $modal_port; ?>">
+	  		      	</div>
+		    	</div>
+				<div class="form-group row">
+			      	<label for="user" class="col-sm-4 col-form-label">User:</label>
+			      	<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="user" name="user" placeholder="my user" value="<?php echo $modal_user; ?>">
+	  		      	</div>
+		    	</div>
+				<div class="form-group row">
+			      	<label for="passwd" class="col-sm-4 col-form-label">Password:</label>
+			      	<div class="col-sm-8">
+	      				<input type="password" class="form-control" id="passwd" name="passwd" placeholder="my password">
+	  		      	</div>
+		    	</div>
+				<div class="form-group row">
+			      	<label for="auth_db" class="col-sm-4 col-form-label">Auth. Database:</label>
+			      	<div class="col-sm-8">
+	      				<input type="text" class="form-control" id="auth_db" name="auth_db" placeholder="the auth database" value="<?php echo $modal_auth_db; ?>">
+	  		      	</div>
+		    	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="submit" class="btn btn-success">Connect</button>
+	      </div>
+	    </div>
+	  </div>
+     </form>
+	</div>
+
+	<!-- Fin du modal connexion -->
+
+
+<!-- Footer -->
 
 <?php
 require_once('footer.php')
 ?>
-
-
-
-</body>
+</div>
 <script type="text/javascript">
-	// Get the modal
-	var modal = document.getElementById("connex");
-
-	// Get the button that opens the modal
-	var btn = document.getElementById("authen");
-
-	// Get the <span> element that closes the modal
-	var span = document.getElementById("close");
-
-	// When the user clicks on the button, open the modal
-	btn.onclick = function() {
-	  modal.style.display = "block";
-	}
-
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-	  modal.style.display = "none";
-	}
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-	    modal.style.display = "none";
-	  }
-	}
+<?php if ($modal_opened): ?>
+	$('#modal-connection').modal("show")
+<?php endif; ?>
 </script>
+</body>
 </html>
