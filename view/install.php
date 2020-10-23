@@ -36,6 +36,7 @@
 					<?php else: ?>
 						<code>sudo pecl install mongodb</code>
 					<?php endif; ?>
+					<p>Don't forget to restart your php service ;)</p>
         		</div>
       		</div>
     	</div>
