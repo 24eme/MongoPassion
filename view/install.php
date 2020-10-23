@@ -108,7 +108,11 @@
 <!-- Bouton de retour au menu home -->
 
 <br>
-<button class="btn btn-success font-weight-bold"id="home" style="width: 4%; margin-left: 49%;"><a href="index.php" style="color:white;">Home</a></button>
+<div class="text-center">
+  <a class="btn btn-success font-weight-bold" href="/?action=install">
+    <i class="fa fa-fw fa-undo"></i> Re-check
+  </a>
+</div>
 
 <!-- Fin du bouton de retour au menu home -->
 
