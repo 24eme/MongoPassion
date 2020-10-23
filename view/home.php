@@ -71,7 +71,7 @@
 
 	<!-- Modal connexion -->
 	<div class="modal fade" id="modal-connection" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	 <form method="post" action="index.php?action=getServer">
+	 <form method="POST" action="index.php?action=getServer">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -89,31 +89,31 @@
 				<div class="form-group row">
 			      	<label for="host" class="col-sm-3 col-form-label">Host:</label>
 			      	<div class="col-sm-9">
-	      				<input type="text" class="form-control" id="host" placeholder="mongo.example.org" value="<?php echo $modal_host; ?>">
+	      				<input type="text" class="form-control" id="host" name="host" placeholder="mongo.example.org" value="<?php echo $modal_host; ?>">
 	  		      	</div>
 		    	</div>
 				<div class="form-group row">
 			      	<label for="port" class="col-sm-3 col-form-label">Port:</label>
 			      	<div class="col-sm-9">
-	      				<input type="text" class="form-control" id="port" placeholder="27017" value="<?php echo $modal_port; ?>">
+	      				<input type="text" class="form-control" id="port" name="port" placeholder="27017" value="<?php echo $modal_port; ?>">
 	  		      	</div>
 		    	</div>
 				<div class="form-group row">
 			      	<label for="user" class="col-sm-3 col-form-label">User:</label>
 			      	<div class="col-sm-9">
-	      				<input type="text" class="form-control" id="user" placeholder="myuser" value="<?php echo $modal_user; ?>">
+	      				<input type="text" class="form-control" id="user" name="user" placeholder="myuser" value="<?php echo $modal_user; ?>">
 	  		      	</div>
 		    	</div>
 				<div class="form-group row">
 			      	<label for="passwd" class="col-sm-3 col-form-label">Password:</label>
 			      	<div class="col-sm-9">
-	      				<input type="password" class="form-control" id="passwd" placeholder="mypassword">
+	      				<input type="password" class="form-control" id="passwd" name="passwd" placeholder="mypassword">
 	  		      	</div>
 		    	</div>
 				<div class="form-group row">
 			      	<label for="database" class="col-sm-3 col-form-label">Database:</label>
 			      	<div class="col-sm-9">
-	      				<input type="text" class="form-control" id="database" placeholder="mydatabase" value="<?php echo $modal_db; ?>">
+	      				<input type="text" class="form-control" id="database" name="database" placeholder="mydatabase" value="<?php echo $modal_db; ?>">
 	  		      	</div>
 		    	</div>
 	      </div>
@@ -135,10 +135,10 @@
 require_once('footer.php')
 ?>
 </div>
-</body>
 <script type="text/javascript">
 <?php if ($modal_opened): ?>
 	$('#modal-connection').modal("show")
 <?php endif; ?>
 </script>
+</body>
 </html>
