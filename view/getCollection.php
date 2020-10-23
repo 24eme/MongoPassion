@@ -142,7 +142,7 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 
 				<div>
 					<?php
-					echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
+					echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Collection list</button></a>';
 					?>
 				</div>
 

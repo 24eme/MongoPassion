@@ -186,7 +186,7 @@ echo ' of '.$nbDocs.'</h2>';
 
 				<div>
 					<?php
-					echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Database</button></a>';
+					echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary getCollection font-weight-bold">< Collection list</button></a>';
 					?>
 				</div>
 
