@@ -56,11 +56,10 @@ if(isset($a_s)){
 			echo '<textarea name="a_s" id="a_s" rows="5" cols="100" autofocus="autofocus">db.'.$coll.'.find({})</textarea>';
 		} ?>
 		<input type="submit" class="btn btn-success float-right" value="Execute">
-
+		<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="<?php echo $link_reinit; ?>"><i title="reset" class="fa fa-fw fa-remove"></i></a></button>
 	</form>
-		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i title="reset" class="fa fa-fw fa-remove"></i></a></button>'; ?> 
-			
-	
+
+
 </div>
 
 <!-- Fin de la partie recherche -->
