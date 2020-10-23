@@ -155,7 +155,7 @@ echo '</div>';
 			<!-- Bouton de retour -->
 
 			<?php
-			echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+			echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< db list</button></a>';
 			?>
 	    </div>
 	</div>
