@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>Welcome</title>"?>
+	<?php echo "<title>MongoDoAllCRUD</title>"?>
 	<?php require_once('header.php') ?>
 </head>
 <body>
