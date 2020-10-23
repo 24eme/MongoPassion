@@ -64,14 +64,9 @@ if(isset($a_s)){
 
 <!-- Titre de la page -->
 
-<?php
-	if(isset($a_s)){
-		echo '<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>Search results for "'.$a_s.'"</h1>';
-	}
-	else{
-?>
-<h1 class='title font-weight-bold'align="center"><i class="fa fa-fw fa-search"></i>Advanced Search</h1>
-<?php } ?>
+<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>
+    <?php (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
+</h1>
 
 <!-- Fin du titre de la page -->
 
