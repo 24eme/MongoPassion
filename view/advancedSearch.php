@@ -38,6 +38,11 @@ if(isset($a_s)){
 <!-- Partie recherche -->
 
 <div class="mt-1 col-lg-8">
+	<?php if ($flash_error): ?>
+	<div class="alert alert-danger">
+		<?php echo $flash_error; ?>
+	</div>
+  <?php endif; ?>
 	<?php echo '<form action="'.$link_search.'">';
 		echo '<label>Execute a query in '.$coll.':</label>'; ?>
 		<input type="hidden" name="action" value="advancedSearch">
