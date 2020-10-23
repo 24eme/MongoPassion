@@ -5,7 +5,8 @@
 	<?php require_once('header.php') ?>
 </head>
 <body>
-<div id="main" class=" text-center m-auto ">
+<div class="container" id="home">
+<div id="main" class="text-center m-auto ">
 
 	<!-- Titre de la page -->
 
@@ -15,10 +16,17 @@
 
 	</div>
 
-	<!-- Fin du titre de la page -->
+	<div class="col-lg-8 offset-lg-2 bg-light m-auto">
+		<?php if (isset($flash_message) && $flash_message): ?>
+			<div class="alert alert-success" role="alert">
+				<?php echo $flash_message; ?>
+			</div>
+		<?php endif; ?>
+	</div>
 
+	<!-- Fin du titre de la page -->
 	<!-- Formulaire serveurs -->
-	<div class="col-lg-8 offset-lg-2">
+	<div>
 	<form method="post" action="index.php?action=getServer">
 			<div class="input-group btn-group">
 			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength=20 required />
@@ -27,15 +35,20 @@
 			</div>
 		</div>
 	</form>
-	<p class="text-right"><a href="#" data-toggle="modal" data-target="#modal-connection">Advanced Connection</a></p>
+	<div class="text-right">
+		<a href="#" data-toggle="modal" data-target="#modal-connection">Advanced Connection</a>
+	</div>
 	</div>
 
 	<!-- Fin du formulaire serveurs -->
 </div>
 
+<br/><br/>
+
 <!-- Tableau des serveurs -->
 
-<div class="border col-lg-8 offset-lg-2 bg-light m-auto">
+<div class="bg-light m-auto">
+	<div class="border">
 	<?php
 		$serve_list=json_decode($_COOKIE['serve_list']);
 		if(sizeof($serve_list)>0){
@@ -52,7 +65,7 @@
 			echo '</table>';
 		}
 	?>
-</div>
+</div></div>
 
 <!-- Fin du tableau des serveurs -->
 
@@ -119,6 +132,7 @@
 <?php
 require_once('footer.php')
 ?>
+</div>
 </body>
 <script type="text/javascript">
 <?php if ($modal_opened): ?>

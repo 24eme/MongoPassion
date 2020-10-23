@@ -506,3 +506,7 @@ h3 {
 .return.btn.btn-primary {
     margin-left: 2%
 }
+
+#home a, #home a:hover {
+    color: #4caf50;
+}
