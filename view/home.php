@@ -29,7 +29,6 @@
 
 	<!-- Modal connexion -->
 	<br><br>
-	<button id="authen" class="btn btn-success font-weight-bold" style="width: 6%; margin: auto; margin-bottom: 10px;">Login</button>
 	<div id="connex" class="modal text-left">
 	  <div class="modal-content">
 	    <span id="close">&times;</span>
@@ -56,8 +55,7 @@
 
 	<!-- Formulaire serveurs -->
 
-	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer" style="margin-bottom: 50px;">
-
+	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
 			<div class="input-group">
 			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength = 20 required />
 			<div class="input-group-append">
@@ -65,6 +63,7 @@
 			</div>
 		</div>
 	</form>
+	<button id="authen" style="">Advanced Connection</button>
 
 	<!-- Fin du formulaire serveurs -->
 </div>

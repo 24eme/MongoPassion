@@ -11,3 +11,16 @@ i.fa.fa-fw.fa-remove{
 i.fa.fa-fw.fa-remove:hover{
 	color:#3F3B3B;
 }
+
+
+/*Btn authen*/
+
+button#authen{
+	border: none;
+	background-color: transparent;
+	width: 7%; 
+	margin-left: 58.5%;
+	font-size: 12px;
+	margin-bottom: 2%;
+	color : #62a252;
+}
