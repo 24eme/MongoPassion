@@ -22,6 +22,8 @@
 
 <?php include('breadcrumb.php'); ?>
 
+<div class="container">
+
 <?php
 
 //Préparation des variables de recherche pour leur utilisation en JS
@@ -48,17 +50,7 @@ if(isset($recherche_g)){
 }
 else{
 	echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-server'></i>".$coll."</h1>";
-} 
-
-//Fin du titre de la page
-
-
-//Sous-titre
-
-echo '<h2 class="subtitle text-center">Documents '.(1+(($page-1)*$bypage)).'-';
-if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-else{echo $nbDocs;}
-echo ' of '.$nbDocs.'</h2>';
+}
 ?>
 
 <!-- Fin du sous-titre -->
@@ -66,12 +58,11 @@ echo ' of '.$nbDocs.'</h2>';
 
 <!-- Partie recherche -->
 
-<nav class="mb-2">
-	<div  class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2">
+<div class="card">
+	<div  class="card-body">
 
 	<!-- Barre de boutons -->
 
-	<div id="searchIdS" class="mt-1">
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
 
 	        <div class="input-group mb-1">
@@ -83,16 +74,16 @@ echo ' of '.$nbDocs.'</h2>';
 	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />';
 	        		}
 	        	?>
-			
+
 				<!-- Autocomplétion des champs -->
 
 				<datalist id="browsers">
-			        <?php 
-			        	foreach ($docs[0] as $key => $value) {  
+			        <?php
+			        	foreach ($docs[0] as $key => $value) {
 			        		echo  "<option value=".$key.":>";
 						}
-			        ?> 
-		 		</datalist> 
+			        ?>
+		 		</datalist>
 
 		 		<!-- Fin de l'autocomplétion des champs -->
 
@@ -107,14 +98,14 @@ echo ' of '.$nbDocs.'</h2>';
 		</form>
 	</div>
 		<!-- Fin du formulaire de recherche par id et clé:valeur -->
-</nav>
+</div>
 
 <!-- Fin de la partie recherche -->
-
+<br>
 
 
 <div id="DivContentTable">
-	<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto getCollSearchDiv">
+	<div id="result" class="border bg-light m-auto getCollSearchDiv">
 		<?php include('tableauDocuments.php'); ?>
 
 	   <div class="row justify-content-between m-1">
@@ -170,7 +161,7 @@ echo ' of '.$nbDocs.'</h2>';
 			        ?>
 			        </ul>
 			    </div>
-		       
+
 		    <!-- Fin de la pagination -->
 			</div>
 		    	<!-- Bouton nouveau document -->
@@ -187,15 +178,15 @@ echo ' of '.$nbDocs.'</h2>';
 <!-- Fin du tableau des documents de la collection -->
 </div>
 
-</body>
-
+</div>
 
 <!-- footer -->
 
-<?php 
+<?php
 	require_once('footer.php')
 ?>
 
    <!-- footer -->
 
+</body>
 </html>

@@ -8,6 +8,8 @@
 
 <?php include('breadcrumb.php'); ?>
 
+<div class="container">
+
 <?php
 
 //Titre de la page
@@ -20,15 +22,14 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 
 <!-- Partie recherche -->
 
-<nav class="mb-2">
-
+<div class="card">
+  <div class="card-body">
 	<!-- Formulaire de recherche par id et clé:valeur -->
 
-	<div  class="border col-lg-8 offset-lg-2 bg-light m-auto mb-2">
 		<div id="options" class="text-center my-2">
 
 		</div>
-		<div id="searchId" class="mt-1">
+		<div id="searchId">
 			<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
 				<div class="input-group mb-1">
 					<input type="search" autofocus="autofocus"  list="browsers" placeholder="Search by document id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
@@ -56,19 +57,19 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 
 		<!-- Fin du formulaire de recherche par id et clé:valeur -->
 
-	</div>
-</nav>
+  </div>
+</div>
 
 <!-- Fin de la partie recherche -->
 
-
+<br/>
 <!-- Tableau des documents de la collection -->
 
 <div id="DivContentTable">
-	<div id="main" class="border col-lg-8 offset-lg-2 bg-light m-auto getCollDiv">
+	<div id="result" class="border bg-light m-auto getCollDiv">
 		<?php include('tableauDocuments.php'); ?>
 	    <hr>
-		<div class="row  justify-content-between m-1">
+		<div class="row  justify-content-between">
 
 				<!-- Bouton de retour -->
 
@@ -134,6 +135,8 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 </div>
 
 <!-- Fin du tableau des documents de la collection -->
+
+</div>
 
 <!-- footer -->
 

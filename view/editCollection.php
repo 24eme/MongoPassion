@@ -10,6 +10,8 @@
 
 <?php include('breadcrumb.php'); ?>
 
+<div class="container">
+
 <?php
 
 //Titre de la page
@@ -24,40 +26,45 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i title='name of col
 
 <!-- Formulaire -->
 
-<div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1">
-	<?php
 
-		//Renommer la collection
-
-		echo '<form method="post" action="index.php?action=renameCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; 
-		echo '<br><label>Rename Collection</label><br>';
-		echo ' <div class="input-group mb-3">';
-		echo '<input type="text" class="form-control" name="newname" id="newname" value="'.$coll.'" required />';
-		echo '<input type="submit" class="btn  bg-success text-light" name="rename" id="rename" value="Rename"></div>';
-
-		echo '</form><hr>';
-
-		//Déplacer la collection
-	    
-		echo '<form method="post" action="index.php?action=moveCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; 
-		echo '<br><label>Move Collection</label>';
-		echo ' <div class="input-group mb-3">';
-		echo '<input type="text" class="form-control" name="newdb" id="newdb" placeholder="New Database" required />';
-		echo '<input type="submit" class="btn bg-success text-light" name="move" id="move" value="Move"></div>';
-		echo '</form>';
-
-		//Bouton de retour
-
-		echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary font-weight-bold mb-2">< list collection</button></a>'; 
-	?>
+<div>
+	<div class="col">
+<div class="card">
+<form method="post" action="index.php?action=renameCollection&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll; ?>">
+<div class="card-header">Rename Collection</div>
+<div class="card-body">
+ <div class="input-group mb-3">
+<input type="text" class="form-control" name="newname" id="newname" value="<?php echo $coll; ?>" required />
+<input type="submit" class="btn  bg-success text-light" name="rename" id="rename" value="Rename"></div>
+</form>
+</div>
+</div>
+</div>
+<br><br>
+<div class="col">
+<div class="card">
+<form method="post" action="index.php?action=moveCollection&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll; ?>">
+	<div class="card-header">Move Collection</div>
+<div class="card-body">
+ <div class="input-group mb-3">
+<input type="text" class="form-control" name="newdb" id="newdb" placeholder="New Database" required />
+<input type="submit" class="btn bg-success text-light" name="move" id="move" value="Move"></div>
+</form>
+</div>
+</div>
+</div>
+<br><br>
+<div class="col">
+<a href="index.php?action=getDb&serve=<?php echo  $serve.'&db='.$db; ?>"><button class="return btn btn-primary font-weight-bold mb-2">< list collection</button></a>
+</div>
 </div>
 
 <!-- Fin du formulaire -->
-
+</div>
 
 <!-- footer -->
 
-<?php 
+<?php
 	require_once('footer.php')
 ?>
 

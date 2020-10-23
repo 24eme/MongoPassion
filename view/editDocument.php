@@ -10,9 +10,12 @@
 
 <?php include('breadcrumb.php'); ?>
 
+<div class="container">
+
 <?php
 
 $link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&page='.$page;
+
 
 //Titre de la page
 
@@ -25,7 +28,7 @@ echo "<h2 class='title text-center'>Edit <i title='id of document' class='fa fa-
 
 if(isset($_GET['msg'])){
 
-  echo '<div id="cacherAlert" class="text-center alert col-lg-8 offset-lg-2 alert-danger alert-dismissible fade show" role="alert">';
+  echo '<div id="cacherAlert" class="text-center alert alert-danger alert-dismissible fade show" role="alert">';
    echo $_GET['msg'];
   echo '<button type="button" class="close" onclick="cacherAlert()" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -37,28 +40,8 @@ if(isset($_GET['msg'])){
 
 //Fin Messagege d'erreur
 
-
-//Bouton de retour
-
-echo '<div id="nav_view">';
-	if(isset($s_g)){
-		echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'&page='.$page.'"><button class="return text-center btn btn-primary">< Collection</button></a>';
-	}
-	elseif(isset($a_s)){
-		echo '<a class="text-center" href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.$a_s.'&page='.$page.'"><button class="return  btn btn-primary">< Collection</button></a>';
-	}
-	elseif(isset($search_db)){
-		echo '<a href="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'&search_db='.$search_db.'"><button class="return btn btn-primary">< Collection</button></a>';
-	}
-	else{
-		echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'"><button class="return btn btn-primary">< list of docs</button></a>';
-	} 
-echo '</div>';
-
-
-
 if(isset($type_id)){
-	
+
 	$link_d=$link_d.'&type_id='.$type_id;
 }
 if(isset($a_s)){
@@ -66,7 +49,7 @@ if(isset($a_s)){
 	$link_d=$link_d.'&a_s='.$a_s;
 }
 if(isset($s_g)){
-	
+
 	$link_d=$link_d.'&s_g='.$s_g;
 }
 if(isset($search_db)){
@@ -100,7 +83,7 @@ if(isset($search_db)){
 
 
 <!-- Formulaire mode édition classique -->
-<!-- 
+<!--
 <div id="main"  style="display: none"> -->
 	<?php
 	if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
@@ -145,7 +128,7 @@ if(isset($search_db)){
 		 	 }else{
 		 	 	$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
 		 	 }
-		 	
+
 	 	}
 
 	 	//Affichage du formulaire
@@ -154,7 +137,7 @@ if(isset($search_db)){
 	 		echo '<input type="hidden" name="date_array" value="'.htmlspecialchars(serialize($date_array)).'"></input>';
 	 		echo '<input type="hidden" name="up_date_array" value="'.htmlspecialchars(serialize($up_date_array)).'"></input>';
 	 		echo '<div id="update_content"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Save"></div>';
-	 		echo '<div id="doc_content"><textarea autofocus="autofocus" name="doc_text" class="col-lg-8 offset-lg-2" id="doc_text"  rows="20" cols="200" required>'.$docs.'</textarea></div>';
+	 		echo '<div id="doc_content"><textarea autofocus="autofocus" name="doc_text" id="doc_text"  rows="20" cols="200" required>'.$docs.'</textarea></div>';
 	 	echo '</form>';
 	 	echo '<br>'
 	?>
@@ -179,7 +162,7 @@ if(isset($search_db)){
 	    </div>
 	    <span id="nC"></span>
 		<div id="DivContentTable">
-			<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 750px;"></div>
+			<div id="jsoneditor" style="height: 750px;"></div>
 		</div>
 	</div>
 </div>
@@ -227,9 +210,29 @@ if(isset($search_db)){
     }
 </script>
 
+<?php
+//Bouton de retour
+echo '<div id="nav_view float-left">';
+	if(isset($s_g)){
+		echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'&page='.$page.'"><button class="return text-center btn btn-primary">< Collection</button></a>';
+	}
+	elseif(isset($a_s)){
+		echo '<a class="text-center" href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.$a_s.'&page='.$page.'"><button class="return  btn btn-primary">< Collection</button></a>';
+	}
+	elseif(isset($search_db)){
+		echo '<a href="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'&search_db='.$search_db.'"><button class="return btn btn-primary">< Collection</button></a>';
+	}
+	else{
+		echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'"><button class="return btn btn-primary">< list of docs</button></a>';
+	}
+echo '</div>';
+?>
+
 <!-- Fin du formulaire mode édition JsonEditor -->
 <div  id="getJson_content">
-	<button class="btn btn-primary" id="getJSON">Save</button>
+	<button class="btn btn-success" id="getJSON">Save</button>
+</div>
+
 </div>
 
 <!-- footer -->

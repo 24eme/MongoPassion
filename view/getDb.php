@@ -9,6 +9,8 @@
 
 <?php include('breadcrumb.php'); ?>
 
+<div class="container">
+
 <!-- Titre de la page -->
 
 <?php
@@ -25,7 +27,7 @@
 	<div class="modal" id="myModal">
 		<div class="modal-dialog">
 		    <div class="modal-content">
-			      <div class="modal-body">  				
+			      <div class="modal-body">
 						<div  class="border  bg-light m-auto mb-2">
 							<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
 							<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
@@ -53,7 +55,7 @@
 
 <!-- Recherche -->
 
-<div  class="m-auto border col-lg-8 offset-lg-2 bg-light mt-1">
+<div  class="m-auto border bg-light mt-1">
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
 		<div class="input-group mb-1 mt-1">
 			<input type="search" autofocus="autofocus" class="form-control border border-success" required="required" name="recherche_db" id="recherche_db" placeholder="Acces direct to a document by id"/>
@@ -74,7 +76,7 @@
 
 <!-- Tableau des collections -->
 <div id="DivContentTable">
-	<div id="main" class="border  col-lg-8 offset-lg-2 bg-light mt-1 m-auto getDbDiv">
+	<div id="main" class="border bg-light mt-1 m-auto getDbDiv">
 
 
 		<table class="table table-sm table-striped">
@@ -118,12 +120,12 @@
 	</div>
 </div>
 <!-- Fin du tableau des collections -->
-
+</div>
 
 
 <!-- footer -->
 
-<?php 
+<?php
 	require_once('footer.php')
 ?>
 
