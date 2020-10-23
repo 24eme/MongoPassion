@@ -65,7 +65,7 @@ if(isset($a_s)){
 <!-- Titre de la page -->
 
 <h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>
-    <?php (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
+    <?php echo (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
 </h1>
 
 <!-- Fin du titre de la page -->
