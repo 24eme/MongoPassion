@@ -17,6 +17,7 @@
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="public/js/main.js"></script>
 </head>
 
 <?php
@@ -82,8 +83,10 @@ echo '</div>';
 							<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
 							<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
 								<div class="input-group mb-3">
-									<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="name"  />
+									<input type="text" list="browsers" placeholder="Collection name" required="required" class="form-control border border-success autofocus" name="name"  />
+									<div class="input-group-append">
 									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+									</div>
 								</div>
 							</form>
 						</div>
@@ -106,11 +109,13 @@ echo '</div>';
 <div  class="m-auto border col-lg-8 offset-lg-2 bg-light mt-1">
 	<hr>
 	<label for="pet-select" class="font-weight-bold">Search in all collections:</label>
-	
+
 	<?php echo '<form method="post" action="index.php?action=getDb_search&serve='.$serve.'&db='.$db.'">'; ?>
 		<div class="input-group mb-1">
-			<input type="search" class="form-control border border-success" required="required" name="recherche_db" id="recherche_db" placeholder="Search by id"/>
+			<input type="search" autofocus="autofocus" class="form-control border border-success" required="required" name="recherche_db" id="recherche_db" placeholder="Search by document id"/>
+			<div class="input-group-append">
 			<input class="btn bg-success text-light mr-2" type="submit" name="search" id="search" value="Search"/>
+			</div>
 			<!--  -->
 		</div>
 	</form>
@@ -155,7 +160,7 @@ echo '</div>';
 			<!-- Bouton de retour -->
 
 			<?php
-			echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< Server</button></a>';
+			echo '<a href="index.php?action=getServer&serve='.$serve.'"><button class="return btn btn-primary font-weight-bold">< db list</button></a>';
 			?>
 	    </div>
 	</div>

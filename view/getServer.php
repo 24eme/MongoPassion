@@ -15,6 +15,7 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="public/js/main.js"></script>
 </head>
 
 <?php
@@ -78,8 +79,10 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 							<label for="pet-select" class="font-weight-bold">Create a new database :</label>
 							<?php echo '<form autocomplete="off" method="post" action="index.php?action=getDb&serve='.$serve.'">'; ?>
 								<div class="input-group mb-3">
-									<input type="text"  list="browsers" placeholder="New name" required="required" class="form-control border border-success" name="newdb"  />
+									<input type="text"  list="browsers" placeholder="Database name" required="required" class="form-control border border-success autofocus" name="newdb"  />
+									<div class="input-group-append">
 									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
+									</div>
 								</div>
 							</form>
 						</div>
@@ -112,7 +115,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i class='fa fa-fw fa-de
 			<?php
 				foreach ($dbs as $db) {
 					echo '<tr>';
-					echo "<td><a class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
+					echo "<td><a autofocus='autofocus' class='text-success' href='index.php?action=getDb&serve=".$serve."&db=".$db->getName()."'><i class=' text-dark mr-3 fa fa-fw fa-database'></i>";
 					echo $db->getName();
 					echo '</a></td>';
 					echo '</tr>';
