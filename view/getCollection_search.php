@@ -119,14 +119,9 @@ echo ' of '.$nbDocs.'</h2>';
 	<!-- Barre de boutons -->
 
 	<div id="options" class="text-center my-2">
-		<?php echo '<a href="?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.urlencode($recherche_g).'">' ?>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">
-				<i class="fa fa-fw fa-search"></i>Advanced Search
-			</button>
-		</a>
-		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?> 
+		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?>
 	</div>
-	
+
 
 	<div id="searchIdS" class="mt-1">
 		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
@@ -154,6 +149,9 @@ echo ' of '.$nbDocs.'</h2>';
 		 		<!-- Fin de l'autocomplétion des champs -->
 
 				<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+			</div>
+			<div class="text-right">
+			<a class="btn btn-link btn-sm" href="?action=advancedSearch&serve=<?php echo $serve ?>&db=<?php echo $db ?>&coll=<?php echo $coll ?>&s_g=<?php echo urlencode($recherche_g) ?>"><i class="fa fa-fw fa-search"></i>Advanced Search</a>
 			</div>
 		</form>
 	</div>
