@@ -4,7 +4,6 @@
 	<?php echo "<title>Welcome</title>"?>
 	<?php require_once('header.php') ?>
 	<link href="public/css/home.css" rel="stylesheet" type="text/css">
-	<link href="public/css/modal.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="main" class=" text-center m-auto ">
@@ -22,7 +21,7 @@
 
 	<!-- Modal connexion -->
 	<br><br>
-	<div id="connex" class="modal text-left">
+	<div id="modal-connection" class="modal text-left">
 	  <div class="modal-content">
 	    <span id="close">&times;</span>
 	    <h2 align="center">Connexion</h2><br>
@@ -47,8 +46,8 @@
 
 
 	<!-- Formulaire serveurs -->
-
-	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer">
+	<div class="col-lg-8 offset-lg-2">
+	<form method="post" action="index.php?action=getServer">
 			<div class="input-group btn-group">
 			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength = 20 required />
 			<div class="input-group-append">
@@ -56,7 +55,8 @@
 			</div>
 		</div>
 	</form>
-	<button id="authen" style="">Advanced Connection</button>
+	<p class="text-right"><a href="#" data-toggle="modal" data-target="#modal-connection">Advanced Connection</a></p>
+	</div>
 
 	<!-- Fin du formulaire serveurs -->
 </div>
@@ -88,35 +88,8 @@
 <?php
 require_once('footer.php')
 ?>
-
-
-
 </body>
 <script type="text/javascript">
-	// Get the modal
-	var modal = document.getElementById("connex");
-
-	// Get the button that opens the modal
-	var btn = document.getElementById("authen");
-
-	// Get the <span> element that closes the modal
-	var span = document.getElementById("close");
-
-	// When the user clicks on the button, open the modal
-	btn.onclick = function() {
-	  modal.style.display = "block";
-	}
-
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-	  modal.style.display = "none";
-	}
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	  if (event.target == modal) {
-	    modal.style.display = "none";
-	  }
-	}
+//	$('#modal-connection').modal("show")
 </script>
 </html>
