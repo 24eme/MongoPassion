@@ -115,13 +115,15 @@ if(isset($a_s)){
 <?php if(isset($a_s)){?>
 	<div id="DivContentTable">
 			<div id='result' class="col-lg-8">
-				<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
-							if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-							else{echo $nbDocs;}
-							echo ' of '.$nbDocs.') :</h5>'?>
-				<?php if(!empty($result) and isset($docs)){ ?>
-				<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
-			<?php } ?>
+				<div id="head_content">
+					<?php echo '<h5>Search results for "'.$a_s.'" ('.(1+(($page-1)*$bypage)).'-';
+								if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+								else{echo $nbDocs;}
+								echo ' of '.$nbDocs.') :</h5>'?>
+					<?php if(!empty($result) and isset($docs)){ ?>
+					<button id="test_csv"><i class="text-light fa fa-fw fa-download"></i></button>
+					<?php } ?>
+				</div>
 				<table class="table table-sm table-striped">
 					<?php if(empty($result)){
 						echo '<p align="center">No document matches your search</p>';
