@@ -145,6 +145,11 @@
 
     	    $docs = getDocs($page,$bypage,$serve,$db,$coll);
 
+            if ($page > 1 && empty($docs)) {
+                header("Location: ?action=getCollection&serve=$serve&db=$db&coll=$coll&page=$nbPages&bypage=$bypage");
+                return;
+            }
+
         	require('view/getCollection.php');
         }
         catch(Exception $e){
@@ -317,9 +322,15 @@
             }
             else{
                 header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
+                return;
             }
             $nbDocs = countSearch($recherche_g,$serve,$db,$coll);
         	$nbPages = getNbPages($nbDocs,$bypage);
+
+            if ($page > 1 && empty($docs)) {
+                header("Location: ?action=getCollection_search&serve=$serve&db=$db&coll=$coll&page=$nbPages&bypage=$bypage&s_g=".urlencode($recherche_g));
+                return;
+            }
 
         	require('view/getCollection_search.php');
         }
