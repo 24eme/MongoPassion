@@ -28,7 +28,7 @@ if(isset($a_s)){
 
 <!-- Titre de la page -->
 
-<h1 class = "title font-weight-bold" align="center"><i class="fa fa-fw fa-search"></i>
+<h1 class = "title font-weight-bold" align="center"><i title="title of search" class="fa fa-fw fa-search"></i>
     <?php echo (isset($a_s)) ? 'Search results' : 'Advanced Search' ?>
 </h1>
 
@@ -58,7 +58,7 @@ if(isset($a_s)){
 		<input type="submit" class="btn btn-success float-right" value="Execute">
 
 	</form>
-		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?> 
+		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i title="reset" class="fa fa-fw fa-remove"></i></a></button>'; ?> 
 			
 	
 </div>
@@ -128,7 +128,7 @@ if(isset($a_s)){
 								unset($content['_id']);
 					 			$json = stripslashes(json_encode($content));
 					 			$export_json = $export_json.$json_exp.',';
-								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i class="text-dark fa fa-fw fa-book"></i>'.$entry['_id'].'</a></td>';
+								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark fa fa-fw fa-file"></i>'.$entry['_id'].'</a></td>';
 								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
 								if(strlen($json)>100){echo ' [...] }';}
 								echo '</td>';

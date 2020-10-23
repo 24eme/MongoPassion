@@ -72,7 +72,7 @@ pre {
 	padding:2%
 }
 
-#result,.mt-1,body,i.fa.fa-fw.fa-remove:hover,pre,td>a {
+#result,.mt-1,body,pre,td>a {
     color: #3f3b3b
 }
 
@@ -246,7 +246,7 @@ input:focus+.slider {
     margin-bottom: -5px
 }
 
-div#json{
+div#json.createDoc{
     margin-top: -3.15%;
 }
 
@@ -328,12 +328,6 @@ pre#doc_text {
 #recherche {
     padding-left: 3%;
     width: 100%
-}
-
-i.fa.fa-fw.fa-remove {
-    float: right;
-    margin-top: 2.7px;
-    color: #fff
 }
 
 button#authen {
@@ -513,4 +507,8 @@ h3 {
 
 #home a, #home a:hover {
     color: #4caf50;
+}
+
+#home .serverlist a.text-mutted {
+	color: white;
 }

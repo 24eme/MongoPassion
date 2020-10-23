@@ -152,24 +152,23 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 				<!-- Pagination -->
 				<div class="row mr-2">
 					<div >
-						<?php
+					<?php if($page!=1): ?>
+					<a href="index.php?action=getCollection&serve=".<?= $serve ?>."&db=".<?= $db ?>."&coll=".<?= $coll ?>."&page=".<?= ($page-1) ?>."&bypage=".<?= $bypage ?>."\" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>
+				         <?php else : ?>
+				            <span id="prev"><span aria-hidden="true">&laquo;</span></span>
+				         <?php endif ?>
 
-						echo '<h6 class="mr-2 pt-2">Documents '.(1+(($page-1)*$bypage)).'-';
-							if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-							else{echo $nbDocs;}
-							echo ' of '.$nbDocs.'</h2>';
-							?>
+					 <h6 class="mr-2 pt-2">Documents <?= (1+(($page-1)*$bypage)) ?> -
+						<?php if(($page*$bypage)<$nbDocs): ?>
+							<?= $page*$bypage; ?>
+						<?php else: ?>
+							<?= $nbDocs . ' of '.$nbDocs ?>
+						<?php endif; ?>
+					</h6>
 					</div>
 					<div class="text-center" aria-label="pagination" >
 				        <ul class="pagination">
 
-				        <?php
-				            if($page!=1){
-				            	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
-				            }
-				            else{
-				            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
-				            } ?>
 
 				            <span  class="text-center bg-light font-weight-bold mr-1">
 								<select id="select_pagination" name="bypage" onchange="bypage(this)">

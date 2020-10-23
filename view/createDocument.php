@@ -10,11 +10,14 @@
 <?php include('breadcrumb.php'); ?>
 
 <?php
+
 //Titre de la page
 
 echo '<h1 class = "title text-center font-weight-bold"><i title="Create new document" class="fa fa-fw fa-file"></i> New Document</h1>';
 
 //Fin titre de la page
+
+
 if(isset($_GET['msg'])){
 
   echo '<div id="cacherAlert" class="text-center alert col-lg-8 offset-lg-2 alert-danger alert-dismissible fade show" role="alert">';
@@ -44,6 +47,7 @@ echo '</div>';
 
 <!-- Bouton switch JsonEditor -->
 
+<?php if($jsoneditor){?>
 <div id="switch">
 	<label id="switch_json">JSONEditor</label>
 	<label class="switch">
@@ -57,6 +61,7 @@ echo '</div>';
 	  <span class="slider round"></span>
 	</label>
 </div>
+<?php }?>
 
 <!-- Fin du bouton switch JsonEditor -->
 
@@ -68,7 +73,12 @@ echo '</div>';
 	if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
 		echo '<div id="main" class="creatDocDiv" style="display: block">';
 	} else {
-		echo '<div id="main" class="creatDocDiv" style="display: none">';
+		if($jsoneditor){
+			echo '<div id="main" class="creatDocDiv" style="display: none">';
+		}
+		else{
+			echo '<div id="main" class="creatDocDiv">';
+		}
 	}
 	?>
 		<?php
@@ -97,12 +107,13 @@ echo '</div>';
 
 <!-- Affichage du formulaire -->
 
+<?php if($jsoneditor){?>
 <div id="DivContentTable">
 	<?php
 	if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
-		echo '<div id="json"  style="display: none;">';
+		echo '<div id="json" class="createDoc" style="display: none;">';
 	} else {
-		echo '<div id="json"  style="display: block;">';
+		echo '<div id="json" class="createDoc" style="display: block;">';
 	}
 	?>
 	     <div id="create_content">
@@ -115,6 +126,7 @@ echo '</div>';
 
 	</div>
 </div>
+<?php }?>
 
 <!-- Script de création et d'envoi du formulaire -->
 
