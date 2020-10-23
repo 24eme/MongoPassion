@@ -25,16 +25,21 @@
 	  <div class="modal-content">
 	    <span id="close">&times;</span>
 	    <h2 align="center">Connexion</h2><br>
+		<?php if ($modal_error): ?>
+			<p class="text-danger">La connexion au server a échoué</p>
+		<?php endif; ?>
 	    <form method="post" action="index.php?action=getServer">
 	    	<input align="left" type="hidden" name="authentification">
 	    	<label>Server :</label>
-	    	<input type="text" class="border border-success" name="serve" id="serve" maxLength = 20 required /><br>
+	    	<input type="text" class="border border-success" name="host" id="host" maxLength=20 required value="<?php echo $modal_host; ?>"/><br>
+			<label>Port :</label>
+	    	<input type="text" class="border border-success" name="port" id="port" maxLength=20 value="<?php echo $modal_port; ?>"/><br>
 	    	<label>Username :</label>
-	    	<input type="text" class="border border-success" name="user" id="user" maxLength = 20 required /><br>
+	    	<input type="text" class="border border-success" name="user" id="user" maxLength=20 value="<?php echo $modal_user; ?>"/><br>
 	    	<label>Password :</label>
-	    	<input type="password" class="border border-success" name="passwd" id="passwd" maxLength = 20 required /><br>
+	    	<input type="password" class="border border-success" name="passwd" id="passwd" maxLength=20 /><br>
 	    	<label>Authentification Database :</label>
-	    	<input type="text" class="border border-success" name="auth_db" id="auth_db" maxLength = 20 required /><br><br>
+	    	<input type="text" class="border border-success" name="auth_db" id="auth_db" maxLength=20 value="<?php echo $modal_db; ?>" /><br><br>
 	    	<div id="submit">
 				<input type="submit" class="btn btn-success font-weight-bold" name="connexion" id="connexion" value="Connexion">
 			</div>
@@ -49,7 +54,7 @@
 	<div class="col-lg-8 offset-lg-2">
 	<form method="post" action="index.php?action=getServer">
 			<div class="input-group btn-group">
-			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength = 20 required />
+			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength=20 required />
 			<div class="input-group-append">
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
 			</div>
@@ -90,6 +95,8 @@ require_once('footer.php')
 ?>
 </body>
 <script type="text/javascript">
-//	$('#modal-connection').modal("show")
+<?php if ($modal_opened): ?>
+	$('#modal-connection').modal("show")
+<?php endif; ?>
 </script>
 </html>
