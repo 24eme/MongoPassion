@@ -56,7 +56,7 @@
 		  <div id="collapseComposerMongo" class="collapse<?php if (!$composer_mongo): ?> show<?php endif; ?>" aria-labelledby="headingComposerMongo" data-parent="#accordionInstall">
 			  <div class="card-body">
 				  <p>To install the mongodb/mongodb composer package, you can use the following command:</p>
-		  		  <code>composer require mongodb/mongodb</code>
+		  		  <code>composer require mongodb/mongodb:^1.6</code>
 			  </div>
 		  </div>
 	  </div>
