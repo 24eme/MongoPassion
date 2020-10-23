@@ -48,7 +48,7 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i title='name of col
 
 		//Bouton de retour
 
-		echo '<br><a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary font-weight-bold">< Database</button></a>'; 
+		echo '<a href="index.php?action=getDb&serve='.$serve.'&db='.$db.'"><button class="return btn btn-primary font-weight-bold mb-2">< list collection</button></a>'; 
 	?>
 </div>
 
