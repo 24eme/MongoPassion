@@ -2,9 +2,7 @@
 <html lang="fr">
 <head>
 	<?php echo "<title>Advanced Search</title>"?>
-
 	<?php require_once('header.php') ?>
-	<link href="public/css/advancedSearch.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>

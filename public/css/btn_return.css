@@ -1,13 +1,12 @@
 /*Bouton de retour*/
 
-
 .return.btn.btn-primary{
-	background-color: #ececec;
-	border-color: white;
-	color: #62a252;
-/*	margin-bottom: 10px;*/
+  background-color: #ececec;
+  border-color: white;
+  color: #62a252;
+  /*	margin-bottom: 10px;*/
 }
 
- a {
+a {
   text-decoration: none !important;
 }

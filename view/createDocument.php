@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
 	<title>Create Document</title>
-
 	<?php require_once('header.php') ?>
 </head>
 
@@ -107,7 +106,7 @@ echo '</div>';
 	}
 	?>
 	     <div id="create_content">
-	     	<button class="btn btn-primary" id="create">Create</button>
+	     	<button class="btn btn-primary" id="getJSON" style="background-color: #4CAF50;border:none; margin-left: auto; margin-right: 350px;">Create</button>
 	    </div>
 	     <span id="nC"></span>
 	 <div id="DivContentTable">
