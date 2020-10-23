@@ -30,7 +30,7 @@
         		<div class="card-body">
 					<p>To install the php-mongodb package, you can use the following command:</p>
 					<?php if ($system == "Debian"): ?>
-						<code>sudo apt install php-mongodb</code>
+						<code>sudo apt-get install php-mongodb</code>
 					<?php elseif ($system == "RedHat"): ?>
 						<code>sudo yum install php-mongodb</code>
 					<?php else: ?>
