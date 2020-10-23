@@ -3,7 +3,6 @@
 <head>
 	<?php echo "<title>Welcome</title>"?>
 	<?php require_once('header.php') ?>
-	<link href="public/css/home.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="main" class=" text-center m-auto ">
