@@ -79,7 +79,7 @@
            //on Check si le contenu respecte le format json si il reste sur la page avec l'erreur
 
              if(is_null(json_decode($doc_text)) ) {
-            header('Location: index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$doc.'&type_id='.$type_id.'&page='.$page.'&msg=Désolé mauvais format nous acceptons que du format json {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
+            header('Location: index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$doc.'&type_id='.$type_id.'&page='.$page.'&msg=Syntax error : your document does not respect JSON syntax rules, example : {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
            
                 return;
 
@@ -173,7 +173,7 @@
             //on Check si le contenu respecte le format json si il reste sur la page avec l'erreur 
 
           if(is_null(json_decode($doc_text))) {
-            header('Location: index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&msg=Désolé mauvais format nous acceptons que du format json {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
+            header('Location: index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&msg=Syntax error : your document does not respect JSON syntax rules, example : {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
            
            
             return;
