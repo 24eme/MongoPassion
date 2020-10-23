@@ -177,12 +177,11 @@ if(isset($a_s)){
 			            } ?>
 
 			            <span id="radio" class="text-center font-weight-bold">
-							<select name="bypage" onchange="bypage_search()">
-							    <option value="10" id="10" <?php if($bypage==10){echo 'selected="selected"';}?>>10</option>
-							    <option value="20" id="20" <?php if($bypage==20){echo 'selected="selected"';}?>>20</option>
-							    <option value="30" id="30" <?php if($bypage==30){echo 'selected="selected"';}?>>30</option>
-							    <option value="50" id="50" <?php if($bypage==50){echo 'selected="selected"';}?>>50</option>
-							</select>
+                                <select id="select_pagination" name="bypage" onchange="bypage_search(this)">
+                                <?php foreach([10, 20, 30, 50] as $nb) : ?>
+                                  <option value="<?= $nb ?>" <?= ($bypage == $nb) ? 'selected="selected"': '' ?>><?= $nb ?></option>
+                                <?php endforeach ?>
+                                </select>
 						</span>
 
 			            <?php if($page!=$nbPages){
