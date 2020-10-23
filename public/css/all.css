@@ -29,7 +29,7 @@ button#export_json,button#test_csv {
     margin-right: 5px
 }
 
-#result,.mt-1,h5 {
+#result,.mt-1, #advancedSearch h5 {
     background-color: #f7f7f7
 }
 
@@ -47,7 +47,7 @@ table {
     margin-bottom: 1%
 }
 
-h5 {
+#advancedSearch h5 {
     color: #4caf50;
     font-family: 'Rubik-Light',sans-serif;
     font-size: 18px;
@@ -57,7 +57,7 @@ h5 {
     margin-right: auto
 }
 
-h5, th {
+#advancedSearch h5, th {
     text-align: center
 }
 
@@ -509,4 +509,8 @@ h3 {
 
 .return.btn.btn-primary {
     margin-left: 2%
+}
+
+#home a, #home a:hover {
+    color: #4caf50;
 }

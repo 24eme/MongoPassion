@@ -3,7 +3,7 @@
     require('model/model.php');
 
     function editDocument() //Fonction qui gère l'affichage de la page editDocument
-    {   
+    {
         //Création des variables
 
 	    $doc = htmlspecialchars($_GET['doc']);
@@ -49,7 +49,7 @@
 
 
     function traitement_uD()
-    {   
+    {
     	$doc = htmlspecialchars($_GET['id']);
         if(isset($_GET['type_id'])){
             $type_id = htmlspecialchars($_GET['type_id']);
@@ -70,21 +70,18 @@
         }
 
         $doc_text = strip_tags($_POST['doc_text']);
-      
+
         $date_array = unserialize($_POST['date_array']);
         $up_date_array = unserialize($_POST['up_date_array']);
 
         try{
-           
+
            //on Check si le contenu respecte le format json si il reste sur la page avec l'erreur
 
              if(is_null(json_decode($doc_text)) ) {
-            header('Location: index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$doc.'&type_id='.$type_id.'&page='.$page.'&msg=Syntax error : your document does not respect JSON syntax rules, example : {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
-           
+                header('Location: index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$doc.'&type_id='.$type_id.'&page='.$page.'&msg=Syntax error : your document does not respect JSON syntax rules, example : {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
                 return;
-
-             } 
-       
+             }
 	    	$update = getUpdate_doc($doc_text,$date_array,$up_date_array);
 
 	    	$id = getDoc_id($doc,$type_id);
@@ -154,7 +151,7 @@
         if(isset($_GET['s_g'])){
             $s_g = htmlspecialchars($_GET['s_g']);
         }
-        
+
         require('view/createDocument.php');
     }
 
@@ -165,19 +162,17 @@
         $coll = htmlspecialchars($_GET['coll']);
 
         $doc_text = strip_tags($_POST['doc_text']);
-    
+
         try{
 
-            //on Check si le contenu respecte le format json si il reste sur la page avec l'erreur 
+            //on Check si le contenu respecte le format json si il reste sur la page avec l'erreur
 
           if(is_null(json_decode($doc_text))) {
             header('Location: index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&msg=Syntax error : your document does not respect JSON syntax rules, example : {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
-           
-           
             return;
 
-          } 
-            
+          }
+
 
         	$doc = getNew_doc($doc_text);
 
@@ -283,14 +278,14 @@
                 $page = htmlspecialchars($_GET['page']);
             }
             else{
-                $page = 1; 
+                $page = 1;
             }
 
             if(isset($_GET['s_g'])){
                 $recherche_g = htmlspecialchars(urldecode($_GET['s_g']));
             }
             else{
-                $recherche_g = htmlspecialchars($_POST['recherche_g']); 
+                $recherche_g = htmlspecialchars($_POST['recherche_g']);
             }
 
             if(isset($recherche_g)){
@@ -360,7 +355,7 @@
 
         if(isset($a_s)){
             $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
-            
+
             if(testProjection($a_s,$serve,$db)){
                 $docs = $result;
             }
@@ -398,7 +393,7 @@
         $serve = htmlspecialchars($_GET['serve']);
         $db = htmlspecialchars($_GET['db']);
         $coll = htmlspecialchars($_GET['coll']);
-        
+
         require('view/editCollection.php');
     }
 
@@ -479,7 +474,7 @@
 
         $docs = getSearch_db($search,$db,$serve);
 
-        $nbDocs = 0;        
+        $nbDocs = 0;
 
         foreach ($docs as $key => $value) {
             if(sizeof($value)!=0){
@@ -562,10 +557,10 @@
         $modal_opened = isset($_GET['modal_opened']);
         $modal_error = isset($_GET['error']);
 
-        $modal_host = $_GET['host'];
-        $modal_port = $_GET['port'];
-        $modal_user = $_GET['user'];
-        $modal_db = $_GET['db'];
+        $modal_host = htmlspecialchars($_GET['host']);
+        $modal_port = htmlspecialchars($_GET['port']);
+        $modal_user = htmlspecialchars($_GET['user']);
+        $modal_db = htmlspecialchars($_GET['db']);
 
         if ($modal_host || $modal_db || $modal_port || $modal_user || $modal_error) {
             $modal_opened = 1 ;
@@ -582,13 +577,20 @@
             header('Location: index.php?action=install');
         }
 
-        $file_compopser = 'composer.json'; 
+        $flash_message = htmlspecialchars($_COOKIE['flash_message']);
+        setcookie('flash_message');
+
+        if ($modal_error) {
+            $flash_error = "Unable to connect to server";
+        }
+
+        $file_compopser = 'composer.json';
         $data_composer = file_get_contents($file_compopser);
         if(strpos($data_composer, 'mongodb/mongodb') == false){
             header('Location: index.php?action=install');
         }
 
-        // $file_json = 'jsoneditor/package.json'; 
+        // $file_json = 'jsoneditor/package.json';
         // $data_json = file_get_contents($file_json);
         // if(strpos($data_json, 'jsoneditor') == false){
         //     header('Location: index.php?action=install');
@@ -607,6 +609,7 @@
         unset($serve_list[$key]);
         setcookie('serve_list',json_encode($serve_list));
 
+        setcookie('flash_message',"Server $serve removed from the bookmark");
         header("Location: index.php\n");
         return;
 
