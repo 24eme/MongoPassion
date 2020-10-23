@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>Advanced Search</title>"?>
+	<?php echo "<title>MongoDoAllCRUDAdvanced Search</title>"?>
 	<?php require_once('header.php') ?>
 </head>
 
