@@ -59,7 +59,7 @@
 	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer" style="margin-bottom: 50px;">
 
 			<div class="input-group">
-			<input type="text" class="form-control border border-success" name="serve" id="serve" placeholder="Add your IP address" maxLength = 20 required /> 
+			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017" required />
 			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connexion">
 		</div>
 	</form>

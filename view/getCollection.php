@@ -82,7 +82,7 @@ echo "<h1 class='title text-center font-weight-bold'><i class='fa fa-fw fa-serve
 		<div id="searchId" class="mt-1">
 			<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
 				<div class="input-group mb-1">
-					<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
+					<input type="search" autofocus="autofocus"  list="browsers" placeholder="Search by document id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />
 
 					<!-- Autocomplétion des champs -->
 

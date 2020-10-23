@@ -94,13 +94,13 @@ if(isset($a_s)){
 		echo'<input type="hidden" name="db" value='.$db.'>';
 		echo'<input type="hidden" name="coll" value='.$coll.'>'; ?>
 		<?php if(isset($a_s)){
-			echo '<textarea name="a_s" id="a_s" rows="5" cols="100">'.$a_s.'</textarea>';
+			echo '<textarea name="a_s" id="a_s" rows="5" cols="100" autofocus="autofocus">'.$a_s.'</textarea>';
 		}
 		else{
-			echo '<textarea name="a_s" id="a_s" rows="5" cols="100">db.'.$coll.'.find({})</textarea>';
+			echo '<textarea name="a_s" id="a_s" rows="5" cols="100" autofocus="autofocus">db.'.$coll.'.find({})</textarea>';
 		} ?>
 		<input type="submit" class="btn btn-success float-right" value="Execute">
-	
+
 	</form>
 		<?php echo '<button class="btn bg-secondary float-right mr-2"><a class="text-light" href="'.$link_reinit.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
 			
