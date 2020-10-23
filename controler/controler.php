@@ -541,9 +541,15 @@
         }
 
         $passwd = htmlspecialchars($_POST['passwd']);
-        $auth_db = htmlspecialchars($_POST['database']);
+        $auth_db = htmlspecialchars($_POST['auth_db']);
 
         if($user){
+            if (!$auth_db) {
+                $auth_db = 'admin';
+//              setcookie('flash_error', "user / password : an authentication database is required");
+//              header("Location: index.php?error=3&host=".$host."&user=".$user."&port=".$port."&auth_db=".$auth_db);
+//              return;
+            }
             try{
                 $cookie_option = array('path'=> $_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']);
 
@@ -556,7 +562,7 @@
             }
             catch(Exception $e){
                 setcookie('flash_error', $e->getMessage());
-                header("Location: index.php?error=1&host=".$host."&user=".$user."&port=".$port."&db=".$auth_db);
+                header("Location: index.php?error=1&host=".$host."&user=".$user."&port=".$port."&auth_db=".$auth_db);
             }
             return;
         }
@@ -578,7 +584,7 @@
                 $serve='localhost:27017';
             }
             setcookie('flash_error', $e->getMessage());
-            header("Location: index.php?error=2&host=".$host."&user=".$user."&port=".$port."&db=".$auth_db);
+            header("Location: index.php?error=2&host=".$host."&user=".$user."&port=".$port."&auth_db=".$auth_db);
         }
     }
 
@@ -596,7 +602,7 @@
         $modal_host = htmlspecialchars($_GET['host']);
         $modal_port = htmlspecialchars($_GET['port']);
         $modal_user = htmlspecialchars($_GET['user']);
-        $modal_db = htmlspecialchars($_GET['db']);
+        $modal_auth_db = htmlspecialchars($_GET['auth_db']);
 
         if(isset($_GET['serve'])){
             $serve=htmlspecialchars($_GET['serve']);
