@@ -21,7 +21,7 @@
 	<div class='text-center align-items-end mt-3 d-inline-flex'>
 			<img align="center" src="public/images/mongo.png" alt="24eme">
 			<h1 class='text-center title font-weight-bold'>mongo<span class="text-secondary">DoAllCRUD</span></h1>
-		
+
 	</div>
 
 	<!-- Fin du titre de la page -->
@@ -59,8 +59,8 @@
 	<form method="post" class="col-lg-8 offset-lg-2 " action="index.php?action=getServer" style="margin-bottom: 50px;">
 
 			<div class="input-group">
-			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017" required />
-			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connexion">
+			<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength = 20 required />
+			<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
 		</div>
 	</form>
 
@@ -91,7 +91,7 @@
 <!-- Fin du tableau des serveurs -->
 <!-- Copyright Footer -->
 
-<?php 
+<?php
 require_once('footer.php')
 ?>
 

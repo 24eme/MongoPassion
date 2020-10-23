@@ -124,7 +124,7 @@ echo ' of '.$nbDocs.'</h2>';
 				<i class="fa fa-fw fa-search"></i>Advanced Search
 			</button>
 		</a>
-		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-history"></i></a></button>'; ?> 
+		<?php echo '<button class="btn bg-secondary class=""><a class="text-light" href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i class="fa fa-fw fa-remove"></i></a></button>'; ?> 
 	</div>
 	
 
