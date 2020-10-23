@@ -10,11 +10,14 @@
 <?php include('breadcrumb.php'); ?>
 
 <?php
+
 //Titre de la page
 
 echo '<h1 class = "title text-center font-weight-bold"><i title="Create new document" class="fa fa-fw fa-file"></i> New Document</h1>';
 
 //Fin titre de la page
+
+
 if(isset($_GET['msg'])){
 
   echo '<div id="cacherAlert" class="text-center alert col-lg-8 offset-lg-2 alert-danger alert-dismissible fade show" role="alert">';
@@ -108,9 +111,9 @@ echo '</div>';
 <div id="DivContentTable">
 	<?php
 	if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
-		echo '<div id="json"  style="display: none;">';
+		echo '<div id="json" class="createDoc" style="display: none;">';
 	} else {
-		echo '<div id="json"  style="display: block;">';
+		echo '<div id="json" class="createDoc" style="display: block;">';
 	}
 	?>
 	     <div id="create_content">
