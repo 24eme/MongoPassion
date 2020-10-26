@@ -58,7 +58,7 @@ if(isset($a_s)){
 		} ?>
 		<div class="text-right">
 			<input type="submit" class="btn btn-success" value="Execute">
-			<button class="btn bg-secondary mr-2"><a class="text-light" href="<?php echo $link_reinit; ?>"><i title="reset" class="fa fa-fw fa-remove"></i></a></button>
+			<a class="btn bg-secondary mr-2 text-light" href="<?php echo $link_reinit; ?>"><i title="reset" class="fa fa-fw fa-remove"></i></a>
 		</div>
 	</form>
    </div>
@@ -92,8 +92,6 @@ if(isset($a_s)){
 						echo '<p align="center">No document matches your search</p>';
 					}
 					else{
-					?>
-						<?php
 						if(isset($docs)){
 							$export_json = "";
 							echo '<tr>';
@@ -111,7 +109,8 @@ if(isset($a_s)){
 							}
 						}
 						else{
-							$export_json = "[";
+
+							$export_json = "[\n";
 							foreach ($result as $entry) {
 								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
 								$content = array();
@@ -128,10 +127,10 @@ if(isset($a_s)){
 							 		$content[$x] =  improved_var_export($value);
 								}
 								$content = init_json($content);
-								$json_exp = json_encode($content);
+								$json_exp = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
 								unset($content['_id']);
 					 			$json = stripslashes(json_encode($content));
-					 			$export_json = $export_json.$json_exp.',';
+					 			$export_json = $export_json.$json_exp.",\n";
 								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark fa fa-fw fa-file"></i>'.$entry['_id'].'</a></td>';
 								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
 								if(strlen($json)>100){echo ' [...] }';}
@@ -139,12 +138,23 @@ if(isset($a_s)){
 								echo '</tr>';
 							}
 							$export_json = substr($export_json, 0, -1);
-							$export_json = $export_json.']';
+							$export_json = $export_json."\n]";
+							$link = 'data:application/json;charset=utf-8,'.rawurlencode($export_json);
+							$name = 'json_'.rand().'.json';
 						}
 					}
 					?>
 				</table>
+
+				<!-- Lien de téléchargement du JSON -->
+
+				<a id="send_json" href="<?php echo $link;?>" download="<?php echo $name;?>"></a>
+
+				<!-- Fin du lien de téléchargement du JSON -->
+
+
 				<div style="width: 100%;">
+					
 
 				<!-- Pagination -->
 
@@ -203,19 +213,10 @@ if(isset($a_s)){
 
 	function download_json()
   {
-  	var element = document.createElement('a');
-  	var random = (Math.floor(Math.random() * Math.floor(100000000))).toString(16);
-  	var filename = "json_"+random+".json";
-  	var text = '<?php echo $export_json; ?>';
-  	var jsonPretty = JSON.stringify(JSON.parse(text),null,2);
-  	element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonPretty));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
+  	var element = document.getElementById('send_json');
 
     element.click();
 
-    document.body.removeChild(element);
   }
 
 	// Export CSV
