@@ -481,6 +481,13 @@
             header('Location: index.php?action=error');
         }
     	$collections = getCollections($serve,$db);
+        $tabcollections= array();
+        foreach ($collections as $collection) {
+            $name = $collection->getName();
+            $size = getCollectionSize($serve,$db,$name);
+            $tabcollections[$name] = $size;
+        }
+        uksort($tabcollections, 'strcasecmp');
     	require('view/getDb.php');
     }
 

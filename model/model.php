@@ -775,3 +775,18 @@ function moveCollec($newdb,$serve,$db,$coll)
 
 	$database->command(array('renameCollection'=>$db.'.'.$coll,'to'=>$newdb.'.'.$coll));
 }
+
+function getCollectionSize($serve,$db,$coll)
+{
+	$manager = getManager($serve);
+
+	$jscode='db.'.$coll.'.dataSize()';
+
+	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+
+	$cursor = $manager->executeCommand($db, $command)->toArray();
+
+	$temp = (array) $cursor[0];
+	$test = (array) $temp['retval'];
+	return $test[0];
+}
