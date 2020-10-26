@@ -11,6 +11,7 @@
 
 <?php include('breadcrumb.php'); ?>
 
+<div class="container">
 
 <?php
 
@@ -21,7 +22,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of s
 //Fin du titre de la page
 
 ?>
-		
+
 		<!-- StartModal -->
 		<div class="modal" id="myModal">
 		 <div class="modal-dialog">
@@ -47,20 +48,15 @@ echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of s
 
 			</div>
 
-
-
-
-		    
 		  </div>
 		</div>
-	</div>
 
 <!-- endModal -->
 
 
 <!-- Tableau des bases de données -->
 <div id="DivContentTable">
-	<div id="main" class="border col-lg-8 offset-lg-2 mt-2 bg-light">
+	<div id="main" class="border bg-light">
 
 		<table class="table table-sm table-striped ">
 			<?php echo  "<h3 class=\"text-center bg-success text-light\"><span><strong>Databases of ".$serve." </strong></span></h3>" ?>
@@ -84,7 +80,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of s
 			?>
 		</table>
 
-		<div class="mb-2">
+		<div>
 			<!-- Start Button add database -->
 			<button type='button' class='btn btn-dark  float-right' data-toggle='modal' data-target='#myModal'>
 					<i title="Create database" class='fa fa-fw fa-database'></i><i title="Create database" class='fa fa-fw fa-plus'></i>
@@ -97,9 +93,11 @@ echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of s
 	</div>
 </div>
 
+</div>
+
 	<!-- footer -->
 
-<?php 
+<?php
 	require_once('footer.php')
 ?>
 

@@ -19,16 +19,6 @@ textarea {
     width: 100%
 }
 
-button#export_json,button#test_csv {
-    background-color: #4caf50;
-    border-radius: 2px;
-    border: 0;
-    padding: 5px 8px;
-    margin-bottom: 1%;
-    margin-left: auto;
-    margin-right: 5px
-}
-
 #result,.mt-1, #advancedSearch h5 {
     background-color: #f7f7f7
 }
@@ -115,6 +105,9 @@ td#json {
 a {
     text-decoration: none!important
 }
+a, a:hover, .btn-link, .btn-link:hover {
+    color: #4caf50;
+}
 
 #doc_text {
     height: 750px;
@@ -169,7 +162,6 @@ input:checked+.slider:before {
 }
 
 #doc_text {
-    width: 50%;
     margin: auto;
     padding: 10px;
     font-family: Courier;
@@ -235,7 +227,6 @@ input:focus+.slider {
 
 #switch {
     width: 86px;
-    margin-left: 26%;
     margin-top: -25px;
     position: absolute
 }
@@ -497,14 +488,10 @@ h3 {
     text-align: center
 }
 
-.return.btn.btn-primary {
+/*.return.btn.btn-primary {
     margin-left: 2%
 }
-
-#home a, #home a:hover {
-    color: #4caf50;
-}
-
+*/
 #home .serverlist a.text-mutted {
 	color: white;
 }

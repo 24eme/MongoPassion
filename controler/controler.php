@@ -145,6 +145,11 @@
 
     	    $docs = getDocs($page,$bypage,$serve,$db,$coll);
 
+            if ($page > 1 && empty($docs)) {
+                header("Location: ?action=getCollection&serve=$serve&db=$db&coll=$coll&page=$nbPages&bypage=$bypage");
+                return;
+            }
+
         	require('view/getCollection.php');
         }
         catch(Exception $e){
@@ -317,9 +322,15 @@
             }
             else{
                 header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
+                return;
             }
             $nbDocs = countSearch($recherche_g,$serve,$db,$coll);
         	$nbPages = getNbPages($nbDocs,$bypage);
+
+            if ($page > 1 && empty($docs)) {
+                header("Location: ?action=getCollection_search&serve=$serve&db=$db&coll=$coll&page=$nbPages&bypage=$bypage&s_g=".urlencode($recherche_g));
+                return;
+            }
 
         	require('view/getCollection_search.php');
         }
@@ -349,10 +360,10 @@
         }
 
         if(isset($_GET['a_s'])){
-            $a_s = htmlspecialchars(urldecode($_GET['a_s']),ENT_NOQUOTES);
+            $a_s = htmlspecialchars($_GET['a_s'], ENT_NOQUOTES);
         }
         elseif (isset($_GET['s_g'])) {
-            $s_g = htmlspecialchars(urldecode($_GET['s_g']),ENT_NOQUOTES);
+            $s_g = htmlspecialchars($_GET['s_g'], ENT_NOQUOTES);
             if(!strpos($s_g, ':')){
                 try{
                     new MongoDB\BSON\ObjectId($s_g);
@@ -393,6 +404,11 @@
             catch(Exception $e){
               $flash_error = "Failed to execute query: ".$e->getMessage();
             }
+        }
+
+        if (empty($result) && $page > 1) {
+            header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($nbPages).'&bypage='.$bypage.'&a_s='.urlencode($a_s));
+            return;
         }
 
         $link_search = '?'.$_SERVER['QUERY_STRING'];
