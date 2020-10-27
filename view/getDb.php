@@ -3,11 +3,11 @@
 <head>
 	<?php echo "<title>".$db."</title>"?>
 
-	<?php require_once('header.php') ?>
+	<?php require_once('layouts/header.php') ?>
 </head>
 
 
-<?php include('breadcrumb.php'); ?>
+<?php include('layouts/breadcrumb.php'); ?>
 
 <div class="container">
 
@@ -24,29 +24,8 @@
 
 <nav class="mb-1">
 	<!-- StartModal -->
-	<div class="modal" id="myModal">
-		<div class="modal-dialog">
-		    <div class="modal-content">
-			      <div class="modal-body">
-						<div  class="border  bg-light m-auto mb-2">
-							<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
-							<?php echo '<form autocomplete="off" method="post" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
-								<div class="input-group mb-3">
-									<input type="text" list="browsers" placeholder="Collection name" required="required" class="form-control border border-success autofocus" name="name"  />
-									<div class="input-group-append">
-									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
-									</div>
-								</div>
-							</form>
-						</div>
-				 </div>
-				<div class="modal-footer">
-        		    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-			</div>
-		</div>
-	</div>
-
+	
+<?php include('layouts/modalNewCollection.php'); ?>
 	<!-- endModal -->
 
 <!-- Fin modal new Db -->
@@ -118,7 +97,7 @@
 <!-- footer -->
 
 <?php
-	require_once('footer.php')
+	require_once('layouts/footer.php')
 ?>
 
    <!-- footer -->

@@ -3,13 +3,13 @@
 <head>
 	<?php echo "<title>".$serve."</title>"?>
 
-	<?php require_once('header.php') ?>
+	<?php require_once('layouts/header.php') ?>
 </head>
 <body>
 
 
 
-<?php include('breadcrumb.php'); ?>
+<?php include('layouts/breadcrumb.php'); ?>
 
 <div class="container">
 
@@ -23,34 +23,9 @@ echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of s
 
 ?>
 
-		<!-- StartModal -->
-		<div class="modal" id="myModal">
-		 <div class="modal-dialog">
-		    <div class="modal-content">
+<!-- StartModal -->
 
-			      <div class="modal-body">
-			      		<div class="border  bg-light m-auto mb-2">
-							<label for="pet-select" class="font-weight-bold">Create a new database :</label>
-							<?php echo '<form autocomplete="off" method="post" action="index.php?action=getDb&serve='.$serve.'">'; ?>
-								<div class="input-group mb-3">
-									<input type="text"  list="browsers" placeholder="Database name" required="required" class="form-control border border-success autofocus" name="newdb"  />
-									<div class="input-group-append">
-									<input class="btn bg-success text-light "  type="submit"   value="Create"/>
-									</div>
-								</div>
-							</form>
-						</div>
-				  </div>
-			 <div class="modal-footer">
-        		    <button type="button" class="close" data-dismiss="modal">&times;</button>
-             </div>
-
-
-			</div>
-
-		  </div>
-		</div>
-
+<?php include('layouts/modalNewDatabase.php'); ?>
 <!-- endModal -->
 
 
@@ -98,7 +73,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of s
 	<!-- footer -->
 
 <?php
-	require_once('footer.php')
+	require_once('layouts/footer.php')
 ?>
 
    <!-- footer -->
