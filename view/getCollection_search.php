@@ -83,6 +83,10 @@ else{
 			        		echo  "<option value=".$key.":>";
 						}
 
+						foreach ($docs as $key => $value) {
+			        		echo  "<option value=".$value['_id'].">";
+						}
+
 			        ?>
 
 		 		</datalist>

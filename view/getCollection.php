@@ -42,7 +42,10 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 				        <?php
 				        	foreach ($docs[0] as $key => $value) {
 				        		echo  "<option value=".$key.":>";
-						}
+							}
+							foreach ($docs as $key => $value) {
+			        		echo  "<option value=".$value['_id'].">";
+						    }
 
 				        ?>
 
