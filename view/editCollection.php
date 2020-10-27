@@ -3,12 +3,12 @@
 <head>
 	<?php echo "<title>Edit ".$coll."</title>"?>
 
-	<?php require_once('header.php') ?>
+	<?php require_once('layouts/header.php') ?>
 </head>
 
 <body>
 
-<?php include('breadcrumb.php'); ?>
+<?php include('layouts/breadcrumb.php'); ?>
 
 <div class="container">
 
@@ -65,7 +65,7 @@ echo "<h1 align=center class='title font-weight-bold'>Edit <i title='name of col
 <!-- footer -->
 
 <?php
-	require_once('footer.php')
+	require_once('layouts/footer.php')
 ?>
 
    <!-- footer -->

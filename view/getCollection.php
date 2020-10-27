@@ -3,12 +3,12 @@
 <head>
 	<?php echo "<title>".$coll."</title>"?>
 
-	<?php require_once('header.php') ?>
+	<?php require_once('layouts/header.php') ?>
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
  
 </head>
 
-<?php include('breadcrumb.php'); ?>
+<?php include('layouts/breadcrumb.php'); ?>
 
 <div class="container">
 
@@ -75,7 +75,7 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 
 <div id="DivContentTable">
 	<div id="result" class="border bg-light m-auto ">
-		<?php include('tableauDocuments.php'); ?>
+		<?php include('layouts/tableauDocuments.php'); ?>
 	    <hr>
 		<div class="row  justify-content-between  mt-3 mx-1">
 
@@ -166,7 +166,7 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 <!-- footer -->
 
 <?php
-	require_once('footer.php')
+	require_once('layouts/footer.php')
 ?>
 
    <!-- footer -->

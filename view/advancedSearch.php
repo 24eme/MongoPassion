@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
 	<?php echo "<title>Advanced Search</title>"?>
-	<?php require_once('header.php') ?>
+	<?php require_once('layouts/header.php') ?>
 </head>
 
 <body>
 
-<?php include('breadcrumb.php'); ?>
+<?php include('layouts/breadcrumb.php'); ?>
 
 <div id="advancedSearch" class="container">
 
@@ -201,7 +201,7 @@ if(isset($a_s)){
 <!-- footer -->
 
 <?php
-	require_once('footer.php')
+	require_once('layouts/footer.php')
 ?>
 
    <!-- footer -->

@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
 	<title>Create Document</title>
-	<?php require_once('header.php') ?>
+	<?php require_once('layouts/header.php') ?>
 </head>
 
 <body>
 
-<?php include('breadcrumb.php'); ?>
+<?php include('layouts/breadcrumb.php'); ?>
 
 <?php
 
@@ -177,7 +177,7 @@ echo '</div>';
 <!-- footer -->
 
 <?php 
-	require_once('footer.php')
+	require_once('layouts/footer.php')
 ?>
 
    <!-- footer -->

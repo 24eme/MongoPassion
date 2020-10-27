@@ -3,12 +3,12 @@
 <head>
 	<?php echo '<title>Edit '.$doc.'</title>'; ?>
 
-	<?php require_once('header.php') ?>
+	<?php require_once('layouts/header.php') ?>
 </head>
 
 <body>
 
-<?php include('breadcrumb.php'); ?>
+<?php include('layouts/breadcrumb.php'); ?>
 
 <div class="container">
 
@@ -238,7 +238,7 @@ echo '</div>';
 <!-- footer -->
 <br><br>
 <?php
-	require_once('footer.php')
+	require_once('layouts/footer.php')
 ?>
 
    <!-- footer -->
