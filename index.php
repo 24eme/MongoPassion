@@ -77,6 +77,9 @@ try{
             case 'install':
                 install();
             break;
+            case 'export':
+                export();
+            break;
             default:
                 error();
             break;

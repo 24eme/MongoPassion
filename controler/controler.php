@@ -344,6 +344,7 @@
         $serve = htmlspecialchars($_GET['serve']);
         $db = htmlspecialchars($_GET['db']);
         $coll = htmlspecialchars($_GET['coll']);
+        $current_query = htmlspecialchars($_SERVER['QUERY_STRING']);
 
         if(isset($_GET['bypage'])){
             $bypage = intval($_GET['bypage']);
@@ -701,4 +702,48 @@
         $jsoneditor = (strpos($data_json, 'jsoneditor') !== false);
 
         require('view/install.php');
+    }
+
+    function export()
+    {
+        $serve = htmlspecialchars($_GET['serve']);
+        $db = htmlspecialchars($_GET['db']);
+        $form = htmlspecialchars($_GET['form']);
+        $req = htmlspecialchars($_GET['req']);
+        $return = htmlspecialchars($_GET['ret']);
+        $return = str_replace('amp;', '', $return);
+
+        $link_return = '?'.$return;
+
+        if($form == 'json'){
+            $result = getDocs_export($serve,$db,$req);
+            
+            $export_json = "[\n";
+            foreach ($result as $entry) {
+                $content = array();
+                foreach ($entry as $x => $x_value) {
+                    if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
+                        $value = $x_value;
+                    }
+                    elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
+                        $value = $x_value->toDateTime();
+                    }
+                    else{
+                        $value = printable($x_value);
+                    }
+                    $content[$x] =  improved_var_export($value);
+                }
+                $content = init_json($content);
+                $json = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
+                $export_json = $export_json.$json.",\n";
+            }
+            $export_json = substr($export_json, 0, -2);
+            $export_json = $export_json."\n]";
+            $link = 'data:application/json;charset=utf-8,'.rawurlencode($export_json);
+            $name = 'json_'.rand().'.json';
+
+            require('view/export_json.php');
+        }
+
+        header('Location: '.$link_return);
     }

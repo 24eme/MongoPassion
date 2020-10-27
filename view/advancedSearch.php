@@ -93,10 +93,9 @@ if(isset($a_s)){
 					}
 					else{
 						if(isset($docs)){
-							$export_json = "";
 							echo '<tr>';
 							foreach ($docs[0] as $key => $value) {
-								echo '<th>'.$key.'</th>';
+								echo '<th class="text-left">'.$key.'</th>';
 							}
 							echo '</tr>';
 							foreach ($docs as $entry) {
@@ -109,8 +108,6 @@ if(isset($a_s)){
 							}
 						}
 						else{
-
-							$export_json = "[\n";
 							foreach ($result as $entry) {
 								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
 								$content = array();
@@ -127,20 +124,15 @@ if(isset($a_s)){
 							 		$content[$x] =  improved_var_export($value);
 								}
 								$content = init_json($content);
-								$json_exp = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
 								unset($content['_id']);
 					 			$json = stripslashes(json_encode($content));
-					 			$export_json = $export_json.$json_exp.",\n";
 								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark fa fa-fw fa-file"></i>'.$entry['_id'].'</a></td>';
 								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
 								if(strlen($json)>100){echo ' [...] }';}
 								echo '</td>';
 								echo '</tr>';
 							}
-							$export_json = substr($export_json, 0, -1);
-							$export_json = $export_json."\n]";
-							$link = 'data:application/json;charset=utf-8,'.rawurlencode($export_json);
-							$name = 'json_'.rand().'.json';
+							$link = '?action=export&serve='.$serve.'&db='.$db.'&form=json&req='.urlencode($a_s).'&ret='.urlencode($current_query);
 						}
 					}
 					?>
@@ -148,7 +140,7 @@ if(isset($a_s)){
 
 				<!-- Lien de téléchargement du JSON -->
 
-				<a id="send_json" href="<?php echo $link;?>" download="<?php echo $name;?>"></a>
+				<a id="send_json" href="<?php echo $link;?>"></a>
 
 				<!-- Fin du lien de téléchargement du JSON -->
 
@@ -216,6 +208,8 @@ if(isset($a_s)){
   	var element = document.getElementById('send_json');
 
     element.click();
+
+
 
   }
 
