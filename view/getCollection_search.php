@@ -41,7 +41,7 @@ if(isset($recherche_g)){
 //Titre de la page
 
 if(isset($recherche_g)){
-	echo "<h1 class='title text-center font-weight-bold'><span>Search results for </span><i title='Search results for $recherche_g' class='fa fa-fw fa-file'></i> ";
+	echo "<h1 class='title text-center font-weight-bold'><span>Search results for </span><i title='Search results for $recherche_g' class='fa fa-fw fa-book'></i> ";
 	if($recherche_g==""){echo "\"Aucun critère\""; $p='none';}
 	if($recherche_g!=""){
 		echo "\"<font color='#62a252'>".$recherche_g."</font>\"";
@@ -68,10 +68,10 @@ else{
 	        <div class="input-group mb-1">
 	        	<?php
 	        		if(isset($recherche_g)){
-	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" value="'.$recherche_g.'" />';
+	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="recherche_g" id="recherche_g" value="'.$recherche_g.'" />';
 	        		}
 	        		else{
-	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="form-control border border-success" name="recherche_g" id="recherche_g" />';
+	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="recherche_g" id="recherche_g" />';
 	        		}
 	        	?>
 
@@ -82,7 +82,9 @@ else{
 			        	foreach ($docs[0] as $key => $value) {
 			        		echo  "<option value=".$key.":>";
 						}
+
 			        ?>
+
 		 		</datalist>
 
 		 		<!-- Fin de l'autocomplétion des champs -->

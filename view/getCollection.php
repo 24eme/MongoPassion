@@ -34,7 +34,7 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 		<div id="searchId">
 			<?php echo '<form class="col-md-12" autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
 				<div class="input-group mb-1">
-					<input type="search" autofocus="autofocus"  list="browsers" placeholder="Search by document id or key:value" required="required"  class="flexdatalist form-control border border-success" name="recherche_g" id="recherche_g browser" />
+					<input type="search" autofocus="autofocus"  list="browsers" placeholder="Search by document id or key:value" required="required"  class="flexdatalist form-control border border-success" name="recherche_g" id="recherche_g" />
 
 					<!-- Autocomplétion des champs -->
 
@@ -43,7 +43,9 @@ echo "<h1 class='title text-center font-weight-bold'><i title='Name of collectio
 				        	foreach ($docs[0] as $key => $value) {
 				        		echo  "<option value=".$key.":>";
 						}
+
 				        ?>
+
 			 		</datalist>
 
 
