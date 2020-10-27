@@ -106,6 +106,7 @@ if(isset($a_s)){
 								}
 								echo '</tr>';
 							}
+							$link_csv = '?action=export&serve='.$serve.'&db='.$db.'&form=csv&req='.urlencode($a_s).'&ret='.urlencode($current_query);
 						}
 						else{
 							foreach ($result as $entry) {
@@ -132,7 +133,7 @@ if(isset($a_s)){
 								echo '</td>';
 								echo '</tr>';
 							}
-							$link = '?action=export&serve='.$serve.'&db='.$db.'&form=json&req='.urlencode($a_s).'&ret='.urlencode($current_query);
+							$link_json = '?action=export&serve='.$serve.'&db='.$db.'&form=json&req='.urlencode($a_s).'&ret='.urlencode($current_query);
 						}
 					}
 					?>
@@ -140,7 +141,14 @@ if(isset($a_s)){
 
 				<!-- Lien de téléchargement du JSON -->
 
-				<a id="send_json" href="<?php echo $link;?>"></a>
+				<a id="send_json" href="<?php echo $link_json;?>"></a>
+
+				<!-- Fin du lien de téléchargement du JSON -->
+
+
+				<!-- Lien de téléchargement du JSON -->
+
+				<a id="send_csv" href="<?php echo $link_csv;?>"></a>
 
 				<!-- Fin du lien de téléchargement du JSON -->
 
@@ -204,63 +212,17 @@ if(isset($a_s)){
 <script type="text/javascript">
 
 	function download_json()
-  {
-  	var element = document.getElementById('send_json');
+	{
+		var element = document.getElementById('send_json');
 
-    element.click();
-
-
-
-  }
-
-	// Export CSV
-  function download_csv(csv, filename) {
-      var csvFile;
-      var downloadLink;
-
-      // CSV FILE
-      csvFile = new Blob([csv], {type: "text/csv"});
-
-      // Download link
-      downloadLink = document.createElement("a");
-
-      // File name
-      downloadLink.download = filename;
-
-      // We have to create a link to the file
-      downloadLink.href = window.URL.createObjectURL(csvFile);
-
-      // Make sure that the link is not displayed
-      downloadLink.style.display = "none";
-
-      // Add the link to your DOM
-      document.body.appendChild(downloadLink);
-
-      // Lanzamos
-      downloadLink.click();
-  }
-
-  function export_table_to_csv(html, filename) {
-    var csv = [];
-    var rows = document.querySelectorAll("table tr");
-
-      for (var i = 0; i < rows.length; i++) {
-      var row = [], cols = rows[i].querySelectorAll("td, th");
-
-          for (var j = 0; j < cols.length; j++)
-              row.push(cols[j].innerText);
-
-      csv.push(row.join(","));
-    }
-
-      // Download CSV
-      download_csv(csv.join("\n"), filename);
-  }
+	    element.click();
+	}
 
   document.querySelector("#export_csv").addEventListener("click", function () {
-  	var random = (Math.floor(Math.random() * Math.floor(100000000))).toString(16);
-    var html = document.querySelector("table").outerHTML;
-    export_table_to_csv(html, "result_"+random+".csv");
+   var element = document.getElementById('send_csv');
+
+	element.click();
+
   });
 
   document.querySelector("#export_json").addEventListener("click", download_json);

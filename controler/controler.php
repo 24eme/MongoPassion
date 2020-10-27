@@ -744,6 +744,10 @@
 
             require('view/export_json.php');
         }
+        elseif($form == 'csv'){
+            $docs = getDocs_export($serve,$db,$req);
 
+            require('view/export_csv.php');
+        }
         header('Location: '.$link_return);
     }
