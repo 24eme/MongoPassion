@@ -9,6 +9,8 @@
 
 <?php include('layouts/breadcrumb.php'); ?>
 
+<div class="container">
+
 <?php
 
 //Titre de la page
@@ -30,19 +32,7 @@ if(isset($_GET['msg'])){
 
 }
 
-//Bouton de retour
-
-echo '<div id="nav_view">';
-	if(isset($s_g)){
-	 	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'"><button class="return btn btn-primary">< Collection</button></a>';
-	}
-	else{
-	 	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><button class="return btn btn-primary">< Collection</button></a>';
-	}
-echo '</div>';
 ?>
-
-<!-- Fin du bouton de retour -->
 
 
 <!-- Bouton switch JsonEditor -->
@@ -65,6 +55,7 @@ echo '</div>';
 
 <!-- Fin du bouton switch JsonEditor -->
 
+</div>
 
 <!-- Zone de texte -->
 
@@ -173,6 +164,28 @@ echo '</div>';
 
 <!-- Fin du formulaire mode édition JsonEditor -->
 
+
+<div class="container">
+
+<?php
+
+//Bouton de retour
+
+echo '<div id="nav_view float-left">';
+	if(isset($s_g)){
+	 	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'"><button class="return btn btn-primary">< list of docs</button></a>';
+	}
+	else{
+	 	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><button class="return btn btn-primary">< list of docs</button></a>';
+	}
+echo '</div>';
+?>
+
+<!-- Fin du bouton de retour -->
+
+
+
+</div>
 
 <!-- footer -->
 
