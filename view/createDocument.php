@@ -87,25 +87,8 @@ if(isset($_GET['msg'])){
 	 </div>
 
 	</div>
-	<?php
-// fin Affichage du formulaire 
 
-
-//Bouton de retour
-
-echo '<div id="nav_view float-left">';
-	if(isset($s_g)){
-	 	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'"><button class="return btn btn-primary">< Collection</button></a>';
-	}
-	else{
-	 	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><button class="return btn btn-primary ml-5">< Collection</button></a>';
-	}
-echo '</div>';
-?>
-
-<!-- Fin du bouton de retour -->
-
-</div>
+<!-- fin Affichage du formulaire  -->
 <?php }?>
 
 
