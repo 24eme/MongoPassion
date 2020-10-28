@@ -360,7 +360,13 @@
             $page = 1;
         }
 
-        if(isset($_GET['a_s'])){
+        if(isset($_GET['js']) and isset($_GET['a_s_coll'])){
+            $js = htmlspecialchars($_GET['js'], ENT_NOQUOTES);
+            $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
+
+            $a_s = 'db.'.$a_s_coll.'.find('.$js.')';
+        }
+        elseif(isset($_GET['a_s'])){
             $a_s = htmlspecialchars($_GET['a_s'], ENT_NOQUOTES);
         }
         elseif (isset($_GET['s_g'])) {
@@ -401,6 +407,23 @@
 
               $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
               $nbPages = getNbPages($nbDocs,$bypage);
+
+              $tab_a_s= explode('.', $a_s);
+              $tab_js_1 = explode('(',$tab_a_s[2]);
+              $tab_js_2 = explode(')',$tab_js_1[1]);
+
+              $a_s_coll = $tab_a_s[1];
+
+              $jscode = $tab_js_2[0];
+
+              $collections = getCollections($serve,$db);
+              $tabcollections= array();
+              foreach ($collections as $collection) {
+                    $name = $collection->getName();
+                    if($name != $a_s_coll){
+                        array_push($tabcollections, $name);
+                    }
+               }
             }
             catch(Exception $e){
               $flash_error = "Failed to execute query: ".$e->getMessage();
@@ -709,7 +732,7 @@
         $serve = htmlspecialchars($_GET['serve']);
         $db = htmlspecialchars($_GET['db']);
         $form = htmlspecialchars($_GET['form']);
-        $req = htmlspecialchars($_GET['req']);
+        $req = htmlspecialchars($_GET['req'], ENT_NOQUOTES);
         $return = htmlspecialchars($_GET['ret']);
         $return = str_replace('amp;', '', $return);
 
@@ -749,5 +772,7 @@
 
             require('view/export_csv.php');
         }
-        header('Location: '.$link_return);
+        else{
+            header('Location: '.$link_return);
+        }
     }

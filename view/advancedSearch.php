@@ -45,17 +45,39 @@ if(isset($a_s)){
 	</div>
   <?php endif; ?>
 	<?php echo '<form action="'.$link_search.'">';
-		echo '<label>Execute a query in '.$coll.':</label>'; ?>
+		echo '<label>Execute a query in a collection:</label>'; ?>
 		<input type="hidden" name="action" value="advancedSearch">
 		<?php echo'<input type="hidden" name="serve" value='.$serve.'>';
 		echo'<input type="hidden" name="db" value='.$db.'>';
 		echo'<input type="hidden" name="coll" value='.$coll.'>'; ?>
-		<?php if(isset($a_s)){
-			echo '<textarea name="a_s" id="a_s" rows="5" cols="100" autofocus="autofocus">'.$a_s.'</textarea>';
-		}
-		else{
-			echo '<textarea name="a_s" id="a_s" rows="5" cols="100" autofocus="autofocus">db.'.$coll.'.find({})</textarea>';
-		} ?>
+		<?php if(isset($a_s)){ ?>
+			<div id="form_a_s">
+				db.<select id="a_s_coll" name="a_s_coll">
+					<option value="<?php echo $a_s_coll ?>" selected="selected"><?php echo $a_s_coll ?></option>
+					<?php foreach ($tabcollections as $collection) { ?>
+						<option value="<?php echo $collection ?>"><?php echo $collection ?></option>
+					<?php } ?>
+				</select>.find(
+				<br>
+				<textarea id="js" name="js"><?php echo htmlspecialchars($jscode) ?></textarea>
+				<br>
+				)
+			</div>
+		<?php }
+		else{?>
+			<div id="form_a_s">
+				db.<select id="a_s_coll" name="a_s_coll">
+					<option value="<?php echo $a_s_coll ?>" selected="selected"><?php echo $a_s_coll ?></option>
+					<?php foreach ($tabcollections as $collection) { ?>
+						<option value="<?php echo $collection ?>"><?php echo $collection ?></option>
+					<?php } ?>
+				</select>.find(
+				<br>
+				<input type="text" id="js" name="js" value="{}">
+				<br>
+				)
+			</div>
+		<?php } ?>
 		<div class="text-right">
 			<input type="submit" class="btn btn-success" value="Execute">
 			<a class="btn bg-secondary mr-2 text-light" href="<?php echo $link_reinit; ?>"><i title="reset" class="fa fa-fw fa-remove"></i></a>
