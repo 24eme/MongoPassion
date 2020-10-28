@@ -28,5 +28,5 @@ function bypage_search(select)
 
     parameters.set(key, valeur)
 
-    document.location.href = '/?'+parameters.toString()
+    document.location.href = '?'+parameters.toString()
 }

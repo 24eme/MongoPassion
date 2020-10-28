@@ -18,7 +18,7 @@
 if(isset($a_s)){
 	echo '<p id="clé" style="display: none">a_s</p>';
 	?>
-	<input type=hidden id=valeur value=<?php echo urlencode($a_s); ?>>
+	<input type=hidden id=valeur value=<?php echo $a_s; ?>>
 	<?php
 }
 
