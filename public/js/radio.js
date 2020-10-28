@@ -10,7 +10,7 @@ function bypage(select)
     parameters.delete('bypage')
     parameters.set('bypage', nb)
 
-    document.location.href = '/?'+parameters.toString()
+    document.location.href = '?'+parameters.toString()
 
 }
 
