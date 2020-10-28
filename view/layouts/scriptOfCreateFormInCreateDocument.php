@@ -15,6 +15,15 @@
     /* Fonction d'envoi du formulaire */
 
     document.getElementById('getJSON').onclick = function () {
+        getJson();
+
+    }
+    document.getElementById('getJSON2').onclick = function () {
+        getJson();
+
+    }
+
+    function getJson(){
         const json = editor.get()
         var updatedJson = JSON.stringify(json, null, 2)
 
@@ -35,7 +44,5 @@
         span.appendChild(f);
 
         document.getElementById("idFormulaire").submit();
-  
-
     }
 </script>

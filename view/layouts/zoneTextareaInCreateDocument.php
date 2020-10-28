@@ -25,6 +25,7 @@
 		 	echo '<form method="post" action="index.php?action=traitement_nD&serve='.$serve.'&db='.$db.'&coll='.$coll.'">';
 		 	echo '<div id="create_content"><input type="submit" class="btn btn-primary" name="create" id="create" value="Create"></div>';
 		 	echo '<div id="doc_content"><textarea class="col-lg-8 offset-lg-2" name="doc_text" id="doc_text" rows="20" cols="200" style="height: 750px;" required>'.$docs.'</textarea></div>';
+		 	echo '<div id="create_content" style="margin-top:2%";><input type="submit" class="btn btn-primary" name="create" id="create" value="Create"></div>';
 		 	echo '</form>';
 		?>
 	</div>

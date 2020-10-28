@@ -85,25 +85,14 @@ if(isset($_GET['msg'])){
 	 <div id="DivContentTable">
 		<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 750px;"></div>
 	 </div>
-
+	 <div id="create_content">
+	    	<button class="btn btn-primary" id="getJSON2" style="background-color: #4CAF50;border:none; margin-left: auto; margin-right: 350px;">Create</button>
+	 </div>
 	</div>
 	<?php
 // fin Affichage du formulaire 
 
-
-//Bouton de retour
-
-echo '<div id="nav_view float-left">';
-	if(isset($s_g)){
-	 	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'"><button class="return btn btn-primary">< Collection</button></a>';
-	}
-	else{
-	 	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><button class="return btn btn-primary ml-5">< Collection</button></a>';
-	}
-echo '</div>';
 ?>
-
-<!-- Fin du bouton de retour -->
 
 </div>
 <?php }?>
@@ -111,6 +100,7 @@ echo '</div>';
 
 
 <!-- Script de création et d'envoi du formulaire -->
+
 <?php include('layouts/scriptOfCreateFormInCreateDocument.php'); ?>
 
 <!-- Fin du formulaire mode édition JsonEditor -->
