@@ -227,9 +227,12 @@ input:focus+.slider {
 
 #switch {
     width: 86px;
-    margin-top: -25px;
-    position: absolute
+    margin-top: -18px;
+    position: absolute;
+    display: flow-root;
+    margin-left: 150px;
 }
+
 
 #switch_json {
     color: #3f3b3b;
