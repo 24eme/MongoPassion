@@ -325,6 +325,16 @@
                 return;
             }
             $nbDocs = countSearch($recherche_g,$serve,$db,$coll);
+            if($nbDocs==1){
+                $type_id = gettype($docs[0]['_id']);
+                if ($type_id=='object'){
+                    $id = (string)$docs[0]['_id'];
+                }
+                else{
+                    $id = $docs[0]['_id'];
+                }
+                header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&page=1');
+            }
         	$nbPages = getNbPages($nbDocs,$bypage);
 
             if ($page > 1 && empty($docs)) {
@@ -406,6 +416,17 @@
                 }
 
                 $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
+                if($nbDocs==1){
+                    $type_id = gettype($result[0]['_id']);
+                    if ($type_id=='object'){
+                        $id = (string)$result[0]['_id'];
+                    }
+                    else{
+                        $id = $result[0]['_id'];
+                    }
+                    $search = 'db.'.$coll.'.find({})';
+                    header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&a_s='.$search.'&page=1');
+                }
                 $nbPages = getNbPages($nbDocs,$bypage);
 
                 $tab_a_s= explode('.', $a_s);
