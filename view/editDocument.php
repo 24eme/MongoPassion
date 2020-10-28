@@ -138,6 +138,7 @@ if(isset($search_db)){
 	 		echo '<input type="hidden" name="up_date_array" value="'.htmlspecialchars(serialize($up_date_array)).'"></input>';
 	 		echo '<div id="update_content"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Save"></div>';
 	 		echo '<div id="doc_content"><textarea autofocus="autofocus" name="doc_text" id="doc_text"  rows="20" cols="200" required>'.$docs.'</textarea></div>';
+	 		echo '<div id="update_content" style="margin-top:2%;"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Save"></div>';
 	 	echo '</form>';
 	 	echo '<br>'
 	?>
@@ -163,6 +164,9 @@ if(isset($search_db)){
 	    <span id="nC"></span>
 		<div id="DivContentTable">
 			<div id="jsoneditor" style="height: 750px;"></div>
+		</div>
+		<div  id="getJson_content">
+			<button class="btn btn-secondary" id="getJSON2">Save</button>
 		</div>
 	</div>
 </div>
@@ -208,9 +212,35 @@ if(isset($search_db)){
         document.getElementById("idFormulaire").submit();
 
     }
+    document.getElementById('getJSON2').onclick = function () {
+        const json = editor.get()
+        var updatedJson = JSON.stringify(json, null, 2)
+
+        var f = document.createElement("form");
+        f.setAttribute('method',"post");
+        f.setAttribute('action',link_doc);
+        f.setAttribute('id',"idFormulaire");
+
+        var i = document.createElement("input"); //input element, text
+        i.setAttribute('type',"hidden");
+        i.setAttribute('name',"doc_text");
+        i.setAttribute('value',updatedJson);
+
+        f.appendChild(i);
+
+        var span = document.getElementById("nC");
+
+        span.appendChild(f);
+
+        document.getElementById("idFormulaire").submit();
+
+    }
 </script>
 
+<!-- Fin du formulaire mode édition JsonEditor -->
+
 <?php
+
 //Bouton de retour
 echo '<div id="nav_view float-left">';
 	if(isset($s_g)){
@@ -228,10 +258,6 @@ echo '<div id="nav_view float-left">';
 echo '</div>';
 ?>
 
-<!-- Fin du formulaire mode édition JsonEditor -->
-<div  id="getJson_content">
-	<button class="btn btn-success" id="getJSON">Save</button>
-</div>
 
 </div>
 
