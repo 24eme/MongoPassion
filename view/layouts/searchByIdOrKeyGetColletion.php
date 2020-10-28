@@ -1,12 +1,17 @@
 <div class="card mb-1">
   <div class="card-body">
+
 	<!-- Formulaire de recherche par id et clé:valeur -->
 
 		
 		<div id="searchId">
-			<?php echo '<form class="col-md-12" autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
+			<?php echo '<form class="col-md-12" autocomplete="off" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
 				<div class="input-group mb-1">
-					<input type="search" autofocus="autofocus"  list="browsers" placeholder="Search by document id or key:value" required="required"  class="flexdatalist form-control border border-success" name="recherche_g" id="recherche_g" />
+					<input type="hidden" name="action" value="getCollection_search">
+					<input type="hidden" name="serve" value='<?php echo $serve ?>'>
+					<input type="hidden" name="db" value='<?php echo $db ?>'>
+					<input type="hidden" name="coll" value='<?php echo $coll ?>'>
+					<input type="search" autofocus="autofocus"  list="browsers" placeholder="Search by document id or key:value" required="required"  class="flexdatalist form-control border border-success" name="s_g" id="recherche_g" />
 
 					<!-- Autocomplétion des champs -->
 
@@ -18,7 +23,6 @@
 							foreach ($docs as $key => $value) {
 			        		echo  "<option value=".$value['_id'].">";
 						    }
-
 				        ?>
 
 			 		</datalist>
@@ -26,7 +30,7 @@
 
 			 		<!-- Fin de l'autocomplétion des champs -->
 					<div class="input-group-append">
-					<input class="btn bg-success text-light "  type="submit" name="search" id="search" value="Search"/>
+					<input class="btn bg-success text-light "  type="submit" id="search" value="Search"/>
 					</div>
 				</div>
 				<div class="text-right">
