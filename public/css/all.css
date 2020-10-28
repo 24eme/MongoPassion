@@ -498,3 +498,30 @@ h3 {
 #home .serverlist a.text-mutted {
 	color: white;
 }
+
+
+div#form_a_s{
+    background-color: #3f3b3b;
+    color: white;
+    font-family: courier;
+    font-size: 20px;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+select#a_s_coll{
+    padding:0px;
+    background-color: #3f3b3b;
+    color: white;
+    font-family: courier;
+    border: none;
+    outline: none;
+}
+
+textarea#js{
+    background-color: #3f3b3b;
+    color: white; border:none; 
+    font-family: courier;
+    outline: none;
+    width: 100%;
+}
