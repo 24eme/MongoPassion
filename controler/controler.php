@@ -367,7 +367,7 @@
             $a_s = 'db.'.$a_s_coll.'.find('.$js.')';
         }
         elseif(isset($_GET['a_s'])){
-            $a_s = htmlspecialchars($_GET['a_s'], ENT_NOQUOTES);
+            $a_s =htmlspecialchars(urldecode($_GET['a_s']), ENT_NOQUOTES);
         }
         elseif (isset($_GET['s_g'])) {
             $s_g = htmlspecialchars($_GET['s_g'], ENT_NOQUOTES);
@@ -399,34 +399,34 @@
 
         if(isset($a_s)){
             try {
-              $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
+                $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
 
-              if(testProjection($a_s,$serve,$db)){
-                  $docs = $result;
-              }
+                if(testProjection($a_s,$serve,$db)){
+                    $docs = $result;
+                }
 
-              $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
-              $nbPages = getNbPages($nbDocs,$bypage);
+                $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
+                $nbPages = getNbPages($nbDocs,$bypage);
 
-              $tab_a_s= explode('.', $a_s);
-              $tab_js_1 = explode('(',$tab_a_s[2]);
-              $tab_js_2 = explode(')',$tab_js_1[1]);
+                $tab_a_s= explode('.', $a_s);
+                $tab_js_1 = explode('(',$tab_a_s[2]);
+                $tab_js_2 = explode(')',$tab_js_1[1]);
 
-              $a_s_coll = $tab_a_s[1];
+                $a_s_coll = $tab_a_s[1];
 
-              $jscode = $tab_js_2[0];
+                $jscode = $tab_js_2[0];
 
-              $collections = getCollections($serve,$db);
-              $tabcollections= array();
-              foreach ($collections as $collection) {
+                $collections = getCollections($serve,$db);
+                $tabcollections= array();
+                foreach ($collections as $collection) {
                     $name = $collection->getName();
                     if($name != $a_s_coll){
                         array_push($tabcollections, $name);
                     }
-               }
+                }
             }
             catch(Exception $e){
-              $flash_error = "Failed to execute query: ".$e->getMessage();
+                $flash_error = "Failed to execute query: ".$e->getMessage();
             }
         }
 

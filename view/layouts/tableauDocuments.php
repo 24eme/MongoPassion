@@ -33,7 +33,7 @@
             $jsonView = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
             ?>
     <tr>
-        <td id='d'><a class='text-success text-center' data-toggle='tooltip' title='<?php echo $json ?>' href="index.php?action=editDocument&serve=<?php echo $_GET['serve'] ?>&db=<?php echo $_GET['db'] ?>&coll=<?php echo $_GET['coll'] ?>&doc=<?php echo $id ?>&type_id=<?php echo $type_id ?>&page=<?php echo $page ?><?php if(isset($recherche_g)): ?>&s_g=<?php echo urlencode($recherche_g) ?><?php endif; ?>"><i class='text-dark fa fa-fw fa-book'></i>&nbsp;<?php echo $id; ?></a></td>
+        <td id='d'><a class='text-success text-center' data-toggle='tooltip' title='<?php echo strip_tags($json) ?>' href="index.php?action=editDocument&serve=<?php echo $_GET['serve'] ?>&db=<?php echo $_GET['db'] ?>&coll=<?php echo $_GET['coll'] ?>&doc=<?php echo $id ?>&type_id=<?php echo $type_id ?>&page=<?php echo $page ?><?php if(isset($recherche_g)): ?>&s_g=<?php echo urlencode($recherche_g) ?><?php endif; ?>"><i class='text-dark fa fa-fw fa-book'></i>&nbsp;<?php echo $id; ?></a></td>
         <td id="json"><?php echo substr($json, 0, 100).''; ?><?php if(strlen($json)>100): ?>[...]<?php endif; ?></td>
     </tr>
 <?php endforeach; ?>
