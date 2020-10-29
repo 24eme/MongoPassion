@@ -102,24 +102,14 @@
 		     <!--Fin formatage des données du document en JSON -->
 
 			
-		    <?php
-			 	//Affichage du formulaire
-
-			 	echo '<form method="post" action="'.$link_doc.'">';
-			 		echo '<input type="hidden" name="date_array" value="'.htmlspecialchars(serialize($date_array)).'"></input>';
-			 		echo '<input type="hidden" name="up_date_array" value="'.htmlspecialchars(serialize($up_date_array)).'"></input>';
-			 		echo '<div id="update_content"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Save"></div>';
-			 		echo '<div id="doc_content"><textarea autofocus="autofocus" name="doc_text" id="doc_text"  rows="20" cols="200" required>'.$docs.'</textarea></div>';
-			 		echo '<div id="update_content" style="margin-top:2%;"><input type="submit" class="btn btn-secondary" name="update" id="update" value="Save"></div>';
-			 	echo '</form>';
-			 	echo '<br>'
-			?>
-		<!-- Fin du formulaire mode édition classique -->
+		
+		 	<!-- Affichage du formulaire mode édition classique -->
+	        <?php include('layouts/editDocument/zoneTextareaInEditDocument.php'); ?>
+       
+	         <!-- Fin du formulaire mode édition classique -->
 	</div>
 
 	<!-- Formulaire mode édition JsonEditor -->
-
-	<!-- Affichage du formulaire -->
 
 	<?php if($jsoneditor){?>
 	<div id="DivContentTable">
@@ -144,11 +134,14 @@
 	</div>
 	<?php }?>
 
+		<!--Fin formulaire mode édition JsonEditor -->
+
 	<!-- Script de création et d'envoi du formulaire -->
-	<?php include('layouts/scriptOfCreateFormInCreateDocument.php'); ?>
+	<?php include('layouts/scriptOfCreateFormModeJsonEdition.php'); ?>
 	<!-- Fin Script de création et d'envoi du formulaire -->
 
 	<!-- Fin du formulaire mode édition JsonEditor -->
+	
 
 	<?php
 

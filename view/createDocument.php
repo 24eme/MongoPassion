@@ -101,7 +101,7 @@ if(isset($_GET['msg'])){
 
 <!-- Script de création et d'envoi du formulaire -->
 
-<?php include('layouts/scriptOfCreateFormInCreateDocument.php'); ?>
+<?php include('layouts/scriptOfCreateFormModeJsonEdition.php'); ?>
 
 <!-- Fin du formulaire mode édition JsonEditor -->
 
