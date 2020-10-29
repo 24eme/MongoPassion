@@ -309,7 +309,7 @@
                 $recherche_g = htmlspecialchars(urldecode($_GET['s_g']));
             }
             else{
-                $recherche_g = htmlspecialchars($_POST['recherche_g']);
+                header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
             }
 
             if(isset($recherche_g)){
@@ -555,14 +555,15 @@
     function getDb_search()
     {
         if(isset($_GET['db']) and isset($_GET['serve'])){
-            if(isset($_POST['recherche_db'])){
-                $search = htmlspecialchars($_POST['recherche_db']);
-            }
-            elseif(isset($_GET['search_db'])){
-                $search = urldecode(htmlspecialchars($_GET['search_db']));
-            }
             $db = htmlspecialchars($_GET['db']);
             $serve=htmlspecialchars($_GET['serve']);
+            
+            if(isset($_GET['search_db'])){
+                $search = urldecode(htmlspecialchars($_GET['search_db']));
+            }
+            else{
+                header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
+            }
         }
 
         else{
