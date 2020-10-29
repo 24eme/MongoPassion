@@ -3,15 +3,19 @@
 
 	<!-- Barre de boutons -->
 
-		<?php echo '<form autocomplete="off" method="post" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
+		<?php echo '<form autocomplete="off" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
 
 	        <div class="input-group mb-1">
+	        	<input type="hidden" name="action" value="getCollection_search">
+				<input type="hidden" name="serve" value='<?php echo $serve ?>'>
+				<input type="hidden" name="db" value='<?php echo $db ?>'>
+				<input type="hidden" name="coll" value='<?php echo $coll ?>'>
 	        	<?php
 	        		if(isset($recherche_g)){
-	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="recherche_g" id="recherche_g" value="'.$recherche_g.'" />';
+	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="s_g" id="recherche_g" value="'.$recherche_g.'" />';
 	        		}
 	        		else{
-	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="recherche_g" id="recherche_g" />';
+	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="s_g" id="recherche_g" />';
 	        		}
 	        	?>
 
@@ -35,7 +39,7 @@
 
 				<div class="input-group-append">
 				   <a href="index.php?action=getCollection&serve=<?php echo $serve ?>&db=<?php echo $db ?>&coll=<?php echo $coll ?>" class="btn bg-secondary text-light" type="button"><i title="Reset and return to the getCollection page" class="fa fa-fw fa-remove"></i></a>
-				   <input class="btn bg-success text-light" type="submit" name="search" id="search" value="Search"/>
+				   <input class="btn bg-success text-light" type="submit" id="search" value="Search"/>
 			   	</div>
 			</div>
 			<div class="text-right">
