@@ -25,7 +25,7 @@
 <nav class="mb-1">
 	<!-- StartModal -->
 	
-<?php include('layouts/modalNewCollection.php'); ?>
+<?php include('layouts/getDb/modalNewCollection.php'); ?>
 	<!-- endModal -->
 
 <!-- Fin modal new Db -->

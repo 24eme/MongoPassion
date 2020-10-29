@@ -59,7 +59,7 @@ if(isset($_GET['msg'])){
 <!-- Zone de texte -->
 
 
-<?php include('layouts/zoneTextareaInCreateDocument.php'); ?>
+<?php include('layouts/createDocument/zoneTextareaInCreateDocument.php'); ?>
 
 
 <!-- Fin de la zone de texte -->
