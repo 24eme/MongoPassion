@@ -518,7 +518,7 @@
         $db = htmlspecialchars($_GET['db']);
         $coll = htmlspecialchars($_GET['coll']);
 
-        $newdb = htmlspecialchars($_POST['newdb']);
+        $newdb = htmlspecialchars($_GET['newdb']);
 
         moveCollec($newdb,$serve,$db,$coll);
         header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
