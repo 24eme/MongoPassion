@@ -73,7 +73,7 @@
 				}
 			?>
 		</table>
-	    <div class="mb-2">
+	    <div class="m-2">
 			<!-- Start Button add database -->
 			<button type='button' class='btn btn-dark  float-right ' data-toggle='modal' data-target='#myModal'>
 					<i title="Add new collection" class='fa fa-fw fa-plus'></i><i title="Add new collection" class='fa fa-fw fa-server'></i>
