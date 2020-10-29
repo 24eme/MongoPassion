@@ -469,7 +469,7 @@
         $coll = htmlspecialchars($_GET['coll']);
 
         try{
-            $newname = str_replace(' ', '_', htmlspecialchars($_POST['newname']));
+            $newname = str_replace(' ', '_', htmlspecialchars($_GET['newname']));
             renameCollec($newname,$serve,$db,$coll);
             header('Location: index.php?action=editCollection&serve='.$serve.'&db='.$db.'&coll='.$newname.'');
         }
