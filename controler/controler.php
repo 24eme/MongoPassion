@@ -598,7 +598,8 @@
         $port = htmlspecialchars($_POST['port']);
         if(isset($_GET['serve'])){
             $serve=htmlspecialchars($_GET['serve']);
-        }elseif(isset($_POST['serve'])){
+        }
+        elseif(isset($_POST['serve'])){
             $serve=htmlspecialchars($_POST['serve']);
         }
         if (!$serve) {
