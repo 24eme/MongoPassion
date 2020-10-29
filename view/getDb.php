@@ -20,13 +20,12 @@
 <!-- Fin du titre de la page -->
 
 
+<nav class="mb-1">
+
 <!-- Modal new Db -->
 
-<nav class="mb-1">
-	<!-- StartModal -->
 	
 <?php include('layouts/getDb/modalNewCollection.php'); ?>
-	<!-- endModal -->
 
 <!-- Fin modal new Db -->
 
@@ -53,14 +52,10 @@
 
 </nav>
 
-
-
-
 <!-- Tableau des collections -->
+
 <div id="DivContentTable">
 	<div id="main" class="border bg-light mt-1 m-auto getDbDiv">
-
-
 		<table class="table table-sm table-striped">
 				<?php echo  "<h3 class=\"text-center bg-success text-light \"><span><strong> Collections of ".$db." </strong></span><button type='button' class='btn btn-dark py-1 float-right ' data-toggle='modal' data-target='#myModal'>
 					<i title='Add new collection' class='fa fa-fw fa-plus'></i><i title='Add new collection' class='fa fa-fw fa-server'></i>

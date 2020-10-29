@@ -469,7 +469,7 @@
         $coll = htmlspecialchars($_GET['coll']);
 
         try{
-            $newname = str_replace(' ', '_', htmlspecialchars($_POST['newname']));
+            $newname = str_replace(' ', '_', htmlspecialchars($_GET['newname']));
             renameCollec($newname,$serve,$db,$coll);
             header('Location: index.php?action=editCollection&serve='.$serve.'&db='.$db.'&coll='.$newname.'');
         }
@@ -493,7 +493,7 @@
         $db = htmlspecialchars($_GET['db']);
 
         try{
-            $newname = str_replace(' ', '_', htmlspecialchars($_POST['name']));
+            $newname = str_replace(' ', '_', htmlspecialchars($_GET['name']));
             createCollec($newname,$serve,$db);
             header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
         }
@@ -518,7 +518,7 @@
         $db = htmlspecialchars($_GET['db']);
         $coll = htmlspecialchars($_GET['coll']);
 
-        $newdb = htmlspecialchars($_POST['newdb']);
+        $newdb = htmlspecialchars($_GET['newdb']);
 
         moveCollec($newdb,$serve,$db,$coll);
         header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
@@ -535,8 +535,8 @@
         if(isset($_GET['db'])){
             $db=htmlspecialchars($_GET['db']);
         }
-        elseif (isset($_POST['newdb'])) {
-            $db=htmlspecialchars($_POST['newdb']);
+        elseif (isset($_GET['newdb'])) {
+            $db=htmlspecialchars($_GET['newdb']);
         }
         else{
             header('Location: index.php?action=error');
@@ -598,7 +598,8 @@
         $port = htmlspecialchars($_POST['port']);
         if(isset($_GET['serve'])){
             $serve=htmlspecialchars($_GET['serve']);
-        }elseif(isset($_POST['serve'])){
+        }
+        elseif(isset($_POST['serve'])){
             $serve=htmlspecialchars($_POST['serve']);
         }
         if (!$serve) {

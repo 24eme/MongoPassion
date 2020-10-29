@@ -27,11 +27,12 @@
 		<!-- Fin du titre de la page -->
 		<!-- Formulaire serveurs -->
 		<div>
-			<form method="post" action="index.php?action=getServer">
+			<form action="index.php?action=getServer">
 					<div class="input-group btn-group">
-					<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength=20 required />
-					<div class="input-group-append">
-					<input type="submit" class="btn btn-success font-weight-bold" name="add" id="add" value="Connect">
+						<input type="hidden" name="action" value="getServer">
+						<input type="text" autofocus="autofocus" class="form-control border border-success" name="serve" id="serve" placeholder="mongo.example.net:27017"  maxLength=20 required />
+						<div class="input-group-append">
+						<input type="submit" class="btn btn-success font-weight-bold" id="add" value="Connect">
 					</div>
 				</div>
 			</form>
