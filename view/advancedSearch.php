@@ -78,7 +78,7 @@ if(isset($a_s)){
 				)
 			</div>
 		<?php } ?>
-		<div class="text-right">
+		<div class="text-right mt-1">
 			<input type="submit" class="btn btn-success" value="Execute">
 			<a class="btn bg-secondary mr-2 text-light" href="<?php echo $link_reinit; ?>"><i title="reset" class="fa fa-fw fa-remove"></i></a>
 		</div>
@@ -109,58 +109,12 @@ if(isset($a_s)){
 					  </div>
 					</div>
 				</div>
-				<table class="table table-sm table-striped">
-					<?php if(empty($result)){
-						echo '<p align="center">No document matches your search</p>';
-					}
-					else{
-						if(isset($docs)){
-							echo '<tr>';
-							foreach ($docs[0] as $key => $value) {
-								echo '<th class="text-left">'.$key.'</th>';
-							}
-							echo '</tr>';
-							foreach ($docs as $entry) {
-								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
-								echo '<tr>';
-								foreach ($entry as $value) {
-									echo '<td><a href="'.$link_v.'">'.$value.'</a></td>';
-								}
-								echo '</tr>';
-							}
-							$link_csv = '?action=export&serve='.$serve.'&db='.$db.'&form=csv&req='.urlencode($a_s).'&ret='.urlencode($current_query);
-						}
-						else{
-							foreach ($result as $entry) {
-								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
-								$content = array();
-								foreach ($entry as $x => $x_value) {
-									if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){
-							 			$value = $x_value;
-							 		}
-							 		elseif(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\UTCDateTime'){
-							 			$value = $x_value->toDateTime();
-							 		}
-							 		else{
-							 	  		$value = printable($x_value);
-							 		}
-							 		$content[$x] =  improved_var_export($value);
-								}
-								$content = init_json($content);
-								unset($content['_id']);
-					 			$json = stripslashes(json_encode($content));
-								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark fa fa-fw fa-file"></i>'.$entry['_id'].'</a></td>';
-								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
-								if(strlen($json)>100){echo ' [...] }';}
-								echo '</td>';
-								echo '</tr>';
-							}
-							$link_json = '?action=export&serve='.$serve.'&db='.$db.'&form=json&req='.urlencode($a_s).'&ret='.urlencode($current_query);
-						}
-					}
-					?>
-				</table>
 
+				<!-- tableau des resultats -->
+                <?php include('layouts/advancedSearch/tableAdvancedSearch.php'); ?>
+                <!-- fin tableau des resultats -->
+				
+				
 				<!-- Lien de téléchargement du JSON -->
 
 				<a id="send_json" href="<?php echo $link_json;?>"></a>
@@ -179,34 +133,10 @@ if(isset($a_s)){
 					
 
 				<!-- Pagination -->
+				
+					<?php include('layouts/advancedSearch/paginationAdvancedSearch.php'); ?>
 
-				<nav aria-label="pagination" style="width: 16%; margin: auto; padding-left: 0;">
-			        <ul class="pagination">
-			        <?php
-			            if($page!=1){
-			            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
-			            }
-			            else{
-			            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
-			            } ?>
-
-			            <span id="radio" class="text-center font-weight-bold">
-                                <select id="select_pagination" name="bypage" onchange="bypage_search(this)">
-                                <?php foreach([10, 20, 30, 50] as $nb) : ?>
-                                  <option value="<?= $nb ?>" <?= ($bypage == $nb) ? 'selected="selected"': '' ?>><?= $nb ?></option>
-                                <?php endforeach ?>
-                                </select>
-						</span>
-
-			            <?php if($page!=$nbPages){
-			            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
-			            }
-			            else{
-			            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
-			            }
-			        ?>
-			        </ul>
-			    </nav>
+				
 
 			    <!-- Fin de la pagination -->
 
