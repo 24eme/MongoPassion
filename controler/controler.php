@@ -535,8 +535,8 @@
         if(isset($_GET['db'])){
             $db=htmlspecialchars($_GET['db']);
         }
-        elseif (isset($_POST['newdb'])) {
-            $db=htmlspecialchars($_POST['newdb']);
+        elseif (isset($_GET['newdb'])) {
+            $db=htmlspecialchars($_GET['newdb']);
         }
         else{
             header('Location: index.php?action=error');
