@@ -493,7 +493,7 @@
         $db = htmlspecialchars($_GET['db']);
 
         try{
-            $newname = str_replace(' ', '_', htmlspecialchars($_POST['name']));
+            $newname = str_replace(' ', '_', htmlspecialchars($_GET['name']));
             createCollec($newname,$serve,$db);
             header('Location: index.php?action=getDb&serve='.$serve.'&db='.$db.'');
         }
