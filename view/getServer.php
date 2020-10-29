@@ -25,7 +25,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of s
 
 <!-- StartModal -->
 
-<?php include('layouts/modalNewDatabase.php'); ?>
+<?php include('layouts/getServer/modalNewDatabase.php'); ?>
 <!-- endModal -->
 
 

@@ -24,7 +24,7 @@
 		?>
 
 		<!-- Partie recherche -->
-		<?php include('layouts/searchByIdOrKeyGetColletion.php'); ?>
+		<?php include('layouts/getCollection/searchByIdOrKeyGetColletion.php'); ?>
 
 		<!-- Fin de la partie recherche -->
 
@@ -50,7 +50,7 @@
 
 						<!-- Pagination -->
 			
-						     <?php include('layouts/paginationGetCollection.php'); ?>
+						     <?php include('layouts/getCollection/paginationGetCollection.php'); ?>
 		                   
 					    <!-- Fin de la pagination -->
 

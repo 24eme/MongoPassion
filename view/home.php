@@ -46,11 +46,11 @@
 
 
 	<!-- Tableau des serveurs -->
-	<?php require_once('layouts/tableauServerHome.php') ?>
+	<?php require_once('layouts/home//tableauServerHome.php') ?>
 	<!-- Fin du tableau des serveurs -->
 
 	<!-- Modal connexion -->
-	<?php require_once('layouts/modalHomeConnexion.php') ?>
+	<?php require_once('layouts/home/modalHomeConnexion.php') ?>
 	<!-- Fin du modal connexion -->
 
 

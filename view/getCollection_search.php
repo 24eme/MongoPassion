@@ -61,7 +61,7 @@
 
 		<!-- Partie recherche -->
 
-		<?php include('layouts/searchByIdOrKeyInGetCollectionsearch.php'); ?>
+		<?php include('layouts/getCollection_search/searchByIdOrKeyInGetCollectionsearch.php'); ?>
 		<!-- Fin de la partie recherche -->
 
 
@@ -84,7 +84,7 @@
 
 
 						<!-- Pagination -->
-						<?php include('layouts/paginationGetCollectionSearch.php'); ?>
+						<?php include('layouts/getCollection_search/paginationGetCollectionSearch.php'); ?>
 				 		
 
 				    <!-- Fin de la pagination -->
