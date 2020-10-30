@@ -11,29 +11,27 @@
 
 		<div class="container">
 
-		<?php
 
-		//Titre de la page
+		<!-- Titre de la page -->
 
-		echo '<h1 class = "title text-center font-weight-bold"><i title="Create new document" class="fa fa-fw fa-book"></i> New Document</h1>';
+		<h1 class = "title text-center font-weight-bold"><i title="Create new document" class="fa fa-fw fa-book"></i> New Document</h1>
 
-		//Fin titre de la page
+		<!-- Fin titre de la page -->
 
 
-		// alert message  d'erreur
-		if(isset($_GET['msg'])){
+		<!-- alert message  d'erreur -->
 
-		  echo '<div id="cacherAlert" class="text-center alert col-lg-8 offset-lg-2 alert-danger alert-dismissible fade show" role="alert">';
-		   echo $_GET['msg'];
-		  echo '<button type="button" class="close" onclick="cacherAlert()" aria-label="Close">
-		    <span aria-hidden="true">&times;</span>
-		  </button>';
-		  echo '</div>';
+		<?php if(isset($_GET['msg'])){ ?>
+		  <div id="cacherAlert" class="text-center alert col-lg-8 offset-lg-2 alert-danger alert-dismissible fade show" role="alert">
+			   <?php echo $_GET['msg'] ?>
+			  <button type="button" class="close" onclick="cacherAlert()" aria-label="Close">
+			  	<span aria-hidden="true">&times;</span>
+			  </button>
+		  </div>
+		<?php } ?>
 
-		}
-		// fin alert message  d'erreur
+		<!-- fin alert message  d'erreur -->
 
-		?>
 
 		<!-- Bouton switch JsonEditor -->
 
@@ -41,13 +39,11 @@
 		<div id="switch">
 			<label id="switch_json">JSONEditor</label>
 			<label class="switch">
-				<?php
-				if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
-			  		echo '<input type="checkbox" id="myCheck" onclick="switchJ()">';
-			  	} else {
-			  		echo '<input type="checkbox" id="myCheck" checked onclick="switchJ()">';
-			  	}
-			  ?>
+				<?php if (isset($_GET['input']) && ($_GET['input'] === 'true')) { ?>
+			  		<input type="checkbox" id="myCheck" onclick="switchJ()">
+			  	<?php } else { ?>
+			  		<input type="checkbox" id="myCheck" checked onclick="switchJ()">
+			  	<?php } ?>
 			  <span class="slider round"></span>
 			</label>
 		</div>
@@ -72,31 +68,26 @@
 
 		<?php if($jsoneditor){?>
 			<div id="DivContentTable">
-				<?php
-					if (isset($_GET['input']) && ($_GET['input'] === 'true')) {
-						echo '<div id="json" class="createDoc" style="display: none;">';
-					} else {
-						echo '<div id="json" class="createDoc" style="display: block;">';
-					}
-				?>
-						     <div id="create_content">
-						     	<button class="btn btn-primary" id="getJSON" style="background-color: #4CAF50;border:none; margin-left: auto; margin-right: 350px;">Create</button>
-						    </div>
-						     <span id="nC"></span>
-						 	<div id="DivContentTable">
+				<?php if (isset($_GET['input']) && ($_GET['input'] === 'true')) { ?>
+						<div id="json" class="createDoc" style="display: none;">
+					<?php } else { ?>
+						<div id="json" class="createDoc" style="display: block;">
+					<?php } ?>
+							<div id="create_content">
+								<button class="btn btn-primary" id="getJSON" style="background-color: #4CAF50;border:none; margin-left: auto; margin-right: 350px;">Create</button>
+							</div>
+							<span id="nC"></span>
+							<div id="DivContentTable">
 								<div id="jsoneditor" class="col-lg-8 offset-lg-2" style="height: 750px;"></div>
 							</div>
-						 	<div id="create_content">
-						    	<button class="btn btn-primary" id="getJSON2" style="background-color: #4CAF50;border:none; margin-left: auto; margin-right: 350px;">Create</button>
-						 	</div>
-				    </div>
-
-		 <!-- fin Affichage du formulaire JsonEdition -->
-
-
-
+							<div id="create_content">
+								<button class="btn btn-primary" id="getJSON2" style="background-color: #4CAF50;border:none; margin-left: auto; margin-right: 350px;">Create</button>
+							</div>
+						</div>
 			</div>
 		<?php }?>
+
+		 <!-- fin Affichage du formulaire JsonEdition -->
 
 
 
@@ -109,17 +100,16 @@
 
 		<div class="container">
 
-		<?php
 
-		//Bouton de retour
+		<!-- Bouton de retour -->
 
-		echo '<div id="nav_view float-left">';
-			if(isset($s_g)){
-			 	echo '<a href="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'"><button class="return btn btn-primary">< list of docs</button></a>';
-			}
-			else{
-			 	echo '<a href="index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><button class="return btn btn-primary">< list of docs</button></a>';
-			}
+		<div id="nav_view float-left">
+			<?php if(isset($s_g)){ ?>
+			 	<a href="index.php?action=getCollection_search&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g ?>"><button class="return btn btn-primary">< list of docs</button></a>
+			<?php }
+			else{ ?>
+			 	<a href="index.php?action=getCollection&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll ?>"><button class="return btn btn-primary">< list of docs</button></a>
+			<?php } ?>
 		echo '</div>';
 		?>
 
