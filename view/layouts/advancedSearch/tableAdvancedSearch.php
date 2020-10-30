@@ -33,13 +33,15 @@
 					else{
 						$value = printable($x_value);
 					}
+
 					$content[$x] =  improved_var_export($value);
+
 				}
 				$content = init_json($content);
 				unset($content['_id']);
 				$json = stripslashes(json_encode($content)); ?>
 				<tr>
-					<td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark fa fa-fw fa-file"></i><?php echo $entry['_id'] ?></a></td>
+					<td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark  fa fa-file-text-o"></i><?php echo $entry['_id'] ?></a></td>
 					<td id="json" class="text-left"><?php echo substr($json, 0, 100) ?>
 					<?php if(strlen($json)>100){echo ' [...] }';} ?>
 					</td>
