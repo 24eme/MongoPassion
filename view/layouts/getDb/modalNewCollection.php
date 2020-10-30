@@ -4,14 +4,14 @@
 			      <div class="modal-body">
 						<div  class="border  bg-light m-auto mb-2">
 							<label for="pet-select" class="font-weight-bold">Create a new collection :</label>
-							<?php echo '<form autocomplete="off" action="index.php?action=createCollection&serve='.$serve.'&db='.$db.'">'; ?>
+							<form autocomplete="off" action="index.php?action=createCollection&serve=<?php echo $serve.'&db='.$db ?>">'
 								<div class="input-group mb-3">
 									<input type="hidden" name="action" value="createCollection">
 									<input type="hidden" name="serve" value='<?php echo $serve ?>'>
 									<input type="hidden" name="db" value='<?php echo $db ?>'>
 									<input type="text" list="browsers" placeholder="Collection name" required="required" class="form-control border border-success autofocus" name="name"  />
 									<div class="input-group-append">
-									<input class="btn bg-success text-light " type="submit" value="Create"/>
+										<input class="btn bg-success text-light " type="submit" value="Create"/>
 									</div>
 								</div>
 							</form>
