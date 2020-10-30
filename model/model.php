@@ -757,7 +757,6 @@ function deleteColl($serve,$db,$coll)
 	$db = strval($db);
 
 	$database = $client->$db;
-
 	$database->dropCollection(htmlspecialchars($coll));
 }
 
