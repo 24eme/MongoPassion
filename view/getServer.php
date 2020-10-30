@@ -55,7 +55,7 @@ echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of s
 			?>
 		</table>
 
-		<div>
+		<div class="m-2">
 			<!-- Start Button add database -->
 			<button type='button' class='btn btn-dark  float-right' data-toggle='modal' data-target='#myModal'>
 					<i title="Create database" class='fa fa-fw fa-database'></i><i title="Create database" class='fa fa-fw fa-plus'></i>
