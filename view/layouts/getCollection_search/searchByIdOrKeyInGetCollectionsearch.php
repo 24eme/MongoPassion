@@ -3,21 +3,19 @@
 
 	<!-- Barre de boutons -->
 
-		<?php echo '<form autocomplete="off" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
+		<form autocomplete="off" action="index.php?action=getCollection_search&serve=<?php $serve.'&db='.$db.'&coll='.$coll ?>">
 
 	        <div class="input-group mb-1">
 	        	<input type="hidden" name="action" value="getCollection_search">
 				<input type="hidden" name="serve" value='<?php echo $serve ?>'>
 				<input type="hidden" name="db" value='<?php echo $db ?>'>
 				<input type="hidden" name="coll" value='<?php echo $coll ?>'>
-	        	<?php
-	        		if(isset($recherche_g)){
-	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="s_g" id="recherche_g" value="'.$recherche_g.'" />';
-	        		}
-	        		else{
-	        			echo '<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="s_g" id="recherche_g" />';
-	        		}
-	        	?>
+	        	<?php if(isset($recherche_g)){ ?>
+	        		<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="s_g" id="recherche_g" value="<?php echo $recherche_g ?>"/>
+	        	<?php }
+	        		else{ ?>
+	        			<input type="search"  list="browsers" placeholder="Search by id or key:value" required="required" class="flexdatalist form-control border border-success" name="s_g" id="recherche_g" />
+	        		<?php } ?>
 
 				<!-- Autocomplétion des champs -->
 
