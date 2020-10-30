@@ -1,11 +1,11 @@
 <div class="card mb-1">
   <div class="card-body">
 
-	<!-- Formulaire de recherche par id et clé:valeur -->
 
+	<!-- Formulaire de recherche par id et clé:valeur -->
 		
 		<div id="searchId">
-			<?php echo '<form class="col-md-12" autocomplete="off" action="index.php?action=getCollection_search&serve='.$serve.'&db='.$db.'&coll='.$coll.'">'; ?>
+			<form class="col-md-12" autocomplete="off" action="index.php?action=getCollection_search&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll ?>">
 				<div class="input-group mb-1">
 					<input type="hidden" name="action" value="getCollection_search">
 					<input type="hidden" name="serve" value='<?php echo $serve ?>'>
@@ -16,19 +16,17 @@
 					<!-- Autocomplétion des champs -->
 
 					<datalist id="browsers">
-				        <?php
-				        	foreach ($docs[0] as $key => $value) {
+				        <?php foreach ($docs[0] as $key => $value) {
 				        		echo  "<option value=".$key.":>";
-							}
+				        	}
 							foreach ($docs as $key => $value) {
-			        		echo  "<option value=".$value['_id'].">";
-						    }
-				        ?>
-
+			        			echo  "<option value=".$value['_id'].">";
+						    } ?>
 			 		</datalist>
 
-
 			 		<!-- Fin de l'autocomplétion des champs -->
+
+
 					<div class="input-group-append">
 					<input class="btn bg-success text-light "  type="submit" id="search" value="Search"/>
 					</div>
