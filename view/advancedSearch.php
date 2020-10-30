@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>Advanced Search</title>"?>
+	<title>Advanced Search</title>
 	<?php require_once('layouts/header.php') ?>
 </head>
 
@@ -15,9 +15,8 @@
 
 //Préparation des variables de recherche pour leur utilisation en JS
 
-if(isset($a_s)){
-	echo '<p id="clé" style="display: none">a_s</p>';
-	?>
+if(isset($a_s)){ ?>
+	<p id="clé" style="display: none">a_s</p>
 	<input type=hidden id=valeur value=<?php echo $a_s; ?>>
 	<?php
 }
@@ -44,12 +43,12 @@ if(isset($a_s)){
 		<?php echo $flash_error; ?>
 	</div>
   <?php endif; ?>
-	<?php echo '<form action="'.$link_search.'">';
-		echo '<label>Execute a query in a collection:</label>'; ?>
+	<form action="<?php echo $link_search ?>">
+		<label>Execute a query in a collection:</label>
 		<input type="hidden" name="action" value="advancedSearch">
-		<?php echo'<input type="hidden" name="serve" value='.$serve.'>';
-		echo'<input type="hidden" name="db" value='.$db.'>';
-		echo'<input type="hidden" name="coll" value='.$coll.'>'; ?>
+		<input type="hidden" name="serve" value='<?php echo $serve ?>'>
+		<input type="hidden" name="db" value='<?php echo $db ?>'>
+		<input type="hidden" name="coll" value='<?php echo $coll ?>'>
 		<?php if(isset($a_s)){ ?>
 			<div id="form_a_s">
 				db.<select id="a_s_coll" name="a_s_coll">
@@ -95,10 +94,10 @@ if(isset($a_s)){
 	<div id="DivContentTable">
 			<div id='result'>
 				<div id="head_content">
-					<?php echo '<h5 align="center">Search results '.(1+(($page-1)*$bypage)).'-';
-								if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-								else{echo $nbDocs;}
-								echo ' of '.$nbDocs.' :</h5>'?>
+					<h5 align="center">Search results <?php echo (1+(($page-1)*$bypage))?> -
+					<?php if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+					else{echo $nbDocs;} ?>
+					of <?php echo $nbDocs ?> :</h5>
 					<div class="dropdown">
 					  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						  <i class="text-light fa fa-fw fa-download"></i>
@@ -136,13 +135,11 @@ if(isset($a_s)){
 				
 					<?php include('layouts/advancedSearch/paginationAdvancedSearch.php'); ?>
 
-				
-
 			    <!-- Fin de la pagination -->
 
 			</div>
-			</div>
-</div>
+		</div>
+	</div>
 	<br>
 <?php } ?>
 
