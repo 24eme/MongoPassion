@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>Advanced Search</title>"?>
+	<title>Advanced Search</title>
 	<?php require_once('layouts/header.php') ?>
 </head>
 
@@ -15,9 +15,8 @@
 
 //Préparation des variables de recherche pour leur utilisation en JS
 
-if(isset($a_s)){
-	echo '<p id="clé" style="display: none">a_s</p>';
-	?>
+if(isset($a_s)){ ?>
+	<p id="clé" style="display: none">a_s</p>
 	<input type=hidden id=valeur value=<?php echo $a_s; ?>>
 	<?php
 }
@@ -44,12 +43,12 @@ if(isset($a_s)){
 		<?php echo $flash_error; ?>
 	</div>
   <?php endif; ?>
-	<?php echo '<form action="'.$link_search.'">';
-		echo '<label>Execute a query in a collection:</label>'; ?>
+	<form action="<?php echo $link_search ?>">
+		<label>Execute a query in a collection:</label>
 		<input type="hidden" name="action" value="advancedSearch">
-		<?php echo'<input type="hidden" name="serve" value='.$serve.'>';
-		echo'<input type="hidden" name="db" value='.$db.'>';
-		echo'<input type="hidden" name="coll" value='.$coll.'>'; ?>
+		<input type="hidden" name="serve" value='<?php echo $serve ?>'>
+		<input type="hidden" name="db" value='<?php echo $db ?>'>
+		<input type="hidden" name="coll" value='<?php echo $coll ?>'>
 		<?php if(isset($a_s)){ ?>
 			<div id="form_a_s">
 				db.<select id="a_s_coll" name="a_s_coll">
@@ -95,10 +94,10 @@ if(isset($a_s)){
 	<div id="DivContentTable">
 			<div id='result'>
 				<div id="head_content">
-					<?php echo '<h5 align="center">Search results '.(1+(($page-1)*$bypage)).'-';
-								if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
-								else{echo $nbDocs;}
-								echo ' of '.$nbDocs.' :</h5>'?>
+					<h5 align="center">Search results <?php echo (1+(($page-1)*$bypage))?> -
+					<?php if(($page*$bypage)<$nbDocs){echo $page*$bypage;}
+					else{echo $nbDocs;} ?>
+					of <?php echo $nbDocs ?> :</h5>
 					<div class="dropdown">
 					  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						  <i class="text-light fa fa-fw fa-download"></i>
@@ -110,24 +109,24 @@ if(isset($a_s)){
 					</div>
 				</div>
 				<table class="table table-sm table-striped">
-					<?php if(empty($result)){
-						echo '<p align="center">No document matches your search</p>';
-					}
-					else{
-						if(isset($docs)){
-							echo '<tr>';
-							foreach ($docs[0] as $key => $value) {
-								echo '<th class="text-left">'.$key.'</th>';
-							}
-							echo '</tr>';
-							foreach ($docs as $entry) {
-								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
-								echo '<tr>';
-								foreach ($entry as $value) {
-									echo '<td><a href="'.$link_v.'">'.$value.'</a></td>';
-								}
-								echo '</tr>';
-							}
+					<?php if(empty($result)){ ?>
+						<p align="center">No document matches your search</p>
+					<?php }
+					else{ 
+						if(isset($docs)){ ?>
+							<tr>
+							<?php foreach ($docs[0] as $key => $value) { ?>
+								<th class="text-left"><?php echo $key ?></th>
+							<?php } ?>
+							</tr>
+							<?php foreach ($docs as $entry) { 
+								$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page; ?>
+								<tr>
+								<?php foreach ($entry as $value) { ?>
+									<td><a href="<?php echo $link_v ?>"><?php echo $value ?></a></td>
+								<?php } ?>
+								</tr>
+							<?php }
 							$link_csv = '?action=export&serve='.$serve.'&db='.$db.'&form=csv&req='.urlencode($a_s).'&ret='.urlencode($current_query);
 						}
 						else{
@@ -148,13 +147,14 @@ if(isset($a_s)){
 								}
 								$content = init_json($content);
 								unset($content['_id']);
-					 			$json = stripslashes(json_encode($content));
-								echo '<tr><td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark fa fa-fw fa-file"></i>'.$entry['_id'].'</a></td>';
-								echo '<td id="json" class="text-left">'.substr($json, 0, 100).'';
-								if(strlen($json)>100){echo ' [...] }';}
-								echo '</td>';
-								echo '</tr>';
-							}
+					 			$json = stripslashes(json_encode($content)); ?>
+								<tr>
+									<td class="classic"><a class="text-success text-center" href="'.$link_v.'"><i title="id of document"class="text-dark fa fa-fw fa-file"></i><?php echo $entry['_id'] ?></a></td>
+									<td id="json" class="text-left"><?php echo substr($json, 0, 100) ?>
+									<?php if(strlen($json)>100){echo ' [...] }';} ?>
+									</td>
+								</tr>
+							<?php }
 							$link_json = '?action=export&serve='.$serve.'&db='.$db.'&form=json&req='.urlencode($a_s).'&ret='.urlencode($current_query);
 						}
 					}
@@ -182,13 +182,12 @@ if(isset($a_s)){
 
 				<nav aria-label="pagination" style="width: 16%; margin: auto; padding-left: 0;">
 			        <ul class="pagination">
-			        <?php
-			            if($page!=1){
-			            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>';
-			            }
-			            else{
-			            	echo '<span id="prev"><span aria-hidden="true">&laquo;</span></span>';
-			            } ?>
+			        	<?php if($page!=1){ ?>
+			            	<a href="index.php?action=advancedSearch&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&page='.($page-1).'&bypage='.$bypage.'&a_s='.urlencode($a_s) ?>" id="prev" aria-current="page"><span aria-hidden="true">&laquo;</span></a>
+			            <?php }
+			            else{ ?>
+			            	<span id="prev"><span aria-hidden="true">&laquo;</span></span>
+			            <?php } ?>
 
 			            <span id="radio" class="text-center font-weight-bold">
                                 <select id="select_pagination" name="bypage" onchange="bypage_search(this)">
@@ -198,12 +197,12 @@ if(isset($a_s)){
                                 </select>
 						</span>
 
-			            <?php if($page!=$nbPages){
-			            	echo '<a href="index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'&a_s='.urlencode($a_s).'" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>';
-			            }
-			            else{
-			            	echo '<span id="next"><span aria-hidden="true">&raquo;</span></span>';
-			            }
+			            <?php if($page!=$nbPages){ ?>
+			            	<a href="index.php?action=advancedSearch&serve= <?php echo $serve.'&db='.$db.'&coll='.$coll.'&page='.($page+1).'&bypage='.$bypage.'&a_s='.urlencode($a_s) ?>" id="next" aria-current="page"><span aria-hidden="true">&raquo;</span></a>
+			            <?php }
+			            else{ ?>
+			            	<span id="next"><span aria-hidden="true">&raquo;</span></span>
+			            <?php } ?>
 			        ?>
 			        </ul>
 			    </nav>
@@ -211,8 +210,8 @@ if(isset($a_s)){
 			    <!-- Fin de la pagination -->
 
 			</div>
-			</div>
-</div>
+		</div>
+	</div>
 	<br>
 <?php } ?>
 
