@@ -44,7 +44,7 @@
 		//Titre de la page
 
 		if(isset($recherche_g)){
-			echo "<h1 class='title text-center font-weight-bold'><span>Search results for </span><i title='Search results for $recherche_g' class='fa fa-fw fa-book'></i> ";
+			echo "<h1 class='title text-center font-weight-bold'><span>Search results for </span><i title='Search results for $recherche_g' class='fa fa-file-text-o'></i> ";
 			if($recherche_g==""){echo "\"Aucun critère\""; $p='none';}
 			if($recherche_g!=""){
 				echo "\"<font color='#62a252'>".$recherche_g."</font>\"";
@@ -91,7 +91,7 @@
 				
 				    	<!-- Bouton nouveau document -->
 						<div class="ml-2">
-						  <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i title="Create new doc" class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-fw fa-book"></i></a></button>'; ?>
+						  <?php echo '<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'"><i title="Create new doc" class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-file-text-o"></i></a></button>'; ?>
 						</div>
 				 		 <!-- Fin du bouton nouveau document -->
 
