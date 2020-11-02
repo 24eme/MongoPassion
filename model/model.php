@@ -228,9 +228,6 @@ function getUpdate_doc($doc_text,$date_array,$up_date_array)
 	$test = improved_var_export($dec);
 
 	unset($test['_id']);
-
-	$date_array = htmlspecialchars($date_array);
-	$up_date_array = htmlspecialchars($up_date_array);
 	if(!empty($date_array)){
 		foreach ($date_array as $x=>$x_value) {
 			$temp = strtotime($test[$x]['date'])*1000;

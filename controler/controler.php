@@ -93,6 +93,8 @@
              }
 	    	$update = getUpdate_doc($doc_text,$date_array,$up_date_array);
 
+            var_dump($update);
+
 	    	$id = getDoc_id($doc,$type_id);
 	    	updateDoc($id,$update,$serve,$db,$coll);
 

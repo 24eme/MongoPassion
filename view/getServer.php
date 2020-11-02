@@ -1,31 +1,28 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>".$serve."</title>"?>
+	<title><?php echo $serve ?></title>
 
 	<?php require_once('layouts/header.php') ?>
 </head>
+
 <body>
-
-
 
 <?php include('layouts/breadcrumb.php'); ?>
 
 <div class="container">
 
-<?php
+<!-- Titre de la page -->
 
-//Titre de la page
+<h1 align='center' class='title font-weight-bold'><i title='adress ip of server' class='fa fa-fw fa-desktop'></i><?php echo $serve ?></h1>
 
-echo "<h1 align='center' class='title font-weight-bold'><i title='adress ip of server' class='fa fa-fw fa-desktop'></i>".$serve."</h1>";
+<!-- Fin du titre de la page -->
 
-//Fin du titre de la page
-
-?>
 
 <!-- StartModal -->
 
 <?php include('layouts/getServer/modalNewDatabase.php'); ?>
+
 <!-- endModal -->
 
 

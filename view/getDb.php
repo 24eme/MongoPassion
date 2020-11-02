@@ -88,7 +88,9 @@
 	    </div>
 	</div>
 </div>
+
 <!-- Fin du tableau des collections -->
+
 </div>
 
 

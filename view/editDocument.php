@@ -94,7 +94,6 @@
 
 		    <!--Fin formatage des données du document en JSON -->
 
-			
 		
 		 	<!-- Affichage du formulaire mode édition classique -->
 
@@ -156,7 +155,9 @@
 
 	<!-- Fin bouton de retour -->
 
-
+	<?php var_dump($date_array); ?>
+	<?php var_dump($up_date_array); ?>
+	
 	<!-- footer -->
 
 	<?php
