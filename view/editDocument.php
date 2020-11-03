@@ -154,9 +154,7 @@
 	</div>
 
 	<!-- Fin bouton de retour -->
-
-	<?php var_dump($date_array); ?>
-	<?php var_dump($up_date_array); ?>
+	
 	
 	<!-- footer -->
 

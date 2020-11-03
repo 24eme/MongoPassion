@@ -222,7 +222,7 @@ function searchError_doc_id()
 }
 
 
-function getUpdate_doc($doc_text,$date_array,$up_date_array)
+function getUpdate_doc($doc_text,$date_array)
 {
 	$dec = json_decode($doc_text);
 	$test = improved_var_export($dec);
@@ -230,13 +230,11 @@ function getUpdate_doc($doc_text,$date_array,$up_date_array)
 	unset($test['_id']);
 	if(!empty($date_array)){
 		foreach ($date_array as $x=>$x_value) {
-			$temp = strtotime($test[$x]['date'])*1000;
-			$diff = $up_date_array[$x]-$temp;
-			$time = $x_value - $diff;
-			$date = new MongoDB\BSON\UTCDateTime($time);
+			$date = new MongoDB\BSON\UTCDateTime(new DateTime($test[$x]['date'],new DateTimeZone('UTC')));
 			$test[$x] = $date;
 		}
 	}
+	var_dump($test);
 	return $test;
 }
 

@@ -6,7 +6,6 @@
     var variableRecuperee = <?php echo stripslashes(json_encode($doc)); ?>;
     var link_doc = <?php echo (json_encode($link_doc)); ?>;
     var date_array = <?php echo json_encode(serialize($date_array)); ?>;
-    var up_date_array = <?php echo json_encode(serialize($up_date_array)); ?>;
 
     /* Création du formulaire */
 
@@ -44,14 +43,8 @@
         j.setAttribute('name',"date_array");
         j.setAttribute('value',date_array);
 
-        var k = document.createElement("input"); //input element, text
-        k.setAttribute('type',"hidden");
-        k.setAttribute('name',"up_date_array");
-        k.setAttribute('value',up_date_array);
-
         f.appendChild(i);
         f.appendChild(j);
-        f.appendChild(k);
 
         var span = document.getElementById("nC");
 

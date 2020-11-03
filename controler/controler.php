@@ -81,7 +81,6 @@
         $doc_text = strip_tags($_POST['doc_text']);
 
         $date_array = unserialize($_POST['date_array']);
-        $up_date_array = unserialize($_POST['up_date_array']);
 
         try{
 
@@ -91,9 +90,7 @@
                 header('Location: index.php?action=editDocument&serve='.$_GET['serve'].'&db='.$_GET['db'].'&coll='.$_GET['coll'].'&doc='.$doc.'&type_id='.$type_id.'&page='.$page.'&msg=Syntax error : your document does not respect JSON syntax rules, example : {  "example_field": "content[...]"}'.'&doc_text='. json_encode(array(data => $doc_text)).'&input=true');
                 return;
              }
-	    	$update = getUpdate_doc($doc_text,$date_array,$up_date_array);
-
-            var_dump($update);
+	    	$update = getUpdate_doc($doc_text,$date_array);
 
 	    	$id = getDoc_id($doc,$type_id);
 	    	updateDoc($id,$update,$serve,$db,$coll);
