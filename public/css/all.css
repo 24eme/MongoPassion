@@ -231,7 +231,6 @@ input:focus+.slider {
     position: absolute;
     display: flow-root;
     margin-left: 20px;
-    background-color: red;
 }
 
 
