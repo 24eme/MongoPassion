@@ -230,7 +230,8 @@ input:focus+.slider {
     margin-top: -18px;
     position: absolute;
     display: flow-root;
-    margin-left: 150px;
+    margin-left: 20px;
+    background-color: red;
 }
 
 
