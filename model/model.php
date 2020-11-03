@@ -331,6 +331,24 @@ function getNew_doc($doc_text)
 {
 	$dec = json_decode($doc_text);
 	$test = improved_var_export($dec);
+	foreach ($test as $key => $value) {
+		if(gettype($value)==string){
+			if(stripos($value, 'isodate(')!==false){
+				$temp = explode('\'', $value);
+				if (sizeof($temp)==1) {
+					$temp = explode('"', $value);
+				}
+				try{
+					$date = new MongoDB\BSON\UTCDateTime(new DateTime($temp[1],new DateTimeZone('UTC')));
+				}
+				catch(Exception $e){
+					$date = $temp[1];
+				}
+				$test[$key] = $date;
+			}
+		}
+	}
+	var_dump($test);
 	return $test;
 }
 
