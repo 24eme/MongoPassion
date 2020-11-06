@@ -138,7 +138,7 @@
 
 	<!-- Bouton de retour -->
 
-	<div id="nav_view float-left">
+	<div id="nav_view_float-left">
 		<?php if(isset($s_g)){ ?>
 			<a href="index.php?action=getCollection_search&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'&page='.$page ?>"><button class="return text-center btn btn-primary">< search</button></a>
 		<?php }
