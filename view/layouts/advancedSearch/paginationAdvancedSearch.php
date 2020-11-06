@@ -15,8 +15,9 @@
             <?php if(($page*$bypage)<$nbDocs): ?>
                 <?= $page*$bypage; ?>
             <?php else: ?>
-                <?= $nbDocs . ' of '.$nbDocs ?>
+                <?= $nbDocs ?>
             <?php endif; ?>
+            <?=' of '.$nbDocs ?>
         </h6>
     </div>
 

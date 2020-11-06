@@ -234,7 +234,23 @@ function getUpdate_doc($doc_text,$date_array)
 			$test[$x] = $date;
 		}
 	}
-	var_dump($test);
+	foreach ($test as $key => $value) {
+		if(gettype($value)==string){
+			if(stripos($value, 'isodate(')!==false){
+				$temp = explode('\'', $value);
+				if (sizeof($temp)==1) {
+					$temp = explode('"', $value);
+				}
+				try{
+					$date = new MongoDB\BSON\UTCDateTime(new DateTime($temp[1],new DateTimeZone('UTC')));
+				}
+				catch(Exception $e){
+					$date = $temp[1];
+				}
+				$test[$key] = $date;
+			}
+		}
+	}
 	return $test;
 }
 
@@ -346,7 +362,6 @@ function getNew_doc($doc_text)
 			}
 		}
 	}
-	var_dump($test);
 	return $test;
 }
 

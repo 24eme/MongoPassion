@@ -12,10 +12,11 @@
 	<div class="mx-1">
 		<h6 class=" pt-2">Documents <?= (1+(($page-1)*$bypage)) ?> -
 			<?php if(($page*$bypage)<$nbDocs): ?>
-				<?= $page*$bypage; ?>
-			<?php else: ?>
-				<?= $nbDocs . ' of '.$nbDocs ?>
-			<?php endif; ?>
+                <?= $page*$bypage; ?>
+            <?php else: ?>
+                <?= $nbDocs ?>
+            <?php endif; ?>
+            <?=' of '.$nbDocs ?>
 		</h6>
 	</div>
 					
