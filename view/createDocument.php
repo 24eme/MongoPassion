@@ -108,6 +108,9 @@
 			<?php if(isset($s_g)){ ?>
 			 	<a href="index.php?action=getCollection_search&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g ?>"><button class="return btn btn-primary">< list of docs</button></a>
 			<?php }
+			elseif(isset($a_s)){ ?>
+				<a class="text-center" href="index.php?action=advancedSearch&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&a_s='.$a_s.'&page=1' ?>"><button class="return  btn btn-primary">< advanced search</button></a>
+			<?php }
 			else{ ?>
 			 	<a href="index.php?action=getCollection&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll ?>"><button class="return btn btn-primary">< list of docs</button></a>
 			<?php } ?>

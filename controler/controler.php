@@ -175,6 +175,11 @@
             $s_g = htmlspecialchars($_GET['s_g']);
         }
 
+        if(isset($_GET['a_s'])){
+            $a_s = htmlspecialchars($_GET['a_s']);
+        }
+
+
         require('view/createDocument.php');
     }
 

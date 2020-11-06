@@ -129,13 +129,32 @@ if(isset($a_s)){ ?>
 
 
 				<div style="width: 100%;">
-					
+				
 
-				<!-- Pagination -->
+				<div class="row  justify-content-between  mt-3 mx-1">
+
+					<!-- Bouton de retour -->
+
+					<div>
+						<a href="index.php?action=getCollection&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&page='.$page ?>"><button class="return btn btn-primary">< list of docs</button></a>
+					</div>
+
+					<!-- Fin du bouton de retour -->
+
+					<!-- Pagination -->
 				
 					<?php include('layouts/advancedSearch/paginationAdvancedSearch.php'); ?>
 
-			    <!-- Fin de la pagination -->
+			    	<!-- Fin de la pagination -->
+
+			    	<!-- Bouton nouveau document -->
+
+					<div class="ml-2">
+						<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s) ?>"><i title="Create new doc"class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-file-text-o"></i></a></button>
+					</div>
+
+					<!-- Fin du bouton nouveau document -->
+			    </div>
 
 			</div>
 		</div>
