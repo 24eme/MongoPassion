@@ -5,16 +5,22 @@
 	else{ 
 		if(isset($docs)){ ?>
 			<tr>
-				<?php foreach ($docs[0] as $key => $value) { ?>
+				<?php foreach ($fields as $key) { ?>
 					<th class="text-left"><?php echo $key ?></th>
 				<?php } ?>
 			</tr>
 			<?php foreach ($docs as $entry) { 
+				$keys = array_keys($entry);
 				$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page; ?>
 				<tr>
-					<?php foreach ($entry as $value) { ?>
-						<td><a href="<?php echo $link_v ?>"><?php echo $value ?></a></td>
-					<?php } ?>
+					<?php foreach ($fields as $field) { 
+						if(in_array($field, $keys)){?>
+							<td><a href="<?php echo $link_v ?>"><?php echo $entry[$field] ?></a></td>
+						<?php }
+						else{ ?>
+							<td><a href="<?php echo $link_v ?>">----</a></td>
+						<?php }
+					} ?>
 				</tr>
 			<?php }
 			$link_csv = '?action=export&serve='.$serve.'&db='.$db.'&form=csv&req='.urlencode($a_s).'&ret='.urlencode($current_query);
