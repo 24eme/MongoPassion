@@ -111,9 +111,8 @@
 			else{ ?>
 			 	<a href="index.php?action=getCollection&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll ?>"><button class="return btn btn-primary">< list of docs</button></a>
 			<?php } ?>
-		echo '</div>';
-		?>
-
+		</div>
+		
 		<!-- Fin du bouton de retour -->
 
 
