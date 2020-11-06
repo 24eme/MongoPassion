@@ -761,9 +761,13 @@
         $link_return = '?'.$return;
 
         if($form == 'json'){
-            $result = getDocs_export($serve,$db,$req);
+            $name = 'json_'.rand().'.json';
+
+            header('content-type:application/json');
+            header('Content-Disposition: attachment; filename="'.$name.'"');
             
-            $export_json = "[\n";
+            $result = getDocs_export_j($serve,$db,$req);
+            
             foreach ($result as $entry) {
                 $content = array();
                 foreach ($entry as $x => $x_value) {
@@ -780,16 +784,12 @@
                 }
                 $content = init_json($content);
                 $json = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
-                $export_json = $export_json.$json.",\n";
+                echo $json;
             }
-            $export_json = substr($export_json, 0, -2);
-            $export_json = $export_json."\n]";
-            $link = 'data:application/json;charset=utf-8,'.rawurlencode($export_json);
-            $name = 'json_'.rand().'.json';
-
-            require('view/export_json.php');
         }
         elseif($form == 'csv'){
+            $name = 'csv_'.rand().'.csv';
+
             $docs = getDocs_export($serve,$db,$req);
 
             require('view/export_csv.php');

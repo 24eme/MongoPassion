@@ -829,3 +829,27 @@ function getDocs_export($serve,$db,$req)
 
 	return $rows;
 }
+
+function getDocs_export_j($serve,$db,$req)
+{
+	$manager = getManager($serve);
+
+	$jscode=$req;
+
+	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+
+	$cursor = $manager->executeCommand($db, $command)->toArray();
+
+	$temp = (array) $cursor[0];
+	$test = (array) $temp['retval'];
+	$ns = $test['_ns'];
+	$filter = (array) $test['_query'];
+	$fields = (array) $test['_fields'];
+
+	$options = ['projection'=>$fields];
+
+	$query = new \MongoDB\Driver\Query($filter, $options);
+	$rows   = $manager->executeQuery($ns, $query);
+
+	return $rows;
+}
