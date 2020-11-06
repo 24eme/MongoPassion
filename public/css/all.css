@@ -525,3 +525,8 @@ textarea#js{
     outline: none;
     width: 100%;
 }
+
+div#nav_view_float-left{
+    width:20%;
+    margin-top: -10.25%;
+}
