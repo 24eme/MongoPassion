@@ -33,7 +33,7 @@
 				</div>
 			<?php }
 
-			//Fin Messagege d'erreur
+			//Fin Message d'erreur
 
 			if(isset($type_id)){
 

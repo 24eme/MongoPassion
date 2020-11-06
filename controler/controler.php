@@ -82,6 +82,7 @@
 
         $date_array = unserialize($_POST['date_array']);
 
+
         try{
 
            //on Check si le contenu respecte le format json si il reste sur la page avec l'erreur

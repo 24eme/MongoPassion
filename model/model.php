@@ -276,9 +276,8 @@ function updateDoc($id,$doc,$serve,$db,$coll)
 	$db = strval($db);
 	$collec = strval($coll);
 	$collection = $client->$db->$collec;
-	$collection->updateOne(
-    [ '_id' => $id ],
-    [ '$set' => $doc]);
+	$collection->replaceOne(
+    [ '_id' => $id ],$doc);
 }
 
 function init_json($doc){
@@ -868,3 +867,4 @@ function getDocs_export_j($serve,$db,$req)
 
 	return $rows;
 }
+
