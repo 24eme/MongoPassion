@@ -3,6 +3,8 @@
 
 _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
+# Installation
+
 ## Prérequis
 - PHP 7-* <br/>
 - Apache2
