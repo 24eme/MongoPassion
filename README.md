@@ -1,29 +1,35 @@
 
 ***<h1 align="center">Interface-MongoDB</h1>***
 
-_Lire en d'autres langues: [Français](README.md),_
+Application web de gestion de bases de données MongoDb (NoSQL)
+
+_Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
+
+# Aperçu de l'application
+
+![Home](public/images/capture_home.png)
+
+- 
+
+# Installation
 
 ## Prérequis
-- Installez PHP 7-* <br/>
-- Installez Apache2
+- PHP 7-* <br/>
+- Apache2
 
-### Driver MongoDB
-    $ git clone https://github.com/mongodb/mongo-php-driver.git
-    $ cd mongo-php-driver
-    $ git submodule update --init
-    $ phpize
-    $ ./configure
-    $ make all
-    $ sudo make install
+## Installation du package php-mongodb
+    $ sudo pecl mongodb
 
 ## Dépôt Git
  - Clônez le projet dans /var/wwww/html <br/>
  - Placez-vous dans le dossier du projet (Interface-MongoDB)
  
- ## Installez les dépendances Mongo avec Composer : 
+# En cas de package manquants
+ 
+## Installation manuelle des dépendances Mongo avec Composer : 
     $ composer require mongodb/mongodb
 
- ## Installez JsonEditor avec npm :
+## Installation manuelle de JsonEditor avec npm :
  - Placez vous dans le répertoire Interface-MongoDB
  - Clonez les fichiers à partir du git :
  
@@ -42,6 +48,4 @@ _Lire en d'autres langues: [Français](README.md),_
  - Finalisez l'installation :
  
        $  npm run build
- 
-### Depuis le navigateur vous pouvez accéder au projet à l'adresse localhost/Interface-MongoDB
 
