@@ -1,7 +1,7 @@
 
 ***<h1 align="center">Interface-MongoDB</h1>***
 
-_Lire en d'autres langues: [Français](README.md), [Français](README.md)_
+_Lire en d'autres langues: [Français](README.md), [Français](README.en.md)_
 
 ## Prérequis
 - PHP 7-* <br/>
