@@ -11,7 +11,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - 
 
-![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png)
+<img src="public/images/capture_getServer_censored.jpg" style="float:left"> <img src="public/images/capture_getDb.png" style="float:left">
 
 
 # Installation
