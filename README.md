@@ -11,6 +11,9 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - 
 
+![Home](public/images/capture_home.png) ![Home](public/images/capture_home.png)
+
+
 # Installation
 
 ## Prérequis
