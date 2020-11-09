@@ -14,11 +14,12 @@ _Lire en d'autres langues: [Français](README.md),_
  - Clônez le projet dans /var/wwww/html <br/>
  - Placez-vous dans le dossier du projet (Interface-MongoDB)
  
+# En cas de package manquants
  
- # Installation manuelle des dépendances Mongo avec Composer : 
+## Installation manuelle des dépendances Mongo avec Composer : 
     $ composer require mongodb/mongodb
 
- # Installation manuelle de JsonEditor avec npm :
+## Installation manuelle de JsonEditor avec npm :
  - Placez vous dans le répertoire Interface-MongoDB
  - Clonez les fichiers à partir du git :
  
