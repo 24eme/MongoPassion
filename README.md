@@ -1,6 +1,8 @@
 
 ***<h1 align="center">Interface-MongoDB</h1>***
 
+Application web de gestion de bases de données MongoDb (NoSQL)
+
 _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 # Installation
