@@ -15,7 +15,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - La fonctionnalité principale de l’application est de permettre l’affichage et la modification du contenu de chaque base, collection ou document présent sur vos serveurs.
 
-- L’application propose également deux modes d’édition de documents : un mode console basique d’une part et d’autre part la possibilité d’utiliser l’outil JsonEditor.
+- L’application propose également deux modes d’édition de documents : un mode json basique d’une part et d’autre part la possibilité d’utiliser l’outil JsonEditor.
 
 - Interface_MongoDB propose également plusieurs systèmes de recherche : une recherche de document par ID directement depuis la base de données, une recherche de documents par ID ou par contenu dans une collection et une recherche plus libre en console directement en ligne de commande JavaScript.
 
