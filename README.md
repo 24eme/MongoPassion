@@ -4,17 +4,11 @@
 _Lire en d'autres langues: [Français](README.md),_
 
 ## Prérequis
-- Installez PHP 7-* <br/>
-- Installez Apache2
+- PHP 7-* <br/>
+- Apache2
 
-### Driver MongoDB
-    $ git clone https://github.com/mongodb/mongo-php-driver.git
-    $ cd mongo-php-driver
-    $ git submodule update --init
-    $ phpize
-    $ ./configure
-    $ make all
-    $ sudo make install
+## Installation du package php-mongodb
+    $ sudo pecl mongodb
 
 ## Dépôt Git
  - Clônez le projet dans /var/wwww/html <br/>
@@ -42,6 +36,4 @@ _Lire en d'autres langues: [Français](README.md),_
  - Finalisez l'installation :
  
        $  npm run build
- 
-### Depuis le navigateur vous pouvez accéder au projet à l'adresse localhost/Interface-MongoDB
 
