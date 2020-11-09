@@ -11,7 +11,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - 
 
-![Home](public/images/capture_home.png) ![Home](public/images/capture_home.png)
+![Server](public/images/capture_getServer_censored.png) ![Home](public/images/capture_home.png)
 
 
 # Installation
