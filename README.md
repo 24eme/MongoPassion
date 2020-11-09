@@ -11,7 +11,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - 
 
-<img src="public/images/capture_getServer_censored.jpg" align="left"> <img src="public/images/capture_getDb.png" align="right">
+![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png)
 
 - 
 
