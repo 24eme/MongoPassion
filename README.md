@@ -9,11 +9,11 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 ![Home](public/images/capture_home.png)
 
-- 
+- Interface_MongoDB permet de se connecter à mongodb en s'authentifiant si nécessaire.
 
-![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png)
+![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png) ![Coll](public/images/capture_getCollection.png)
 
-- 
+- L'application permet également d'afficher et de modifier le contenu de chaque base, collection ou document
 
 # Installation
 
