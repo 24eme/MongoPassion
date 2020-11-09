@@ -11,9 +11,13 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - Interface_MongoDB permet de se connecter à mongodb en s'authentifiant si nécessaire.
 
-![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png) ![Coll](public/images/capture_getCollection.png)
+<!-- ![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png) ![Coll](public/images/capture_getCollection.png) -->
 
-- L'application permet également d'afficher et de modifier le contenu de chaque base, collection ou document. Elle permet également la recherche de documents
+- La fonctionnalité principale de l’application est de permettre l’affichage et la modification du contenu de chaque base, collection ou document présent sur vos serveurs.
+
+- L’application propose également deux modes d’édition de documents : un mode console basique d’une part et d’autre part la possibilité d’utiliser l’outil JsonEditor.
+
+- Interface_MongoDB propose également plusieurs systèmes de recherche : une recherche de document par ID directement depuis la base de données, une recherche de documents par ID ou par contenu dans une collection et une recherche plus libre en console directement en ligne de commande JavaScript.
 
 # Installation
 
