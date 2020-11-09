@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 ***<h1 align="center">Interface-MongoDB</h1>***
 
@@ -11,15 +13,15 @@ _Read in other languages: [Français](README.md), [English](README.en.md)_
     $ sudo pecl mongodb
 
 ## GitHub Repository
- - Clônez le projet dans /var/wwww/html <br/>
- - Placez-vous dans le dossier du projet (Interface-MongoDB)
+ - Clone the repository in /var/wwww/html <br/>
+ - Cd into the project folder (Interface-MongoDB)
  
-# En cas de package manquants
+# <i class="fa fa-fw fa-warning"></i> In case of a missing package
  
-## Installation manuelle des dépendances Mongo avec Composer : 
+## Manual installation of Mongo dependencies with Composer : 
     $ composer require mongodb/mongodb
 
-## Installation manuelle de JsonEditor avec npm :
+## Manual installation of JsonEditor with npm :
  - Placez vous dans le répertoire Interface-MongoDB
  - Clonez les fichiers à partir du git :
  
