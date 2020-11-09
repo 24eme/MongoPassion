@@ -7,10 +7,10 @@ _Read in other languages: [Français](README.md), [English](README.en.md)_
 - PHP 7-* <br/>
 - Apache2
 
-## Installation du package php-mongodb
+## Installation of the php-mongodb package
     $ sudo pecl mongodb
 
-## Dépôt Git
+## GitHub Repository
  - Clônez le projet dans /var/wwww/html <br/>
  - Placez-vous dans le dossier du projet (Interface-MongoDB)
  
