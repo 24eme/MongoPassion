@@ -13,7 +13,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 ![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png) ![Coll](public/images/capture_getCollection.png)
 
-- L'application permet également d'afficher et de modifier le contenu de chaque base, collection ou document
+- L'application permet également d'afficher et de modifier le contenu de chaque base, collection ou document. Elle permet également la recherche de documents
 
 # Installation
 
