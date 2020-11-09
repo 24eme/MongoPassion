@@ -1,5 +1,7 @@
 ***<h1 align="center">Interface-MongoDB</h1>***
 
+Web-based project for management of MongoDB databases
+
 _Read in other languages: [Français](README.md), [English](README.en.md)_
 
 # Installation
