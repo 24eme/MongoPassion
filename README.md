@@ -7,7 +7,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 # Aperçu de l'application
 
-<!-- ![Home](public/images/capture_home.png)
+<!-- ![Home](public/images/capture_home.png) -->
 
 <img src="/public/images/capture_home.png"/>
 
