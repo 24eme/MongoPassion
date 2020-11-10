@@ -56,7 +56,3 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
  - Finalisez l'installation :
  
        $  npm run build
-
-img{
-vertical-align :top;
-}
