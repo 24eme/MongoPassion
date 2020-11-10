@@ -10,9 +10,11 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - MongoPassion permet de se connecter à mongodb en s'authentifiant si nécessaire.
 
-<img src="/public/images/capture_getServer_censored.jpg" vertical-align="top" width="330" /> <img src="/public/images/capture_getDb.png" style="vertical-align: top;" width="330" /> <img src="/public/images/capture_getCollection.png" width="330" />
+<img src="/public/images/capture_getServer_censored.jpg" width="330" /> <img src="/public/images/capture_getDb.png" width="330" /> <img src="/public/images/capture_getCollection.png" width="330" />
 
 - La fonctionnalité principale de l’application est de permettre l’affichage et la modification du contenu de chaque base, collection ou document présent sur vos serveurs.
+
+<img src="/public/images/capture_editDoc.png" width="500" /> <img src="/public/images/capture_console.png" width="500" />
 
 - L’application propose également deux modes d’édition de documents : un mode json basique d’une part et d’autre part la possibilité d’utiliser l’outil JsonEditor.
 
