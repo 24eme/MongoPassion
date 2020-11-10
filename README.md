@@ -57,3 +57,6 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
  
        $  npm run build
 
+img{
+vertical-align :top;
+}
