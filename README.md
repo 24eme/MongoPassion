@@ -1,5 +1,5 @@
 
-***<h1 align="center">Interface-MongoDB</h1>***
+***<h1 align="center">MongoPassion</h1>***
 
 Application web de gestion de bases de données MongoDb (NoSQL)
 
