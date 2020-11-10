@@ -1,7 +1,4 @@
-<link rel="stylesheet" type="text/css" media="all" href="/public/css/readme.css" />
-
-
-***<h1 align="center">MongoPassion</h1>***
+***<h1 align="center" style="color:red;">MongoPassion</h1>***
 
 Application web de gestion de bases de données MongoDb (NoSQL)
 
