@@ -52,10 +52,10 @@
 
 						</div>
 
-					   		<!-- Bouton nouveau document -->
+					   	<!-- Bouton nouveau document -->
 
 						<div class="ml-2">
-							<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&a_s='.$a_s ?>"><i title="Create new doc"class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-file-text-o"></i></a></button>
+							<button class="btn btn-dark py-1 font-weight-bold"><a class="text-light" href="index.php?action=createDocument&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll ?>"><i title="Create new doc"class="fa fa-fw fa-plus"></i><i title="Create new doc" class="fa fa-file-text-o"></i></a></button>
 						</div>
 
 					  <!-- Fin du bouton nouveau document -->

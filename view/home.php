@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>MongoDoAllCRUD</title>"?>
+	<?php echo "<title>MongoPassion</title>"?>
 	<?php require_once('layouts/header.php') ?>
 </head>
 <body>
@@ -11,9 +11,9 @@
 		<!-- Titre de la page -->
 
 		<div class='text-center align-items-end mt-3 d-inline-flex'>
-				<img align="center" src="public/images/mongo.png" alt="24eme">
-				<h1 class='text-center title font-weight-bold'>mongo<span class="text-secondary">DoAllCRUD</span></h1>
-
+			<img align="center" src="https://img.icons8.com/emoji/96/000000/mango-emoji.png" alt="24eme"/>
+			<!-- <img align="center" src="public/images/mongo.png" alt="24eme"> -->
+			<h1 class='text-center title font-weight-bold'>mongo<span class="text-secondary">Passion</span></h1>
 		</div>
 
 		<div class="col-lg-8 offset-lg-2 bg-light m-auto">
