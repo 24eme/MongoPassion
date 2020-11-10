@@ -9,7 +9,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 ![Home](public/images/capture_home.png)
 
-- Interface_MongoDB permet de se connecter à mongodb en s'authentifiant si nécessaire.
+- MongoPassion permet de se connecter à mongodb en s'authentifiant si nécessaire.
 
 <!-- ![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png) ![Coll](public/images/capture_getCollection.png) -->
 
@@ -17,7 +17,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - L’application propose également deux modes d’édition de documents : un mode json basique d’une part et d’autre part la possibilité d’utiliser l’outil JsonEditor.
 
-- Interface_MongoDB propose également plusieurs systèmes de recherche : une recherche de document par ID directement depuis la base de données, une recherche de documents par ID ou par contenu dans une collection et une recherche plus libre en console directement en ligne de commande JavaScript.
+- MongoPassion propose également plusieurs systèmes de recherche : une recherche de document par ID directement depuis la base de données, une recherche de documents par ID ou par contenu dans une collection et une recherche plus libre en console directement en ligne de commande JavaScript.
 
 # Installation
 
@@ -30,7 +30,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 ## Dépôt Git
  - Clônez le projet dans /var/wwww/html <br/>
- - Placez-vous dans le dossier du projet (Interface-MongoDB)
+ - Placez-vous dans le dossier du projet (MongoPassion)
  
 # En cas de package manquants
  
@@ -38,15 +38,15 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
     $ composer require mongodb/mongodb
 
 ## Installation manuelle de JsonEditor avec npm :
- - Placez vous dans le répertoire Interface-MongoDB
+ - Placez vous dans le répertoire MongoPassion
  - Clonez les fichiers à partir du git :
  
        $  git clone https://github.com/josdejong/jsoneditor.git
  - Installez jsoneditor :
     
        $  npm install jsoneditor
- - Placez-vous dans le dossier jsoneditor, copiez le fichier package.json puis collez le dans le dossier Interface-MongoDB
- - Placez-vous dans le dossier Interface-MongoDB
+ - Placez-vous dans le dossier jsoneditor, copiez le fichier package.json puis collez le dans le dossier MongoPassion
+ - Placez-vous dans le dossier MongoPassion
  - Poursuivez l'installation :
             
        $  npm install
