@@ -1,4 +1,3 @@
-
 ***<h1 align="center">MongoPassion</h1>***
 
 Application web de gestion de bases de données MongoDb (NoSQL)
@@ -7,11 +6,11 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 # Aperçu de l'application
 
-![Home](public/images/capture_home.png)
+<img src="/public/images/capture_home.png"/>
 
 - MongoPassion permet de se connecter à mongodb en s'authentifiant si nécessaire.
 
-<!-- ![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png) ![Coll](public/images/capture_getCollection.png) -->
+<img src="/public/images/capture_getServer_censored.jpg" vertical-align="top" width="330" /><img src="/public/images/capture_getDb.png" style="vertical-align: top;" width="330" /><img src="/public/images/capture_getCollection.png" width="330" />
 
 - La fonctionnalité principale de l’application est de permettre l’affichage et la modification du contenu de chaque base, collection ou document présent sur vos serveurs.
 
@@ -56,4 +55,3 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
  - Finalisez l'installation :
  
        $  npm run build
-
