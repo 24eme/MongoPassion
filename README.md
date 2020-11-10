@@ -9,7 +9,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 <!-- ![Home](public/images/capture_home.png) -->
 
-<img src="/public/images/capture_home.png" width="200" />
+<img src="/public/images/capture_home.png"/>
 
 - MongoPassion permet de se connecter à mongodb en s'authentifiant si nécessaire.
 
