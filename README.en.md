@@ -10,11 +10,15 @@ _Read in other languages: [Français](README.md), [English](README.en.md)_
 
 - MongoPassion allows you to connect to MongoDB, by authenticating if necessary.
 
-<!-- ![Server](public/images/capture_getServer_censored.jpg) ![Db](public/images/capture_getDb.png) ![Coll](public/images/capture_getCollection.png) -->
+<img src="/public/images/capture_getServer_censored.jpg" width="330" /> <img src="/public/images/capture_getDb.png" width="330" /> <img src="/public/images/capture_getCollection.png" width="330" />
 
 - The app's main functionality is to allow to dilay and to modify every database, collection or document on your server.
 
+<img src="/public/images/capture_editDoc.png" width="500" /> <img src="/public/images/capture_console.png" width="500" />
+
 - The project also offers two edition mode for documents : a basic json mode on one side and the possibility of using the jsoneditor tool on the other.
+
+<img src="/public/images/capture_getCollSearch.png" width="500" /> <img src="/public/images/capture_search.png" width="500" />
 
 - MongoPassion offers in addition several ways to search documents : a search using the ID from a database, another using ID or content from a collection and finally a freer one, in the form of a console, directly in Javascript.
 
