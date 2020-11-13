@@ -806,15 +806,15 @@ function getCollectionSize($serve,$db,$coll)
 {
 	$manager = getManager($serve);
 
-	$jscode='db.'.$coll.'.dataSize()';
+	$jscode=$db.'.'.$coll;
 
-	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+	$command = new MongoDB\Driver\Command(['dataSize'=>$jscode]);
 
 	$cursor = $manager->executeCommand($db, $command)->toArray();
 
 	$temp = (array) $cursor[0];
-	$test = (array) $temp['retval'];
-	return $test[0];
+	$test = $temp['size'];
+	return $test;
 }
 
 
