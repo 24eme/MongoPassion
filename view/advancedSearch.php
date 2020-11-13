@@ -49,17 +49,15 @@ if(isset($a_s)){ ?>
 		<input type="hidden" name="serve" value='<?php echo $serve ?>'>
 		<input type="hidden" name="db" value='<?php echo $db ?>'>
 		<input type="hidden" name="coll" value='<?php echo $coll ?>'>
-		<?php if(isset($a_s)){ ?>
+		<?php if(isset($query) and isset($proj) and isset($a_s_coll)){ ?>
 			<div id="form_a_s">
 				db.<select id="a_s_coll" name="a_s_coll">
 					<option value="<?php echo $a_s_coll ?>" selected="selected"><?php echo $a_s_coll ?></option>
 					<?php foreach ($tabcollections as $collection) { ?>
 						<option value="<?php echo $collection ?>"><?php echo $collection ?></option>
 					<?php } ?>
-				</select>.find(
-				<br>
-				<textarea id="js" name="js"><?php echo htmlspecialchars($jscode) ?></textarea>
-				<br>
+				</select>.find(<br>
+				<input type="text" id="query" name="query" value ="<?php echo htmlspecialchars($query)?>"/>,<input type="text" id="proj" name="proj" value = "<?php echo htmlspecialchars($proj)?>"/>
 				)
 			</div>
 		<?php }
@@ -72,7 +70,7 @@ if(isset($a_s)){ ?>
 					<?php } ?>
 				</select>.find(
 				<br>
-				<input type="text" id="js" name="js" value="{}">
+				<input type="text" id="query" name="query" value="{}">,<input type="text" id="proj" name="proj" value="{}">
 				<br>
 				)
 			</div>
@@ -90,7 +88,7 @@ if(isset($a_s)){ ?>
 
 <!-- Tableau des résulats -->
 
-<?php if(isset($a_s)){?>
+<?php if(isset($query) and isset($proj) and isset($a_s_coll)){?>
 	<div id="DivContentTable">
 			<div id='result'>
 				<div id="head_content">

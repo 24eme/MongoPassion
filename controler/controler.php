@@ -375,34 +375,37 @@
             $page = 1;
         }
 
-        if(isset($_GET['js']) and isset($_GET['a_s_coll'])){
-            $js = htmlspecialchars($_GET['js'], ENT_NOQUOTES);
+        if(isset($_GET['query']) and isset($_GET['proj']) and isset($_GET['a_s_coll'])){
+            $query = htmlspecialchars($_GET['query'], ENT_NOQUOTES);
+            $proj = htmlspecialchars($_GET['proj'], ENT_NOQUOTES);
             $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
-
-            $a_s = 'db.'.$a_s_coll.'.find('.$js.')';
         }
         elseif(isset($_GET['a_s'])){
             $a_s =htmlspecialchars(urldecode($_GET['a_s']), ENT_NOQUOTES);
         }
         elseif (isset($_GET['s_g'])) {
+            $proj = '{}';
+            $a_s_coll = $coll;
             $s_g = htmlspecialchars($_GET['s_g'], ENT_NOQUOTES);
             if(!strpos($s_g, ':')){
                 try{
                     new MongoDB\BSON\ObjectId($s_g);
-                    $a_s = 'db.'.$coll.'.find("'.$s_g.'")';
+                    $query = '"'.$s_g.'"';
                 }
                 catch (Exception $e){
-                    $a_s = 'db.'.$coll.'.find({_id:"'.$s_g.'"})';
+                    $query = '{_id:"'.$s_g.'"}';
                 }
             }
             else{
                 $s_g = str_replace(' ', '', $s_g);
                 $s_g_array = explode(':', $s_g);
-                $a_s = 'db.'.$coll.'.find({'.$s_g_array[0].':"'.$s_g_array[1].'"})';
+                $query = '{'.$s_g_array[0].':"'.$s_g_array[1].'"}';
             }
         }
         else{
-            $a_s = 'db.'.$coll.'.find({})';
+            $query = '{}';
+            $proj = '{}';
+            $a_s_coll = $coll;
         }
 
         if (isset($_COOKIE['flash_error'])) {
@@ -412,11 +415,11 @@
 
         $link_reinit = '?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'';
 
-        if(isset($a_s)){
+        if(isset($query) and isset($proj) and isset($a_s_coll)){
             try {
-                $result = getAdvancedSearch($a_s,$page,$bypage,$serve,$db,$coll);
+                $result = getAdvancedSearch($query,$proj,$a_s_coll,$page,$bypage,$serve,$db,$coll);
 
-                if(testProjection($a_s,$serve,$db)){
+                if(testProjection($proj,$serve,$db)){
                     $docs = $result;
                     $fields = array();
                     foreach ($docs as $entry) {
@@ -428,7 +431,7 @@
                     }
                 }
 
-                $nbDocs = countAdvancedSearch($a_s,$serve,$db,$coll);
+                $nbDocs = countAdvancedSearch($query,$a_s_coll,$serve,$db,$coll);
                 if($nbDocs==1){
                     $type_id = gettype($result[0]['_id']);
                     if ($type_id=='object'){
@@ -441,15 +444,6 @@
                     header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$id.'&type_id='.$type_id.'&a_s='.$search.'&page=1');
                 }
                 $nbPages = getNbPages($nbDocs,$bypage);
-
-                $tab_a_s= explode('.', $a_s);
-                $tab_js_1 = explode('(',$tab_a_s[2]);
-                $tab_js_2 = explode(')',$tab_js_1[1]);
-
-                $a_s_coll = $tab_a_s[1];
-
-                $jscode = $tab_js_2[0];
-
                 $collections = getCollections($serve,$db);
                 $tabcollections= array();
                 foreach ($collections as $collection) {
@@ -768,7 +762,9 @@
         $serve = htmlspecialchars($_GET['serve']);
         $db = htmlspecialchars($_GET['db']);
         $form = htmlspecialchars($_GET['form']);
-        $req = htmlspecialchars($_GET['req'], ENT_NOQUOTES);
+        $query = htmlspecialchars($_GET['query'], ENT_NOQUOTES);
+        $proj = htmlspecialchars($_GET['proj'], ENT_NOQUOTES);
+        $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
         $return = htmlspecialchars($_GET['ret']);
         $return = str_replace('amp;', '', $return);
 
@@ -780,7 +776,7 @@
             header('content-type:application/json');
             header('Content-Disposition: attachment; filename="'.$name.'"');
             
-            $result = getDocs_export_j($serve,$db,$req);
+            $result = getDocs_export_j($serve,$db,$a_s_coll,$query);
             
             foreach ($result as $entry) {
                 $content = array();
@@ -804,7 +800,7 @@
         elseif($form == 'csv'){
             $name = 'csv_'.rand().'.csv';
 
-            $docs = getDocs_export($serve,$db,$req);
+            $docs = getDocs_export($serve,$db,$a_s_coll,$query,$proj);
 
             $output = fopen("php://output",'w') or die("Can't open php://output");
             header("Content-Type:application/csv"); 

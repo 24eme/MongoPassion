@@ -23,7 +23,7 @@
 					} ?>
 				</tr>
 			<?php }
-			$link_csv = '?action=export&serve='.$serve.'&db='.$db.'&form=csv&req='.urlencode($a_s).'&ret='.urlencode($current_query);
+			$link_csv = '?action=export&serve='.$serve.'&db='.$db.'&form=csv&&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&ret='.urlencode($current_query);
 		}
 		else{
 			foreach ($result as $entry) {
@@ -53,7 +53,7 @@
 					</td>
 				</tr>
 			<?php }
-			$link_json = '?action=export&serve='.$serve.'&db='.$db.'&form=json&req='.urlencode($a_s).'&ret='.urlencode($current_query);
+			$link_json = '?action=export&serve='.$serve.'&db='.$db.'&form=json&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&ret='.urlencode($current_query);
 		}
 	}?>
 </table>

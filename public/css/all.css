@@ -518,7 +518,15 @@ select#a_s_coll{
     outline: none;
 }
 
-textarea#js{
+input[type='text']#query{
+    background-color: #3f3b3b;
+    color: white; border:none; 
+    font-family: courier;
+    outline: none;
+    width: 100%;
+}
+
+input[type='text']#proj{
     background-color: #3f3b3b;
     color: white; border:none; 
     font-family: courier;

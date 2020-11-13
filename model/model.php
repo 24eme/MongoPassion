@@ -58,25 +58,13 @@ function toJSON($cursor){
 	return $docs_array;
 }
 
-function testProjection($search,$serve,$db)
+function testProjection($proj,$serve,$db)
 {
-	$manager = getManager($serve);
+	$proj = str_replace(' ', '', $proj);
 
-	$jscode = $search;
-
-	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
-
-	$cursor = $manager->executeCommand($db, $command)->toArray();
-
-	$temp = (array) $cursor[0];
-	$test = (array) $temp['retval'];
-
-	$fields = (array) $test['_fields'];
-
-	if(empty($fields)){
+	if($proj=='{}'){
 		return false;
 	}
-
 	else{
 		return true;
 	}
@@ -493,46 +481,33 @@ function getSearch($search_g,$page,$bypage,$serve,$db,$coll){
 
 }
 
-function getSpecialSearch($command,$page,$bypage)
-{
-	require 'vendor/autoload.php';
-	$client = new MongoDB\Client('mongodb://'.htmlspecialchars($_GET['serve']).':27017');
-	$db = strval(htmlspecialchars($_GET['db']));
-	$collec = strval(htmlspecialchars($_GET['coll']));
-	$collection = $client->$db->$collec;
-
-	$skip = ($page-1)*$bypage;
-
-	$command=str_replace(')', '', $command);
-
-	$command = '$result = $collection->'.$command.', [\'skip\'=>$skip,\'limit\'=>$bypage] )->toArray();';
-
-	eval(strip_tags(htmlspecialchars_decode($command)));
-
-	return $result;
+function str_array($content){
+	$code = '$var='.$content.';';
+	eval($code);
+	return $var;
 }
 
-function getAdvancedSearch($search,$page,$bypage,$serve,$db,$coll)
+function getAdvancedSearch($query,$proj,$a_s_coll,$page,$bypage,$serve,$db,$coll)
 {
 	$manager = getManager($serve);
 
 	$skip = ($page-1)*$bypage;
 
-	$jscode=$search;
+	$ns = $db.'.'.$a_s_coll;
 
-	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+	$code_q = str_replace(['{','}',':'], ['[',']','=>'], $query);
 
-	$cursor = $manager->executeCommand($db, $command)->toArray();
+	$code_p = str_replace(['{','}',':','1'], ['[',']','=>','(float) 1'], $proj);
 
-	$temp = (array) $cursor[0];
-	$test = (array) $temp['retval'];
-	$ns = $test['_ns'];
-	$filter = (array) $test['_query'];
-	$fields = (array) $test['_fields'];
+	$filter = str_array($code_q);
+
+	$fields = str_array($code_p);
+	
 
 	$options = ['projection'=>$fields,'skip'=>$skip,'limit'=>$bypage];
 
-	$query = new \MongoDB\Driver\Query($filter, $options);
+	$query = new \MongoDB\Driver\Query($filter,$options);
+
 	$rows   = $manager->executeQuery($ns, $query)->toArray();
 
 	$rows = formatResult($rows);
@@ -584,20 +559,24 @@ function countSearch_id($search,$serve,$db,$coll){
 	return $result;
 }
 
-function countAdvancedSearch($search,$serve,$db,$coll)
+function countAdvancedSearch($query,$a_s_coll,$serve,$db,$coll)
 {
+	$client = getClient($serve);
+
+	$db = strval($db);
+	$collec = strval($a_s_coll);
+	$collection = $client->$db->$collec;
+
 	$manager = getManager($serve);
 
-	$jscode = str_replace('find', 'count', $search);
+	$code_q = str_replace(['{','}',':'], ['[',']','=>'], $query);
 
-	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+	$filter = str_array($code_q);
 
-	$cursor = $manager->executeCommand($db, $command)->toArray();
+	$result = $collection->count($filter);
 
-	$temp = (array) $cursor[0];
-	$test = $temp['retval'];
+	return $result;
 
-	return $test;
 }
 
 function countSearch_g($search,$serve,$db,$coll)
@@ -818,21 +797,19 @@ function getCollectionSize($serve,$db,$coll)
 }
 
 
-function getDocs_export($serve,$db,$req)
+function getDocs_export($serve,$db,$a_s_coll,$query,$proj)
 {
 	$manager = getManager($serve);
 
-	$jscode=$req;
+	$ns = $db.'.'.$a_s_coll;
 
-	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+	$code_q = str_replace(['{','}',':'], ['[',']','=>'], $query);
 
-	$cursor = $manager->executeCommand($db, $command)->toArray();
+	$code_p = str_replace(['{','}',':'], ['[',']','=>'], $proj);
 
-	$temp = (array) $cursor[0];
-	$test = (array) $temp['retval'];
-	$ns = $test['_ns'];
-	$filter = (array) $test['_query'];
-	$fields = (array) $test['_fields'];
+	$filter = str_array($code_q);
+
+	$fields = str_array($code_p);
 
 	$options = ['projection'=>$fields];
 
@@ -844,25 +821,18 @@ function getDocs_export($serve,$db,$req)
 	return $rows;
 }
 
-function getDocs_export_j($serve,$db,$req)
+function getDocs_export_j($serve,$db,$a_s_coll,$query)
 {
 	$manager = getManager($serve);
 
-	$jscode=$req;
+	$ns = $db.'.'.$a_s_coll;
 
-	$command = new MongoDB\Driver\Command(['eval'=>$jscode]);
+	$code_q = str_replace(['{','}',':'], ['[',']','=>'], $query);
 
-	$cursor = $manager->executeCommand($db, $command)->toArray();
+	$filter = str_array($code_q);
 
-	$temp = (array) $cursor[0];
-	$test = (array) $temp['retval'];
-	$ns = $test['_ns'];
-	$filter = (array) $test['_query'];
-	$fields = (array) $test['_fields'];
+	$query = new \MongoDB\Driver\Query($filter);
 
-	$options = ['projection'=>$fields];
-
-	$query = new \MongoDB\Driver\Query($filter, $options);
 	$rows   = $manager->executeQuery($ns, $query);
 
 	return $rows;
