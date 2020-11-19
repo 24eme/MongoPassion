@@ -12,9 +12,6 @@
 
 	<div class="container">
 
-		<?php $link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&page='.$page; ?>
-
-
 			<!-- Titre de la page -->
 
 			<h2 class='title text-center'>Edit <i title='id of document' class='fa fa-file-text-o'></i><?php echo ' '.$doc ?><button  class="btn "><a class="text-danger font-weight-bold" href="<?php echo $link_d ?>" onclick="return confirmDelete()"><i title='Delete this document'class='fa fa-2x fa-trash'></i></a></button></h2>
@@ -34,23 +31,7 @@
 			<?php }
 
 			//Fin Message d'erreur
-
-			if(isset($type_id)){
-
-				$link_d=$link_d.'&type_id='.$type_id;
-			}
-			if(isset($a_s)){
-
-				$link_d=$link_d.'&a_s='.$a_s;
-			}
-			if(isset($s_g)){
-
-				$link_d=$link_d.'&s_g='.$s_g;
-			}
-			if(isset($search_db)){
-
-				$link_d=$link_d.'&search_db='.$search_db;
-			}
+			
 		?>
 
 		<!-- Fin du bouton de retour -->
@@ -142,8 +123,8 @@
 		<?php if(isset($s_g)){ ?>
 			<a href="index.php?action=getCollection_search&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&s_g='.$s_g.'&page='.$page ?>"><button class="return text-center btn btn-primary">< search</button></a>
 		<?php }
-		elseif(isset($a_s)){ ?>
-			<a class="text-center" href="index.php?action=advancedSearch&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&a_s='.$a_s.'&page='.$page ?>"><button class="return  btn btn-primary">< advanced search</button></a>
+		elseif(isset($query) and isset($proj) and isset($a_s_coll)){ ?>
+			<a class="text-center" href="index.php?action=advancedSearch&serve=<?php echo $serve.'&db='.$db.'&coll='.$coll.'&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&page='.$page ?>"><button class="return  btn btn-primary">< advanced search</button></a>
 		<?php }
 		elseif(isset($search_db)){ ?>
 			<a href="index.php?action=getDb_search&serve=<?php $serve.'&db='.$db.'&search_db='.$search_db ?>"><button class="return btn btn-primary">< list of collections</button></a>

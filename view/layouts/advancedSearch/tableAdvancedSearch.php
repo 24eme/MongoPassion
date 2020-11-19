@@ -11,7 +11,7 @@
 			</tr>
 			<?php foreach ($docs as $entry) { 
 				$keys = array_keys($entry);
-				$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page; ?>
+				$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&page='.$page; ?>
 				<tr>
 					<?php foreach ($fields as $field) { 
 						if(in_array($field, $keys)){?>
@@ -27,7 +27,7 @@
 		}
 		else{
 			foreach ($result as $entry) {
-				$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s='.urlencode($a_s).'&page='.$page;
+				$link_v = '?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$entry['_id'].'&type_id='.gettype($entry['_id']).'&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&page='.$page;
 				$content = array();
 				foreach ($entry as $x => $x_value) {
 					if(gettype($x_value)=='object' and get_class($x_value)=='MongoDB\BSON\ObjectId'){

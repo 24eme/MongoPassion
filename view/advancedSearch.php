@@ -15,9 +15,13 @@
 
 //Préparation des variables de recherche pour leur utilisation en JS
 
-if(isset($a_s)){ ?>
-	<p id="clé" style="display: none">a_s</p>
-	<input type=hidden id=valeur value=<?php echo $a_s; ?>>
+if(isset($query) and isset($proj) and isset($a_s_coll)){ ?>
+	<p id="clé_c" style="display: none">a_s_coll</p>
+	<input type=hidden id=valeur_c value=<?php echo $a_s_coll; ?>>
+	<p id="clé_q" style="display: none">query</p>
+	<input type=hidden id=valeur_q value=<?php echo $query; ?>>
+	<p id="clé_p" style="display: none">proj</p>
+	<input type=hidden id=valeur_p value=<?php echo $proj; ?>>
 	<?php
 }
 

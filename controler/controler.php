@@ -23,11 +23,15 @@
         else{
             $s_g=null;
         }
-        if(isset($_GET['a_s'])){
-            $a_s = htmlspecialchars($_GET['a_s']);
+        if(isset($_GET['query']) and isset($_GET['proj']) and isset($_GET['a_s_coll'])){
+            $query = htmlspecialchars($_GET['query'], ENT_NOQUOTES);
+            $proj = htmlspecialchars($_GET['proj'], ENT_NOQUOTES);
+            $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
         }
         else{
-            $a_s=null;
+            $query = null;
+            $proj = null;
+            $a_s_coll = null;
         }
         if(isset($_GET['search_db'])){
             $search_db = htmlspecialchars($_GET['search_db']);
@@ -51,7 +55,24 @@
 
         // Création du lien d'envoi du formulaire
 
-	    $link_doc = getLink_doc($search_db,$a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page);
+	    $link_doc = getLink_doc($search_db,$a_s_coll,$query,$proj,$s_g,$doc,$type_id,$coll,$db,$serve,$page);
+
+        $link_d = 'index.php?action=deleteDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&page='.$page;
+
+
+        if(isset($type_id)){
+
+           $link_d=$link_d.'&type_id='.$type_id;
+        }
+        if(isset($query) and isset($proj) and isset($a_s_coll)){
+            $link_d=$link_d.'&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj);
+        }
+        if(isset($s_g)){
+            $link_d=$link_d.'&s_g='.$s_g;
+        }
+        if(isset($search_db)){
+            $link_d=$link_d.'&search_db='.$search_db;
+        }
 
 	    require('view/editDocument.php');
     }
@@ -71,8 +92,10 @@
         if(isset($_GET['s_g'])){
             $s_g = htmlspecialchars($_GET['s_g']);
         }
-        elseif(isset($_GET['a_s'])){
-            $a_s = htmlspecialchars($_GET['a_s']);
+        elseif(isset($_GET['query']) and isset($_GET['proj']) and isset($_GET['a_s_coll'])){
+            $query = htmlspecialchars($_GET['query'], ENT_NOQUOTES);
+            $proj = htmlspecialchars($_GET['proj'], ENT_NOQUOTES);
+            $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
         }
         elseif(isset($_GET['search_db'])){
             $search_db = htmlspecialchars($_GET['search_db']);
@@ -99,8 +122,8 @@
 	    	if(isset($s_g)){
                 header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&type_id='.$type_id.'&s_g='.$s_g.'&page='.$page.'');
             }
-            elseif (isset($a_s)) {
-                header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&type_id='.$type_id.'&a_s='.urlencode($a_s).'&page='.$page.'');
+            elseif (isset($query) and isset($proj) and isset($a_s_coll)) {
+                header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&type_id='.$type_id.'&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&page='.$page.'');
             }
             elseif (isset($search_db)) {
                 header('Location: index.php?action=editDocument&serve='.$serve.'&db='.$db.'&coll='.$coll.'&doc='.$doc.'&type_id='.$type_id.'&search_db='.$search_db.'&page='.$page.'');
@@ -201,8 +224,6 @@
             return;
 
           }
-
-
         	$doc = getNew_doc($doc_text);
 
         	insertDoc($doc,$serve,$db,$coll);
@@ -234,8 +255,10 @@
         if(isset($_GET['s_g'])){
             $s_g = htmlspecialchars($_GET['s_g']);
         }
-        if(isset($_GET['a_s'])){
-            $a_s = htmlspecialchars($_GET['a_s']);
+        if(isset($_GET['query']) and isset($_GET['proj']) and isset($_GET['a_s_coll'])){
+            $query = htmlspecialchars($_GET['query'], ENT_NOQUOTES);
+            $proj = htmlspecialchars($_GET['proj'], ENT_NOQUOTES);
+            $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
         }
         if(isset($_GET['search_db'])){
             $search_db = htmlspecialchars($_GET['search_db']);
@@ -249,8 +272,8 @@
         elseif(isset($search_db)){
             header('Location: index.php?action=getDb_search&serve='.$serve.'&db='.$db.'&search_db='.$search_db.'');
         }
-        elseif(isset($a_s)){
-            header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s='.urlencode($a_s).'&page='.$page.'');
+        elseif(isset($query) and isset($proj) and isset($a_s_coll)){
+            header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&page='.$page.'');
         }
         else{
             header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'&page='.$page.'');

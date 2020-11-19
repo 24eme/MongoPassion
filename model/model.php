@@ -171,13 +171,13 @@ function getColor($num) {
 	return $doc;
 }
 
-function getLink_doc($search_db,$a_s,$s_g,$doc,$type_id,$coll,$db,$serve,$page)
+function getLink_doc($search_db,$a_s_coll,$query,$proj,$s_g,$doc,$type_id,$coll,$db,$serve,$page)
 {
 	if(isset($s_g)){
 		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&s_g='.urlencode($s_g).'&page='.$page;
 	}
-	elseif(isset($a_s)){
-		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&a_s='.urlencode($a_s).'&page='.$page;
+	elseif(isset($query) and isset($proj) and isset($a_s_coll)){
+		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&page='.$page;
 	}
 	elseif(isset($search_db)){
 		$link_doc='index.php?action=traitement_uD&serve='.$serve.'&db='.$db.'&coll='.$coll.'&id='.$doc.'&type_id='.$type_id.'&search_db='.urlencode($search_db).'&page='.$page;
