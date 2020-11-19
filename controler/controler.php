@@ -417,9 +417,9 @@
             $proj = htmlspecialchars($_GET['proj'], ENT_NOQUOTES);
             $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
         }
-        elseif(isset($_GET['a_s'])){
-            $a_s =htmlspecialchars(urldecode($_GET['a_s']), ENT_NOQUOTES);
-        }
+        // elseif(isset($_GET['a_s'])){
+        //     $a_s =htmlspecialchars(urldecode($_GET['a_s']), ENT_NOQUOTES);
+        // }
         elseif (isset($_GET['s_g'])) {
             $proj = '{}';
             $a_s_coll = $coll;
