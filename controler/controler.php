@@ -199,8 +199,10 @@
             $s_g = htmlspecialchars($_GET['s_g']);
         }
 
-        if(isset($_GET['a_s'])){
-            $a_s = htmlspecialchars($_GET['a_s']);
+        if(isset($_GET['query']) and isset($_GET['proj']) and isset($_GET['a_s_coll'])){
+            $query = htmlspecialchars($_GET['query'], ENT_NOQUOTES);
+            $proj = htmlspecialchars($_GET['proj'], ENT_NOQUOTES);
+            $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
         }
 
 
@@ -212,6 +214,12 @@
         $serve = htmlspecialchars($_GET['serve']);
         $db = htmlspecialchars($_GET['db']);
         $coll = htmlspecialchars($_GET['coll']);
+
+        if(isset($_GET['query']) and isset($_GET['proj']) and isset($_GET['a_s_coll'])){
+            $query = htmlspecialchars($_GET['query'], ENT_NOQUOTES);
+            $proj = htmlspecialchars($_GET['proj'], ENT_NOQUOTES);
+            $a_s_coll = htmlspecialchars($_GET['a_s_coll']);
+        }
 
         $doc_text = strip_tags($_POST['doc_text']);
 
@@ -227,7 +235,13 @@
         	$doc = getNew_doc($doc_text);
 
         	insertDoc($doc,$serve,$db,$coll);
-        	header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
+
+            if(isset($query) and isset($proj) and isset($a_s_coll)){
+                header('Location: index.php?action=advancedSearch&serve='.$serve.'&db='.$db.'&coll='.$coll.'&a_s_coll='.$a_s_coll.'&query='.urlencode($query).'&proj='.urlencode($proj).'&page=1');
+            }
+            else{
+            	header('Location: index.php?action=getCollection&serve='.$serve.'&db='.$db.'&coll='.$coll.'');
+            }
         }
         catch(Exception $e){
             echo $e;
