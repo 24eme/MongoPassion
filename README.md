@@ -31,7 +31,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 - Apache2
 
 ## Installation du package php-mongodb
-    $ sudo pecl mongodb
+    $ sudo pecl install mongodb
 
 ## Dépôt Git
  - Clônez le projet dans /var/wwww/html <br/>
