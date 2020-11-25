@@ -1,4 +1,6 @@
 <meta charset="UTF-8">
+
+<link rel="icon" href="https://img.icons8.com/emoji/96/000000/mango-emoji.png" />
 <link href="public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">

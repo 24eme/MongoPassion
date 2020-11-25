@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="fr">
 <head>
-	<?php echo "<title>MongoPassion</title>"?>
+	<link rel="icon" href="https://img.icons8.com/emoji/96/000000/mango-emoji.png" />
+	<title>MongoPassion</title>
 	<?php require_once('layouts/header.php') ?>
 </head>
 <body>
