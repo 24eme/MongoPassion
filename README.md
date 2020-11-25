@@ -4,6 +4,8 @@ Application web de gestion de bases de données MongoDb (NoSQL)
 
 _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
+*** [Français](README.md) ***
+
 # Aperçu de l'application
 
 <img src="/public/images/capture_home.png"/>
