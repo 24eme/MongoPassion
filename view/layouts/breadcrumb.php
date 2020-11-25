@@ -1,4 +1,4 @@
-<div class='container border-top  border-success bg-success col-lg-8 sticky-top'>
+<div class='container col-lg-8 sticky-top'>
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="index.php"><i class="fa fa-fw fa-home"></i>Home</a></li>
 		<?php if(isset($serve)): ?>
