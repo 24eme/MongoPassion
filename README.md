@@ -6,7 +6,7 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 ### [Démo](https://mongopassion.24eme.fr/demo)
 
-# Aperçu de l'application
+## Aperçu de l'application
 
 <img src="/public/images/capture_home.png"/>
 
@@ -24,25 +24,26 @@ _Lire en d'autres langues: [Français](README.md), [English](README.en.md)_
 
 - MongoPassion propose également plusieurs systèmes de recherche : une recherche de document par ID directement depuis la base de données, une recherche de documents par ID ou par contenu dans une collection et une recherche plus libre en console directement en ligne de commande JavaScript.
 
-# Installation
+## Installation
 
-## Prérequis
+### Prérequis
 - PHP 7-* <br/>
 - Apache2
 
-## Installation du package php-mongodb
-    $ sudo pecl install mongodb
+### Installation du package php-mongodb
+    $ sudo aptitude install php-mongodb #sur debian
+    $ sudo pecl install mongodb #avec pecl
 
-## Dépôt Git
+### Dépôt Git
  - Clônez le projet dans /var/wwww/html <br/>
  - Placez-vous dans le dossier du projet (MongoPassion)
  
-# En cas de package manquants
+## Installation Manuelle (en cas de package manquants)
  
-## Installation manuelle des dépendances Mongo avec Composer : 
+### Dépendances Mongo avec Composer : 
     $ composer require mongodb/mongodb
 
-## Installation manuelle de JsonEditor avec npm :
+### JsonEditor avec npm :
  - Placez vous dans le répertoire MongoPassion
  - Clonez les fichiers à partir du git :
  
