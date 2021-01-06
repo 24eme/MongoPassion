@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 	<?php echo "<title>Setup Help</title>"?>
-	<?php require_once('header.php') ?>
+	<?php require_once('layouts/header.php') ?>
 </head>
 
 <body>
