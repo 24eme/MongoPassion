@@ -45,7 +45,7 @@
 				}
 				$content = init_json($content);
 				unset($content['_id']);
-				$json = stripslashes(json_encode($content)); ?>
+				$json = stripslashes(json_encode($content, JSON_UNESCAPED_UNICODE)); ?>
 				<tr>
 					<td class="classic"><a class="text-success text-center" href="<?php echo $link_v ?>"><i title="id of document"class="text-dark  fa fa-file-text-o"></i><?php echo ' '.$entry['_id'] ?></a></td>
 					<td id="json" class="text-left"><?php echo substr($json, 0, 100) ?>

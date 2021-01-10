@@ -29,8 +29,8 @@
             }
             $content = init_json($content);
             unset($content['_id']);
-            $json = stripslashes(json_encode($content));
-            $jsonView = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
+            $json = stripslashes(json_encode($content, JSON_UNESCAPED_UNICODE));
+            $jsonView = stripslashes(json_encode($content, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
             ?>
     <tr>
         <td id='d'><a class='text-success text-center' data-toggle='tooltip' title='json' href="index.php?action=editDocument&serve=<?php echo $_GET['serve'] ?>&db=<?php echo $_GET['db'] ?>&coll=<?php echo $_GET['coll'] ?>&doc=<?php echo $id ?>&type_id=<?php echo $type_id ?>&page=<?php echo $page ?><?php if(isset($recherche_g)): ?>&s_g=<?php echo urlencode($recherche_g) ?><?php endif; ?>"><i class='text-dark fa fa-file-text-o'></i>&nbsp;<?php echo $id; ?></a></td>

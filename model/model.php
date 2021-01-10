@@ -52,7 +52,7 @@ function toJSON($cursor){
 		 	$doc[$x] = improved_var_export($value);
 		}
 		$doc = init_json($doc);
-		$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
+		$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		array_push($docs_array, $docs);
 	}
 	return $docs_array;

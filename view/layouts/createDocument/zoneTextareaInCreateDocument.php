@@ -24,7 +24,7 @@
 		 		$docs = json_decode($docs);
 		 		$docs = $docs->data;
 			} else {
-		 		$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
+		 		$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		    } ?>
 		 	<form method="post" action="<?php echo $link_doc ?>">
 			 	<div id="create_content"><input type="submit" class="btn btn-primary" name="create" id="create" value="Create"></div>

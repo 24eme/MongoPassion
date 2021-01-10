@@ -22,7 +22,7 @@
 		 		$docs = json_decode($docs);
 		 		$docs = $docs->data;
 		 	 }else{
-		 	 	$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT));
+		 	 	$docs = stripslashes(json_encode($doc,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		 	 }
 
 	 	}

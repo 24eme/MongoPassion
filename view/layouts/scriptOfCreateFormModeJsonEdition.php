@@ -1,9 +1,8 @@
-
 <script type="text/javascript">
     const container = document.getElementById("jsoneditor")
     const options = {}
     const editor = new JSONEditor(container, options)
-    var variableRecuperee = <?php echo stripslashes(json_encode($doc)); ?>;
+    var variableRecuperee = <?php echo json_encode($doc, JSON_UNESCAPED_UNICODE); ?>;
     var link_doc = <?php echo (json_encode($link_doc)); ?>;
     var date_array = <?php echo json_encode(serialize($date_array)); ?>;
 

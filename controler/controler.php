@@ -830,7 +830,7 @@
                     $content[$x] =  improved_var_export($value);
                 }
                 $content = init_json($content);
-                $json = stripslashes(json_encode($content,JSON_PRETTY_PRINT));
+                $json = stripslashes(json_encode($content,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
                 echo $json;
             }
         }
