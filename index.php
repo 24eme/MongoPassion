@@ -9,88 +9,18 @@ if(!isset($_COOKIE['serve_list'])){
 
 require('controler/controler.php');
 
-try{
-    if(isset($_GET['action']))
-    {
-    	switch($_GET['action'])
-    	{
-            case 'traitement_uD':
-                traitement_uD();
-            break;
-            case 'editDocument':
-                editDocument();
-            break;
-            case 'getCollection':
-                getCollection();
-            break;
-            case 'editCollection':
-                editCollection();
-            break;
-            case 'moveCollection':
-                moveCollection();
-            break;
-            case 'renameCollection':
-                renameCollection();
-            break;
-            case 'deleteCollection':
-                deleteCollection();
-            break;
-            case 'createCollection':
-                createCollection();
-            break;
-            case 'getDb':
-                getDb();
-            break;
-            case 'getServer':
-                getServer();
-            break;
-            case 'getCollection_search':
-                getCollection_search();
-            break;
-            case 'getDb_search':
-                getDb_search();
-            break;
-            case 'createDocument':
-                createDocument();
-            break;
-            case 'traitement_nD':
-                traitement_nD();
-            break;
-            case 'deleteDocument':
-                deleteDocument();
-            break;
-            case 'viewDocument':
-                viewDocument();
-            break;
-            case 'error':
-                error();
-            break;
-            case 'home':
-                home();
-            break;
-            case 'advancedSearch':
-                advancedSearch();
-            break;
-            case 'removeServer':
-                removeServer();
-            break;
-            case 'install':
-                install();
-            break;
-            case 'export':
-                export();
-            break;
-            default:
-                error();
-            break;
-    	}
+$action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+
+try {
+    if (isset($action)) {
+        if (function_exists($action)) {
+            $action();
+        } else {
+            error();
+        }
+    } else {
+        home();
     }
-    
-    else
-    {
-    	home();
-    }
-}
-catch(Exception $e){
+} catch(Exception $e){
     echo 'Erreur' . $e->getMessage();
 }
